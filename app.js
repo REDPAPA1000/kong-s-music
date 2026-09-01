@@ -472,14 +472,14 @@ const resources = [
     grade: "1-2",
     domain: "가창",
     semester: "1학기",
-    title: "가을 길",
-    subtitle: "가을 풍경을 떠올리며 고운 가락을 표현하는 가창 수업",
+    title: "당신은 누구십니까",
+    subtitle: "스마트 악보로 노랫말과 가락을 즐겁게 익히는 가창 수업",
     kind: "악보 · 반주 · 수업안",
     duration: "40분",
     level: "보통",
     pdf: "assets/autumn-road.pdf",
-    mediaUrl: "assets/autumn-road-accompaniment.mp3",
-    mediaLabel: "가을 길 반주",
+    mediaUrl: "https://dn22.vivasam.com/VS/NES/INT/106385/zip/contents/05/02/int11_502_03.html",
+    mediaLabel: "비바샘 스마트 악보",
     mediaFeatures: ["반주 듣기", "노래 연습", "가을 풍경", "몸짓 표현"],
     guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fautumn-road-lesson-plan.pptx",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/14713/contents/index.html?skin=basic01&page=57",
@@ -489,7 +489,7 @@ const resources = [
       "손과 몸으로 가을 길의 모습을 표현하며 노래한다.",
       "친구들과 고운 소리로 가을 길을 완성한다."
     ],
-    teacherNote: "첫 번째 스마트 악보 바로 실행 버튼은 가을 길 반주를 재생합니다. 스마트 수업안에서는 PPT 활동 자료를 바로 열 수 있습니다."
+    teacherNote: "첫 번째 스마트 악보 바로 실행 버튼은 비바샘 스마트 악보를 엽니다."
   }
 ];
 
@@ -577,11 +577,14 @@ function renderResources() {
     const scoreAction = item.pdf
       ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
       : `<span class="lesson-unavailable" aria-disabled="true">악보 준비 중</span>`;
+    const secondaryActions = item.grade === "1-2"
+      ? ""
+      : `<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div>`;
     return `
       <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
         <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
         <div class="card-body"><h3>${item.title}</h3><p>${item.subtitle}</p><div class="card-meta"><span>◷ ${item.duration}</span><span>수준 ${item.level}</span>${scoreMeta}</div></div>
-        <div class="card-actions">${primaryAction}<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div></div>
+        <div class="card-actions">${primaryAction}${secondaryActions}</div>
       </article>`;
   }).join("");
 }
