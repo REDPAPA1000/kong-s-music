@@ -274,6 +274,30 @@ const resources = [
       "반주에 맞춰 친구들과 소리의 어울림을 느끼며 연주한다."
     ],
     teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
+  },
+  {
+    id: "favorite-words-singing",
+    grade: "4",
+    domain: "가창",
+    semester: "1학기",
+    title: "내가 제일 좋아하는 말",
+    subtitle: "소중한 사람에게 전하고 싶은 마음을 노래로 표현하는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/favorite-words.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106414_30p_7_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "가사 익히기", "셈여림 표현", "함께 노래하기"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Ffavorite-words-lesson-plan.pptx",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1691/contents/index.html?page=31",
+    steps: [
+      "내가 가장 좋아하는 말과 그 말을 전하고 싶은 사람을 떠올린다.",
+      "스마트 PPT로 노래를 듣고 노랫말과 주요 가락을 익힌다.",
+      "셈여림의 변화를 살려 마음이 잘 전해지도록 연습한다.",
+      "친구들과 따뜻한 마음을 담아 함께 노래한다."
+    ],
+    teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   }
 ];
 
