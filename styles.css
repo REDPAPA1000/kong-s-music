@@ -166,6 +166,7 @@ main { overflow: clip; }
 .card-actions a { border: 1px solid var(--line); }
 .card-actions .smart-launch { flex: 1; gap: 8px; color: white; background: linear-gradient(90deg, var(--coral), var(--blue)); border-color: var(--coral); box-shadow: 0 10px 22px rgba(87,85,231,.24); }
 .card-actions .smart-launch:hover { background: var(--coral-dark); border-color: var(--coral-dark); }
+.card-actions > .lesson-unavailable { min-height: 46px; }
 .secondary-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .secondary-actions a, .secondary-actions button { min-width: 0; min-height: 50px; padding: 8px 7px; white-space: nowrap; line-height: 1.2; text-align: center; font-size: .84rem; font-weight: 900; letter-spacing: -.025em; }
 .lesson-unavailable { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 8px 7px; color: var(--muted); background: #f2f3f7; border: 1px dashed #cbd0dc; border-radius: 999px; font-size: .8rem; font-weight: 800; white-space: nowrap; }
@@ -246,6 +247,9 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .media-box p { margin: 0; color: #c8ced6; font-size: .85rem; }
 .media-box a { display: inline-flex; align-items: center; min-height: 42px; margin-top: 15px; padding: 0 18px; color: var(--ink); background: white; border-radius: 999px; font-weight: 900; }
 .media-box .ibook-inline { display: flex; width: max-content; margin: 8px auto 0; color: #d9eee8; background: transparent; border: 1px solid rgba(217,238,232,.45); }
+.media-box .audio-player { width: 100%; margin-top: 14px; padding: 11px; color: #e9eaff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); border-radius: 12px; }
+.audio-player strong { display: block; margin-bottom: 7px; font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: .82rem; }
+.audio-player audio { display: block; width: 100%; height: 34px; }
 .smart-ppt > strong { display: block; font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif; font-size: 1.15rem; font-weight: 900; }
 .media-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 14px; }
 .media-features span { padding: 4px 8px; color: #dbe3ea; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12); border-radius: 999px; font-size: .66rem; }

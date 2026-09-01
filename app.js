@@ -418,6 +418,56 @@ const resources = [
       "다른 가락과의 어울림을 느끼며 함께 연주한다."
     ],
     teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
+  },
+  {
+    id: "bean-sprouts-singing",
+    grade: "1-2",
+    domain: "가창",
+    semester: "1학기",
+    title: "콩콩콩 콩나물",
+    subtitle: "자라나는 콩나물처럼 나의 모습을 떠올리며 즐겁게 노래하는 가창 수업",
+    kind: "악보 · 수업 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/bean-sprouts.pdf",
+    mediaUrl: "",
+    mediaLabel: "수업 PPT",
+    primaryLabel: "수업 PPT 준비 중",
+    mediaFeatures: ["노래 익히기", "가사 표현", "반주에 맞추기"],
+    guideUrl: "",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/13355/contents/index.html?skin=basic01&page=51",
+    steps: [
+      "콩나물이 자라는 모습을 떠올리며 노랫말을 읽어 본다.",
+      "반주에 맞춰 노래의 리듬과 가락을 익힌다.",
+      "몸짓으로 콩나물이 자라는 모습을 표현하며 노래한다.",
+      "친구들과 즐겁게 노래하며 마무리한다."
+    ],
+    teacherNote: "요청하신 대로 반주 음원만 등록합니다. 현재 PPT와 반주 MP3 원본이 작업 폴더에서 확인되지 않아, 다시 첨부되면 즉시 연결합니다."
+  },
+  {
+    id: "autumn-road-singing",
+    grade: "1-2",
+    domain: "가창",
+    semester: "1학기",
+    title: "가을 길",
+    subtitle: "가을 풍경을 떠올리며 고운 가락을 표현하는 가창 수업",
+    kind: "악보 · 수업 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/autumn-road.pdf",
+    mediaUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fautumn-road-lesson-plan.pptx",
+    mediaLabel: "가을 길 수업 PPT",
+    primaryLabel: "수업 PPT 바로 실행",
+    mediaFeatures: ["노래 익히기", "가을 풍경", "몸짓 표현", "함께 노래하기"],
+    guideUrl: "",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/14713/contents/index.html?skin=basic01&page=57",
+    steps: [
+      "가을의 색과 바람을 떠올리며 노래의 분위기를 이야기한다.",
+      "수업 PPT로 노랫말과 가락을 차례로 익힌다.",
+      "손과 몸으로 가을 길의 모습을 표현하며 노래한다.",
+      "친구들과 고운 소리로 가을 길을 완성한다."
+    ],
+    teacherNote: "수업 PPT를 먼저 열어 그림과 활동을 함께 살펴본 뒤, 악보와 반주를 활용해 노래를 이어 갑니다."
   }
 ];
 
@@ -496,6 +546,9 @@ function renderResources() {
 
   resourceGrid.innerHTML = list.map((item) => {
     const scoreMeta = item.pdf ? "<span>PDF 1쪽</span>" : "<span>악보 준비 중</span>";
+    const primaryAction = item.mediaUrl
+      ? `<a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">${item.primaryLabel || "스마트 악보 바로 실행"} <span aria-hidden="true">↗</span></a>`
+      : `<span class="lesson-unavailable" aria-disabled="true">${item.primaryLabel || "수업 자료 준비 중"}</span>`;
     const guideAction = item.guideUrl
       ? `<a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안</a>`
       : `<span class="lesson-unavailable" aria-disabled="true">수업안 준비 중</span>`;
@@ -506,7 +559,7 @@ function renderResources() {
       <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
         <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
         <div class="card-body"><h3>${item.title}</h3><p>${item.subtitle}</p><div class="card-meta"><span>◷ ${item.duration}</span><span>수준 ${item.level}</span>${scoreMeta}</div></div>
-        <div class="card-actions"><a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div></div>
+        <div class="card-actions">${primaryAction}<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div></div>
       </article>`;
   }).join("");
 }
@@ -526,9 +579,14 @@ function openLesson(id, trigger) {
   const guideLink = item.guideUrl
     ? `<a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안 열기 <span aria-hidden="true">↗</span></a>`
     : `<span class="ibook-inline lesson-unavailable" aria-disabled="true">스마트 수업안 준비 중</span>`;
+  const audioPlayer = item.audioUrl
+    ? `<div class="audio-player"><strong>${item.audioLabel || "반주 듣기"}</strong><audio controls preload="metadata" src="${item.audioUrl}">이 브라우저에서는 오디오를 재생할 수 없습니다.</audio></div>`
+    : "";
+  const mediaLabel = item.mediaLabel || "수업 자료";
+  const primaryLabel = item.primaryLabel || "스마트 악보 바로 실행";
   document.querySelector("#media-box").innerHTML = item.mediaUrl
-    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${item.mediaLabel}</strong><p>악보의 QR과 같은 출판사 수업 화면</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a>${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`
-    : `<div><div class="media-icon" aria-hidden="true">QR</div><strong>연결 주소 등록 필요</strong><p>악보 오른쪽 위 QR의 공식 주소를 확인한 뒤<br />이 영역에 연결합니다.</p></div>`;
+    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${mediaLabel}</strong><p>악보와 함께 활용하는 수업 자료입니다.</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">${primaryLabel} <span aria-hidden="true">↗</span></a>${audioPlayer}${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`
+    : `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">QR</div><strong>수업 자료 준비 중</strong><p>제공된 PPT 또는 음원이 등록되면<br />이 영역에서 바로 실행할 수 있습니다.</p>${audioPlayer}${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`;
   dialog.showModal();
   document.body.classList.add("dialog-open");
   document.querySelector("#dialog-close").focus();
