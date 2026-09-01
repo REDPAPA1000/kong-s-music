@@ -454,8 +454,8 @@ const resources = [
     duration: "40분",
     level: "보통",
     pdf: "assets/bean-sprouts.pdf",
-    mediaUrl: "assets/bean-sprouts-accompaniment.mp3",
-    mediaLabel: "콩콩콩 콩나물 반주",
+    mediaUrl: "https://dn22.vivasam.com/VS/NES/INT/106389/zip/contents/02/17/int21_217_05.html",
+    mediaLabel: "비바샘 스마트 악보",
     mediaFeatures: ["반주 듣기", "노래 연습", "가사 표현", "몸짓 활동"],
     guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fbean-sprouts-lesson-plan.pptx",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/13355/contents/index.html?skin=basic01&page=51",
@@ -465,7 +465,7 @@ const resources = [
       "몸짓으로 콩나물이 자라는 모습을 표현하며 노래한다.",
       "친구들과 즐겁게 노래하며 마무리한다."
     ],
-    teacherNote: "첫 번째 스마트 악보 바로 실행 버튼은 콩콩콩 콩나물 반주를 재생합니다. 스마트 수업안에서는 PPT 활동 자료를 바로 열 수 있습니다."
+    teacherNote: "첫 번째 스마트 악보 바로 실행 버튼은 비바샘 스마트 악보를 엽니다. 스마트 수업안에서는 PPT 활동 자료를 바로 열 수 있습니다."
   },
   {
     id: "autumn-road-singing",
