@@ -454,11 +454,11 @@ const resources = [
     duration: "40분",
     level: "쉬움",
     pdf: "",
-    mediaUrl: "https://e.vivasam.com/class/link/special/popup/contentPopup?contentId=471411&contentGubun=CN030",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_42p_11_ST",
     mediaLabel: "비바샘 스마트 악보",
     mediaFeatures: ["리듬 악기", "소리 탐색", "리듬 익히기", "함께 연주하기"],
     guideUrl: "",
-    ibookUrl: "https://e.vivasam.com/class/link/special/popup/contentPopup?contentId=471411&contentGubun=CN030",
+    ibookUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_42p_11_ST",
     steps: [
       "리듬 악기의 이름과 소리를 들어 본다.",
       "스마트 악보를 보며 일정한 박을 손뼉으로 익힌다.",
