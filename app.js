@@ -444,6 +444,30 @@ const resources = [
     teacherNote: "원본 PPTX 수업안은 용량이 커서, 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
   },
   {
+    id: "rhythm-instrument-song",
+    grade: "1-2",
+    domain: "기악",
+    semester: "1학기",
+    title: "리듬 악기 노래",
+    subtitle: "여러 리듬 악기의 소리를 듣고 리듬에 맞춰 함께 연주하는 기악 수업",
+    kind: "스마트 악보",
+    duration: "40분",
+    level: "쉬움",
+    pdf: "",
+    mediaUrl: "https://e.vivasam.com/class/link/special/popup/contentPopup?contentId=471411&contentGubun=CN030",
+    mediaLabel: "비바샘 스마트 악보",
+    mediaFeatures: ["리듬 악기", "소리 탐색", "리듬 익히기", "함께 연주하기"],
+    guideUrl: "",
+    ibookUrl: "https://e.vivasam.com/class/link/special/popup/contentPopup?contentId=471411&contentGubun=CN030",
+    steps: [
+      "리듬 악기의 이름과 소리를 들어 본다.",
+      "스마트 악보를 보며 일정한 박을 손뼉으로 익힌다.",
+      "리듬 악기를 나누어 맡아 간단한 리듬을 연주한다.",
+      "친구들과 소리를 맞추어 노래와 함께 연주한다."
+    ],
+    teacherNote: "초1·2 기악에는 리듬 악기 노래 한 곡만 제공합니다. 스마트 악보 바로 실행 버튼에서 수업 자료를 열어 바로 활용할 수 있습니다."
+  },
+  {
     id: "bean-sprouts-singing",
     grade: "1-2",
     domain: "가창",
@@ -567,7 +591,11 @@ function renderResources() {
   }
 
   resourceGrid.innerHTML = list.map((item) => {
-    const scoreMeta = item.pdf ? "<span>PDF 1쪽</span>" : "<span>악보 준비 중</span>";
+    const scoreMeta = item.pdf
+      ? "<span>PDF 1쪽</span>"
+      : item.mediaUrl
+        ? "<span>스마트 악보</span>"
+        : "<span>악보 준비 중</span>";
     const primaryAction = item.mediaUrl
       ? `<a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">${item.primaryLabel || "스마트 악보 바로 실행"} <span aria-hidden="true">↗</span></a>`
       : `<span class="lesson-unavailable" aria-disabled="true">${item.primaryLabel || "수업 자료 준비 중"}</span>`;
