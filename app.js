@@ -226,6 +226,30 @@ const resources = [
       "곡의 분위기를 살려 친구들과 활기차게 노래한다."
     ],
     teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
+  },
+  {
+    id: "hands-draw-wind-singing",
+    grade: "5",
+    domain: "가창",
+    semester: "1학기",
+    title: "내 손은 바람을 그려요",
+    subtitle: "바람의 움직임을 떠올리며 가락을 다양한 방법으로 표현하는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/hands-draw-wind.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106536_72p_44_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "가사 익히기", "가락 표현", "함께 노래하기"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fhands-draw-wind-lesson-plan.pptx",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11125/contents/index.html?skin=basic01&page=73",
+    steps: [
+      "바람이 만들어 내는 소리와 움직임을 떠올려 본다.",
+      "스마트 PPT로 두 절의 가사와 주요 가락을 익힌다.",
+      "바람의 느낌이 드러나도록 호흡과 셈여림을 달리해 본다.",
+      "친구들과 가락의 흐름을 살려 노래하며 마무리한다."
+    ],
+    teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   }
 ];
 
