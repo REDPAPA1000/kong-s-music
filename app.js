@@ -475,23 +475,22 @@ const resources = [
     semester: "1학기",
     title: "가을 길",
     subtitle: "가을 풍경을 떠올리며 고운 가락을 표현하는 가창 수업",
-    kind: "악보 · 수업 PPT",
+    kind: "악보 · 반주 · 수업안",
     duration: "40분",
     level: "보통",
     pdf: "assets/autumn-road.pdf",
-    mediaUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fautumn-road-lesson-plan.pptx",
-    mediaLabel: "가을 길 수업 PPT",
-    primaryLabel: "수업 PPT 바로 실행",
-    mediaFeatures: ["노래 익히기", "가을 풍경", "몸짓 표현", "함께 노래하기"],
-    guideUrl: "",
+    mediaUrl: "assets/autumn-road-accompaniment.mp3",
+    mediaLabel: "가을 길 반주",
+    mediaFeatures: ["반주 듣기", "노래 연습", "가을 풍경", "몸짓 표현"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fautumn-road-lesson-plan.pptx",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/14713/contents/index.html?skin=basic01&page=57",
     steps: [
       "가을의 색과 바람을 떠올리며 노래의 분위기를 이야기한다.",
-      "수업 PPT로 노랫말과 가락을 차례로 익힌다.",
+      "스마트 악보 바로 실행으로 반주를 들으며 노랫말과 가락을 익힌다.",
       "손과 몸으로 가을 길의 모습을 표현하며 노래한다.",
       "친구들과 고운 소리로 가을 길을 완성한다."
     ],
-    teacherNote: "수업 PPT를 먼저 열어 그림과 활동을 함께 살펴본 뒤, 악보와 반주를 활용해 노래를 이어 갑니다."
+    teacherNote: "첫 번째 스마트 악보 바로 실행 버튼은 가을 길 반주를 재생합니다. 스마트 수업안에서는 PPT 활동 자료를 바로 열 수 있습니다."
   }
 ];
 
