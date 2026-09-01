@@ -34,6 +34,78 @@ const resources = [
       "내 목소리를 내고 싶은 순간을 한 문장으로 나눈다."
     ],
     teacherNote: "스마트 PPT는 출판사 제공 화면으로 바로 실행됩니다. 수업 전 교실 네트워크와 재생 소리를 먼저 점검하면 흐름이 끊기지 않습니다."
+  },
+  {
+    id: "holo-arirang-ocarina",
+    grade: "h1",
+    domain: "기악",
+    semester: "1학기",
+    title: "홀로 아리랑",
+    subtitle: "오카리나의 운지와 호흡을 익혀 ‘홀로 아리랑’을 함께 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/holo-arirang-ocarina.pdf",
+    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/3896/contents/index.html?skin=basic03&page=15",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["오카리나 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/3896/contents/index.html?skin=basic03&page=15",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4774/contents/index.html?skin=basic01&page=63",
+    steps: [
+      "‘홀로 아리랑’의 가락과 곡의 분위기를 들어 본다.",
+      "오카리나 운지와 바른 호흡을 차례로 점검한다.",
+      "짧은 가락부터 천천히 연결하여 연주한다.",
+      "반주에 맞춰 친구들과 균형 있게 합주한다."
+    ],
+    teacherNote: "긴 음은 숨을 충분히 준비해 안정적으로 소리 내도록 돕고, 합주 전에는 각 파트의 음량과 호흡 시작점을 함께 맞춥니다."
+  },
+  {
+    id: "boriuls-summer",
+    grade: "m3",
+    domain: "가창",
+    semester: "1학기",
+    title: "보리울의 여름",
+    subtitle: "영화 속 음악을 통해 가사와 선율의 분위기를 느끼며 노래하는 가창 수업",
+    kind: "스마트 자료",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/boriuls-summer.pdf",
+    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/4471/contents/index.html?skin=basic03&page=5",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "가사 익히기", "가락 따라 부르기", "함께 노래하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/4471/contents/index.html?skin=basic03&page=5",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4776/contents/index.html?skin=basic01&page=37",
+    steps: [
+      "영화 장면과 음악의 분위기를 떠올려 본다.",
+      "스마트 PPT로 노래를 듣고 가사의 뜻을 나눈다.",
+      "호흡과 프레이즈를 살려 주요 가락을 익힌다.",
+      "곡의 정서를 생각하며 함께 노래한다."
+    ],
+    teacherNote: "영화의 장면과 가사의 정서를 먼저 충분히 나눈 뒤, 문장 끝의 호흡을 맞추며 자연스러운 프레이즈로 노래하도록 안내합니다."
+  },
+  {
+    id: "grandfathers-clock-kalimba",
+    grade: "m3",
+    domain: "기악",
+    semester: "1학기",
+    title: "할아버지의 낡은 시계",
+    subtitle: "칼림바의 숫자 악보를 읽고 반주에 맞춰 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/grandfathers-clock-kalimba.pdf",
+    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/4366/contents/index.html?skin=basic03&page=15",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["칼림바 연주", "숫자 악보", "반주 듣기", "함께 연주하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/4366/contents/index.html?skin=basic03&page=16",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4775/contents/index.html?skin=basic01&page=51",
+    steps: [
+      "칼림바의 음 배열과 숫자 악보 읽는 법을 확인한다.",
+      "오른손과 왼손이 이어지는 부분을 나누어 천천히 연습한다.",
+      "짧은 마디부터 정확한 박으로 연결해 연주한다.",
+      "반주에 맞춰 친구들과 박과 음량을 맞춘다."
+    ],
+    teacherNote: "한 손으로 이어 연주하는 부분은 낮은 음부터 차례로 연습하게 하고, 빠르게 연결하기 전에는 정확한 박을 먼저 확인하도록 안내합니다."
   }
 ];
 
@@ -110,12 +182,18 @@ function renderResources() {
     return;
   }
 
-  resourceGrid.innerHTML = list.map((item) => `
-    <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
-      <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
-      <div class="card-body"><h3>${item.title}</h3><p>${item.subtitle}</p><div class="card-meta"><span>◷ ${item.duration}</span><span>수준 ${item.level}</span><span>PDF 1쪽</span></div></div>
-      <div class="card-actions"><a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><div class="secondary-actions"><a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안</a><a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a><button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button></div></div>
-    </article>`).join("");
+  resourceGrid.innerHTML = list.map((item) => {
+    const scoreMeta = item.pdf ? "<span>PDF 1쪽</span>" : "<span>악보 준비 중</span>";
+    const scoreAction = item.pdf
+      ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
+      : `<span class="lesson-unavailable" aria-disabled="true">악보 준비 중</span>`;
+    return `
+      <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
+        <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
+        <div class="card-body"><h3>${item.title}</h3><p>${item.subtitle}</p><div class="card-meta"><span>◷ ${item.duration}</span><span>수준 ${item.level}</span>${scoreMeta}</div></div>
+        <div class="card-actions"><a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><div class="secondary-actions"><a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안</a><a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div></div>
+      </article>`;
+  }).join("");
 }
 
 function openLesson(id, trigger) {

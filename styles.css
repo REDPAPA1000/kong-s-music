@@ -168,6 +168,7 @@ main { overflow: clip; }
 .card-actions .smart-launch:hover { background: var(--coral-dark); border-color: var(--coral-dark); }
 .secondary-actions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .secondary-actions a, .secondary-actions button { min-width: 0; min-height: 50px; padding: 8px 7px; white-space: nowrap; line-height: 1.2; text-align: center; font-size: .84rem; font-weight: 900; letter-spacing: -.025em; }
+.lesson-unavailable { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 8px 7px; color: var(--muted); background: #f2f3f7; border: 1px dashed #cbd0dc; border-radius: 999px; font-size: .8rem; font-weight: 800; white-space: nowrap; }
 .card-actions .guide-launch { color: #35367f; background: #ecebff; border-color: #cecdfa; }
 .card-actions .ibook-launch { color: #155c55; background: var(--mint-soft); border-color: #afe8df; }
 .card-actions .lesson-open { min-width: 0; }
@@ -215,6 +216,7 @@ footer p { margin: 0; font-size: .84rem; }
 :root[data-theme="dark"] .resource-kind, :root[data-theme="dark"] .card-meta { color: #aeb5c9; }
 :root[data-theme="dark"] .card-actions .guide-launch { color: #dedcff; background: #292a55; border-color: #454783; }
 :root[data-theme="dark"] .card-actions .ibook-launch { color: #b8f3e9; background: #173d3b; border-color: #2d625e; }
+:root[data-theme="dark"] .lesson-unavailable { color: #aeb5c9; background: #20243a; border-color: #49516e; }
 :root[data-theme="dark"] .empty-state { background: rgba(255,255,255,.03); border-color: #42475e; }
 :root[data-theme="dark"] dialog:not(.login-dialog) { background: #0d1020; }
 
