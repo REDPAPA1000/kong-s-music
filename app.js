@@ -130,6 +130,30 @@ const resources = [
       "극의 분위기에 어울리는 표현으로 함께 노래한다."
     ],
     teacherNote: "노래의 가사와 오페라 장면을 함께 연결하고, 레가토로 긴 선율을 자연스럽게 이어 표현하도록 돕습니다."
+  },
+  {
+    id: "you-to-me-ukulele",
+    grade: "m2",
+    domain: "기악",
+    semester: "1학기",
+    title: "너에게 난 나에게 넌",
+    subtitle: "우쿨렐라의 기본 코드를 익혀 반주와 함께 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/you-to-me-ukulele.pdf",
+    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/4331/contents/index.html?skin=basic03&page=15",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["우쿨렐라 코드", "코드 표", "반주 듣기", "함께 연주하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/4331/contents/index.html?skin=basic03&page=15",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4776/contents/index.html?skin=basic01&page=55",
+    steps: [
+      "우쿨렐라의 기본 자세와 코드표를 확인한다.",
+      "C, G7, Am 등 주요 코드를 차례로 잡아 본다.",
+      "코드 전환이 필요한 마디를 천천히 반복 연습한다.",
+      "반주에 맞춰 리듬과 코드를 함께 연주한다."
+    ],
+    teacherNote: "코드를 빠르게 바꾸기보다 정확한 손 모양을 먼저 익히도록 하고, 반주에 맞춰 일정한 박으로 스트로크하도록 안내합니다."
   }
 ];
 
