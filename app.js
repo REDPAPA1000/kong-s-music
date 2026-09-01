@@ -202,6 +202,30 @@ const resources = [
       "반주에 맞춰 친구들과 박과 음량을 맞춘다."
     ],
     teacherNote: "높은 음을 낼 때에는 숨을 세게 밀기보다 일정한 호흡을 유지하도록 돕고, 합주 전에는 시작과 끝의 박을 함께 확인합니다."
+  },
+  {
+    id: "mountain-ridge-singing",
+    grade: "6",
+    domain: "가창",
+    semester: "1학기",
+    title: "산마루에서",
+    subtitle: "가락의 특징을 살려 활기차게 노래하며 자신감을 표현하는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/mountain-ridge.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106537_12p_4_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "가사 익히기", "가락 연습", "함께 노래하기"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fmountain-ridge-lesson-plan.pptx",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11126/contents/index.html?skin=basic01&page=13",
+    steps: [
+      "산마루의 풍경을 떠올리며 노랫말이 전하는 느낌을 나눈다.",
+      "스마트 PPT로 선율과 가사를 듣고 주요 가락을 익힌다.",
+      "‘야호’처럼 힘차게 표현할 부분의 호흡과 발음을 연습한다.",
+      "곡의 분위기를 살려 친구들과 활기차게 노래한다."
+    ],
+    teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   }
 ];
 
