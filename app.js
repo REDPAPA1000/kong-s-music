@@ -450,23 +450,22 @@ const resources = [
     semester: "1학기",
     title: "콩콩콩 콩나물",
     subtitle: "자라나는 콩나물처럼 나의 모습을 떠올리며 즐겁게 노래하는 가창 수업",
-    kind: "악보 · 수업 PPT",
+    kind: "악보 · 반주 · 수업안",
     duration: "40분",
     level: "보통",
     pdf: "assets/bean-sprouts.pdf",
-    mediaUrl: "",
-    mediaLabel: "수업 PPT",
-    primaryLabel: "수업 PPT 준비 중",
-    mediaFeatures: ["노래 익히기", "가사 표현", "반주에 맞추기"],
-    guideUrl: "",
+    mediaUrl: "assets/bean-sprouts-accompaniment.mp3",
+    mediaLabel: "콩콩콩 콩나물 반주",
+    mediaFeatures: ["반주 듣기", "노래 연습", "가사 표현", "몸짓 활동"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fbean-sprouts-lesson-plan.pptx",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/13355/contents/index.html?skin=basic01&page=51",
     steps: [
       "콩나물이 자라는 모습을 떠올리며 노랫말을 읽어 본다.",
-      "반주에 맞춰 노래의 리듬과 가락을 익힌다.",
+      "스마트 악보 바로 실행으로 반주를 들으며 노래의 리듬과 가락을 익힌다.",
       "몸짓으로 콩나물이 자라는 모습을 표현하며 노래한다.",
       "친구들과 즐겁게 노래하며 마무리한다."
     ],
-    teacherNote: "요청하신 대로 반주 음원만 등록합니다. 현재 PPT와 반주 MP3 원본이 작업 폴더에서 확인되지 않아, 다시 첨부되면 즉시 연결합니다."
+    teacherNote: "첫 번째 스마트 악보 바로 실행 버튼은 콩콩콩 콩나물 반주를 재생합니다. 스마트 수업안에서는 PPT 활동 자료를 바로 열 수 있습니다."
   },
   {
     id: "autumn-road-singing",
