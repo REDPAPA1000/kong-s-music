@@ -106,6 +106,30 @@ const resources = [
       "반주에 맞춰 친구들과 박과 음량을 맞춘다."
     ],
     teacherNote: "한 손으로 이어 연주하는 부분은 낮은 음부터 차례로 연습하게 하고, 빠르게 연결하기 전에는 정확한 박을 먼저 확인하도록 안내합니다."
+  },
+  {
+    id: "womans-heart",
+    grade: "m2",
+    domain: "가창",
+    semester: "1학기",
+    title: "여자의 마음",
+    subtitle: "오페라 「리골레토」의 아리아를 극의 분위기에 맞춰 표현하는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/womans-heart.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106438_32p_20_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "가사 익히기", "극의 분위기", "함께 노래하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/4272/contents/index.html?skin=basic03&page=1",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4775/contents/index.html?skin=basic01&page=33",
+    steps: [
+      "오페라의 장면과 인물의 마음을 살펴본다.",
+      "스마트 PPT로 선율과 가사의 흐름을 익힌다.",
+      "레가토와 셈여림을 살려 주요 가락을 연습한다.",
+      "극의 분위기에 어울리는 표현으로 함께 노래한다."
+    ],
+    teacherNote: "노래의 가사와 오페라 장면을 함께 연결하고, 레가토로 긴 선율을 자연스럽게 이어 표현하도록 돕습니다."
   }
 ];
 
