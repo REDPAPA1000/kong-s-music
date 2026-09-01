@@ -370,6 +370,54 @@ const resources = [
       "친구들과 호흡을 맞춰 부드럽게 노래한다."
     ],
     teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
+  },
+  {
+    id: "airplane-recorder",
+    grade: "3",
+    domain: "기악",
+    semester: "1학기",
+    title: "비행기",
+    subtitle: "리코더의 시·라·솔 운지를 익혀 ‘비행기’를 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/airplane-recorder.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_20p_60_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["리코더 운지", "시·라·솔", "반주 듣기", "함께 연주하기"],
+    guideUrl: "",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=21",
+    steps: [
+      "비행기의 움직임을 떠올리며 곡의 빠르기와 분위기를 듣는다.",
+      "리코더의 시·라·솔 운지를 바른 자세로 익힌다.",
+      "짧은 가락을 계이름과 함께 반복해 연주한다.",
+      "반주에 맞춰 친구들과 박을 맞추어 연주한다."
+    ],
+    teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
+  },
+  {
+    id: "little-star-recorder",
+    grade: "3",
+    domain: "기악",
+    semester: "1학기",
+    title: "작은별",
+    subtitle: "리코더의 낮은음과 어울리는 소리를 익혀 ‘작은별’을 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/little-star-recorder.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_37p_62_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["리코더 운지", "낮은음", "반주 듣기", "함께 연주하기"],
+    guideUrl: "",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=37",
+    steps: [
+      "별이 빛나는 모습을 떠올리며 곡의 가락을 들어 본다.",
+      "낮은음을 포함한 리코더 운지를 차례로 확인한다.",
+      "짧은 가락부터 정확한 운지와 호흡으로 연주한다.",
+      "다른 가락과의 어울림을 느끼며 함께 연주한다."
+    ],
+    teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
   }
 ];
 
