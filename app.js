@@ -228,6 +228,30 @@ const resources = [
     teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   },
   {
+    id: "rainbow-beyond-kalimba",
+    grade: "6",
+    domain: "기악",
+    semester: "1학기",
+    title: "무지개 너머",
+    subtitle: "칼림바의 맑은 울림으로 선율을 익히고 친구들과 함께 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/rainbow-beyond-kalimba.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106537_20p_8_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["칼림바 연주", "가락 익히기", "반주 듣기", "함께 연주하기"],
+    guideUrl: "assets/rainbow-beyond-kalimba-lesson-plan.pdf",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11126/contents/index.html?skin=basic01&page=21",
+    steps: [
+      "칼림바의 음 배열과 기본 연주 자세를 확인한다.",
+      "스마트 PPT로 곡의 선율을 듣고 주요 가락을 익힌다.",
+      "어려운 부분을 짧게 나누어 천천히 반복 연습한다.",
+      "친구들과 박자와 소리의 어울림을 맞추며 함께 연주한다."
+    ],
+    teacherNote: "첨부된 수업안 PPTX의 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
+  },
+  {
     id: "hands-draw-wind-singing",
     grade: "5",
     domain: "가창",
