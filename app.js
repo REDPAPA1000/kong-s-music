@@ -250,6 +250,30 @@ const resources = [
       "친구들과 가락의 흐름을 살려 노래하며 마무리한다."
     ],
     teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
+  },
+  {
+    id: "a-whole-new-world-ocarina",
+    grade: "5",
+    domain: "기악",
+    semester: "1학기",
+    title: "A Whole New World",
+    subtitle: "오카리나의 운지와 호흡을 익혀 ‘A Whole New World’를 함께 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/a-whole-new-world-ocarina.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106536_20p_11_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["오카리나 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
+    guideUrl: "",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11125/contents/index.html?skin=basic01&page=21",
+    steps: [
+      "영화 속 장면과 곡의 분위기를 떠올리며 선율을 들어 본다.",
+      "오카리나 운지와 안정적인 호흡을 차례로 점검한다.",
+      "어려운 리듬과 가락을 짧은 마디부터 반복해 익힌다.",
+      "반주에 맞춰 친구들과 소리의 어울림을 느끼며 연주한다."
+    ],
+    teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
   }
 ];
 
@@ -328,6 +352,9 @@ function renderResources() {
 
   resourceGrid.innerHTML = list.map((item) => {
     const scoreMeta = item.pdf ? "<span>PDF 1쪽</span>" : "<span>악보 준비 중</span>";
+    const guideAction = item.guideUrl
+      ? `<a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안</a>`
+      : `<span class="lesson-unavailable" aria-disabled="true">수업안 준비 중</span>`;
     const scoreAction = item.pdf
       ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
       : `<span class="lesson-unavailable" aria-disabled="true">악보 준비 중</span>`;
@@ -335,7 +362,7 @@ function renderResources() {
       <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
         <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
         <div class="card-body"><h3>${item.title}</h3><p>${item.subtitle}</p><div class="card-meta"><span>◷ ${item.duration}</span><span>수준 ${item.level}</span>${scoreMeta}</div></div>
-        <div class="card-actions"><a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><div class="secondary-actions"><a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안</a><a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div></div>
+        <div class="card-actions"><a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div></div>
       </article>`;
   }).join("");
 }
@@ -352,8 +379,11 @@ function openLesson(id, trigger) {
   document.querySelector("#lesson-steps").innerHTML = item.steps.map((step) => `<li>${step}</li>`).join("");
   document.querySelector("#teacher-note-text").textContent = item.teacherNote;
   const ibookPage = new URL(item.ibookUrl).searchParams.get("page");
+  const guideLink = item.guideUrl
+    ? `<a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안 열기 <span aria-hidden="true">↗</span></a>`
+    : `<span class="ibook-inline lesson-unavailable" aria-disabled="true">스마트 수업안 준비 중</span>`;
   document.querySelector("#media-box").innerHTML = item.mediaUrl
-    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${item.mediaLabel}</strong><p>악보의 QR과 같은 출판사 수업 화면</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안 열기 <span aria-hidden="true">↗</span></a><a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`
+    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${item.mediaLabel}</strong><p>악보의 QR과 같은 출판사 수업 화면</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a>${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`
     : `<div><div class="media-icon" aria-hidden="true">QR</div><strong>연결 주소 등록 필요</strong><p>악보 오른쪽 위 QR의 공식 주소를 확인한 뒤<br />이 영역에 연결합니다.</p></div>`;
   dialog.showModal();
   document.body.classList.add("dialog-open");
