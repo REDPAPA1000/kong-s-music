@@ -289,7 +289,7 @@ const resources = [
     mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106536_20p_11_ST",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["오카리나 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
-    guideUrl: "assets/airplane-recorder-lesson-plan.pdf",
+    guideUrl: "",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11125/contents/index.html?skin=basic01&page=21",
     steps: [
       "영화 속 장면과 곡의 분위기를 떠올리며 선율을 들어 본다.",
@@ -297,7 +297,7 @@ const resources = [
       "어려운 리듬과 가락을 짧은 마디부터 반복해 익힌다.",
       "반주에 맞춰 친구들과 소리의 어울림을 느끼며 연주한다."
     ],
-    teacherNote: "원본 PPTX 수업안은 용량이 커서, 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
+    teacherNote: "수업안 자료가 준비되면 스마트 수업안 버튼에서 바로 열 수 있도록 연결합니다."
   },
   {
     id: "favorite-words-singing",
@@ -337,7 +337,7 @@ const resources = [
     mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_40p_10_ST",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "가락선 보기", "차례가기", "함께 연주하기"],
-    guideUrl: "assets/little-star-recorder-lesson-plan.pdf",
+    guideUrl: "",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=41",
     steps: [
       "‘옥수수 하모니카’의 가락과 리코더 소리를 들어 본다.",
@@ -345,7 +345,7 @@ const resources = [
       "리코더 운지와 계이름을 확인하며 짧은 가락부터 연주한다.",
       "친구들과 박을 맞춰 끝까지 이어 연주한다."
     ],
-    teacherNote: "원본 PPTX 수업안은 용량이 커서, 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
+    teacherNote: "수업안 자료가 준비되면 스마트 수업안 버튼에서 바로 열 수 있도록 연결합니다."
   },
   {
     id: "cotton-candy-singing",
@@ -409,7 +409,7 @@ const resources = [
     mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_20p_60_ST",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "시·라·솔", "반주 듣기", "함께 연주하기"],
-    guideUrl: "",
+    guideUrl: "assets/airplane-recorder-lesson-plan.pdf",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=21",
     steps: [
       "비행기의 움직임을 떠올리며 곡의 빠르기와 분위기를 듣는다.",
@@ -417,7 +417,7 @@ const resources = [
       "짧은 가락을 계이름과 함께 반복해 연주한다.",
       "반주에 맞춰 친구들과 박을 맞추어 연주한다."
     ],
-    teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
+    teacherNote: "원본 PPTX 수업안은 용량이 커서, 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
   },
   {
     id: "little-star-recorder",
@@ -433,7 +433,7 @@ const resources = [
     mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_37p_62_ST",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "낮은음", "반주 듣기", "함께 연주하기"],
-    guideUrl: "",
+    guideUrl: "assets/little-star-recorder-lesson-plan.pdf",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=37",
     steps: [
       "별이 빛나는 모습을 떠올리며 곡의 가락을 들어 본다.",
@@ -441,7 +441,7 @@ const resources = [
       "짧은 가락부터 정확한 운지와 호흡으로 연주한다.",
       "다른 가락과의 어울림을 느끼며 함께 연주한다."
     ],
-    teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
+    teacherNote: "원본 PPTX 수업안은 용량이 커서, 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
   },
   {
     id: "bean-sprouts-singing",
