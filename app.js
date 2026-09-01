@@ -161,7 +161,7 @@ function showHome() {
   libraryView.hidden = true;
   theoryView.hidden = true;
   setCurrentNav("home");
-  document.title = "연정샘의 음악 교실";
+  document.title = "연정쌤의 음악 교실";
 }
 
 function showGrade(grade) {
@@ -176,7 +176,7 @@ function showGrade(grade) {
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
   document.querySelector("#grade-number").textContent = data.number;
-  document.title = `${data.label} | 연정샘의 음악 교실`;
+  document.title = `${data.label} | 연정쌤의 음악 교실`;
   setCurrentNav(state.grade);
   renderResources();
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -189,7 +189,7 @@ function showTheory() {
   libraryView.hidden = true;
   theoryView.hidden = false;
   setCurrentNav("theory");
-  document.title = "음악 이론 | 연정샘의 음악 교실";
+  document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
