@@ -298,6 +298,78 @@ const resources = [
       "친구들과 따뜻한 마음을 담아 함께 노래한다."
     ],
     teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
+  },
+  {
+    id: "corn-harmonica-recorder",
+    grade: "4",
+    domain: "기악",
+    semester: "1학기",
+    title: "옥수수 하모니카",
+    subtitle: "리코더로 차례가기와 뛰어가기 가락을 익혀 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/corn-harmonica-recorder.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_40p_10_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["리코더 운지", "가락선 보기", "차례가기", "함께 연주하기"],
+    guideUrl: "",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=41",
+    steps: [
+      "‘옥수수 하모니카’의 가락과 리코더 소리를 들어 본다.",
+      "차례가기와 뛰어가기 가락을 손으로 따라 그려 본다.",
+      "리코더 운지와 계이름을 확인하며 짧은 가락부터 연주한다.",
+      "친구들과 박을 맞춰 끝까지 이어 연주한다."
+    ],
+    teacherNote: "수업안 PPTX는 파일 용량이 커서 현재 사이트에는 등록하지 않았습니다. 악보와 스마트 PPT를 활용해 수업 흐름을 진행할 수 있으며, 수업안은 용량을 줄인 파일을 받으면 바로 연결할 수 있습니다."
+  },
+  {
+    id: "cotton-candy-singing",
+    grade: "3",
+    domain: "가창",
+    semester: "1학기",
+    title: "솜사탕",
+    subtitle: "노랫말의 느낌을 살려 재미있게 노래 부르는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/cotton-candy.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_56p_14_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "가사 익히기", "셈여림 표현", "함께 노래하기"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fcotton-candy-lesson-plan.pptx",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=57",
+    steps: [
+      "솜사탕의 모양과 맛을 떠올리며 곡의 느낌을 나눈다.",
+      "스마트 PPT로 노랫말과 주요 가락을 익힌다.",
+      "셈여림을 달리해 솜사탕의 재미있는 모습을 표현한다.",
+      "친구들과 노래를 부르며 어울리는 말을 넣어 본다."
+    ],
+    teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
+  },
+  {
+    id: "snowflake-song-singing",
+    grade: "3",
+    domain: "가창",
+    semester: "1학기",
+    title: "눈꽃송이",
+    subtitle: "눈 내리는 장면을 떠올리며 셈여림을 살려 노래하는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/snowflake-song.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_76p_20_ST",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "3/4박자", "셈여림 표현", "함께 노래하기"],
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fsnowflake-song-lesson-plan.pptx",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=77",
+    steps: [
+      "눈 내리는 풍경을 떠올리며 노래의 분위기를 이야기한다.",
+      "스마트 PPT로 가사와 3/4박자의 흐름을 익힌다.",
+      "셈여림을 살려 눈꽃송이가 내려오는 모습을 표현한다.",
+      "친구들과 호흡을 맞춰 부드럽게 노래한다."
+    ],
+    teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   }
 ];
 
