@@ -154,6 +154,30 @@ const resources = [
       "반주에 맞춰 리듬과 코드를 함께 연주한다."
     ],
     teacherNote: "코드를 빠르게 바꾸기보다 정확한 손 모양을 먼저 익히도록 하고, 반주에 맞춰 일정한 박으로 스트로크하도록 안내합니다."
+  },
+  {
+    id: "beautiful-world",
+    grade: "m1",
+    domain: "가창",
+    semester: "1학기",
+    title: "아름다운 세상",
+    subtitle: "노랫말의 의미를 생각하며 노래와 수화 언어로 표현하는 가창 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/beautiful-world.pdf",
+    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/3930/contents/index.html?skin=basic03&page=5",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["노래 듣기", "수화 언어", "가사 익히기", "함께 노래하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/3930/contents/index.html?skin=basic03&page=1",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4775/contents/index.html?skin=basic01&page=17",
+    steps: [
+      "노랫말이 전하는 아름다운 세상의 모습을 이야기한다.",
+      "스마트 PPT로 선율과 가사를 함께 익힌다.",
+      "주요 가사에 맞는 수화 언어 동작을 연습한다.",
+      "노래와 수화 언어를 함께 표현하며 마무리한다."
+    ],
+    teacherNote: "수화 언어의 동작 범위와 손 모양을 먼저 천천히 익히고, 가사의 의미가 자연스럽게 전달되도록 노래와 동작을 함께 맞춥니다."
   }
 ];
 
