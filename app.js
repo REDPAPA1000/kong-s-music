@@ -465,7 +465,31 @@ const resources = [
       "리듬 악기를 나누어 맡아 간단한 리듬을 연주한다.",
       "친구들과 소리를 맞추어 노래와 함께 연주한다."
     ],
-    teacherNote: "초1·2 기악에는 리듬 악기 노래 한 곡만 제공합니다. 스마트 악보 바로 실행 버튼에서 수업 자료를 열어 바로 활용할 수 있습니다."
+    teacherNote: "초1·2 기악의 첫 번째 곡입니다. 스마트 악보 바로 실행 버튼에서 수업 자료를 열어 바로 활용할 수 있습니다."
+  },
+  {
+    id: "young-band",
+    grade: "1-2",
+    domain: "기악",
+    semester: "1학기",
+    title: "어린 음악대",
+    subtitle: "리듬 악기의 다양한 소리를 느끼며 친구들과 즐겁게 연주하는 기악 수업",
+    kind: "스마트 악보",
+    duration: "40분",
+    level: "쉬움",
+    pdf: "",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_30p_7_ST",
+    mediaLabel: "비바샘 스마트 악보",
+    mediaFeatures: ["리듬 악기", "가락 익히기", "박자 맞추기", "함께 연주하기"],
+    guideUrl: "",
+    ibookUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106413_30p_7_ST",
+    steps: [
+      "노래의 경쾌한 분위기와 악기 소리를 들어 본다.",
+      "스마트 악보를 보며 일정한 박과 리듬을 익힌다.",
+      "리듬 악기를 나누어 맡아 연주 순서를 연습한다.",
+      "친구들과 박을 맞춰 즐겁게 함께 연주한다."
+    ],
+    teacherNote: "초1·2 기악의 두 번째 곡입니다. 스마트 악보 바로 실행 버튼에서 수업 자료를 열어 바로 활용할 수 있습니다."
   },
   {
     id: "bean-sprouts-singing",
