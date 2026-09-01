@@ -178,6 +178,30 @@ const resources = [
       "노래와 수화 언어를 함께 표현하며 마무리한다."
     ],
     teacherNote: "수화 언어의 동작 범위와 손 모양을 먼저 천천히 익히고, 가사의 의미가 자연스럽게 전달되도록 노래와 동작을 함께 맞춥니다."
+  },
+  {
+    id: "autumn-morning-recorder",
+    grade: "m1",
+    domain: "기악",
+    semester: "1학기",
+    title: "가을 아침",
+    subtitle: "리코더의 운지와 호흡을 익혀 ‘가을 아침’을 연주하는 기악 수업",
+    kind: "악보 · 스마트 PPT",
+    duration: "40분",
+    level: "보통",
+    pdf: "assets/autumn-morning-recorder.pdf",
+    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/6991/contents/index.html?skin=basic03&page=13",
+    mediaLabel: "비바샘 스마트 PPT",
+    mediaFeatures: ["리코더 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
+    guideUrl: "https://ibook.vivasam.com/CBS_iBook/6991/contents/index.html?skin=basic03&page=15",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4775/contents/index.html?skin=basic01&page=55",
+    steps: [
+      "곡의 분위기와 리코더로 표현할 소리를 들어 본다.",
+      "리코더 운지와 호흡을 점검하며 주요 가락을 익힌다.",
+      "어려운 리듬을 짧은 마디부터 연결해 연주한다.",
+      "반주에 맞춰 친구들과 박과 음량을 맞춘다."
+    ],
+    teacherNote: "높은 음을 낼 때에는 숨을 세게 밀기보다 일정한 호흡을 유지하도록 돕고, 합주 전에는 시작과 끝의 박을 함께 확인합니다."
   }
 ];
 
@@ -279,8 +303,9 @@ function openLesson(id, trigger) {
   ["#pdf-open", "#pdf-download", "#pdf-fallback-link"].forEach((selector) => document.querySelector(selector).href = item.pdf);
   document.querySelector("#lesson-steps").innerHTML = item.steps.map((step) => `<li>${step}</li>`).join("");
   document.querySelector("#teacher-note-text").textContent = item.teacherNote;
+  const ibookPage = new URL(item.ibookUrl).searchParams.get("page");
   document.querySelector("#media-box").innerHTML = item.mediaUrl
-    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${item.mediaLabel}</strong><p>악보의 QR과 같은 출판사 수업 화면</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안 열기 <span aria-hidden="true">↗</span></a><a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK 31쪽 <span aria-hidden="true">↗</span></a></div>`
+    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${item.mediaLabel}</strong><p>악보의 QR과 같은 출판사 수업 화면</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">스마트 악보 바로 실행 <span aria-hidden="true">↗</span></a><a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안 열기 <span aria-hidden="true">↗</span></a><a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`
     : `<div><div class="media-icon" aria-hidden="true">QR</div><strong>연결 주소 등록 필요</strong><p>악보 오른쪽 위 QR의 공식 주소를 확인한 뒤<br />이 영역에 연결합니다.</p></div>`;
   dialog.showModal();
   document.body.classList.add("dialog-open");
