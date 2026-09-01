@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="초등 1학년부터 고등 1학년까지 함께하는 음악 수업 자료실" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef705e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='white'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
+    <title>연정샘의 음악 교실</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문 바로가기</a>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="연정샘의 음악 교실 홈">
+        <span class="brand-mark" aria-hidden="true">♪</span>
+        <span><b>연정샘의</b> 음악 교실</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="grade-nav">학년 선택</button>
+      <nav id="grade-nav" class="grade-nav" aria-label="학년별 자료">
+        <a href="#home" data-route="home">홈</a>
+        <a href="#grade-1-2" data-route="1-2">초1·2</a>
+        <a href="#grade-3" data-route="3">초3</a>
+        <a href="#grade-4" data-route="4">초4</a>
+        <a href="#grade-5" data-route="5">초5</a>
+        <a href="#grade-6" data-route="6">초6</a>
+        <a href="#grade-m1" data-route="m1">중1</a>
+        <a href="#grade-m2" data-route="m2">중2</a>
+        <a href="#grade-m3" data-route="m3">중3</a>
+        <a href="#grade-h1" data-route="h1">고1</a>
+        <a href="#theory" data-route="theory">이론</a>
+      </nav>
+      <div class="header-tools">
+        <button id="login-button" class="header-tool login-button" type="button" aria-label="교사용 로그인"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 20v-2.2c0-3.1 2.9-5.3 6.5-5.3s6.5 2.2 6.5 5.3V20"></path></svg><span class="visually-hidden">로그인</span></button>
+        <button id="theme-toggle" class="header-tool theme-toggle" type="button" aria-label="다크 모드 켜기" aria-pressed="false"><span class="theme-icon" aria-hidden="true">🌙</span></button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="home-view" class="home-view" aria-labelledby="home-title">
+        <div class="hero-copy">
+          <p class="eyebrow">노래하고 · 연주하고 · 듣고 · 만드는 시간</p>
+          <h1 id="home-title">음악이 아이들의<br /><em>하루에 머무르도록</em></h1>
+          <p class="hero-intro">초등 1·2학년 합반부터 고등학교 1학년까지, 수업에 필요한 악보와 영상, 활동 흐름을 한곳에 모았습니다.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#grade-1-2">수업 자료 둘러보기</a>
+            <a class="button text" href="#about">선생님 소개 보기 <span aria-hidden="true">→</span></a>
+          </div>
+          <dl class="hero-stats" aria-label="자료실 구성">
+            <div><dt>9</dt><dd>학년 과정</dd></div>
+            <div><dt>4</dt><dd>음악 영역</dd></div>
+            <div><dt>1</dt><dd>수업 단위 화면</dd></div>
+          </dl>
+        </div>
+        <div class="portrait-card">
+          <div class="portrait-placeholder">
+            <img src="assets/yeonjeong-teacher-portrait.jpg" alt="연정 선생님" />
+          </div>
+          <div class="sound-line" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </section>
+
+      <section id="about" class="about-strip" aria-labelledby="about-title">
+        <p class="section-number">01</p>
+        <div>
+          <p class="eyebrow">ABOUT THE CLASS</p>
+          <h2 id="about-title">음악을 잘하는 것보다,<br />음악을 <em>좋아하게 되는 수업</em></h2>
+        </div>
+        <p class="about-copy">아이들이 자기 목소리를 발견하고, 친구의 소리를 듣고, 함께 하나의 음악을 완성하는 경험을 중요하게 생각합니다. 이 자리는 선생님의 실제 소개글로 교체할 수 있습니다.</p>
+      </section>
+
+      <section class="domain-preview" aria-labelledby="domain-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">FOUR WAYS TO MEET MUSIC</p><h2 id="domain-title">네 가지 방식으로 만나는 음악</h2></div>
+          <p>각 학년에서 같은 구조를 사용해 수업 자료를 빠르게 찾습니다.</p>
+        </div>
+        <div class="domain-grid">
+          <article class="domain-card singing"><span aria-hidden="true">♩</span><p>01</p><h3>가창</h3><small>목소리로 표현해요</small></article>
+          <article class="domain-card instrument"><span aria-hidden="true">◉</span><p>02</p><h3>기악</h3><small>악기로 함께 연주해요</small></article>
+          <article class="domain-card listening"><span aria-hidden="true">⌁</span><p>03</p><h3>감상</h3><small>귀 기울여 이야기를 찾아요</small></article>
+          <article class="domain-card creating"><span aria-hidden="true">✦</span><p>04</p><h3>창작</h3><small>우리만의 음악을 만들어요</small></article>
+        </div>
+      </section>
+
+      <section id="library-view" class="library-view" aria-labelledby="library-title" hidden>
+        <div class="library-hero">
+          <div>
+            <p id="grade-kicker" class="eyebrow">ELEMENTARY MUSIC</p>
+            <h1 id="library-title">초등 4학년</h1>
+            <p id="grade-description">목소리와 악기로 느낌을 표현하고, 음악 속 이야기를 발견합니다.</p>
+          </div>
+          <div class="grade-stamp" aria-hidden="true"><span id="grade-number">4</span><small>GRADE</small></div>
+        </div>
+
+        <div class="library-toolbar">
+          <div class="domain-tabs" role="tablist" aria-label="음악 영역">
+            <button type="button" role="tab" data-domain="가창" aria-selected="true">가창</button>
+            <button type="button" role="tab" data-domain="기악" aria-selected="false">기악</button>
+            <button type="button" role="tab" data-domain="감상" aria-selected="false">감상</button>
+            <button type="button" role="tab" data-domain="창작" aria-selected="false">창작</button>
+          </div>
+          <label class="search-field"><span class="visually-hidden">자료 검색</span><input id="resource-search" type="search" placeholder="곡명이나 활동 검색" /><span aria-hidden="true">⌕</span></label>
+        </div>
+
+        <div class="results-heading"><h2 id="domain-heading">가창 수업</h2><p id="result-count" aria-live="polite">1개의 자료</p></div>
+        <div id="resource-grid" class="resource-grid"></div>
+      </section>
+
+      <section id="theory-view" class="theory-view" aria-labelledby="theory-title" hidden>
+        <div class="theory-hero">
+          <p class="eyebrow">MUSIC THEORY</p>
+          <h1 id="theory-title">음악의 원리를<br />쉽고 선명하게</h1>
+          <p>기보법부터 화음, 형식까지 학년을 넘어 다시 찾아볼 수 있는 음악 이론 자료실입니다.</p>
+        </div>
+        <div class="theory-grid">
+          <article><span>01</span><h2>기초 악전</h2><p>음표와 쉼표, 박자표, 셈여림표를 익혀요.</p><b>자료 준비 중</b></article>
+          <article><span>02</span><h2>음계와 화음</h2><p>장·단음계와 화음의 울림을 비교해요.</p><b>자료 준비 중</b></article>
+          <article><span>03</span><h2>음악의 형식</h2><p>동기와 악구, 다양한 곡의 구조를 살펴봐요.</p><b>자료 준비 중</b></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">♪</span><span><b>연정샘의</b> 음악 교실</span></div>
+      <p>수업을 준비하는 시간은 줄이고, 아이들과 음악하는 시간은 더 길게.</p>
+      <p class="copyright">© 2026 Music Classroom</p>
+    </footer>
+
+    <dialog id="lesson-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-shell">
+        <header class="dialog-header">
+          <div><p id="dialog-meta" class="eyebrow"></p><h2 id="dialog-title"></h2></div>
+          <button id="dialog-close" class="icon-button" type="button" aria-label="수업 자료 닫기">×</button>
+        </header>
+        <div class="lesson-layout">
+          <section class="score-panel" aria-labelledby="score-title">
+            <div class="panel-heading"><div><p class="eyebrow">SCORE</p><h3 id="score-title">악보</h3></div><div class="panel-actions"><a id="pdf-open" class="small-button" target="_blank" rel="noopener">새 창</a><a id="pdf-download" class="small-button filled" download>PDF 저장</a></div></div>
+            <iframe id="pdf-frame" title="악보 PDF 미리보기"></iframe>
+            <p class="pdf-fallback">악보가 보이지 않으면 <a id="pdf-fallback-link" target="_blank" rel="noopener">새 창에서 PDF를 여세요.</a></p>
+          </section>
+          <aside class="lesson-side">
+            <section class="media-panel">
+              <p class="eyebrow">LISTEN &amp; PRACTICE</p>
+              <h3>노래 익히기</h3>
+              <div id="media-box" class="media-box"></div>
+            </section>
+            <section class="flow-panel"><p class="eyebrow">LESSON FLOW</p><h3>오늘의 수업 흐름</h3><ol id="lesson-steps"></ol></section>
+            <section class="teacher-note"><p class="eyebrow">TEACHER'S NOTE</p><p id="teacher-note-text"></p></section>
+          </aside>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="login-dialog" class="login-dialog" aria-labelledby="login-title">
+      <form id="login-form" class="login-card">
+        <button id="login-close" class="login-close" type="button" aria-label="로그인 닫기">×</button>
+        <span class="login-mark" aria-hidden="true">♪</span>
+        <p class="eyebrow">TEACHER ACCOUNT</p>
+        <h2 id="login-title">교사용 로그인</h2>
+        <p>연정샘의 수업 자료 관리 화면으로 들어갑니다.</p>
+        <label>아이디<input id="login-username" type="text" autocomplete="username" placeholder="아이디 입력" required /></label>
+        <label>비밀번호<input id="login-password" type="password" autocomplete="current-password" inputmode="numeric" placeholder="비밀번호 입력" required /></label>
+        <p id="login-message" class="login-message" aria-live="polite"></p>
+        <button class="login-submit" type="submit">로그인</button>
+        <small>현재 버전은 고정 계정을 브라우저에서 확인합니다. 공개 사이트의 보안 인증은 추후 서버 연결이 필요합니다.</small>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
