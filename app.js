@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=90472a0";
+  script.src = "listening-data.js?v=8610415";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2567,17 +2567,58 @@ function renderBreak() {
       </ul>`;
     return;
   }
-  if (breakState.tab === "gap") {
-    breakBody.innerHTML = breakEmpty("틈새 시간 365 — 자료를 준비하고 있습니다",
-      "쓰실 활동 목록을 주시면 이 자리에 넣겠습니다.");
-    return;
-  }
+  if (breakState.tab === "gap") { renderGap(); return; }
   if (breakState.tab === "audio") {
     breakBody.innerHTML = breakEmpty("오디오북 — 자료를 준비하고 있습니다",
       "들려주실 오디오북 목록과 주소를 주시면 이 자리에 넣겠습니다.");
     return;
   }
   mountPitchGame();
+}
+
+/* 틈새 시간 365 — 두클래스 자료로 연결한다 */
+const gapState = { lb: "전체", ty: "전체" };
+
+function gapValues(key) {
+  const found = ["전체"];
+  gapItems.forEach((item) => { if (item[key] && !found.includes(item[key])) found.push(item[key]); });
+  return found;
+}
+
+function gapMatches(item) {
+  return (gapState.lb === "전체" || item.lb === gapState.lb)
+    && (gapState.ty === "전체" || item.ty === gapState.ty);
+}
+
+function renderGap() {
+  const list = gapItems.filter(gapMatches);
+  const favorites = readFavorites();
+  const row = (key, label) => `<div class="gap-filter"><span>${label}</span>${gapValues(key)
+    .map((value) => `<button type="button" data-gap="${key}:${value}" class="${gapState[key] === value ? "is-on" : ""}">${value}</button>`)
+    .join("")}</div>`;
+
+  breakBody.innerHTML = `
+    <div class="gap-filters">${row("ty", "갈래")}${row("lb", "걸리는 시간")}</div>
+    <p class="gap-count">총 <b>${list.length}개</b>의 자료가 있습니다.</p>
+    <ul class="gap-grid">
+      ${list.map((item) => {
+        const id = `gap:${item.id}`;
+        const liked = favorites.has(id);
+        return `
+        <li class="gap-card">
+          <a class="gap-shot" href="${item.u}" target="_blank" rel="noopener">
+            <img src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
+            <span class="gap-time">${item.lb}</span>
+          </a>
+          <div class="gap-foot">
+            <p class="gap-kind">[${item.ty}] ${item.gr}</p>
+            <p class="gap-title">${item.t}</p>
+          </div>
+          <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
+        </li>`;
+      }).join("")}
+    </ul>
+    <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>`;
 }
 
 /* 게임 1 — 소리 듣고 높낮이 맞히기 */
@@ -2664,7 +2705,22 @@ document.addEventListener("click", (event) => {
   const tab = event.target.closest("[data-break-tab]");
   if (tab) { breakState.tab = tab.dataset.breakTab; renderBreak(); return; }
   const go = event.target.closest("[data-break-go]");
-  if (go) { breakState.tab = go.dataset.breakGo; renderBreak(); }
+  if (go) { breakState.tab = go.dataset.breakGo; renderBreak(); return; }
+  const gap = event.target.closest("[data-gap]");
+  if (gap) {
+    const [key, value] = gap.dataset.gap.split(":");
+    gapState[key] = value;
+    renderGap();
+    return;
+  }
+  const like = event.target.closest("#break-view [data-like]");
+  if (like) {
+    const favorites = readFavorites();
+    const id = like.dataset.like;
+    if (favorites.has(id)) favorites.delete(id); else favorites.add(id);
+    writeFavorites(favorites);
+    renderGap();
+  }
 });
 
 renderHall();
