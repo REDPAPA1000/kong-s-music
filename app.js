@@ -841,16 +841,16 @@ window.addEventListener("hashchange", handleRoute);
 /* ── 음악관 ───────────────────────────────────────────── */
 
 const hallCategories = [
-  { key: "history", label: "음악사", desc: "시대별 흐름", tone: "gold", href: "#music-history" },
-  { key: "composer", label: "작곡가", desc: "인물로 보는 음악", tone: "teal", href: "#composer" },
-  { key: "theory", label: "음악 기초 이론", desc: "악전과 원리", tone: "orange", href: "#theory-book" },
-  { key: "listening", label: "음악 감상실 · 악보은행", desc: "감상곡과 악보", tone: "sky", href: "#listening" },
-  { key: "singing", label: "노래 익히기 모음", desc: "장르별 추가 악곡", tone: "blue", href: "#songs" },
-  { key: "playing", label: "음악 연주 자료집", desc: "기악 합주 자료", tone: "magenta", href: "#play" },
-  { key: "smart", label: "스마트 악기", desc: "화면으로 연주하기", tone: "indigo", href: "#smart" },
-  { key: "edutech", label: "뮤직 에듀테크", desc: "수업용 디지털 도구", tone: "violet", href: "#edutech" },
-  { key: "video", label: "음악 동영상", desc: "수업 영상 모음", tone: "salmon", href: "#video" },
-  { key: "book", label: "음악 도서", desc: "읽을거리", tone: "pink", href: "#books" },
+  { key: "history", label: "음악사", desc: "시대별 흐름", tone: "gold", image: "assets/music-hall/history.png", href: "#music-history" },
+  { key: "composer", label: "작곡가", desc: "인물로 보는 음악", tone: "teal", image: "assets/music-hall/composer.png", href: "#composer" },
+  { key: "theory", label: "음악 기초 이론", desc: "악전과 원리", tone: "orange", image: "assets/music-hall/theory.png", href: "#theory-book" },
+  { key: "listening", label: "음악 감상실 · 악보은행", desc: "감상곡과 악보", tone: "sky", image: "assets/music-hall/listening.png", href: "#listening" },
+  { key: "singing", label: "노래 익히기 모음", desc: "장르별 추가 악곡", tone: "blue", image: "assets/music-hall/singing.png", href: "#songs" },
+  { key: "playing", label: "음악 연주 자료집", desc: "기악 합주 자료", tone: "magenta", image: "assets/music-hall/playing.png", href: "#play" },
+  { key: "smart", label: "스마트 악기", desc: "화면으로 연주하기", tone: "indigo", image: "assets/music-hall/smart.png", href: "#smart" },
+  { key: "edutech", label: "뮤직 에듀테크", desc: "수업용 디지털 도구", tone: "violet", image: "assets/music-hall/edutech.png", href: "#edutech" },
+  { key: "video", label: "음악 동영상", desc: "수업 영상 모음", tone: "salmon", image: "assets/music-hall/video.png", href: "#video" },
+  { key: "book", label: "음악 도서", desc: "읽을거리", tone: "pink", image: "assets/music-hall/book.png", href: "#books" },
 ];
 
 const historyItems = [
@@ -1091,9 +1091,10 @@ const historyState = { format: "ppt", scope: "all" };
 function renderHall() {
   hallGrid.innerHTML = hallCategories.map((item) => {
     const inner = `<span class="hall-label">${item.label}</span><span class="hall-desc">${item.desc}</span><span class="hall-arrow" aria-hidden="true">→</span>`;
+    const imageStyle = ` style="--hall-image: url('${item.image}')"`;
     return item.href
-      ? `<li class="hall-item tone-${item.tone}"><a href="${item.href}">${inner}</a></li>`
-      : `<li class="hall-item tone-${item.tone} is-soon"><span class="hall-blob" aria-disabled="true">${inner}<span class="hall-soon">준비 중</span></span></li>`;
+      ? `<li class="hall-item tone-${item.tone}"><a href="${item.href}"${imageStyle}>${inner}</a></li>`
+      : `<li class="hall-item tone-${item.tone} is-soon"><span class="hall-blob"${imageStyle} aria-disabled="true">${inner}<span class="hall-soon">준비 중</span></span></li>`;
   }).join("");
 }
 

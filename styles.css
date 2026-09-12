@@ -336,17 +336,17 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 /* ── 음악관 ───────────────────────────────────────────── */
 
 .musichall-view { padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); }
-.hall-hero { max-width: 620px; }
+.hall-hero { max-width: none; }
 .hall-hero h1 { margin: 0 0 14px; font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.16; }
-.hall-hero p { margin: 0; color: var(--muted); }
+.hall-hero p { margin: 0; color: var(--muted); white-space: nowrap; }
 
 .hall-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(28px, 4vw, 64px) clamp(24px, 3.4vw, 52px); margin: clamp(44px, 6vw, 72px) 0 clamp(20px, 3vw, 36px); padding: 0; list-style: none; }
-.hall-item > a, .hall-blob { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 168px; padding: 22px 22px 26px; color: white; background: linear-gradient(140deg, var(--hall-a), var(--hall-b)); border-radius: 62% 38% 56% 44% / 44% 56% 38% 62%; transition: border-radius .45s ease, transform .3s ease; }
-.hall-item > a:hover, .hall-item > a:focus-visible { border-radius: 40% 60% 42% 58% / 58% 42% 60% 40%; transform: translateY(-4px); }
+.hall-item > a, .hall-blob { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; overflow: hidden; color: white; background-color: var(--hall-a); background-image: linear-gradient(180deg, rgba(9, 12, 30, .04) 18%, rgba(9, 12, 30, .82) 100%), var(--hall-image), linear-gradient(140deg, var(--hall-a), var(--hall-b)); background-position: center; background-size: cover; border-radius: 20px; box-shadow: 0 12px 24px rgba(26, 29, 62, .15); transition: transform .3s ease, box-shadow .3s ease; }
+.hall-item > a:hover, .hall-item > a:focus-visible { transform: translateY(-5px); box-shadow: 0 18px 30px rgba(26, 29, 62, .23); }
 .hall-label { font-size: 1.02rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; }
 .hall-desc { font-size: .78rem; font-weight: 600; opacity: .82; }
 .hall-arrow { position: absolute; right: 20px; bottom: 22px; display: grid; place-items: center; width: 26px; height: 26px; color: var(--ink); background: rgba(255,255,255,.92); border-radius: 50%; font-size: .8rem; font-weight: 800; }
-.hall-item.is-soon .hall-blob { cursor: default; filter: saturate(.5); opacity: .62; }
+.hall-item.is-soon .hall-blob { cursor: default; filter: saturate(.58); opacity: .76; }
 .hall-item.is-soon .hall-arrow { display: none; }
 .hall-soon { position: absolute; right: 18px; bottom: 22px; padding: 4px 9px; background: rgba(255,255,255,.9); border-radius: 999px; color: var(--ink); font-size: .66rem; font-weight: 800; }
 
@@ -450,6 +450,8 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 
 @media (max-width: 720px) {
   .hall-grid { grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 5vw, 32px); }
+  .hall-hero p { white-space: normal; }
+  .hall-item > a, .hall-blob { min-height: 160px; border-radius: 18px; }
   .history-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   .hall-back { position: static; display: inline-block; margin-bottom: 14px; }
 }
