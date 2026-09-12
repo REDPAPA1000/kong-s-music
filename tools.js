@@ -1084,7 +1084,7 @@ function renderTools() {
   const grid = document.querySelector("#tools-grid");
   if (!grid) return;
   const sprite = {
-    timer: [0, 0], stopwatch: [1, 0], chooser: [2, 0], ladder: [2, 2],
+    timer: [0, 0], stopwatch: [1, 0], chooser: [2, 0], seats: [3, 0],
     focus: [0, 1], dark: [1, 1], ambience: [2, 1], board: [3, 1],
     metronome: [0, 2], teams: [1, 2],
   };
