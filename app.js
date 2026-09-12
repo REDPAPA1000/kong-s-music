@@ -557,7 +557,7 @@ const loginDialog = document.querySelector("#login-dialog");
 function hideAllViews() {
   [homeView, aboutView, domainPreview, libraryView, theoryView, hallView, historyView,
     composerView, theorybookView, songsView, playView, smartView, edutechView,
-    videoView, listeningView, booksView, toolsView, breakView]
+    videoView, listeningView, booksView, toolsView, breakView, breaklistView]
     .forEach((view) => { if (view) view.hidden = true; });
 }
 
@@ -582,7 +582,7 @@ function showHome() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -602,7 +602,7 @@ function showGrade(grade) {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -626,7 +626,7 @@ function showTheory() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -725,6 +725,7 @@ function handleRoute() {
   else if (hash === "#books") showBooks();
   else if (hash === "#tools") showTools();
   else if (hash === "#break") showBreak();
+  else if (hash.startsWith("#break-") && breakLists[hash.slice(7)]) showBreaklist(hash.slice(7));
   else showHome();
   document.querySelector("#grade-nav").classList.remove("open");
   document.querySelector(".menu-button").setAttribute("aria-expanded", "false");
@@ -1416,7 +1417,7 @@ function showComposer() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   composerView.hidden = false;
   setCurrentNav("musichall");
   document.title = "작곡가 | 연정쌤의 음악 교실";
@@ -1541,7 +1542,7 @@ function showTheorybook() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   theorybookView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
@@ -1656,7 +1657,7 @@ function showSongs() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   songsView.hidden = false;
   setCurrentNav("musichall");
   document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
@@ -1771,7 +1772,7 @@ function showPlay() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   playView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
@@ -1867,7 +1868,7 @@ function showSmart() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   smartView.hidden = false;
   setCurrentNav("musichall");
   document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
@@ -2113,7 +2114,7 @@ function showVideo() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   videoView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 동영상 | 연정쌤의 음악 교실";
@@ -2282,7 +2283,7 @@ function showListening() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   listeningView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
@@ -2291,7 +2292,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=9917d1d";
+  script.src = "listening-data.js?v=1afa5c7";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2481,7 +2482,7 @@ function showHall() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   hallView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악관 | 연정쌤의 음악 교실";
@@ -2496,7 +2497,7 @@ function showHistory() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
   historyView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악사 | 연정쌤의 음악 교실";
@@ -2514,21 +2515,10 @@ document.querySelectorAll("#history-view .history-tabs button").forEach((button)
   renderHistory();
 }));
 
-/* ── 쉬는 시간 ────────────────────────────────────── */
+/* ── 쉬는 시간 ───────────────────────────────────── */
 
 const breakView = document.querySelector("#break-view");
-const breakTabsHost = document.querySelector("#break-tabs");
-const breakBody = document.querySelector("#break-body");
-
-const breakTabs = [
-  { key: "home", label: "홈" },
-  { key: "gap", label: "#틈새 시간 365" },
-  { key: "audio", label: "#오디오북" },
-  { key: "game", label: "#게임" },
-  { key: "chosung", label: "#초성게임" },
-  { key: "card", label: "#카드짝맞추기" },
-  { key: "word", label: "#숨은단어찾기" },
-];
+const breakGrid = document.querySelector("#break-grid");
 
 const breakCards = [
   { key: "gap", label: "틈새 시간 365", desc: "남는 몇 분 채우기", tone: "teal",
@@ -2545,212 +2535,17 @@ const breakCards = [
     art: `<svg viewBox="0 0 48 48"><rect x="5" y="6" width="30" height="30" rx="5" fill="#eaf3ff" stroke="#3d4157" stroke-width="2.2"/><path d="M15 6v30M25 6v30M5 16h30M5 26h30" stroke="#c3d6ee" stroke-width="1.8"/><circle cx="32" cy="31" r="9" fill="none" stroke="#3ecf96" stroke-width="3.4"/><path d="M38.5 37.5L44 43" stroke="#3ecf96" stroke-width="3.6" stroke-linecap="round"/></svg>` },
 ];
 
-const breakState = { tab: "home" };
-
-function renderBreakTabs() {
-  breakTabsHost.innerHTML = breakTabs.map((tab) => `
-    <button type="button" role="tab" data-break-tab="${tab.key}"
-      class="${tab.key === breakState.tab ? "is-on" : ""}"
-      aria-selected="${tab.key === breakState.tab}">${tab.label}</button>`).join("");
-}
-
-function breakEmpty(title, hint) {
-  return `<div class="break-empty">
-    <p class="break-empty-title">${title}</p>
-    <p>${hint}</p>
-  </div>`;
-}
-
-function renderBreak() {
-  renderBreakTabs();
-  if (breakState.tab === "home") {
-    breakBody.innerHTML = `
-      <ul class="hall-grid break-grid">
-        ${breakCards.map((card, i) => `
-          <li class="hall-item tone-${card.tone}">
-            <button class="tool-blob" type="button" data-break-go="${card.key}">
-              <span class="tool-index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
-              <span class="tool-badge" aria-hidden="true">${card.art}</span>
-              <span class="hall-label">${card.label}</span>
-              <span class="hall-desc">${card.desc}</span>
-              <span class="hall-arrow" aria-hidden="true">→</span>
-            </button>
-          </li>`).join("")}
-      </ul>`;
-    return;
-  }
-  renderBreakList(breakState.tab);
-}
-
-/* 틈새 시간 365 · 오디오북 · 게임 — 두클래스 자료로 연결한다 */
-const BREAK_PAGE = 24;
-const breakLists = {
-  gap: { items: () => gapItems, empty: "쓰실 활동 목록을 주시면 이 자리에 넣겠습니다." },
-  audio: { items: () => audioItems, empty: "들려주실 오디오북 목록을 주시면 이 자리에 넣겠습니다." },
-  game: { items: () => gameItems, empty: "쓰실 게임 목록을 주시면 이 자리에 넣겠습니다." },
-  chosung: { items: () => chosungItems, empty: "두클래스 초성게임 목록을 주시면 이 자리에 넣겠습니다." },
-  card: { items: () => cardItems, empty: "두클래스 카드 짝 맞추기 목록을 주시면 이 자리에 넣겠습니다." },
-  word: { items: () => wordItems, empty: "두클래스 숨은 단어 찾기 목록을 주시면 이 자리에 넣겠습니다." },
-};
-// 학교급으로는 가르지 않는다 — 초등·중등·고등이 같은 자료를 쓴다
-const breakFilters = [
-  { key: "s", label: "묶음" },
-  { key: "ty", label: "갈래" },
-  { key: "lb", label: "걸리는 시간" },
-];
-const breakListState = {};
-
-function listState(tab) {
-  if (!breakListState[tab]) breakListState[tab] = { s: "전체", gr: "전체", ty: "전체", lb: "전체", page: 1 };
-  return breakListState[tab];
-}
-
-function breakValues(items, key) {
-  const found = [];
-  items.forEach((item) => { if (item[key] && !found.includes(item[key])) found.push(item[key]); });
-  return found;
-}
-
-function renderBreakList(tab) {
-  const config = breakLists[tab];
-  const items = config.items();
-  const state = listState(tab);
-  if (!items.length) {
-    breakBody.innerHTML = breakEmpty("자료를 준비하고 있습니다", config.empty);
-    return;
-  }
-
-  const list = items.filter((item) =>
-    breakFilters.every(({ key }) => state[key] === "전체" || item[key] === state[key]));
-  const pages = Math.max(1, Math.ceil(list.length / BREAK_PAGE));
-  if (state.page > pages) state.page = pages;
-  const start = (state.page - 1) * BREAK_PAGE;
-  const slice = list.slice(start, start + BREAK_PAGE);
-  const favorites = readFavorites();
-
-  // 고를 것이 하나뿐이거나 너무 잘게 나뉘는 거르개는 내보내지 않는다
-  const filters = breakFilters.map(({ key, label }) => {
-    const values = breakValues(items, key);
-    if (values.length < 2 || values.length > 12) return "";
-    return `<div class="gap-filter"><span>${label}</span>${["전체", ...values]
-      .map((value) => `<button type="button" data-gap="${key}:${value}" class="${state[key] === value ? "is-on" : ""}">${value}</button>`)
-      .join("")}</div>`;
-  }).filter(Boolean).join("");
-
-  breakBody.innerHTML = `
-    ${filters ? `<div class="gap-filters">${filters}</div>` : ""}
-    <p class="gap-count">총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i></p>
-    <ul class="gap-grid">
-      ${slice.map((item) => {
-        const id = `${tab}:${item.id}`;
-        const liked = favorites.has(id);
-        const time = item.lb ? `<span class="gap-time">${item.lb}</span>` : "";
-        const series = item.s && item.s !== item.t && item.s !== "그 밖" ? `<span class="gap-series">${item.s}</span>` : "";
-        return `
-        <li class="gap-card">
-          <a class="gap-shot" href="${item.u}" target="_blank" rel="noopener">
-            <img src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
-            ${time}${series}
-          </a>
-          <div class="gap-foot">
-            <p class="gap-kind">${item.tg || `[${item.ty || "자료"}]`}</p>
-            <p class="gap-title">${item.t}</p>
-            ${item.by ? `<p class="gap-by">BY ${item.by}</p>` : ""}
-          </div>
-          <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
-        </li>`;
-      }).join("")}
-    </ul>
-    ${breakPager(state, pages)}
-    ${tab === "game" ? `<div class="game-strip">
-      <p>이 사이트 안에서 바로 하는 놀이도 있습니다.</p>
-      <button class="tool-pill is-go" type="button" data-open-pitch>소리 듣고 높낮이 맞히기</button>
-    </div>` : ""}
-    <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>`;
-}
-
-function breakPager(state, pages) {
-  if (pages <= 1) return "";
-  const btn = (page, text, off) =>
-    `<button type="button" data-gap-page="${page}"${off ? " disabled" : ""}${page === state.page ? ' aria-current="page"' : ""}>${text}</button>`;
-  const span = Math.min(10, pages);
-  let from = Math.max(1, state.page - Math.floor(span / 2));
-  from = Math.min(from, Math.max(1, pages - span + 1));
-  const numbers = Array.from({ length: Math.min(span, pages - from + 1) }, (_, i) => btn(from + i, from + i, false));
-  return `<div class="gap-pager">${btn(state.page - 1, "←", state.page === 1)}${numbers.join("")}`
-    + `${btn(state.page + 1, "→", state.page === pages)}<span class="pager-total">${state.page} / ${pages}</span></div>`;
-}
-
-/* 게임 1 — 소리 듣고 높낮이 맞히기 */
-function mountPitchGame(){
-  breakBody.innerHTML = `
-    <div class="tool-row"><button class="tool-pill" type="button" data-back-list>← 게임 목록으로</button></div>
-    <div class="game-card">
-      <p class="game-kicker">우리 교실 게임</p>
-      <h2>소리 듣고 높낮이 맞히기</h2>
-      <p class="game-desc">두 음을 잇달아 들려줍니다. 뒤에 나온 음이 앞의 음보다 높은지 낮은지 골라 보세요.</p>
-      <div class="game-score">
-        <span>맞힌 개수 <b data-role="hit">0</b></span>
-        <span>푼 문제 <b data-role="all">0</b></span>
-      </div>
-      <div class="tool-row tool-main">
-        <button class="tool-pill is-go" data-play>다시 듣기</button>
-      </div>
-      <div class="tool-row tool-main">
-        <button class="tool-pill" data-answer="up">더 높아요 ↑</button>
-        <button class="tool-pill" data-answer="down">더 낮아요 ↓</button>
-      </div>
-      <p class="game-say" data-role="say" hidden></p>
-      <div class="tool-row">
-        <label class="tool-check">어려운 문제로
-          <input type="checkbox" data-hard /></label>
-      </div>
-    </div>
-    <p class="break-note">게임은 이 브라우저에서 바로 소리를 만들어 냅니다. 따로 내려받을 것이 없습니다.</p>`;
-
-  const say = breakBody.querySelector("[data-role=say]");
-  const hitView = breakBody.querySelector("[data-role=hit]");
-  const allView = breakBody.querySelector("[data-role=all]");
-  let first = 0;
-  let second = 0;
-  let hit = 0;
-  let all = 0;
-  let waiting = false;
-
-  const make = () => {
-    const hard = breakBody.querySelector("[data-hard]").checked;
-    const steps = hard ? [1, 2, 3] : [4, 5, 7, 12];        // 반음 수
-    const base = 60 + Math.floor(Math.random() * 12);       // 도 언저리
-    const step = steps[Math.floor(Math.random() * steps.length)];
-    first = base;
-    second = base + (Math.random() < 0.5 ? step : -step);
-    waiting = true;
-    say.hidden = true;
-    play();
-  };
-  const hz = (midi) => 440 * Math.pow(2, (midi - 69) / 12);
-  const play = () => {
-    const t = ac().currentTime + 0.1;
-    blip(hz(first), t, 0.7, "triangle", 0.25);
-    blip(hz(second), t + 0.85, 0.7, "triangle", 0.25);
-  };
-
-  breakBody.querySelector("[data-play]").addEventListener("click", play);
-  breakBody.querySelectorAll("[data-answer]").forEach((b) => b.addEventListener("click", () => {
-    if (!waiting) { make(); return; }
-    const right = (b.dataset.answer === "up") === (second > first);
-    all += 1;
-    if (right) hit += 1;
-    hitView.textContent = hit;
-    allView.textContent = all;
-    say.textContent = right ? "맞았어요! 다음 문제를 들려줄게요." : "아쉬워요. 다음 문제를 들려줄게요.";
-    say.classList.toggle("is-wrong", !right);
-    say.hidden = false;
-    waiting = false;
-    setTimeout(make, 1200);
-  }));
-
-  make();
+function renderBreakHub() {
+  breakGrid.innerHTML = breakCards.map((card, i) => `
+    <li class="hall-item tone-${card.tone}">
+      <a class="tool-blob" href="${breakLists[card.key].hash}">
+        <span class="tool-index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+        <span class="tool-badge" aria-hidden="true">${card.art}</span>
+        <span class="hall-label">${card.label}</span>
+        <span class="hall-desc">${card.desc}</span>
+        <span class="hall-arrow" aria-hidden="true">→</span>
+      </a>
+    </li>`).join("");
 }
 
 function showBreak() {
@@ -2758,43 +2553,193 @@ function showBreak() {
   breakView.hidden = false;
   setCurrentNav("break");
   document.title = "쉬는 시간 | 연정쌤의 음악 교실";
-  renderBreak();
+  renderBreakHub();
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
-document.addEventListener("click", (event) => {
-  const tab = event.target.closest("[data-break-tab]");
-  if (tab) { breakState.tab = tab.dataset.breakTab; renderBreak(); return; }
-  const go = event.target.closest("[data-break-go]");
-  if (go) { breakState.tab = go.dataset.breakGo; renderBreak(); return; }
-  const gap = event.target.closest("[data-gap]");
-  if (gap) {
-    const [key, value] = gap.dataset.gap.split(":");
-    const state = listState(breakState.tab);
-    state[key] = value;
-    state.page = 1;
-    renderBreakList(breakState.tab);
-    return;
+/* ── 쉬는 시간 · 갈래 화면 — 음악관 하위 화면과 같은 얼개 ── */
+
+const breaklistView = document.querySelector("#breaklist-view");
+const breaklistGrid = document.querySelector("#breaklist-grid");
+
+const BREAK_PAGE = 24;
+const breakLists = {
+  gap: {
+    label: "틈새 시간 365", hash: "#break-gap",
+    desc: "수업 끝나고 남는 몇 분!<br />짧은 퀴즈로 가볍게 채워 보세요.",
+    items: () => gapItems, empty: "쓰실 활동 목록을 주시면 이 자리에 넣겠습니다.",
+  },
+  audio: {
+    label: "오디오북", hash: "#break-audio",
+    desc: "귀로 듣는 이야기!<br />아이들과 함께 들어 보세요.",
+    items: () => audioItems, empty: "들려주실 오디오북 목록을 주시면 이 자리에 넣겠습니다.",
+  },
+  game: {
+    label: "게임", hash: "#break-game",
+    desc: "화면으로 바로 하는 놀이!<br />누르면 새 창에서 열립니다.",
+    items: () => gameItems, empty: "쓰실 게임 목록을 주시면 이 자리에 넣겠습니다.",
+  },
+  chosung: {
+    label: "초성게임", hash: "#break-chosung",
+    desc: "초성만 보고 낱말 맞히기!<br />모둠별로 겨루어 보세요.",
+    items: () => chosungItems, empty: "두클래스 초성게임 목록을 주시면 이 자리에 넣겠습니다.",
+  },
+  card: {
+    label: "카드 짝 맞추기", hash: "#break-card",
+    desc: "뒤집어서 짝을 찾는 기억 놀이!<br />음악 낱말을 익히기에 좋습니다.",
+    items: () => cardItems, empty: "두클래스 카드 짝 맞추기 목록을 주시면 이 자리에 넣겠습니다.",
+  },
+  word: {
+    label: "숨은 단어 찾기", hash: "#break-word",
+    desc: "글자판 속에 숨은 낱말 찾기!<br />눈과 머리를 함께 씁니다.",
+    items: () => wordItems, empty: "두클래스 숨은 단어 찾기 목록을 주시면 이 자리에 넣겠습니다.",
+  },
+};
+
+const breakFilters = [
+  { key: "s", label: "묶음" },
+  { key: "ty", label: "갈래" },
+  { key: "lb", label: "걸리는 시간" },
+];
+
+const breaklistState = { tab: "gap", scope: "전체", scopeKey: "", page: 1 };
+
+function breakValues(items, key) {
+  const found = [];
+  items.forEach((item) => { if (item[key] && !found.includes(item[key])) found.push(item[key]); });
+  return found;
+}
+
+/* 값이 두 가지 이상 열두 가지 이하인 것 하나만 세부 분류로 쓴다 */
+function breakScopeKey(items) {
+  for (const { key } of breakFilters) {
+    const values = breakValues(items, key);
+    if (values.length >= 2 && values.length <= 12) return key;
   }
-  const gapPage = event.target.closest("[data-gap-page]");
-  if (gapPage) {
-    listState(breakState.tab).page = Number(gapPage.dataset.gapPage);
-    renderBreakList(breakState.tab);
-    breakBody.scrollIntoView({ block: "start", behavior: "smooth" });
-    return;
+  return "";
+}
+
+function breakId(item) {
+  return `break-${breaklistState.tab}:${item.id}`;
+}
+
+function renderBreaklist() {
+  const config = breakLists[breaklistState.tab];
+  const items = config.items();
+  const favorites = readFavorites();
+
+  document.querySelector("#breaklist-title").textContent = config.label;
+  document.querySelector("#breaklist-desc").innerHTML = config.desc;
+
+  const sw = document.querySelector("#breaklist-switch");
+  sw.innerHTML = Object.entries(breakLists).map(([key, one]) =>
+    `<button type="button" role="tab" data-break-go="${key}" aria-selected="${key === breaklistState.tab}">${one.label}</button>`).join("");
+
+  const scopeKey = breakScopeKey(items);
+  const tabs = document.querySelector("#breaklist-tabs");
+  if (scopeKey !== breaklistState.scopeKey) {
+    breaklistState.scopeKey = scopeKey;
+    breaklistState.scope = "전체";
   }
-  const like = event.target.closest("#break-view [data-like]");
-  if (like) {
-    const favorites = readFavorites();
-    const id = like.dataset.like;
-    if (favorites.has(id)) favorites.delete(id); else favorites.add(id);
-    writeFavorites(favorites);
-    renderBreakList(breakState.tab);
-    return;
-  }
-  if (event.target.closest("[data-open-pitch]")) mountPitchGame();
-  if (event.target.closest("[data-back-list]")) renderBreakList(breakState.tab);
+  tabs.hidden = !scopeKey;
+  tabs.innerHTML = scopeKey
+    ? ["전체", ...breakValues(items, scopeKey)].map((value) =>
+      `<button type="button" role="tab" data-break-scope="${value}" aria-selected="${value === breaklistState.scope}">${value}</button>`).join("")
+    : "";
+
+  const list = scopeKey && breaklistState.scope !== "전체"
+    ? items.filter((item) => item[scopeKey] === breaklistState.scope)
+    : items;
+  const pages = Math.max(1, Math.ceil(list.length / BREAK_PAGE));
+  if (breaklistState.page > pages) breaklistState.page = pages;
+  const start = (breaklistState.page - 1) * BREAK_PAGE;
+  const slice = list.slice(start, start + BREAK_PAGE);
+
+  document.querySelector("#breaklist-count").innerHTML = list.length
+    ? `총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i>`
+    : `자료를 준비하고 있습니다. ${config.empty}`;
+
+  breaklistGrid.innerHTML = slice.map((item, index) => {
+    const id = breakId(item);
+    const key = `break-${breaklistState.tab}-${index}`;
+    const picked = breaklistGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const badge = item.lb ? `<span class="composer-badge">${item.lb}</span>` : "";
+    const thumb = `<span class="history-thumb break-thumb">${coverImg(item)}<span class="thumb-overlay format-break"><span class="break-name">${item.t}</span></span>${badge}</span>`;
+    return `
+      <li class="history-card break-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.t} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
+        <a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>
+        <div class="history-foot">
+          <span class="history-caption">${item.t}${item.tg ? `<i>${item.tg}</i>` : ""}${item.by ? `<i>BY ${item.by}</i>` : ""}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>
+          <button role="menuitem" type="button" data-share="${item.u}" data-share-label="${config.label} 링크">↗ 링크 공유하기</button>
+        </div>
+      </li>`;
+  }).join("");
+
+  renderBreakPager(pages);
+  syncToolbar(breaklistGrid);
+}
+
+function renderBreakPager(pages) {
+  const pager = document.querySelector("#breaklist-pager");
+  if (pages <= 1) { pager.innerHTML = ""; return; }
+  const btn = (page, text, off) =>
+    `<button type="button" data-break-page="${page}"${off ? " disabled" : ""}${page === breaklistState.page ? ' aria-current="page"' : ""}>${text}</button>`;
+  const span = Math.min(10, pages);
+  let from = Math.max(1, breaklistState.page - Math.floor(span / 2));
+  from = Math.min(from, Math.max(1, pages - span + 1));
+  const numbers = Array.from({ length: Math.min(span, pages - from + 1) }, (_, i) => btn(from + i, from + i, false));
+  pager.innerHTML = btn(breaklistState.page - 1, "←", breaklistState.page === 1)
+    + numbers.join("")
+    + btn(breaklistState.page + 1, "→", breaklistState.page === pages)
+    + `<span class="pager-total">${breaklistState.page} / ${pages}</span>`;
+}
+
+wireResourceGrid(breaklistGrid, {
+  selectAll: document.querySelector("#breaklist-select-all"),
+  favTool: document.querySelector("#breaklist-view [data-tool=favorite]"),
+  rerender: renderBreaklist,
 });
+
+document.querySelector("#breaklist-switch").addEventListener("click", (event) => {
+  const go = event.target.closest("[data-break-go]");
+  if (go) location.hash = breakLists[go.dataset.breakGo].hash;
+});
+document.querySelector("#breaklist-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-break-scope]");
+  if (!tab) return;
+  breaklistState.scope = tab.dataset.breakScope;
+  breaklistState.page = 1;
+  renderBreaklist();
+});
+document.querySelector("#breaklist-pager").addEventListener("click", (event) => {
+  const page = event.target.closest("[data-break-page]");
+  if (!page) return;
+  breaklistState.page = Number(page.dataset.breakPage);
+  renderBreaklist();
+  breaklistView.scrollIntoView({ block: "start", behavior: "smooth" });
+});
+
+function showBreaklist(tab) {
+  hideAllViews();
+  if (breaklistState.tab !== tab) {
+    breaklistState.tab = tab;
+    breaklistState.scope = "전체";
+    breaklistState.scopeKey = "";
+    breaklistState.page = 1;
+    breaklistGrid._cfg.selection.clear();
+  }
+  breaklistView.hidden = false;
+  setCurrentNav("break");
+  document.title = `${breakLists[tab].label} | 연정쌤의 음악 교실`;
+  renderBreaklist();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
 
 renderHall();
 handleRoute();

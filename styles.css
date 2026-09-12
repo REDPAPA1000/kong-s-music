@@ -341,8 +341,8 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .hall-hero p { margin: 0; color: var(--muted); white-space: nowrap; }
 
 .hall-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(28px, 4vw, 64px) clamp(24px, 3.4vw, 52px); margin: clamp(44px, 6vw, 72px) 0 clamp(20px, 3vw, 36px); padding: 0; list-style: none; }
-.hall-item > a, .hall-blob { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; overflow: hidden; color: white; background-color: var(--hall-a); background-image: linear-gradient(180deg, rgba(9, 12, 30, .04) 18%, rgba(9, 12, 30, .82) 100%), var(--hall-image), linear-gradient(140deg, var(--hall-a), var(--hall-b)); background-position: center; background-size: cover; border-radius: 20px; box-shadow: 0 12px 24px rgba(26, 29, 62, .15); transition: transform .3s ease, box-shadow .3s ease; }
-.hall-item > a:hover, .hall-item > a:focus-visible { transform: translateY(-5px); box-shadow: 0 18px 30px rgba(26, 29, 62, .23); }
+.hall-item > a:not(.tool-blob), .hall-blob { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; overflow: hidden; color: white; background-color: var(--hall-a); background-image: linear-gradient(180deg, rgba(9, 12, 30, .04) 18%, rgba(9, 12, 30, .82) 100%), var(--hall-image), linear-gradient(140deg, var(--hall-a), var(--hall-b)); background-position: center; background-size: cover; border-radius: 20px; box-shadow: 0 12px 24px rgba(26, 29, 62, .15); transition: transform .3s ease, box-shadow .3s ease; }
+.hall-item > a:not(.tool-blob):hover, .hall-item > a:not(.tool-blob):focus-visible { transform: translateY(-5px); box-shadow: 0 18px 30px rgba(26, 29, 62, .23); }
 .hall-label { font-size: 1.02rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; }
 .hall-desc { font-size: .78rem; font-weight: 600; opacity: .82; }
 .hall-arrow { position: absolute; right: 20px; bottom: 22px; display: grid; place-items: center; width: 26px; height: 26px; color: var(--ink); background: rgba(255,255,255,.92); border-radius: 50%; font-size: .8rem; font-weight: 800; }
@@ -453,7 +453,7 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 @media (max-width: 720px) {
   .hall-grid { grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 5vw, 32px); }
   .hall-hero p { white-space: normal; }
-  .hall-item > a, .hall-blob, .tool-blob { min-height: 160px; border-radius: 18px; }
+  .hall-item > a:not(.tool-blob), .hall-blob, .tool-blob { min-height: 160px; border-radius: 18px; }
   .history-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   .hall-back { position: static; display: inline-block; margin-bottom: 14px; }
 }
@@ -1025,69 +1025,47 @@ body.tool-open { overflow: hidden; }
 .tool-set-grid .tool-chip { line-height: 1.35; }
 .tool-pane > .tool-sub { max-width: 480px; }
 
-/* ── 쉬는 시간 ────────────────────────────────────── */
-/* 음악관·수업도구와 같은 얼개를 쓴다 */
-.break-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(33,193,122,.11), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(91,115,232,.09), transparent 29rem); }
-.break-view .hall-hero { max-width: 720px; }
-.break-view .hall-hero p { max-width: 620px; white-space: normal; }
-.break-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: clamp(30px, 4vw, 44px) 0 0; }
-.break-tabs button { min-width: 116px; padding: 13px 20px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font: inherit; font-size: .9rem; font-weight: 800; cursor: pointer; transition: border-color .16s ease, color .16s ease; }
-.break-tabs button:hover { color: var(--ink); border-color: #21c17a; }
-.break-tabs button.is-on { color: #fff; background: #21c17a; border-color: #21c17a; box-shadow: 0 7px 16px rgba(33, 193, 122, .27); }
-.break-body { margin-top: clamp(26px, 4vw, 44px); }
-.break-lead { margin: 0 0 clamp(24px, 3vw, 34px); color: var(--muted); font-size: .92rem; font-weight: 650; }
-/* 여섯 갈래를 한 줄에 놓는다. 카드 생김새는 수업도구 카드와 같다. */
-.break-grid { grid-template-columns: repeat(6, 1fr); gap: clamp(20px, 2.4vw, 32px); margin: 0; }
-@media (max-width: 1180px) { .break-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px) { .break-grid { grid-template-columns: repeat(2, 1fr); } }
-.break-note { margin: 22px auto 0; width: fit-content; max-width: 100%; padding: 9px 14px; color: var(--muted); background: rgba(255,255,255,.56); border: 1px solid var(--line); border-radius: 999px; font-size: .76rem; font-weight: 650; text-align: center; }
-
-.break-empty { display: grid; place-items: center; gap: 8px; padding: clamp(46px, 8vw, 96px) 24px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 22px; text-align: center; }
-.break-empty p { margin: 0; font-size: .86rem; font-weight: 650; }
-.break-empty-title { color: var(--ink); font-size: 1.02rem; font-weight: 900; letter-spacing: -.03em; }
-
-.game-card { --stage-a: #d94ac0; --stage-b: #9b2fb4; display: flex; flex-direction: column; align-items: center; gap: 13px; max-width: 640px; margin: 0 auto; padding: clamp(26px, 4vw, 42px); background: var(--surface); border: 1px solid var(--line); border-radius: 26px; box-shadow: 0 16px 34px rgba(31, 38, 83, .08); text-align: center; }
-.game-kicker { margin: 0; color: #21c17a; font-size: .7rem; font-weight: 900; letter-spacing: .14em; }
-.game-card h2 { margin: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 900; letter-spacing: -.04em; }
-.game-desc { margin: 0; max-width: 420px; color: var(--muted); font-size: .86rem; font-weight: 650; line-height: 1.6; }
-.game-score { display: flex; gap: 18px; margin-top: 4px; color: var(--muted); font-size: .82rem; font-weight: 750; }
-.game-score b { color: var(--ink); font-size: 1.1rem; font-weight: 900; }
-.game-say { margin: 6px 0 0; padding: 11px 20px; color: #fff; background: #21c17a; border-radius: 999px; font-size: .92rem; font-weight: 800; }
-.game-say.is-wrong { background: #ef705e; }
 
 /* 틈새 시간 365 */
-.gap-filters { display: grid; gap: 10px; margin-bottom: clamp(20px, 3vw, 30px); }
-.gap-filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.gap-filter > span { min-width: 78px; color: var(--muted); font-size: .8rem; font-weight: 800; }
-.gap-filter button { padding: 8px 15px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: .81rem; font-weight: 700; cursor: pointer; }
-.gap-filter button:hover { border-color: #21c17a; }
-.gap-filter button.is-on { color: #fff; background: #21c17a; border-color: #21c17a; }
-.gap-count { margin: 0 0 16px; color: var(--muted); font-size: .84rem; font-weight: 650; }
-.gap-count b { color: var(--coral); }
 
-.gap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(228px, 1fr)); gap: 18px; margin: 0; padding: 0; list-style: none; }
-.gap-card { position: relative; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; transition: transform .18s ease, box-shadow .18s ease; }
-.gap-card:hover { transform: translateY(-3px); box-shadow: 0 14px 28px rgba(31, 38, 83, .13); }
-.gap-shot { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: linear-gradient(150deg, #b4a4f2, #8d7ae6); }
-.gap-shot img { width: 100%; height: 100%; object-fit: cover; }
-.gap-time { position: absolute; left: 10px; top: 10px; padding: 4px 10px; color: #1f6f4c; background: #b8f5d6; border-radius: 999px; font-size: .68rem; font-weight: 900; }
 .gap-foot { padding: 13px 14px 16px; }
-.gap-kind { margin: 0 0 4px; color: #9b2fb4; font-size: .74rem; font-weight: 800; }
-.gap-title { margin: 0; font-size: .95rem; font-weight: 800; letter-spacing: -.03em; }
-.gap-card .history-like { right: 10px; bottom: 10px; top: auto; }
-.gap-series { position: absolute; right: 10px; top: 10px; padding: 4px 10px; color: #5b3aa8; background: rgba(255,255,255,.9); border-radius: 999px; font-size: .66rem; font-weight: 900; }
-.gap-count i { color: var(--muted); font-style: normal; font-weight: 650; }
 .gap-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin-top: clamp(24px, 3vw, 36px); }
 .gap-pager button { min-width: 36px; padding: 8px 11px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 9px; font: inherit; font-size: .82rem; font-weight: 750; cursor: pointer; }
 .gap-pager button:hover:not(:disabled) { border-color: #21c17a; }
 .gap-pager button[aria-current="page"] { color: #fff; background: #21c17a; border-color: #21c17a; }
 .gap-pager button:disabled { opacity: .4; cursor: default; }
 .gap-pager .pager-total { margin-left: 8px; color: var(--muted); font-size: .78rem; font-weight: 700; }
-.game-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; margin-top: clamp(26px, 4vw, 40px); padding: 18px 22px; background: color-mix(in srgb, #21c17a 8%, var(--surface)); border: 1px solid color-mix(in srgb, #21c17a 24%, var(--line)); border-radius: 18px; }
-.game-strip p { margin: 0; color: var(--muted); font-size: .86rem; font-weight: 700; }
-.gap-by { margin: 6px 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; }
 .break-grid .tool-blob { min-height: 168px; padding: 18px 16px 20px; }
 .break-grid .tool-badge { right: 13px; top: 13px; width: 42px; height: 42px; padding: 6px; }
 .break-grid .hall-label { max-width: 100%; font-size: .96rem; }
 .break-grid .hall-desc { padding-right: 30px; font-size: .74rem; }
 .break-grid .hall-arrow { right: 16px; bottom: 18px; width: 24px; height: 24px; }
+
+/* ── 쉬는 시간 ────────────────────────────────────── */
+.break-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(33,193,122,.11), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(91,115,232,.09), transparent 29rem); }
+.break-view .hall-hero { max-width: 720px; }
+.break-view .hall-hero p { max-width: 620px; white-space: normal; }
+.break-grid { grid-template-columns: repeat(6, 1fr); gap: clamp(20px, 2.4vw, 32px); margin: clamp(38px, 5vw, 58px) 0 0; }
+@media (max-width: 1180px) { .break-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .break-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* 갈래 화면 — 음악관 하위 화면과 같은 얼개 */
+.break-hero { background: linear-gradient(150deg, #dff7ea, #c9f0dd 52%, #d7e7ff); }
+.break-hero h1 { color: #14503a; }
+.break-hero > p { color: #35705a; max-width: 480px; }
+.break-hero .hall-back { color: #1c5e44; }
+:root[data-theme="dark"] .break-hero { background: linear-gradient(150deg, #172e26, #14222c); }
+:root[data-theme="dark"] .break-hero h1 { color: #9ce2c0; }
+:root[data-theme="dark"] .break-hero > p { color: #86bfa6; }
+
+.break-thumb { background: linear-gradient(150deg, #eefbf4, #dcf2e7); }
+.format-break { align-items: flex-end; justify-content: flex-end; padding: 12px 14px 14px; }
+.break-name { max-width: 100%; padding: 4px 10px; color: #1c5e44; background: rgba(255,255,255,.92); border-radius: 8px; font-size: .78rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; text-align: left; }
+.break-card .composer-badge { right: 10px; top: 10px; color: #1f6f4c; background: #b8f5d6; }
+.break-card .history-foot { align-items: flex-start; }
+.break-card .history-caption { display: flex; flex-direction: column; gap: 3px; }
+.break-card .history-caption i { color: var(--muted); font-size: .66rem; font-weight: 700; font-style: normal; opacity: .85; }
+.break-note { width: fit-content; max-width: 100%; margin: clamp(26px, 4vw, 40px) auto 0; padding: 9px 14px; color: var(--muted); background: rgba(255,255,255,.56); border: 1px solid var(--line); border-radius: 999px; font-size: .76rem; font-weight: 650; text-align: center; }
+:root[data-theme="dark"] .break-thumb { background: linear-gradient(150deg, #1a2e25, #16241d); }
+:root[data-theme="dark"] .break-name { color: #9ce2c0; background: rgba(26,46,37,.92); }
+:root[data-theme="dark"] .break-note { background: rgba(31,33,53,.65); }
