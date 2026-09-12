@@ -27,9 +27,7 @@ def esc(text):
 
 
 rows = json.load(io.open(SRC, encoding='utf-8'))['ret_data']
-rows.sort(key=lambda r: (GRADE_ORDER.index(r.get('mp_filter3'))
-                         if r.get('mp_filter3') in GRADE_ORDER else 99,
-                         r.get('cls_title') or ''))
+# 두클래스 목록과 같은 차례로 둔다 (정렬하지 않음)
 
 lines = []
 stats = collections.Counter()

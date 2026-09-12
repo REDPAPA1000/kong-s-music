@@ -2253,7 +2253,7 @@ function renderListening() {
   if (pages <= 1) {
     pager.innerHTML = "";
   } else {
-    const span = 5;
+    const span = 10;
     let from = Math.max(1, listeningState.page - Math.floor(span / 2));
     const to = Math.min(pages, from + span - 1);
     from = Math.max(1, to - span + 1);
@@ -2282,7 +2282,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=3323bd3";
+  script.src = "listening-data.js?v=392ab20";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
