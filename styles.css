@@ -1089,25 +1089,24 @@ body.tool-open { overflow: hidden; }
 :root[data-theme="dark"] .break-name { color: #9ce2c0; background: rgba(26,46,37,.92); }
 :root[data-theme="dark"] .break-note { background: rgba(31,33,53,.65); }
 
-/* ── 창의적 체험활동 ─────────────────────────────── */
+/* ── 진로활동 ─────────────────────────────── */
 .activity-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(245,184,32,.12), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(239,112,94,.09), transparent 29rem); }
 .activity-view .hall-hero { max-width: 720px; }
 .activity-view .hall-hero p { max-width: 620px; white-space: normal; }
-.activity-grid { grid-template-columns: repeat(6, 1fr); gap: clamp(20px, 2.4vw, 32px); margin: clamp(38px, 5vw, 58px) 0 0; }
-@media (max-width: 1180px) { .activity-grid { grid-template-columns: repeat(3, 1fr); } }
+.activity-grid { grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 32px); margin: clamp(38px, 5vw, 58px) 0 0; }
 @media (max-width: 700px) { .activity-grid { grid-template-columns: repeat(2, 1fr); } }
 .activity-grid .tool-blob.is-soon { cursor: default; filter: saturate(.45); opacity: .72; }
 .activity-grid .hall-soon { right: 14px; bottom: 16px; }
 
-.moment-hero { background: linear-gradient(150deg, #fff0d9, #ffe2c6 52%, #ffd9d2); }
-.moment-hero h1 { color: #5b3a10; }
-.moment-hero > p { color: #82603a; max-width: 480px; }
-.moment-hero .hall-back { color: #6b4715; }
-:root[data-theme="dark"] .moment-hero { background: linear-gradient(150deg, #332618, #2a1d18); }
-:root[data-theme="dark"] .moment-hero h1 { color: #f0bd85; }
-:root[data-theme="dark"] .moment-hero > p { color: #c79b6d; }
-.moment-months { gap: clamp(8px, 1.6vw, 22px); overflow-x: auto; }
-.moment-months button { white-space: nowrap; }
-.moment-thumb { background: linear-gradient(150deg, #fff8ee, #f8e8d6); }
-.moment-thumb + .break-name, .moment-thumb .break-name { color: #6b4715; }
-.break-card .moment-thumb ~ * .composer-badge { color: #6b4715; }
+.career-hero { background: linear-gradient(150deg, #fff0d9, #ffe2c6 52%, #ffd9d2); }
+.career-hero h1 { color: #5b3a10; }
+.career-hero > p { color: #82603a; max-width: 480px; }
+.career-hero .hall-back { color: #6b4715; }
+:root[data-theme="dark"] .career-hero { background: linear-gradient(150deg, #332618, #2a1d18); }
+:root[data-theme="dark"] .career-hero h1 { color: #f0bd85; }
+:root[data-theme="dark"] .career-hero > p { color: #c79b6d; }
+.actlist-view .history-tabs { gap: clamp(8px, 1.6vw, 22px); overflow-x: auto; }
+.actlist-view .history-tabs button { white-space: nowrap; }
+.career-thumb { background: linear-gradient(150deg, #fff8ee, #f8e8d6); }
+.career-thumb + .break-name, .career-thumb .break-name { color: #6b4715; }
+.break-card .career-thumb ~ * .composer-badge { color: #6b4715; }
