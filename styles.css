@@ -863,7 +863,6 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 }
 
 :root[data-theme="dark"] .history-thumb,
-:root[data-theme="dark"] .composer-thumb,
 :root[data-theme="dark"] .theory-thumb,
 :root[data-theme="dark"] .song-thumb,
 :root[data-theme="dark"] .play-thumb,
@@ -874,6 +873,35 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 :root[data-theme="dark"] .book-thumb {
   background-image: linear-gradient(180deg, rgba(8, 10, 24, .16), rgba(8, 10, 24, .62)), var(--detail-image) !important;
 }
+
+/* 작곡가 시대별 카드는 기존 흉상 일러스트 표현을 유지한다. */
+.composer-thumb { background-image: linear-gradient(150deg, #fdf5e8, #f0e2cc) !important; }
+.composer-thumb.art-world,
+.composer-thumb.art-korean { background-image: linear-gradient(150deg, #f2fbf7, #dff1ea) !important; }
+.composer-thumb.art-textbook { background-image: linear-gradient(150deg, #f4fbe9, #e2f2cd) !important; }
+.composer-thumb:has(.cover-shot) .cover-shot {
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+  transform: none;
+}
+:root[data-theme="dark"] .composer-thumb { background-image: linear-gradient(150deg, #2b2438, #241d2c) !important; }
+:root[data-theme="dark"] .composer-thumb.art-world,
+:root[data-theme="dark"] .composer-thumb.art-korean { background-image: linear-gradient(150deg, #1e2f33, #1a2629) !important; }
+:root[data-theme="dark"] .composer-thumb.art-textbook { background-image: linear-gradient(150deg, #22301c, #1b2718) !important; }
+
+/* 음악사 애니메이션은 제공된 원본 썸네일을 그대로 사용한다. */
+.history-thumb.scope-west:has(.format-anim) { background-image: linear-gradient(150deg, #fdf6ea, #f3e3cd) !important; }
+.history-thumb.scope-korea:has(.format-anim) { background-image: linear-gradient(150deg, #fbf1ea, #efdccd) !important; }
+.history-thumb:has(.format-anim) .history-art { opacity: 1; }
+.history-thumb:has(.format-anim) .cover-shot {
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+  transform: none;
+}
+:root[data-theme="dark"] .history-thumb.scope-west:has(.format-anim),
+:root[data-theme="dark"] .history-thumb.scope-korea:has(.format-anim) { background-image: linear-gradient(150deg, #2b2438, #241d2c) !important; }
 
 /* 원본 썸네일이 있으면 그림 위에 덮고, 글자 오버레이는 감춘다 */
 .cover-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--art-bg, #f4f5f8); }
