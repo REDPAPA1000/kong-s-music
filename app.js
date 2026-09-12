@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=3ad14f3";
+  script.src = "listening-data.js?v=9917d1d";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2537,11 +2537,11 @@ const breakCards = [
     art: `<svg viewBox="0 0 48 48"><path d="M8 26a16 16 0 0132 0" fill="none" stroke="#3d4157" stroke-width="3.2" stroke-linecap="round"/><rect x="4" y="25" width="10" height="16" rx="4" fill="#59a9f0"/><rect x="34" y="25" width="10" height="16" rx="4" fill="#59a9f0"/><path d="M20 16l10 6-10 6z" fill="#f7bb2e"/></svg>` },
   { key: "game", label: "게임", desc: "화면으로 하는 놀이", tone: "magenta",
     art: `<svg viewBox="0 0 48 48"><rect x="3" y="14" width="42" height="22" rx="10" fill="#9a7cf0"/><path d="M13 21v8M9 25h8" stroke="#fff" stroke-width="2.8" stroke-linecap="round"/><circle cx="33" cy="22.5" r="2.6" fill="#f7bb2e"/><circle cx="38" cy="28" r="2.6" fill="#3ecf96"/></svg>` },
-  { key: "chosung", label: "초성게임", desc: "초성으로 낱말 맞히기", tone: "indigo",
+  { key: "chosung", label: "초성게임", desc: "초성 보고 맞히기", tone: "indigo",
     art: `<svg viewBox="0 0 48 48"><rect x="4" y="10" width="18" height="18" rx="5" fill="#fff" stroke="#3d4157" stroke-width="2.2"/><rect x="26" y="10" width="18" height="18" rx="5" fill="#fff" stroke="#3d4157" stroke-width="2.2"/><path d="M9 16h8v7" stroke="#5b73e8" stroke-width="2.8" fill="none" stroke-linecap="round"/><path d="M31 16v7h8" stroke="#f7bb2e" stroke-width="2.8" fill="none" stroke-linecap="round"/><rect x="14" y="33" width="20" height="6" rx="3" fill="#3ecf96"/></svg>` },
   { key: "card", label: "카드 짝 맞추기", desc: "짝을 찾는 기억 놀이", tone: "orange",
     art: `<svg viewBox="0 0 48 48"><rect x="5" y="12" width="17" height="24" rx="4" transform="rotate(-8 13.5 24)" fill="#59a9f0"/><rect x="26" y="12" width="17" height="24" rx="4" transform="rotate(8 34.5 24)" fill="#f57fb0"/><path d="M31 21l3.5 3.5L38 21" stroke="#fff" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13.5" cy="24" r="3.4" fill="#fff"/></svg>` },
-  { key: "word", label: "숨은 단어 찾기", desc: "글자판에서 낱말 찾기", tone: "sky",
+  { key: "word", label: "숨은 단어 찾기", desc: "글자판 속 낱말", tone: "sky",
     art: `<svg viewBox="0 0 48 48"><rect x="5" y="6" width="30" height="30" rx="5" fill="#eaf3ff" stroke="#3d4157" stroke-width="2.2"/><path d="M15 6v30M25 6v30M5 16h30M5 26h30" stroke="#c3d6ee" stroke-width="1.8"/><circle cx="32" cy="31" r="9" fill="none" stroke="#3ecf96" stroke-width="3.4"/><path d="M38.5 37.5L44 43" stroke="#3ecf96" stroke-width="3.6" stroke-linecap="round"/></svg>` },
 ];
 
@@ -2565,7 +2565,6 @@ function renderBreak() {
   renderBreakTabs();
   if (breakState.tab === "home") {
     breakBody.innerHTML = `
-      <p class="break-lead">쉬는 시간과 자투리 시간에 아이들과 함께할 거리를 모아 둡니다. 위의 갈래를 눌러 보세요.</p>
       <ul class="hall-grid break-grid">
         ${breakCards.map((card, i) => `
           <li class="hall-item tone-${card.tone}">
