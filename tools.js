@@ -360,17 +360,17 @@ function mountMetronome(host) {
 /* ── 4. 발표도우미 — 돌림판과 사다리타기 ──────────── */
 const WHEEL_COLORS = ["#f7bb2e", "#59a9f0", "#3ecf96", "#f57fb0", "#9a7cf0", "#ef705e", "#45c9c0", "#f2955a"];
 
-function mountChooser(host) {
+function mountChooserWorkspace(host, initialMode = "wheel") {
   host.innerHTML = `
     <div class="tool-layout">
       <div class="tool-pane">
         <div class="tool-tabs" data-role="tabs">
-          <button type="button" data-mode="wheel" class="is-on">돌림판</button>
-          <button type="button" data-mode="ladder">사다리타기</button>
+          <button type="button" data-mode="wheel" class="${initialMode === "wheel" ? "is-on" : ""}">돌림판</button>
+          <button type="button" data-mode="ladder" class="${initialMode === "ladder" ? "is-on" : ""}">사다리타기</button>
         </div>
         <input class="tool-name" type="text" placeholder="제목을 입력하세요." data-title />
 
-        <div data-pane="wheel" class="tool-pane">
+        <div data-pane="wheel" class="tool-pane"${initialMode === "wheel" ? "" : " hidden"}>
           <div class="wheel-wrap">
             <span class="wheel-pin" aria-hidden="true"></span>
             <canvas data-wheel width="620" height="620" aria-label="돌림판"></canvas>
@@ -381,7 +381,7 @@ function mountChooser(host) {
           </div>
         </div>
 
-        <div data-pane="ladder" class="tool-pane" hidden>
+        <div data-pane="ladder" class="tool-pane"${initialMode === "ladder" ? "" : " hidden"}>
           <canvas class="tool-canvas" data-ladder width="760" height="380"></canvas>
           <div class="tool-row" data-role="starts"></div>
           <div class="tool-row tool-main">
@@ -584,6 +584,33 @@ function mountChooser(host) {
 
   drawWheel();
   return () => {};
+}
+
+function mountChooser(host) {
+  let cleanup = null;
+  const showChoice = () => {
+    if (cleanup) { cleanup(); cleanup = null; }
+    host.innerHTML = `
+      <section class="chooser-home" aria-label="발표도우미 방식 선택">
+        <p class="chooser-kicker">발표도우미</p>
+        <h3>오늘은 어떤 방식으로<br />발표자를 뽑을까요?</h3>
+        <div class="chooser-choice-grid">
+          <button type="button" class="chooser-choice is-wheel" data-chooser-mode="wheel">
+            <span class="chooser-doodle" aria-hidden="true">◉</span>
+            <strong>돌림판</strong><small>이름이나 모둠을 돌려서 뽑기</small>
+          </button>
+          <button type="button" class="chooser-choice is-ladder" data-chooser-mode="ladder">
+            <span class="chooser-doodle" aria-hidden="true">♜</span>
+            <strong>사다리타기</strong><small>결과를 정해 재미있게 고르기</small>
+          </button>
+        </div>
+      </section>`;
+    host.querySelectorAll("[data-chooser-mode]").forEach((button) => button.addEventListener("click", () => {
+      cleanup = mountChooserWorkspace(host, button.dataset.chooserMode);
+    }));
+  };
+  showChoice();
+  return () => { if (cleanup) cleanup(); };
 }
 
 /* ── 5. 모둠 점수 ─────────────────────────────────── */
@@ -1056,9 +1083,14 @@ function openTool(key) {
 function renderTools() {
   const grid = document.querySelector("#tools-grid");
   if (!grid) return;
+  const sprite = {
+    timer: [0, 0], stopwatch: [1, 0], chooser: [2, 0], ladder: [2, 2],
+    focus: [0, 1], dark: [1, 1], ambience: [2, 1], board: [3, 1],
+    metronome: [0, 2], teams: [1, 2],
+  };
   grid.innerHTML = classTools.map((tool) => `
     <li class="hall-item tone-${tool.tone}">
-      <button class="tool-blob" type="button" data-open="${tool.key}">
+      <button class="tool-blob" type="button" data-open="${tool.key}" style="--card-art: url('assets/class-cards/class-card-sprite.png'); --sprite-x: ${sprite[tool.key][0]}; --sprite-y: ${sprite[tool.key][1]};">
         <span class="tool-index" aria-hidden="true">${String(classTools.indexOf(tool) + 1).padStart(2, "0")}</span>
         <span class="tool-badge" aria-hidden="true">${tool.art}</span>
         <span class="hall-label">${tool.label}</span>

@@ -2536,9 +2536,13 @@ const breakCards = [
 ];
 
 function renderBreakHub() {
+  const sprite = {
+    gap: [3, 2], audio: [0, 3], game: [1, 3],
+    chosung: [2, 3], card: [3, 3], word: [3, 3],
+  };
   breakGrid.innerHTML = breakCards.map((card, i) => `
     <li class="hall-item tone-${card.tone}">
-      <a class="tool-blob" href="${breakLists[card.key].hash}">
+      <a class="tool-blob" href="${breakLists[card.key].hash}" style="--card-art: url('assets/class-cards/class-card-sprite.png'); --sprite-x: ${sprite[card.key][0]}; --sprite-y: ${sprite[card.key][1]};">
         <span class="tool-index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
         <span class="tool-badge" aria-hidden="true">${card.art}</span>
         <span class="hall-label">${card.label}</span>

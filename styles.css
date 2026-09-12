@@ -817,16 +817,16 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .tools-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(91,115,232,.12), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(63,198,189,.10), transparent 29rem); }
 .tools-view .hall-hero { max-width: 720px; }
 .tools-view .hall-hero p { max-width: 620px; white-space: normal; }
-.tool-blob { position: relative; display: flex; width: 100%; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; isolation: isolate; overflow: hidden; color: var(--ink); background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.76)); border: 1px solid rgba(55, 62, 109, .12); border-radius: 20px; box-shadow: 0 12px 28px rgba(31, 38, 83, .09); font: inherit; text-align: left; cursor: pointer; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
-.tool-blob::before { position: absolute; z-index: -2; top: -52px; right: -44px; width: 148px; height: 148px; content: ""; background: linear-gradient(135deg, var(--hall-a), var(--hall-b)); border-radius: 50%; opacity: .16; }
-.tool-blob::after { position: absolute; z-index: -1; inset: 0; content: ""; background-image: linear-gradient(rgba(54,62,108,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(54,62,108,.035) 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(135deg, #000, transparent 72%); }
-.tool-blob:hover, .tool-blob:focus-visible { transform: translateY(-5px); border-color: color-mix(in srgb, var(--hall-a) 54%, transparent); box-shadow: 0 20px 36px rgba(31, 38, 83, .16); outline: none; }
-.tool-index { position: absolute; top: 18px; left: 20px; padding: 4px 7px; color: var(--hall-b); background: color-mix(in srgb, var(--hall-a) 13%, white); border-radius: 999px; font-family: "Montserrat", sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .08em; }
-.tool-mark { position: absolute; right: 17px; top: 19px; display: grid; place-items: center; width: 58px; height: 58px; padding: 12px; background: color-mix(in srgb, var(--hall-a) 13%, white); border: 1px solid color-mix(in srgb, var(--hall-a) 20%, transparent); border-radius: 18px; }
+.tool-blob { position: relative; display: flex; width: 100%; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; isolation: isolate; overflow: hidden; color: white; background-color: var(--hall-a); background-image: linear-gradient(180deg, rgba(8,12,33,.03) 14%, rgba(8,12,33,.86) 100%), var(--card-art), linear-gradient(140deg, var(--hall-a), var(--hall-b)); background-position: center, calc(var(--sprite-x, 0) * 33.333%) calc(var(--sprite-y, 0) * 33.333%), center; background-size: cover, 400% 400%, cover; border: 0; border-radius: 20px; box-shadow: 0 12px 28px rgba(31,38,83,.14); font: inherit; text-align: left; cursor: pointer; transition: transform .28s ease, box-shadow .28s ease; }
+.tool-blob::before { position: absolute; z-index: 0; top: 0; right: 0; width: 78px; height: 78px; content: ""; background: linear-gradient(135deg, rgba(255,255,255,.18), transparent 62%); }
+.tool-blob::after { position: absolute; z-index: 0; inset: auto 0 0; height: 56%; content: ""; background: linear-gradient(transparent, rgba(6,9,25,.48)); pointer-events: none; }
+.tool-blob:hover, .tool-blob:focus-visible { transform: translateY(-5px); box-shadow: 0 20px 36px rgba(31,38,83,.23); outline: none; }
+.tool-index { position: absolute; z-index: 2; top: 16px; left: 17px; padding: 4px 7px; color: white; background: rgba(17,21,45,.34); border: 1px solid rgba(255,255,255,.34); border-radius: 999px; font-family: "Montserrat", sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .08em; backdrop-filter: blur(6px); }
+.tool-mark { position: absolute; z-index: 2; right: 15px; top: 15px; display: grid; place-items: center; width: 46px; height: 46px; padding: 9px; background: rgba(255,255,255,.88); border: 1px solid rgba(255,255,255,.75); border-radius: 15px; box-shadow: 0 6px 14px rgba(8,12,33,.16); }
 .tool-mark svg { width: 100%; height: 100%; fill: none; stroke: var(--hall-b); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .tool-blob .hall-label, .tool-blob .hall-desc { position: relative; z-index: 1; }
-.tool-blob .hall-label { max-width: calc(100% - 40px); font-size: 1.02rem; }
-.tool-blob .hall-desc { padding-right: 42px; color: var(--muted); font-size: .78rem; line-height: 1.45; opacity: 1; }
+.tool-blob .hall-label { max-width: calc(100% - 40px); color: white; font-size: 1.02rem; text-shadow: 0 2px 9px rgba(4,7,20,.44); }
+.tool-blob .hall-desc { padding-right: 42px; color: rgba(255,255,255,.86); font-size: .78rem; line-height: 1.45; opacity: 1; text-shadow: 0 1px 5px rgba(4,7,20,.4); }
 .tool-blob .hall-arrow { right: 20px; bottom: 22px; color: white; background: var(--hall-b); box-shadow: 0 5px 12px color-mix(in srgb, var(--hall-b) 35%, transparent); }
 .tool-card { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; transition: transform .12s ease, border-color .12s ease; }
 .tool-card:hover { transform: translateY(-2px); border-color: var(--tone, #6c6ce0); }
@@ -840,9 +840,9 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .tools-note { width: fit-content; max-width: 100%; margin: 26px auto 0; padding: 9px 14px; color: var(--muted); background: rgba(255,255,255,.56); border: 1px solid var(--line); border-radius: 999px; font-size: .76rem; font-weight: 650; text-align: center; }
 
 :root[data-theme="dark"] .tools-view { background: radial-gradient(circle at 90% 4%, rgba(117,133,255,.18), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(63,198,189,.11), transparent 29rem); }
-:root[data-theme="dark"] .tool-blob { color: var(--ink); background: linear-gradient(145deg, rgba(35,37,59,.98), rgba(26,28,47,.91)); border-color: rgba(192,198,255,.13); box-shadow: 0 12px 28px rgba(0,0,0,.2); }
-:root[data-theme="dark"] .tool-blob::after { background-image: linear-gradient(rgba(215,220,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(215,220,255,.045) 1px, transparent 1px); }
-:root[data-theme="dark"] .tool-index, :root[data-theme="dark"] .tool-mark { background: color-mix(in srgb, var(--hall-a) 16%, #202238); }
+:root[data-theme="dark"] .tool-blob { box-shadow: 0 12px 28px rgba(0,0,0,.3); }
+:root[data-theme="dark"] .tool-index { background: rgba(5,8,22,.48); }
+:root[data-theme="dark"] .tool-mark { background: rgba(248,249,255,.88); }
 :root[data-theme="dark"] .tools-note { background: rgba(31,33,53,.65); }
 
 .tool-card.tone-indigo { --tone: #5a5fd0; --tone-bg: #eceefc; }
@@ -988,6 +988,18 @@ body.tool-open { overflow: hidden; }
 .tool-tabs button { padding: 9px 20px; color: var(--muted); background: none; border: 0; border-radius: 999px; font: inherit; font-size: .87rem; font-weight: 800; cursor: pointer; }
 .tool-tabs button.is-on { color: #fff; background: var(--stage-b); box-shadow: 0 5px 12px color-mix(in srgb, var(--stage-b) 26%, transparent); }
 
+.chooser-home { display: flex; flex-direction: column; align-items: center; width: min(760px, 96%); padding: clamp(30px, 6vw, 58px); background: linear-gradient(145deg, color-mix(in srgb, var(--stage-a) 10%, var(--surface)), var(--surface)); border: 1px solid color-mix(in srgb, var(--stage-a) 24%, var(--line)); border-radius: 32px; box-shadow: 0 18px 40px color-mix(in srgb, var(--stage-b) 12%, transparent); text-align: center; }
+.chooser-kicker { margin: 0 0 9px; color: var(--stage-b); font-size: .76rem; font-weight: 900; letter-spacing: .11em; }
+.chooser-home h3 { margin: 0; color: var(--ink); font-size: clamp(1.5rem, 3.2vw, 2.25rem); font-weight: 900; letter-spacing: -.055em; line-height: 1.22; }
+.chooser-choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; width: 100%; margin-top: clamp(26px, 4vw, 40px); }
+.chooser-choice { display: flex; flex-direction: column; align-items: center; gap: 7px; min-height: 245px; padding: 25px 18px; color: var(--ink); background: var(--surface); border: 2px solid var(--line); border-radius: 25px; font: inherit; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.chooser-choice:hover, .chooser-choice:focus-visible { transform: translateY(-5px) rotate(-.35deg); border-color: var(--stage-a); box-shadow: 0 16px 26px color-mix(in srgb, var(--stage-b) 18%, transparent); outline: none; }
+.chooser-doodle { display: grid; place-items: center; width: 98px; height: 98px; margin-bottom: 7px; color: #fff; border-radius: 50%; font-family: Georgia, serif; font-size: 4.6rem; font-weight: 900; line-height: 1; }
+.chooser-choice.is-wheel .chooser-doodle { background: conic-gradient(#ff8a70 0 16%, #f5b820 0 32%, #5cc888 0 48%, #5b73e8 0 64%, #9a5cf0 0 80%, #ff9d3d 0); box-shadow: inset 0 0 0 5px #fff, 0 8px 0 rgba(66,69,96,.15); }
+.chooser-choice.is-ladder .chooser-doodle { background: #fff1c9; color: #f08d24; box-shadow: inset 0 0 0 3px #f08d24, 0 8px 0 rgba(66,69,96,.12); }
+.chooser-choice strong { font-size: 1.14rem; font-weight: 900; letter-spacing: -.04em; }
+.chooser-choice small { color: var(--muted); font-size: .78rem; font-weight: 650; }
+
 .wheel-wrap { position: relative; display: grid; place-items: center; }
 .wheel-pin { position: absolute; top: -6px; z-index: 2; width: 26px; height: 34px; background: #3d4157; clip-path: polygon(50% 100%, 0 0, 100% 0); border-radius: 5px; }
 .wheel-wrap canvas { width: min(330px, 74vw); height: auto; border-radius: 50%; box-shadow: 0 14px 30px rgba(31, 38, 83, .16); transition: transform 4.2s cubic-bezier(.17, .78, .26, 1); }
@@ -1008,6 +1020,13 @@ body.tool-open { overflow: hidden; }
 
 @media (max-width: 860px) {
   .tool-layout { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .chooser-home { padding: 28px 18px; border-radius: 24px; }
+  .chooser-choice-grid { gap: 10px; }
+  .chooser-choice { min-height: 195px; padding: 18px 8px; border-radius: 19px; }
+  .chooser-doodle { width: 68px; height: 68px; font-size: 3.25rem; }
+  .chooser-choice small { font-size: .69rem; }
 }
 .tool-set select { width: 100%; padding: 10px 12px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 11px; font: inherit; font-size: .84rem; font-weight: 800; }
 .tool-side .tool-check, .tool-side .tool-sub { justify-content: center; text-align: center; }
