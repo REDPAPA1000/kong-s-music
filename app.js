@@ -2227,10 +2227,10 @@ function renderListening() {
     const id = listeningId(item);
     const picked = listeningRowsHost._cfg.selection.has(id);
     const liked = favorites.has(id);
-    const audio = `<a class="row-btn" href="${item.u}" target="_blank" rel="noopener">음원 <span aria-hidden="true">▶</span></a>`;
+    // 음원은 두클래스 로그인이 있어야 들을 수 있어 넣지 않는다
     const sheet = item.s
       ? `<a class="row-btn" href="${item.s}" target="_blank" rel="noopener">악보 <span aria-hidden="true">♪</span></a>`
-      : "";
+      : `<span class="row-none">—</span>`;
     const video = item.v
       ? `<a class="row-btn is-ghost" href="${item.v}" target="_blank" rel="noopener">동영상</a>`
       : `<span class="row-none">—</span>`;
@@ -2239,11 +2239,11 @@ function renderListening() {
         <td class="col-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} aria-label="${item.t} 선택" /></td>
         <td>${item.lv}</td>
         <td>${item.gr}</td>
-        <th scope="row" class="col-title"><a href="${item.u}" target="_blank" rel="noopener">${item.t}</a>${item.n ? `<em>${item.n}</em>` : ""}</th>
+        <th scope="row" class="col-title" title="${item.t}${item.n ? ` · ${item.n}` : ""}">${item.t}</th>
         <td>${item.ge}</td>
         <td>${item.ar}</td>
         <td>${item.ty || "—"}</td>
-        <td class="col-files">${audio}${sheet}</td>
+        <td class="col-files">${sheet}</td>
         <td>${video}</td>
         <td class="col-fav"><button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button></td>
       </tr>`;
@@ -2282,7 +2282,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=e5a8b7f";
+  script.src = "listening-data.js?v=3323bd3";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
