@@ -58,7 +58,7 @@ em { color: var(--coral); font-family: inherit; font-style: normal; font-weight:
 .theme-toggle[aria-pressed="true"] { background: #292d4b; }
 
 main { overflow: clip; }
-.home-view { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, max-content) minmax(300px, 1fr); gap: clamp(28px, 5vw, 64px); align-items: center; min-height: calc(100vh - 74px); padding: clamp(72px, 9vw, 140px) clamp(24px, 8vw, 140px); overflow: hidden; background: linear-gradient(145deg, #f8f8ff 0%, #eef1ff 54%, #e4fbf6 100%); }
+.home-view { position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0, max-content) minmax(300px, 1fr); gap: clamp(32px, 8vw, 110px); align-items: center; min-height: calc(100vh - 74px); padding: clamp(72px, 9vw, 140px) clamp(24px, 8vw, 140px); overflow: hidden; background: linear-gradient(145deg, #f8f8ff 0%, #eef1ff 54%, #e4fbf6 100%); }
 .home-view::before { content: ""; position: absolute; z-index: -2; width: 560px; height: 560px; right: -190px; top: -220px; background: var(--yellow); border-radius: 50%; opacity: .72; }
 .home-view::after { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .18; background-image: linear-gradient(rgba(17,19,40,.14) 1px, transparent 1px), linear-gradient(90deg, rgba(17,19,40,.14) 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(to right, transparent 28%, black); }
 .hero-copy { position: relative; z-index: 1; max-width: 800px; }
