@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=7648138";
+  script.src = "listening-data.js?v=a923341";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2525,12 +2525,14 @@ const breakTabs = [
   { key: "gap", label: "#틈새 시간 365" },
   { key: "audio", label: "#오디오북" },
   { key: "game", label: "#게임" },
+  { key: "chosung", label: "#초성게임" },
 ];
 
 const breakCards = [
   { key: "gap", label: "틈새 시간 365", desc: "남는 몇 분 채우기", tone: "teal" },
   { key: "audio", label: "오디오북", desc: "귀로 듣는 읽을거리", tone: "blue" },
   { key: "game", label: "게임", desc: "화면으로 하는 놀이", tone: "magenta" },
+  { key: "chosung", label: "초성게임", desc: "음악 낱말 맞히기", tone: "indigo" },
 ];
 
 const breakState = { tab: "home" };
@@ -2576,6 +2578,7 @@ const breakLists = {
   gap: { items: () => gapItems, empty: "쓰실 활동 목록을 주시면 이 자리에 넣겠습니다." },
   audio: { items: () => audioItems, empty: "들려주실 오디오북 목록을 주시면 이 자리에 넣겠습니다." },
   game: { items: () => gameItems, empty: "쓰실 게임 목록을 주시면 이 자리에 넣겠습니다." },
+  chosung: { items: () => chosungItems, empty: "두클래스 초성게임 목록을 주시면 이 자리에 넣겠습니다." },
 };
 const breakFilters = [
   { key: "s", label: "묶음" },

@@ -21,6 +21,7 @@ SETS = [
     ('gapItems', 'gap365.json', '틈새 시간 365'),
     ('audioItems', 'audiobook.json', '오디오북'),
     ('gameItems', 'game.json', '게임'),
+    ('chosungItems', 'chosung.json', '초성게임'),
 ]
 
 

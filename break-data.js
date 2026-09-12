@@ -219,3 +219,5 @@ const gameItems = [
 {id: 17674,t: "봄에 피는 꽃 찾기! - 2",s: "봄에 피는 꽃 찾기",u: "https://canvas.douclass.com/center/game/play?code=03366647&isLand=true",img: "https://s3.douclass.com/pub/2024/thumb/2404/05xczzd6ptph.jpg",lb: "5분미만",ty: "게임",gr: "공통"},
 {id: 17670,t: "봄에 피는 꽃 찾기! - 1",s: "봄에 피는 꽃 찾기",u: "https://canvas.douclass.com/center/game/play?code=03764598&isLand=true",img: "https://s3.douclass.com/pub/2024/thumb/2404/cxwini80996a.jpg",lb: "5분미만",ty: "게임",gr: "공통"}
 ];
+
+const chosungItems = [];
