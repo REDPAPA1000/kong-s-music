@@ -1026,17 +1026,19 @@ body.tool-open { overflow: hidden; }
 .tool-pane > .tool-sub { max-width: 480px; }
 
 /* ── 쉬는 시간 ────────────────────────────────────── */
-.break-view { padding: clamp(34px, 5vw, 64px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); }
-.break-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; }
-.break-head h1 { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 900; letter-spacing: -.04em; }
-.break-head p { margin: 0; color: var(--muted); font-size: .9rem; font-weight: 650; }
-.break-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+/* 음악관·수업도구와 같은 얼개를 쓴다 */
+.break-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(33,193,122,.11), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(91,115,232,.09), transparent 29rem); }
+.break-view .hall-hero { max-width: 720px; }
+.break-view .hall-hero p { max-width: 620px; white-space: normal; }
+.break-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: clamp(30px, 4vw, 44px) 0 0; }
 .break-tabs button { min-width: 116px; padding: 13px 20px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font: inherit; font-size: .9rem; font-weight: 800; cursor: pointer; transition: border-color .16s ease, color .16s ease; }
 .break-tabs button:hover { color: var(--ink); border-color: #21c17a; }
 .break-tabs button.is-on { color: #fff; background: #21c17a; border-color: #21c17a; box-shadow: 0 7px 16px rgba(33, 193, 122, .27); }
 .break-body { margin-top: clamp(26px, 4vw, 44px); }
 .break-lead { margin: 0 0 clamp(24px, 3vw, 34px); color: var(--muted); font-size: .92rem; font-weight: 650; }
-.break-grid { margin: 0; }
+/* 여섯 갈래라 세 칸씩 두 줄로 놓는다. 카드 생김새는 수업도구 카드와 같다. */
+.break-grid { grid-template-columns: repeat(3, 1fr); margin: 0; }
+@media (max-width: 860px) { .break-grid { grid-template-columns: repeat(2, 1fr); } }
 .break-note { margin: 22px auto 0; width: fit-content; max-width: 100%; padding: 9px 14px; color: var(--muted); background: rgba(255,255,255,.56); border: 1px solid var(--line); border-radius: 999px; font-size: .76rem; font-weight: 650; text-align: center; }
 
 .break-empty { display: grid; place-items: center; gap: 8px; padding: clamp(46px, 8vw, 96px) 24px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 22px; text-align: center; }
