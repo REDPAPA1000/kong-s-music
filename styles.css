@@ -1082,3 +1082,4 @@ body.tool-open { overflow: hidden; }
 .gap-pager .pager-total { margin-left: 8px; color: var(--muted); font-size: .78rem; font-weight: 700; }
 .game-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; margin-top: clamp(26px, 4vw, 40px); padding: 18px 22px; background: color-mix(in srgb, #21c17a 8%, var(--surface)); border: 1px solid color-mix(in srgb, #21c17a 24%, var(--line)); border-radius: 18px; }
 .game-strip p { margin: 0; color: var(--muted); font-size: .86rem; font-weight: 700; }
+.gap-by { margin: 6px 0 0; color: var(--muted); font-size: .72rem; font-weight: 700; }

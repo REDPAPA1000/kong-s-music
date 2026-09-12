@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+"""두클래스 초성게임 카드(화면에서 긁어온 것) -> tmp/chosung.json
+
+   긁어온 카드의 text 는 이런 차례다.
+     ["0"(조회수), "초성 게임", 제목, "#중학", "#음악", "#2권", "#3단원", "BY 예*능선생님"]
+   조회수는 화면에서 나중에 채워지는 값이라 여기서는 버린다.
+"""
+import collections
+import io
+import json
+import os
+import sys
+
+sys.stdout.reconfigure(encoding='utf-8')
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC = os.path.join(ROOT, 'tmp', 'chosung-cards.json')
+OUT = os.path.join(ROOT, 'tmp', 'chosung.json')
+SITE = 'https://canvas.douclass.com'
+
+cards = json.load(io.open(SRC, encoding='utf-8'))
+rows = []
+stats = collections.Counter()
+
+for card in cards:
+    text = [t for t in card['text'] if t not in ('0', '초성 게임')]
+    title = text[0] if text else '(제목 없음)'
+    by = next((t[3:].strip() for t in text if t.startswith('BY ')), '')
+    tags = [t for t in text[1:] if t.startswith('#')]
+
+    # 교과서 권을 묶음으로 삼는다
+    book = next((t.lstrip('#') for t in tags if t.endswith('권')), '')
+    if not book:
+        book = '공통' if '#공통' in tags else '그 밖'
+    grade = '중학' if '#중학' in tags else '공통'
+
+    rows.append({
+        'cls_id': card['code'],
+        'cls_title': title,
+        'cls_thumbnail': card['img'],
+        'cls_url': SITE + card['detail'],
+        'cls_ftype': 'URL',
+        'rest_label': '',
+        'rest_type': '초성게임',
+        'rest_grade': grade,
+        'tags': ' '.join(tags),
+        'by': by,
+        'book': book,
+    })
+    stats['묶음:' + book] += 1
+    stats['학년:' + grade] += 1
+
+json.dump({'paging': {'total_count': len(rows)}, 'ret_data': rows},
+          io.open(OUT, 'w', encoding='utf-8'), ensure_ascii=False)
+
+print('%d개 -> tmp/%s' % (len(rows), os.path.basename(OUT)))
+for key in sorted(stats):
+    print('  %-10s %2d' % (key, stats[key]))
+print('\n제목:', ', '.join(r['cls_title'] for r in rows[:6]), '…')

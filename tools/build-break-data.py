@@ -49,17 +49,21 @@ def build(src_name):
     for row in rows:
         title = esc(row.get('cls_title'))
         fields = [
-            'id: %s' % row['cls_id'],
+            'id: "%s"' % row['cls_id'],
             't: "%s"' % title,
-            's: "%s"' % esc(series_of(title)),
+            's: "%s"' % esc(row.get('book') or series_of(title)),
             'u: "%s"' % esc(row.get('cls_url') or row.get('cls_fname')),
             'img: "%s"' % esc(row.get('cls_thumbnail')),
             'lb: "%s"' % esc(row.get('rest_label')),
             'ty: "%s"' % esc(row.get('rest_type')),
             'gr: "%s"' % esc(row.get('rest_grade')),
         ]
+        if row.get('tags'):
+            fields.append('tg: "%s"' % esc(row['tags']))
+        if row.get('by'):
+            fields.append('by: "%s"' % esc(row['by']))
         lines.append('{%s}' % ','.join(fields))
-        stats['묶음:' + series_of(title)] += 1
+        stats['묶음:' + (row.get('book') or series_of(title))] += 1
         stats['길이:' + (row.get('rest_label') or '없음')] += 1
         stats['갈래:' + (row.get('rest_type') or '없음')] += 1
         stats['학년:' + (row.get('rest_grade') or '없음')] += 1

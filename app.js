@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=a923341";
+  script.src = "listening-data.js?v=9b04cb1";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2641,8 +2641,9 @@ function renderBreakList(tab) {
             ${time}${series}
           </a>
           <div class="gap-foot">
-            <p class="gap-kind">[${item.ty || "자료"}] ${item.gr || "공통"}</p>
+            <p class="gap-kind">${item.tg || `[${item.ty || "자료"}] ${item.gr || "공통"}`}</p>
             <p class="gap-title">${item.t}</p>
+            ${item.by ? `<p class="gap-by">BY ${item.by}</p>` : ""}
           </div>
           <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
         </li>`;
