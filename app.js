@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=6ec2ab7";
+  script.src = "listening-data.js?v=7648138";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2567,95 +2567,110 @@ function renderBreak() {
       </ul>`;
     return;
   }
-  if (breakState.tab === "gap") { renderGap(); return; }
-  if (breakState.tab === "audio") {
-    breakBody.innerHTML = breakEmpty("오디오북 — 자료를 준비하고 있습니다",
-      "들려주실 오디오북 목록과 주소를 주시면 이 자리에 넣겠습니다.");
-    return;
-  }
-  mountPitchGame();
+  renderBreakList(breakState.tab);
 }
 
-/* 틈새 시간 365 — 두클래스 자료로 연결한다 */
-const GAP_PAGE = 24;
-const gapState = { s: "전체", gr: "전체", ty: "전체", lb: "전체", page: 1 };
-const gapRows = [
+/* 틈새 시간 365 · 오디오북 · 게임 — 두클래스 자료로 연결한다 */
+const BREAK_PAGE = 24;
+const breakLists = {
+  gap: { items: () => gapItems, empty: "쓰실 활동 목록을 주시면 이 자리에 넣겠습니다." },
+  audio: { items: () => audioItems, empty: "들려주실 오디오북 목록을 주시면 이 자리에 넣겠습니다." },
+  game: { items: () => gameItems, empty: "쓰실 게임 목록을 주시면 이 자리에 넣겠습니다." },
+};
+const breakFilters = [
   { key: "s", label: "묶음" },
   { key: "gr", label: "학년" },
   { key: "ty", label: "갈래" },
   { key: "lb", label: "걸리는 시간" },
 ];
+const breakListState = {};
 
-function gapValues(key) {
+function listState(tab) {
+  if (!breakListState[tab]) breakListState[tab] = { s: "전체", gr: "전체", ty: "전체", lb: "전체", page: 1 };
+  return breakListState[tab];
+}
+
+function breakValues(items, key) {
   const found = [];
-  gapItems.forEach((item) => { if (item[key] && !found.includes(item[key])) found.push(item[key]); });
+  items.forEach((item) => { if (item[key] && !found.includes(item[key])) found.push(item[key]); });
   return found;
 }
 
-function gapMatches(item) {
-  return gapRows.every(({ key }) => gapState[key] === "전체" || item[key] === gapState[key]);
-}
+function renderBreakList(tab) {
+  const config = breakLists[tab];
+  const items = config.items();
+  const state = listState(tab);
+  if (!items.length) {
+    breakBody.innerHTML = breakEmpty("자료를 준비하고 있습니다", config.empty);
+    return;
+  }
 
-function renderGap() {
-  const list = gapItems.filter(gapMatches);
-  const pages = Math.max(1, Math.ceil(list.length / GAP_PAGE));
-  if (gapState.page > pages) gapState.page = pages;
-  const start = (gapState.page - 1) * GAP_PAGE;
-  const slice = list.slice(start, start + GAP_PAGE);
+  const list = items.filter((item) =>
+    breakFilters.every(({ key }) => state[key] === "전체" || item[key] === state[key]));
+  const pages = Math.max(1, Math.ceil(list.length / BREAK_PAGE));
+  if (state.page > pages) state.page = pages;
+  const start = (state.page - 1) * BREAK_PAGE;
+  const slice = list.slice(start, start + BREAK_PAGE);
   const favorites = readFavorites();
 
-  // 값이 하나뿐인 거르개는 고를 것이 없으니 내보내지 않는다
-  const filters = gapRows.map(({ key, label }) => {
-    const values = gapValues(key);
-    if (values.length < 2) return "";
+  // 고를 것이 하나뿐이거나 너무 잘게 나뉘는 거르개는 내보내지 않는다
+  const filters = breakFilters.map(({ key, label }) => {
+    const values = breakValues(items, key);
+    if (values.length < 2 || values.length > 12) return "";
     return `<div class="gap-filter"><span>${label}</span>${["전체", ...values]
-      .map((value) => `<button type="button" data-gap="${key}:${value}" class="${gapState[key] === value ? "is-on" : ""}">${value}</button>`)
+      .map((value) => `<button type="button" data-gap="${key}:${value}" class="${state[key] === value ? "is-on" : ""}">${value}</button>`)
       .join("")}</div>`;
   }).filter(Boolean).join("");
 
   breakBody.innerHTML = `
-    <div class="gap-filters">${filters}</div>
+    ${filters ? `<div class="gap-filters">${filters}</div>` : ""}
     <p class="gap-count">총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i></p>
     <ul class="gap-grid">
       ${slice.map((item) => {
-        const id = `gap:${item.id}`;
+        const id = `${tab}:${item.id}`;
         const liked = favorites.has(id);
+        const time = item.lb ? `<span class="gap-time">${item.lb}</span>` : "";
+        const series = item.s && item.s !== item.t ? `<span class="gap-series">${item.s}</span>` : "";
         return `
         <li class="gap-card">
           <a class="gap-shot" href="${item.u}" target="_blank" rel="noopener">
             <img src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
-            <span class="gap-time">${item.lb}</span>
-            <span class="gap-series">${item.s}</span>
+            ${time}${series}
           </a>
           <div class="gap-foot">
-            <p class="gap-kind">[${item.ty}] ${item.gr}</p>
+            <p class="gap-kind">[${item.ty || "자료"}] ${item.gr || "공통"}</p>
             <p class="gap-title">${item.t}</p>
           </div>
           <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
         </li>`;
       }).join("")}
     </ul>
-    ${gapPager(pages)}
+    ${breakPager(state, pages)}
+    ${tab === "game" ? `<div class="game-strip">
+      <p>이 사이트 안에서 바로 하는 놀이도 있습니다.</p>
+      <button class="tool-pill is-go" type="button" data-open-pitch>소리 듣고 높낮이 맞히기</button>
+    </div>` : ""}
     <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>`;
 }
 
-function gapPager(pages) {
+function breakPager(state, pages) {
   if (pages <= 1) return "";
   const btn = (page, text, off) =>
-    `<button type="button" data-gap-page="${page}"${off ? " disabled" : ""}${page === gapState.page ? ' aria-current="page"' : ""}>${text}</button>`;
+    `<button type="button" data-gap-page="${page}"${off ? " disabled" : ""}${page === state.page ? ' aria-current="page"' : ""}>${text}</button>`;
   const span = Math.min(10, pages);
-  let from = Math.max(1, gapState.page - Math.floor(span / 2));
+  let from = Math.max(1, state.page - Math.floor(span / 2));
   from = Math.min(from, Math.max(1, pages - span + 1));
   const numbers = Array.from({ length: Math.min(span, pages - from + 1) }, (_, i) => btn(from + i, from + i, false));
-  return `<div class="gap-pager">${btn(gapState.page - 1, "←", gapState.page === 1)}${numbers.join("")}`
-    + `${btn(gapState.page + 1, "→", gapState.page === pages)}<span class="pager-total">${gapState.page} / ${pages}</span></div>`;
+  return `<div class="gap-pager">${btn(state.page - 1, "←", state.page === 1)}${numbers.join("")}`
+    + `${btn(state.page + 1, "→", state.page === pages)}<span class="pager-total">${state.page} / ${pages}</span></div>`;
 }
 
 /* 게임 1 — 소리 듣고 높낮이 맞히기 */
 function mountPitchGame(){
   breakBody.innerHTML = `
+    <div class="tool-row"><button class="tool-pill" type="button" data-back-list>← 게임 목록으로</button></div>
     <div class="game-card">
-      <p class="game-kicker">게임 1</p>
+      <p class="game-kicker">우리 교실 게임</p>
       <h2>소리 듣고 높낮이 맞히기</h2>
       <p class="game-desc">두 음을 잇달아 들려줍니다. 뒤에 나온 음이 앞의 음보다 높은지 낮은지 골라 보세요.</p>
       <div class="game-score">
@@ -2739,15 +2754,16 @@ document.addEventListener("click", (event) => {
   const gap = event.target.closest("[data-gap]");
   if (gap) {
     const [key, value] = gap.dataset.gap.split(":");
-    gapState[key] = value;
-    gapState.page = 1;
-    renderGap();
+    const state = listState(breakState.tab);
+    state[key] = value;
+    state.page = 1;
+    renderBreakList(breakState.tab);
     return;
   }
   const gapPage = event.target.closest("[data-gap-page]");
   if (gapPage) {
-    gapState.page = Number(gapPage.dataset.gapPage);
-    renderGap();
+    listState(breakState.tab).page = Number(gapPage.dataset.gapPage);
+    renderBreakList(breakState.tab);
     breakBody.scrollIntoView({ block: "start", behavior: "smooth" });
     return;
   }
@@ -2757,8 +2773,11 @@ document.addEventListener("click", (event) => {
     const id = like.dataset.like;
     if (favorites.has(id)) favorites.delete(id); else favorites.add(id);
     writeFavorites(favorites);
-    renderGap();
+    renderBreakList(breakState.tab);
+    return;
   }
+  if (event.target.closest("[data-open-pitch]")) mountPitchGame();
+  if (event.target.closest("[data-back-list]")) renderBreakList(breakState.tab);
 });
 
 renderHall();

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-"""쉬는 시간 · 틈새 시간 365 -> break-data.js
+"""쉬는 시간 -> break-data.js
 
-   tmp/gap365.json (두클래스 목록 API 응답) 을 읽어서 만든다.
-   자료 본체는 cls_url (canvas.douclass.com 뷰어) 로 바로 연결한다.
+   tmp/gap365.json · tmp/audiobook.json · tmp/game.json (두클래스 목록 API 응답)
+   세 개를 읽어서 한 파일로 만든다.
+   자료 본체는 cls_url (두클래스 뷰어) 로 바로 연결한다.
 """
 import collections
 import io
@@ -14,45 +15,70 @@ import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, 'tmp', 'gap365.json')
 OUT = os.path.join(ROOT, 'break-data.js')
+
+SETS = [
+    ('gapItems', 'gap365.json', '틈새 시간 365'),
+    ('audioItems', 'audiobook.json', '오디오북'),
+    ('gameItems', 'game.json', '게임'),
+]
 
 
 def esc(text):
     return (text or '').replace('\\', '\\\\').replace('"', '&quot;').replace('`', "'").strip()
 
 
-raw = json.load(io.open(SRC, encoding='utf-8'))
-rows = raw['ret_data']
-total = raw.get('paging', {}).get('total_count')
+def series_of(title):
+    """'유머 365_30' -> '유머 365',  '세계 국기 맞추기 <아시아>' -> '세계 국기 맞추기'"""
+    name = re.sub(r'<[^>]*>\s*$', '', title).strip()
+    name = re.sub(r'[_\s]*\d+$', '', name).strip()
+    return re.sub(r'[\s\-–—!~,.]+$', '', name).strip()
 
-lines = []
-stats = collections.Counter()
-for row in rows:
-    title = esc(row.get('cls_title'))
-    # '유머 365_30' 처럼 끝의 번호를 떼어 묶음 이름을 만든다
-    series = re.sub(r'[_\s]*\d+$', '', title).strip()
-    fields = [
-        'id: %s' % row['cls_id'],
-        't: "%s"' % title,
-        's: "%s"' % series,
-        'u: "%s"' % esc(row.get('cls_url') or row.get('cls_fname')),
-        'img: "%s"' % esc(row.get('cls_thumbnail')),
-        'lb: "%s"' % esc(row.get('rest_label')),
-        'ty: "%s"' % esc(row.get('rest_type')),
-        'gr: "%s"' % esc(row.get('rest_grade')),
-    ]
-    lines.append('{%s}' % ','.join(fields))
-    stats['묶음:' + series] += 1
-    stats['길이:' + (row.get('rest_label') or '?')] += 1
-    stats['갈래:' + (row.get('rest_type') or '?')] += 1
-    stats['학년:' + (row.get('rest_grade') or '?')] += 1
 
-with io.open(OUT, 'w', encoding='utf-8') as handle:
-    handle.write('const gapItems = [\n' + ',\n'.join(lines) + '\n];\n')
+def build(src_name):
+    path = os.path.join(ROOT, 'tmp', src_name)
+    if not os.path.exists(path):
+        return None, 0, collections.Counter()
+    raw = json.load(io.open(path, encoding='utf-8'))
+    rows = raw['ret_data']
+    total = raw.get('paging', {}).get('total_count') or len(rows)
 
-print('%d개 -> %s' % (len(lines), os.path.basename(OUT)))
-if total and total != len(lines):
-    print('주의: 두클래스 쪽 전체는 %d개입니다. 아직 %d개만 받았습니다.' % (total, len(lines)))
-for key in sorted(stats):
-    print('  %-12s %3d' % (key, stats[key]))
+    lines = []
+    stats = collections.Counter()
+    for row in rows:
+        title = esc(row.get('cls_title'))
+        fields = [
+            'id: %s' % row['cls_id'],
+            't: "%s"' % title,
+            's: "%s"' % esc(series_of(title)),
+            'u: "%s"' % esc(row.get('cls_url') or row.get('cls_fname')),
+            'img: "%s"' % esc(row.get('cls_thumbnail')),
+            'lb: "%s"' % esc(row.get('rest_label')),
+            'ty: "%s"' % esc(row.get('rest_type')),
+            'gr: "%s"' % esc(row.get('rest_grade')),
+        ]
+        lines.append('{%s}' % ','.join(fields))
+        stats['묶음:' + series_of(title)] += 1
+        stats['길이:' + (row.get('rest_label') or '없음')] += 1
+        stats['갈래:' + (row.get('rest_type') or '없음')] += 1
+        stats['학년:' + (row.get('rest_grade') or '없음')] += 1
+    return lines, total, stats
+
+
+chunks = []
+for var, src, label in SETS:
+    lines, total, stats = build(src)
+    if lines is None:
+        print('%s — tmp/%s 가 없어 빈 목록으로 둡니다.' % (label, src))
+        chunks.append('const %s = [];' % var)
+        continue
+    chunks.append('const %s = [\n%s\n];' % (var, ',\n'.join(lines)))
+    print('%s %d개' % (label, len(lines)))
+    if total != len(lines):
+        print('  주의: 두클래스 쪽 전체는 %d개입니다.' % total)
+    for key in sorted(stats):
+        if key.startswith('길이') or key.startswith('학년'):
+            print('    %-14s %3d' % (key, stats[key]))
+
+io.open(OUT, 'w', encoding='utf-8').write('\n\n'.join(chunks) + '\n')
+print('\n-> %s  (%.0f KB)' % (os.path.basename(OUT), os.path.getsize(OUT) / 1024.0))
