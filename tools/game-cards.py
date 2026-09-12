@@ -27,7 +27,7 @@ rows = []
 stats = collections.Counter()
 
 for card in cards:
-    text = [t for t in card['text'] if t not in ('0', '초성 게임', '카드 짝 맞추기')]
+    text = [t for t in card['text'] if t not in ('0', '초성 게임', '카드 짝 맞추기', '숨은 단어 찾기')]
     title = text[0] if text else '(제목 없음)'
     by = next((t[3:].strip() for t in text if t.startswith('BY ')), '')
     tags = [t for t in text[1:] if t.startswith('#')]

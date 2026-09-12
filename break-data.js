@@ -261,3 +261,5 @@ const cardItems = [
 {id: "03726421",t: "[메모리 게임] 유네스코 인류무형문화유산",s: "그 밖",u: "https://canvas.douclass.com/center/game/detail/card/03726421",img: "https://dzbmtsnd1t9iu.cloudfront.net/game/resource/upload/card/thumbnail/default/set-thumbnail.png",lb: "",ty: "카드짝맞추기",gr: "공통",tg: "#음악 #유네스코 #인류무형문화유산 #국가유산",by: "예*능선생님"},
 {id: "03573987",t: "[메모리 게임] 음악 국가유산",s: "그 밖",u: "https://canvas.douclass.com/center/game/detail/card/03573987",img: "https://dzbmtsnd1t9iu.cloudfront.net/game/resource/upload/card/thumbnail/default/set-thumbnail.png",lb: "",ty: "카드짝맞추기",gr: "공통",tg: "#음악 #국가유산",by: "예*능선생님"}
 ];
+
+const wordItems = [];

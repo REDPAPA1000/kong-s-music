@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=3eff834";
+  script.src = "listening-data.js?v=9263c22";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2527,6 +2527,7 @@ const breakTabs = [
   { key: "game", label: "#게임" },
   { key: "chosung", label: "#초성게임" },
   { key: "card", label: "#카드짝맞추기" },
+  { key: "word", label: "#숨은단어찾기" },
 ];
 
 const breakCards = [
@@ -2535,6 +2536,7 @@ const breakCards = [
   { key: "game", label: "게임", desc: "화면으로 하는 놀이", tone: "magenta" },
   { key: "chosung", label: "초성게임", desc: "초성으로 낱말 맞히기", tone: "indigo" },
   { key: "card", label: "카드 짝 맞추기", desc: "짝을 찾는 기억 놀이", tone: "orange" },
+  { key: "word", label: "숨은 단어 찾기", desc: "글자판에서 낱말 찾기", tone: "sky" },
 ];
 
 const breakState = { tab: "home" };
@@ -2582,6 +2584,7 @@ const breakLists = {
   game: { items: () => gameItems, empty: "쓰실 게임 목록을 주시면 이 자리에 넣겠습니다." },
   chosung: { items: () => chosungItems, empty: "두클래스 초성게임 목록을 주시면 이 자리에 넣겠습니다." },
   card: { items: () => cardItems, empty: "두클래스 카드 짝 맞추기 목록을 주시면 이 자리에 넣겠습니다." },
+  word: { items: () => wordItems, empty: "두클래스 숨은 단어 찾기 목록을 주시면 이 자리에 넣겠습니다." },
 };
 const breakFilters = [
   { key: "s", label: "묶음" },

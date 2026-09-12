@@ -24,6 +24,7 @@ SETS = [
     ('gameItems', ['game.json', 'game-2.json'], '게임'),
     ('chosungItems', ['chosung.json', 'chosung-2.json'], '초성게임'),
     ('cardItems', ['card.json', 'card-2.json'], '카드 짝 맞추기'),
+    ('wordItems', ['word.json', 'word-2.json'], '숨은 단어 찾기'),
 ]
 
 
