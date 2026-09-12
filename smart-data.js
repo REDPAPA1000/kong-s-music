@@ -11,6 +11,6 @@ const smartItems = [
   { group: "gugak", scope: "국악기", no: 1, title: "장구", art: "janggu", url: "https://file.t25.kr/c2/ens/instrument/08jang_gu.html", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/9d/a6/c5730a0f42d793c81c330d6f5691b9f4edec/hview.html", sheetLabel: "학생용 링크 (pptx)" },
   { group: "gugak", scope: "국악기", no: 2, title: "단소", art: "danso", url: "https://file.t25.kr/c2/ens/instrument/09danso.html", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a2/a1/cd981ec81bfb2eaa7895abd5897fcd9f23f6/hview.html", sheetLabel: "학생용 링크 (pptx)" },
   { group: "gugak", scope: "국악기", no: 3, title: "소금", art: "sogeum", url: "https://file.t25.kr/c2/ens/instrument/10sogeum.html", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/ef/b1/35ebfd60ecaf367cc6dda1c6229a4667db00/hview.html", sheetLabel: "학생용 링크 (pptx)" },
-  { group: "gugak", scope: "국악기", no: 4, title: "가야금", art: "gayageum", url: "https://file.t25.kr/c2/ens/instrument/14gayageum.html" },
+  { group: "gugak", scope: "국악기", no: 4, title: "가야금", art: "gayageum", url: "https://file.t25.kr/c2/ens/instrument/14gayageum.html", img: "https://s3.douclass.com/pub/2026/thumb/2608/2po76q9n95yh.jpg" },
   { group: "gugak", scope: "국악기", no: 5, title: "국악기", art: "gugak", url: "https://file.t25.kr/c2/ens/instrument/12kor_music.html", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/2a/4a/963e2447bc39162a65514b7b53b93ecbe8ec/hview.html", sheetLabel: "학생용 링크 (pptx)" },
 ];
