@@ -568,6 +568,14 @@ function showHome() {
   domainPreview.hidden = false;
   libraryView.hidden = true;
   theoryView.hidden = true;
+  hallView.hidden = true;
+  historyView.hidden = true;
+  composerView.hidden = true;
+  theorybookView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -580,6 +588,14 @@ function showGrade(grade) {
   domainPreview.hidden = true;
   libraryView.hidden = false;
   theoryView.hidden = true;
+  hallView.hidden = true;
+  historyView.hidden = true;
+  composerView.hidden = true;
+  theorybookView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -596,6 +612,14 @@ function showTheory() {
   domainPreview.hidden = true;
   libraryView.hidden = true;
   theoryView.hidden = false;
+  hallView.hidden = true;
+  historyView.hidden = true;
+  composerView.hidden = true;
+  theorybookView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -681,6 +705,15 @@ function handleRoute() {
   const match = hash.match(/^#grade-(.+)$/);
   if (match) showGrade(match[1]);
   else if (hash === "#theory") showTheory();
+  else if (hash === "#musichall") showHall();
+  else if (hash === "#music-history") showHistory();
+  else if (hash === "#composer") showComposer();
+  else if (hash === "#theory-book") showTheorybook();
+  else if (hash === "#songs") showSongs();
+  else if (hash === "#play") showPlay();
+  else if (hash === "#smart") showSmart();
+  else if (hash === "#edutech") showEdutech();
+  else if (hash === "#video") showVideo();
   else showHome();
   document.querySelector("#grade-nav").classList.remove("open");
   document.querySelector(".menu-button").setAttribute("aria-expanded", "false");
@@ -802,4 +835,1324 @@ loginForm.addEventListener("submit", async (event) => {
 syncLoginButton();
 
 window.addEventListener("hashchange", handleRoute);
+
+/* ── 음악관 ───────────────────────────────────────────── */
+
+const hallCategories = [
+  { key: "history", label: "음악사", desc: "시대별 흐름", tone: "gold", href: "#music-history" },
+  { key: "composer", label: "작곡가", desc: "인물로 보는 음악", tone: "teal", href: "#composer" },
+  { key: "theory", label: "음악 기초 이론", desc: "악전과 원리", tone: "orange", href: "#theory-book" },
+  { key: "listening", label: "음악 감상실 · 악보은행", desc: "감상곡과 악보", tone: "sky", href: "" },
+  { key: "singing", label: "노래 익히기 모음", desc: "장르별 추가 악곡", tone: "blue", href: "#songs" },
+  { key: "playing", label: "음악 연주 자료집", desc: "기악 합주 자료", tone: "magenta", href: "#play" },
+  { key: "smart", label: "스마트 악기", desc: "화면으로 연주하기", tone: "indigo", href: "#smart" },
+  { key: "edutech", label: "뮤직 에듀테크", desc: "수업용 디지털 도구", tone: "violet", href: "#edutech" },
+  { key: "video", label: "음악 동영상", desc: "수업 영상 모음", tone: "salmon", href: "#video" },
+  { key: "book", label: "음악 도서", desc: "읽을거리", tone: "pink", href: "" },
+];
+
+const historyItems = [
+  // 음악사 PPT · 서양 음악사
+  { format: "ppt", scope: "west", no: 1, title: "고대", period: "B.C. 6세기 ~ 450년경", url: "https://mh.douclass.com/viewer/SPC_P/56362?type=student" },
+  { format: "ppt", scope: "west", no: 2, title: "중세", period: "450 ~ 1450년경", url: "https://mh.douclass.com/viewer/SPC_P/56363?type=student" },
+  { format: "ppt", scope: "west", no: 3, title: "르네상스", period: "1450년경 ~ 1600년경", url: "https://mh.douclass.com/viewer/SPC_P/56364?type=student" },
+  { format: "ppt", scope: "west", no: 4, title: "바로크", period: "1600 ~ 1750", url: "https://mh.douclass.com/viewer/SPC_P/56365?type=student" },
+  { format: "ppt", scope: "west", no: 5, title: "고전주의", period: "1750 ~ 1820", url: "https://mh.douclass.com/viewer/SPC_P/56366?type=student" },
+  { format: "ppt", scope: "west", no: 6, title: "낭만주의", period: "1820 ~ 1900", url: "https://mh.douclass.com/viewer/SPC_P/56367?type=student" },
+  { format: "ppt", scope: "west", no: 7, title: "근·현대", period: "1900 ~ 현재", url: "https://mh.douclass.com/viewer/SPC_P/56368?type=student" },
+  // 음악사 PPT · 우리나라 음악사
+  { format: "ppt", scope: "korea", no: 1, title: "상고 시대", period: "~ B.C. 57", url: "https://mh.douclass.com/viewer/SPC_P/56369?type=student" },
+  { format: "ppt", scope: "korea", no: 2, title: "삼국 시대", period: "B.C. 57 ~ 676", url: "https://mh.douclass.com/viewer/SPC_P/56370?type=student" },
+  { format: "ppt", scope: "korea", no: 3, title: "통일 신라와 발해", period: "676 ~ 918", url: "https://mh.douclass.com/viewer/SPC_P/56371?type=student" },
+  { format: "ppt", scope: "korea", no: 4, title: "고려 시대", period: "918 ~ 1392", url: "https://mh.douclass.com/viewer/SPC_P/56372?type=student" },
+  { format: "ppt", scope: "korea", no: 5, title: "조선 전기", period: "1392 ~ 1592", url: "https://mh.douclass.com/viewer/SPC_P/56373?type=student" },
+  { format: "ppt", scope: "korea", no: 6, title: "조선 후기", period: "1592 ~ 1876", url: "https://mh.douclass.com/viewer/SPC_P/56374?type=student" },
+  { format: "ppt", scope: "korea", no: 7, title: "근·현대", period: "1876 ~", url: "https://mh.douclass.com/viewer/SPC_P/56375?type=student" },
+  // 애니메이션 · 서양 음악사 (음악 박물관)
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "고대", duration: "0:31", url: "https://s3.douclass.com/pub/2026/MP4/2607/qi0xpqgbvei9.mp4" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "중세", duration: "0:28", url: "https://s3.douclass.com/pub/2026/MP4/2607/ubm4x9w8rn7n.mp4" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "르네상스", duration: "0:23", url: "https://s3.douclass.com/pub/2026/MP4/2607/014myqv8lxex.mp4" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "바로크", duration: "0:29", url: "https://s3.douclass.com/pub/2026/MP4/2607/w1n82podwfyv.mp4" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "고전주의", duration: "0:35", url: "https://s3.douclass.com/pub/2026/MP4/2607/msks1xa0xhpq.mp4" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "낭만주의", duration: "0:28", url: "https://s3.douclass.com/pub/2026/MP4/2607/3kznewm4aaug.mp4" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "근·현대", duration: "0:41", url: "https://s3.douclass.com/pub/2026/MP4/2607/bzx1zbf8kz8b.mp4" },
+  // 애니메이션 · 서양 음악사 (시대별)
+  { format: "anim", scope: "west", no: 1, title: "고대", duration: "0:15", url: "https://s3.douclass.com/pub/2026/MP4/2607/dfzhbe2vlvl8.mp4" },
+  { format: "anim", scope: "west", no: 2, title: "중세", duration: "0:13", url: "https://s3.douclass.com/pub/2026/MP4/2607/0ewdh3jdd1ds.mp4" },
+  { format: "anim", scope: "west", no: 3, title: "르네상스", duration: "0:22", url: "https://s3.douclass.com/pub/2026/MP4/2607/j33oxe65p3jk.mp4" },
+  { format: "anim", scope: "west", no: 4, title: "바로크", duration: "0:24", url: "https://s3.douclass.com/pub/2026/MP4/2607/0o3a0b9fui37.mp4" },
+  { format: "anim", scope: "west", no: 5, title: "고전주의", duration: "0:28", url: "https://s3.douclass.com/pub/2026/MP4/2607/aw8hpey9ekml.mp4" },
+  { format: "anim", scope: "west", no: 6, title: "낭만주의", duration: "0:28", url: "https://s3.douclass.com/pub/2026/MP4/2607/yizcmi5wgnhe.mp4" },
+  { format: "anim", scope: "west", no: 7, title: "근·현대", duration: "0:25", url: "https://s3.douclass.com/pub/2026/MP4/2607/86nzk3o2mkrk.mp4" },
+  // 애니메이션 · 우리나라 음악사 (국악 박물관)
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "상고 시대", duration: "0:29", url: "https://s3.douclass.com/pub/2024/MP4/2407/t06t8chw07au.mp4" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "삼국 시대", duration: "0:55", url: "https://s3.douclass.com/pub/2024/MP4/2407/ub93aglr8nhl.mp4" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "통일 신라·발해", duration: "0:50", url: "https://s3.douclass.com/pub/2024/MP4/2407/qcwd9y72wny1.mp4" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "고려 시대", duration: "0:28", url: "https://s3.douclass.com/pub/2024/MP4/2407/xirijz2wh0bq.mp4" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "조선 시대", duration: "0:39", url: "https://s3.douclass.com/pub/2024/MP4/2407/lrymjak0q2di.mp4" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "근·현대", duration: "0:32", url: "https://s3.douclass.com/pub/2024/MP4/2407/7f7xhj2qas1j.mp4" },
+];
+
+/* 시대별 일러스트 — 직접 그린 SVG */
+const historyArt = {
+  colosseum: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><rect class="a-fill" x="20" y="26" width="80" height="44" rx="5"/><g class="a-line"><rect x="20" y="26" width="80" height="44" rx="5"/><path d="M20 40h80M20 54h80"/><path d="M27 40v-6a3.5 3.5 0 017 0v6M39 40v-6a3.5 3.5 0 017 0v6M51 40v-6a3.5 3.5 0 017 0v6M63 40v-6a3.5 3.5 0 017 0v6M75 40v-6a3.5 3.5 0 017 0v6M87 40v-6a3.5 3.5 0 017 0v6"/><path d="M27 54v-6a3.5 3.5 0 017 0v6M39 54v-6a3.5 3.5 0 017 0v6M51 54v-6a3.5 3.5 0 017 0v6M63 54v-6a3.5 3.5 0 017 0v6M75 54v-6a3.5 3.5 0 017 0v6M87 54v-6a3.5 3.5 0 017 0v6"/><path d="M33 70v-8a4 4 0 018 0v8M55 70v-8a4 4 0 018 0v8M77 70v-8a4 4 0 018 0v8"/></g></svg>`,
+  cathedral: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M26 26h16v44H26zM78 26h16v44H78zM46 32h28v38H46z"/><path class="a-fill" d="M34 6l10 20H24zM86 6l10 20H76zM60 14l16 18H44z"/><g class="a-line"><path d="M26 26h16v44H26zM78 26h16v44H78zM46 32h28v38H46z"/><path d="M34 6l10 20H24zM86 6l10 20H76zM60 14l16 18H44z"/><circle cx="60" cy="44" r="7"/><path d="M60 37v14M53 44h14"/><path d="M54 70v-12a6 6 0 0112 0v12"/><path d="M30 38v-4a4 4 0 018 0v4M82 38v-4a4 4 0 018 0v4M30 52v-4a4 4 0 018 0v4M82 52v-4a4 4 0 018 0v4"/></g></svg>`,
+  duomo: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M26 54h68v16H26z"/><path class="a-fill" d="M44 40h32v14H44z"/><path class="a-fill" d="M42 40C42 20 60 12 60 12s18 8 18 28z"/><g class="a-line"><path d="M26 54h68v16H26zM44 40h32v14H44z"/><path d="M42 40C42 20 60 12 60 12s18 8 18 28z"/><path d="M60 12V4M52 8h16"/><path d="M60 12v28M50 15q10 14 10 25M70 15q-10 14-10 25"/><path d="M50 54v-14M70 54v-14"/><path d="M32 70v-9a4 4 0 018 0v9M80 70v-9a4 4 0 018 0v9M54 70v-8a6 6 0 0112 0v8"/></g></svg>`,
+  baroque: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M14 44h92v26H14z"/><path class="a-fill" d="M46 30h28v40H46z"/><path class="a-fill" d="M46 30q14-16 28 0z"/><g class="a-line"><path d="M14 44h92v26H14zM46 30h28v40H46z"/><path d="M46 30q14-16 28 0z"/><path d="M60 14v6"/><path d="M22 58v-6a3 3 0 016 0v6M32 58v-6a3 3 0 016 0v6M82 58v-6a3 3 0 016 0v6M92 58v-6a3 3 0 016 0v6"/><path d="M14 50h32M74 50h32"/><path d="M54 70v-12a6 6 0 0112 0v12"/></g></svg>`,
+  neoclassic: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M18 64h84v6H18zM23 58h74v6H23z"/><path class="a-fill" d="M24 30h72v6H24z"/><path class="a-fill" d="M60 12l38 18H22z"/><g class="a-line"><path d="M18 64h84v6H18zM23 58h74v6H23zM24 30h72v6H24z"/><path d="M60 12l38 18H22z"/><path d="M30 36v22M42 36v22M54 36v22M66 36v22M78 36v22M90 36v22"/></g></svg>`,
+  opera: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M16 40h88v30H16z"/><path class="a-fill" d="M40 24h40v16H40z"/><path class="a-fill" d="M16 40q10-14 20 0zM84 40q10-14 20 0zM44 24q16-16 32 0z"/><g class="a-line"><path d="M16 40h88v30H16zM40 24h40v16H40z"/><path d="M16 40q10-14 20 0zM84 40q10-14 20 0zM44 24q16-16 32 0z"/><path d="M26 26v-5M60 8v-4M94 26v-5"/><path d="M16 54h88"/><path d="M46 54v-6a6 6 0 0112 0v6M64 54v-6a6 6 0 0112 0v6"/><path d="M24 70v-14M34 70v-14M86 70v-14M96 70v-14"/><path d="M52 70v-10a8 8 0 0116 0v10"/></g></svg>`,
+  modern: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M12 62h96v8H12z"/><path class="a-fill" d="M24 62C24 44 38 30 52 28 42 38 36 50 34 62ZM42 62C42 40 58 24 74 22 62 34 56 48 54 62ZM60 62C60 38 78 20 96 18 82 32 76 46 74 62Z"/><g class="a-line"><path d="M12 62h96v8H12z"/><path d="M24 62C24 44 38 30 52 28 42 38 36 50 34 62ZM42 62C42 40 58 24 74 22 62 34 56 48 54 62ZM60 62C60 38 78 20 96 18 82 32 76 46 74 62Z"/></g></svg>`,
+  bronze: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><circle class="a-fill" cx="60" cy="42" r="17"/><g class="a-line"><circle cx="60" cy="42" r="17"/><circle cx="60" cy="42" r="8"/><path d="M60 25v-4M60 63v4M43 42h-4M77 42h4M48 30l-3-3M72 54l3 3M72 30l3-3M48 54l-3 3"/></g><g class="a-fill"><circle cx="60" cy="17" r="5"/><circle cx="60" cy="67" r="5"/><circle cx="35" cy="42" r="5"/><circle cx="85" cy="42" r="5"/><circle cx="42" cy="24" r="5"/><circle cx="78" cy="60" r="5"/><circle cx="78" cy="24" r="5"/><circle cx="42" cy="60" r="5"/></g><g class="a-line"><circle cx="60" cy="17" r="5"/><circle cx="60" cy="67" r="5"/><circle cx="35" cy="42" r="5"/><circle cx="85" cy="42" r="5"/><circle cx="42" cy="24" r="5"/><circle cx="78" cy="60" r="5"/><circle cx="78" cy="24" r="5"/><circle cx="42" cy="60" r="5"/></g></svg>`,
+  clayfigure: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><circle class="a-fill" cx="46" cy="18" r="9"/><path class="a-fill" d="M36 30h20l6 16H30z"/><path class="a-fill" d="M26 50h68l-6 16H32z"/><g class="a-line"><circle cx="46" cy="18" r="9"/><path d="M36 30h20l6 16H30z"/><path d="M26 50h68l-6 16H32z"/><path d="M30 54h60M31 58h58M32 62h56"/><path d="M56 34l10 12"/><circle cx="70" cy="48" r="4"/><path d="M42 15h8"/></g></svg>`,
+  bell: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M44 26q16-7 32 0 5 20 5 32 0 5-21 5t-21-5q0-12 5-32z"/><g class="a-line"><path d="M30 14h60"/><path d="M54 14q6-8 12 0"/><path d="M44 26q16-7 32 0 5 20 5 32 0 5-21 5t-21-5q0-12 5-32z"/><path d="M41 52q19 5 38 0"/><path d="M41 36q19 5 38 0"/><circle cx="52" cy="44" r="4"/><circle cx="68" cy="44" r="4"/></g></svg>`,
+  chimes: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M20 16h80v7H20zM24 23h6v47h-6zM90 23h6v47h-6z"/><g class="a-line"><path d="M20 16h80v7H20zM24 23h6v47h-6zM90 23h6v47h-6z"/><path d="M34 40h52M34 58h52"/></g><g class="a-fill"><path d="M38 30h5l5 8-5 3-5-8zM52 30h5l5 8-5 3-5-8zM66 30h5l5 8-5 3-5-8zM80 30h-5l-5 8 5 3 5-8z"/><path d="M38 48h5l5 8-5 3-5-8zM52 48h5l5 8-5 3-5-8zM66 48h5l5 8-5 3-5-8z"/></g><g class="a-line"><path d="M38 30h5l5 8-5 3-5-8zM52 30h5l5 8-5 3-5-8zM66 30h5l5 8-5 3-5-8z"/><path d="M38 48h5l5 8-5 3-5-8zM52 48h5l5 8-5 3-5-8zM66 48h5l5 8-5 3-5-8z"/></g></svg>`,
+  bells: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M20 14h80v7H20zM24 21h6v49h-6zM90 21h6v49h-6z"/><g class="a-line"><path d="M20 14h80v7H20zM24 21h6v49h-6zM90 21h6v49h-6z"/><path d="M34 38h52M34 58h52"/></g><g class="a-fill"><path d="M38 26q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM54 26q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM70 26q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11z"/><path d="M38 46q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM54 46q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM70 46q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11z"/></g><g class="a-line"><path d="M38 26q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM54 26q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM70 26q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11z"/><path d="M38 46q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM54 46q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11zM70 46q5-3 10 0 2 7 2 11 0 2-7 2t-7-2q0-4 2-11z"/></g></svg>`,
+  drum: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M44 28h30q9 14 0 28H44q-9-14 0-28z"/><ellipse class="a-fill" cx="44" cy="42" rx="9" ry="14"/><g class="a-line"><path d="M44 28h30q9 14 0 28H44"/><ellipse cx="44" cy="42" rx="9" ry="14"/><path d="M74 28q9 14 0 28"/><path d="M48 30l-2 24M70 30l2 24"/><path d="M34 66h50"/><path d="M84 22l12 10M84 34l12-10"/></g></svg>`,
+  peaks: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><circle class="a-accent" cx="30" cy="20" r="7"/><circle class="a-fill" cx="92" cy="20" r="7"/><path class="a-fill" d="M10 62l16-24 10 14 14-22 14 22 10-14 16 24z"/><g class="a-line"><circle cx="30" cy="20" r="7"/><circle cx="92" cy="20" r="7"/><path d="M10 62l16-24 10 14 14-22 14 22 10-14 16 24z"/><path d="M10 66q10-5 20 0t20 0 20 0 20 0 20 0M10 72q10-5 20 0t20 0 20 0 20 0 20 0"/></g></svg>`,
+  gramophone: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M32 52h34v16a3 3 0 01-3 3H35a3 3 0 01-3-3z"/><path class="a-fill" d="M62 50q8-26 30-32 6 12-2 22-9 11-24 14z"/><g class="a-line"><path d="M32 52h34v16a3 3 0 01-3 3H35a3 3 0 01-3-3z"/><path d="M62 50q8-26 30-32 6 12-2 22-9 11-24 14z"/><path d="M56 52l8-6"/><circle cx="49" cy="46" r="5"/><path d="M66 62h8a4 4 0 014 4v4"/><path d="M36 58h6"/></g></svg>`,
+};
+
+const artByTitle = {
+  west: { "고대": "colosseum", "중세": "cathedral", "르네상스": "duomo", "바로크": "baroque", "고전주의": "neoclassic", "낭만주의": "opera", "근·현대": "modern" },
+  korea: { "상고 시대": "bronze", "삼국 시대": "clayfigure", "통일 신라와 발해": "bell", "통일 신라·발해": "bell", "고려 시대": "chimes", "조선 전기": "bells", "조선 후기": "drum", "조선 시대": "peaks", "근·현대": "gramophone" },
+};
+
+function historyArtFor(item) {
+  return historyArt[artByTitle[item.scope][item.title]] || "";
+}
+
+const composerItems = [
+  { format: "era", no: 1, era: "중세", art: "medieval", title: "다레초", latin: "Guido d'Arezzo", years: "995?~1050?", caption: "중세_다레초", url: "https://s3.douclass.com/pub/2026/PPT/2607/uqu9qnvhy5ez.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wfsbxcby3uh3.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 2, era: "중세", art: "medieval", title: "마쇼", latin: "Guillaume de Machaut", years: "1300?~1377", caption: "중세_마쇼", url: "https://s3.douclass.com/pub/2026/PPT/2607/agtx3ejk6qzt.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/uz8i3x7bwbga.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 3, era: "르네상스", art: "renaissance", title: "조스캥", latin: "Josquin des Prez", years: "1440?~1521", caption: "르네상스_조스캥", url: "https://s3.douclass.com/pub/2026/PPT/2607/m55dif08y21p.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/k9tk2lpm4cx3.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 4, era: "르네상스", art: "renaissance", title: "팔레스트리나", latin: "G. P. da Palestrina", years: "1525?~1594", caption: "르네상스_팔레스트리나", url: "https://s3.douclass.com/pub/2026/PPT/2607/vnar5e1cwvpg.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/0ji7poh6g9ub.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 5, era: "바로크", art: "baroque", title: "비발디", latin: "Antonio Vivaldi", years: "1678~1741", caption: "바로크_비발디", url: "https://s3.douclass.com/pub/2026/PPT/2607/2tf0tplckomc.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/mqp4m3xkj450.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 6, era: "바로크", art: "baroque", title: "바흐", latin: "J. S. Bach", years: "1685~1750", caption: "바로크_바흐", url: "https://s3.douclass.com/pub/2026/PPT/2607/naae6cmfjbx6.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/npfm8majrskt.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 7, era: "바로크", art: "baroque", title: "헨델", latin: "G. F. Handel", years: "1685~1759", caption: "바로크_헨델", url: "https://s3.douclass.com/pub/2026/PPT/2607/dpa5pg968dcq.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/oehp5a6c1rhv.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 8, era: "고전", art: "classical", title: "하이든", latin: "Joseph Haydn", years: "1732~1809", caption: "고전_하이든", url: "https://s3.douclass.com/pub/2026/PPT/2607/dv7zizc8j16o.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/0gydxpisbt4n.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 9, era: "고전", art: "classical", title: "모차르트", latin: "W. A. Mozart", years: "1756~1791", caption: "고전_모차르트", url: "https://s3.douclass.com/pub/2026/PPT/2607/6arm6dsu6f7h.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/xspw343vrnku.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 10, era: "고전", art: "classical", title: "베토벤", latin: "L. van Beethoven", years: "1770~1827", caption: "고전_베토벤", url: "https://s3.douclass.com/pub/2026/PPT/2607/xttw5630o7cc.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/olb5chjn7f4q.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 11, era: "낭만", art: "romantic", title: "로시니", latin: "Gioachino Rossini", years: "1792~1868", caption: "낭만_로시니", url: "https://s3.douclass.com/pub/2026/PPT/2607/6t9r5n0vlrla.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/t4zh90twizam.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 12, era: "낭만", art: "romantic", title: "슈베르트", latin: "Franz Schubert", years: "1797~1828", caption: "낭만_슈베르트", url: "https://s3.douclass.com/pub/2026/PPT/2607/duhl58o22fh1.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/w99x48farjuo.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 13, era: "낭만", art: "romantic", title: "베를리오즈", latin: "Hector Berlioz", years: "1803~1869", caption: "낭만_베를리오즈", url: "https://s3.douclass.com/pub/2026/PPT/2607/0oywg2ra89vn.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/5126caro3ib8.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 14, era: "낭만", art: "romantic", title: "멘델스존", latin: "Felix Mendelssohn", years: "1809~1847", caption: "낭만_멘델스존", url: "https://s3.douclass.com/pub/2026/PPT/2607/mqzfvjpacijc.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wovkwc2o28ty.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 15, era: "낭만", art: "romantic", title: "쇼팽", latin: "Frederic Chopin", years: "1810~1849", caption: "낭만_쇼팽", url: "https://s3.douclass.com/pub/2026/PPT/2607/zh4bg2mio0tl.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/mf6y375fuahz.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 16, era: "낭만", art: "romantic", title: "슈만", latin: "Robert Schumann", years: "1810~1856", caption: "낭만_슈만", url: "https://s3.douclass.com/pub/2026/PPT/2607/fzm0luwdsjhp.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/roz286kq0oxc.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 17, era: "낭만", art: "romantic", title: "리스트", latin: "Franz Liszt", years: "1811~1886", caption: "낭만_리스트", url: "https://s3.douclass.com/pub/2026/PPT/2607/4xtzym6woeqs.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/e5duyun7794t.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 18, era: "낭만", art: "romantic", title: "베르디", latin: "Giuseppe Verdi", years: "1813~1901", caption: "낭만_베르디", url: "https://s3.douclass.com/pub/2026/PPT/2607/299awfee0ua5.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/gzr8innf27h5.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 19, era: "낭만", art: "romantic", title: "바그너", latin: "Richard Wagner", years: "1813~1883", caption: "낭만_바그너", url: "https://s3.douclass.com/pub/2026/PPT/2607/92lfewbe8925.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/g0bw53f0dczp.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 20, era: "낭만", art: "romantic", title: "브람스", latin: "Johannes Brahms", years: "1833~1897", caption: "낭만_브람스", url: "https://s3.douclass.com/pub/2026/PPT/2607/wz7dhgtjrwd2.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/jxlhr0xnf49l.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 21, era: "낭만", art: "romantic", title: "비제", latin: "Georges Bizet", years: "1838~1875", caption: "낭만_비제", url: "https://s3.douclass.com/pub/2026/PPT/2607/i2olm7b7mgtm.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/lde0v2vr2v6z.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 22, era: "낭만", art: "romantic", title: "차이콥스키", latin: "P. I. Tchaikovsky", years: "1840~1893", caption: "낭만_차이콥스키", url: "https://s3.douclass.com/pub/2026/PPT/2607/qag4me0yn1m3.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n96myu9pgiod.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 23, era: "낭만(민족주의)", art: "nationalist", title: "스메타나", latin: "Bedrich Smetana", years: "1824~1884", caption: "낭만(민족주의)_스메타나", url: "https://s3.douclass.com/pub/2026/PPT/2607/b8017c7w9kry.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/9fzpxwbze5c6.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 24, era: "낭만(민족주의)", art: "nationalist", title: "무소륵스키", latin: "Modest Mussorgsky", years: "1839~1881", caption: "낭만(민족주의)_무소륵스키", url: "https://s3.douclass.com/pub/2026/PPT/2607/abzj22wsdupn.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/zbroru114diq.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 25, era: "낭만(민족주의)", art: "nationalist", title: "드보르자크", latin: "Antonin Dvorak", years: "1841~1904", caption: "낭만(민족주의)_드보르자크", url: "https://s3.douclass.com/pub/2026/PPT/2607/m11pukmz9dsx.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/1x0g7byzk25q.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 26, era: "낭만(민족주의)", art: "nationalist", title: "그리그", latin: "Edvard Grieg", years: "1843~1907", caption: "낭만(민족주의)_그리그", url: "https://s3.douclass.com/pub/2026/PPT/2607/6sw0kclkuu45.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wx1lz0q3znso.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 27, era: "근현대", art: "modernist", title: "드뷔시", latin: "Claude Debussy", years: "1862~1918", caption: "근현대_드뷔시", url: "https://s3.douclass.com/pub/2026/PPT/2607/tj7i80gshy5w.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/j59ssnxo62gk.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 28, era: "근현대", art: "modernist", title: "쇤베르크", latin: "Arnold Schoenberg", years: "1874~1951", caption: "근현대_쇤베르크", url: "https://s3.douclass.com/pub/2026/PPT/2607/ozea9xzslqfa.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/ah16x19o7ahy.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 29, era: "근현대", art: "modernist", title: "스트라빈스키", latin: "Igor Stravinsky", years: "1882~1971", caption: "근현대_스트라빈스키", url: "https://s3.douclass.com/pub/2026/PPT/2607/ordoi0hl9c3w.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/vbxk8bf74dnk.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 30, era: "근현대", art: "modernist", title: "케이지", latin: "John Cage", years: "1912~1992", caption: "근현대_케이지", url: "https://s3.douclass.com/pub/2026/PPT/2607/i1mjruoz43n3.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n9bbjrt1xbqi.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "webtoon", no: 1, scope: "해외편", art: "world", title: "모차르트", caption: "모차르트", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/54tiopseiie1.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/yzzy7bn0srox.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 2, scope: "해외편", art: "world", title: "베토벤", caption: "베토벤", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/tlhotaa3bnvm.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/shno7dqjqole.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 3, scope: "해외편", art: "world", title: "차이콥스키", caption: "차이콥스키", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/lx9se4dqvfpv.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/368kwtvq2ht2.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 4, scope: "해외편", art: "world", title: "존 케이지", caption: "존 케이지", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/birzsvhrbzcm.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/9g37ysnnhjau.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 5, scope: "해외편", art: "world", title: "마이클 잭슨", caption: "마이클 잭슨", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/bddlimc7163g.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/q4wecii96qiq.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 6, scope: "해외편", art: "world", title: "히사이시 조", caption: "히사이시 조", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/xjzknl3b87g3.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/6g9n3zbvu06c.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 7, scope: "국내편", art: "korean", title: "세종 대왕과 박연", caption: "세종 대왕과 박연", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/a6im1ta3pbm0.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/t299odiulj2w.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 8, scope: "국내편", art: "korean", title: "왕산악과 우륵", caption: "왕산악과 우륵", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/0fcgoj60vsjj.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/kxoswshrvcbe.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 9, scope: "국내편", art: "korean", title: "황병기", caption: "황병기", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/ts0j6i5tiohe.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/fnwkormo50w8.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 10, scope: "국내편", art: "korean", title: "김덕수", caption: "김덕수", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/s2almgxauzk9.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/3wazv4vhdf5o.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 11, scope: "국내편", art: "korean", title: "조수미", caption: "조수미", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/rnh92xhcfyia.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/sg0tvn65wmwm.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 12, scope: "국내편", art: "korean", title: "조성진", caption: "조성진", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/j2e11igj53ad.pptx", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/o0odvsjvl7ar.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "textbook", no: 1, art: "textbook", title: "생상스", work: "동물의 사육제", caption: "[생상스] 동물의 사육제", url: "https://canva.link/a0nd5vlpl64u7fs", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 2, art: "textbook", title: "프로코피예프", work: "피터와 늑대", caption: "[프로코피예프] 피터와 늑대", url: "https://canva.link/53d5rdc6rg7i0xs", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 3, art: "textbook", title: "비제", work: "&quot;아를의 여인&quot; 중 '파랑돌'", caption: "[비제] &quot;아를의 여인&quot; 중 '파랑돌'", url: "https://canva.link/6s5p051kpw5fv5j", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 4, art: "textbook", title: "그리그", work: "페르 귄트 모음", caption: "[그리그] 페르 귄트 모음", url: "https://canva.link/i4rsg3zba5gibvc", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 5, art: "textbook", title: "로시니", work: "빌헬름텔 서곡", caption: "[로시니] 빌헬름텔 서곡", url: "https://canva.link/u91odjds0yo5dp4", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 6, art: "textbook", title: "하이든", work: "'시계 교향곡' 제2악장", caption: "[하이든] '시계 교향곡' 제2악장", url: "https://canva.link/b65dmt1gvl3p7tw", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 7, art: "textbook", title: "홀스트", work: "&quot;행성&quot; 중 '목성'", caption: "[홀스트] &quot;행성&quot; 중 '목성'", url: "https://canva.link/67t5uans6rvk1wk", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 8, art: "textbook", title: "브람스", work: "'헝가리 춤곡 제5번'", caption: "[브람스] '헝가리 춤곡 제5번'", url: "https://canva.link/v8esuiu4n9o27ji", sheetUrl: "", sheetLabel: "" },
+  { format: "textbook", no: 9, art: "textbook", title: "스메타나", work: "&quot;나의 조국&quot; 중 '몰다우'", caption: "[스메타나] &quot;나의 조국&quot; 중 '몰다우'", url: "https://canva.link/hv090su9jjtu16i", sheetUrl: "", sheetLabel: "" },
+];
+
+const theoryItems = [
+  { format: "anim", no: 1, art: "staff", title: "오선과 음자리표", duration: "2:42", url: "https://s3.douclass.com/pub/2024/MP4/2407/n4zz04tpilwo.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/so9gplfiha6o.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 2, art: "notes", title: "음표와 쉼표", duration: "1:26", url: "https://s3.douclass.com/pub/2024/MP4/2407/f4jr3a9l3i5a.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/zspbfej5o63x.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 3, art: "repeat", title: "반복 기호", duration: "3:30", url: "https://s3.douclass.com/pub/2024/MP4/2407/s3u77ytc55ab.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/yppb6nz61ixe.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 4, art: "meter", title: "박자", duration: "1:44", url: "https://s3.douclass.com/pub/2024/MP4/2407/naskrtplt9a3.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/8wkr99cda2ts.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 5, art: "pitch", title: "음이름과 계이름", duration: "1:56", url: "https://s3.douclass.com/pub/2024/MP4/2407/d5wn0k2121z4.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/4le587nytqlg.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 6, art: "accidental", title: "임시표", duration: "2:28", url: "https://s3.douclass.com/pub/2024/MP4/2407/qpgsq5r406bs.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/0b1yma9cminw.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 7, art: "symbols", title: "다양한 음악 기호", duration: "1:58", url: "https://s3.douclass.com/pub/2024/MP4/2407/2iefz8ep3hxh.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/l7fbbgufapx8.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 8, art: "dynamics", title: "셈여림표", duration: "2:17", url: "https://s3.douclass.com/pub/2024/MP4/2407/iq3b1w0f5xwr.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/8cnmbl92qb08.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 9, art: "tempo", title: "빠르기말", duration: "2:38", url: "https://s3.douclass.com/pub/2024/MP4/2407/ncs8st9pr3kf.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/ukk72h7jwccs.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 10, art: "scale", title: "장음계", duration: "1:57", url: "https://s3.douclass.com/pub/2024/MP4/2407/c960cpu6ieuz.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/2fup4thqkm3c.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 11, art: "scale", title: "단음계", duration: "3:52", url: "https://s3.douclass.com/pub/2024/MP4/2407/psj42b62lq7s.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/ys76b8zvh4o1.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 12, art: "chord", title: "화음", duration: "1:37", url: "https://s3.douclass.com/pub/2024/MP4/2407/as79tzaemp3v.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/8o7na15cxjg0.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 13, art: "form", title: "음악의 형식", duration: "2:41", url: "https://s3.douclass.com/pub/2024/MP4/2407/ups3wornbqeh.mp4", sheetUrl: "https://s3.douclass.com/pub/2024/TC_PPT/2407/etk5mk5be4vy.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 14, art: "form", title: "메기고 받는 형식", duration: "2:05", url: "https://s3.douclass.com/pub/2025/MP4/2506/a2n2x8kb0yz0.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/wzqmxjnyigk9.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 15, art: "meter", title: "한배", duration: "1:49", url: "https://s3.douclass.com/pub/2025/MP4/2506/4gjo5sif0pup.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/bnowhkkqi3ol.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 16, art: "tori", title: "시김새", duration: "2:07", url: "https://s3.douclass.com/pub/2025/MP4/2506/0qp50toly45b.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/g6gtd7c4nppb.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 17, art: "janggu", title: "장구 장단의 부호와 구음", duration: "2:50", url: "https://s3.douclass.com/pub/2025/MP4/2506/o65wvhhroh48.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/zcqrsvdoupr0.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 18, art: "janggu", title: "여러 가지 장단", duration: "3:38", url: "https://s3.douclass.com/pub/2025/MP4/2506/n6mroh8ftvmo.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/pb7kjcbktpt0.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 19, art: "jeongganbo", title: "율명", duration: "2:15", url: "https://s3.douclass.com/pub/2025/MP4/2506/39d4t21zislw.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/ad86ze4euqba.pptx", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 20, art: "tori", title: "토리", duration: "5:31", url: "https://s3.douclass.com/pub/2025/MP4/2506/67w12kbjnwse.mp4", sheetUrl: "https://s3.douclass.com/pub/2025/TC_PPT/2506/8z6y4m8tv9rv.pptx", sheetLabel: "수업용 PPT" },
+  { format: "sheet", scope: "기초 이론집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://s3.douclass.com/pub/2025/PDF/2506/5x1j9vfybk0k.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 2, art: "notes", title: "음표와 쉼표", url: "https://s3.douclass.com/pub/2025/PDF/2506/70l23f8liwp4.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 3, art: "repeat", title: "반복 기호", url: "https://s3.douclass.com/pub/2025/PDF/2506/dg28cm09yjrn.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 4, art: "meter", title: "박자와 세로줄", url: "https://s3.douclass.com/pub/2025/PDF/2506/4hxihdq0j4ha.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 5, art: "pitch", title: "음이름과 계이름", url: "https://s3.douclass.com/pub/2025/PDF/2506/6yn082j90dwc.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 6, art: "accidental", title: "임시표", url: "https://s3.douclass.com/pub/2025/PDF/2506/c81cr7q58ruh.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 7, art: "symbols", title: "다양한 음악 기호", url: "https://s3.douclass.com/pub/2025/PDF/2506/tzcx90t6ack6.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 8, art: "dynamics", title: "셈여림표", url: "https://s3.douclass.com/pub/2025/PDF/2506/gqdkrlpoxvpn.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 9, art: "tempo", title: "빠르기말", url: "https://s3.douclass.com/pub/2025/PDF/2506/zocmw02d4fva.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 10, art: "scale", title: "장음계", url: "https://s3.douclass.com/pub/2025/PDF/2506/x7cia18c8ktd.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 11, art: "scale", title: "단음계", url: "https://s3.douclass.com/pub/2025/PDF/2506/9euvv7eedv4m.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 12, art: "chord", title: "화음", url: "https://s3.douclass.com/pub/2025/PDF/2506/an684virph1v.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 13, art: "form", title: "음악의 형식", url: "https://s3.douclass.com/pub/2025/PDF/2506/v6p39nme7uom.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 14, art: "form", title: "메기고 받는 형식", url: "https://s3.douclass.com/pub/2025/PDF/2506/mlrnkmxyqcgz.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 15, art: "meter", title: "한배", url: "https://s3.douclass.com/pub/2025/PDF/2506/laivdk0jgela.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 16, art: "tori", title: "시김새", url: "https://s3.douclass.com/pub/2025/PDF/2506/04u9bpe5njw5.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 17, art: "janggu", title: "장구", url: "https://s3.douclass.com/pub/2025/PDF/2506/0mwn1poynb2g.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 18, art: "janggu", title: "장단", url: "https://s3.douclass.com/pub/2025/PDF/2506/7iv5qc89fpz5.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 19, art: "jeongganbo", title: "율명과 정간보", url: "https://s3.douclass.com/pub/2025/PDF/2506/ou0vsa4dd6kq.pdf" },
+  { format: "sheet", scope: "기초 이론집", no: 20, art: "tori", title: "토리", url: "https://s3.douclass.com/pub/2025/PDF/2506/4cdhzuwz8v1t.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://s3.douclass.com/pub/2025/PDF/2506/xwq7n3ecu5ix.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 2, art: "notes", title: "음표와 쉼표", url: "https://s3.douclass.com/pub/2025/PDF/2506/x93c17lwfvzn.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 3, art: "repeat", title: "도돌이표", url: "https://s3.douclass.com/pub/2025/PDF/2506/y1jpiz90c4p8.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 4, art: "meter", title: "박자와 세로줄", url: "https://s3.douclass.com/pub/2025/PDF/2506/h9zvz2sjrldt.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 5, art: "pitch", title: "음이름과 계이름", url: "https://s3.douclass.com/pub/2025/PDF/2506/2czgf9fe1ebo.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 6, art: "dynamics", title: "빠르기말과 셈여림표", url: "https://s3.douclass.com/pub/2025/PDF/2506/fsnzxuyg97xm.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 7, art: "scale", title: "음계와 조", url: "https://s3.douclass.com/pub/2025/PDF/2506/9pq3xuz3i7bs.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 8, art: "chord", title: "화음", url: "https://s3.douclass.com/pub/2025/PDF/2506/8561rho0jb8q.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 9, art: "janggu", title: "장구 장단", url: "https://s3.douclass.com/pub/2025/PDF/2506/2hibcmxsh8ax.pdf" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 10, art: "jeongganbo", title: "율명과 정간보", url: "https://s3.douclass.com/pub/2025/PDF/2506/43rpyw6t4v4k.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://s3.douclass.com/pub/2025/PDF/2506/jbow7ju1tk3t.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 2, art: "repeat", title: "반복 기호", url: "https://s3.douclass.com/pub/2025/PDF/2506/lkbhj4dhz514.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 3, art: "notes", title: "음표와 쉼표", url: "https://s3.douclass.com/pub/2025/PDF/2506/mvcylp47bnao.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 4, art: "accidental", title: "임시표", url: "https://s3.douclass.com/pub/2025/PDF/2506/3t1qgag0nkxn.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 5, art: "meter", title: "박자", url: "https://s3.douclass.com/pub/2025/PDF/2506/6y2kegkhr5hs.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 6, art: "dynamics", title: "셈여림표", url: "https://s3.douclass.com/pub/2025/PDF/2506/nl79gf0gltkd.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 7, art: "tempo", title: "빠르기말", url: "https://s3.douclass.com/pub/2026/PDF/2607/3fkbovx18enz.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 8, art: "pitch", title: "음이름과 계이름", url: "https://s3.douclass.com/pub/2025/PDF/2506/r3z0mascsipj.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 9, art: "scale", title: "장음계", url: "https://s3.douclass.com/pub/2025/PDF/2506/4s3z59c77ypn.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 10, art: "scale", title: "단음계", url: "https://s3.douclass.com/pub/2025/PDF/2506/arz3yo7y4i36.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 11, art: "chord", title: "화음", url: "https://s3.douclass.com/pub/2025/PDF/2506/4f8rd00m91ds.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 12, art: "symbols", title: "다양한 음악 기호", url: "https://s3.douclass.com/pub/2025/PDF/2506/pyyrjpwfv1p9.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 13, art: "form", title: "음악의 형식", url: "https://s3.douclass.com/pub/2025/PDF/2506/ma1jjbpv0ey0.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 14, art: "form", title: "메기고 받는 형식", url: "https://s3.douclass.com/pub/2025/PDF/2506/umjr8hte9hsd.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 15, art: "meter", title: "한배", url: "https://s3.douclass.com/pub/2025/PDF/2506/6oy1mgowhzzy.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 16, art: "tori", title: "시김새", url: "https://s3.douclass.com/pub/2025/PDF/2506/b8vj9616uc0h.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 17, art: "janggu", title: "장구", url: "https://s3.douclass.com/pub/2025/PDF/2506/uq5xrfo4zczy.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 18, art: "janggu", title: "장단", url: "https://s3.douclass.com/pub/2025/PDF/2506/kbui8jlzvksu.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 19, art: "tori", title: "토리", url: "https://s3.douclass.com/pub/2025/PDF/2506/ujznm7ms1ird.pdf" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 20, art: "jeongganbo", title: "율명", url: "https://s3.douclass.com/pub/2025/PDF/2506/vq4isbqqlkrs.pdf" },
+  { format: "game", scope: "ZEP 퀴즈", no: 1, art: "notes", title: "음표", url: "https://quiz.zep.us/play/7R01ZK" },
+  { format: "game", scope: "ZEP 퀴즈", no: 2, art: "notes", title: "음표의 덧셈과 뺄셈", url: "https://quiz.zep.us/play/GpLwQm" },
+  { format: "game", scope: "ZEP 퀴즈", no: 3, art: "notes", title: "쉼표", url: "https://quiz.zep.us/play/WaQ7eq" },
+  { format: "game", scope: "ZEP 퀴즈", no: 4, art: "notes", title: "쉼표의 덧셈과 뺄셈", url: "https://quiz.zep.us/play/zZeLGN" },
+  { format: "game", scope: "ZEP 퀴즈", no: 5, art: "recorder", title: "리코더", url: "https://quiz.zep.us/play/Z90Gra" },
+  { format: "game", scope: "ZEP 퀴즈", no: 6, art: "janggu", title: "장구", url: "https://quiz.zep.us/play/bLbzrL" },
+  { format: "game", scope: "ZEP 퀴즈", no: 7, art: "jeongganbo", title: "단소와 정간보", url: "https://quiz.zep.us/play/gGegJ5" },
+  { format: "game", scope: "ZEP 퀴즈", no: 8, art: "etiquette", title: "음악회 예절", url: "https://quiz.zep.us/play/vJM159" },
+  { format: "game", scope: "ZEP 퀴즈", no: 9, art: "tori", title: "토리", url: "https://quiz.zep.us/play/XWQaoK" },
+  { format: "game", scope: "ZEP 퀴즈", no: 10, art: "etiquette", title: "저작권과 디지털 공간", url: "https://quiz.zep.us/play/lpBoXK" },
+  { format: "game", scope: "ZEP 퀴즈", no: 11, art: "form", title: "음악극", url: "https://quiz.zep.us/play/GpAlJQ" },
+  { format: "game", scope: "음악 메모리 게임", no: 1, art: "notes", title: "음표 길이", url: "https://ele.douclass.com/viewer/TXB_C/313738" },
+  { format: "game", scope: "음악 메모리 게임", no: 2, art: "notes", title: "음표 이름", url: "https://ele.douclass.com/viewer/TXB_C/313739" },
+  { format: "game", scope: "음악 메모리 게임", no: 3, art: "notes", title: "쉼표 길이", url: "https://ele.douclass.com/viewer/TXB_C/316462" },
+  { format: "game", scope: "음악 메모리 게임", no: 4, art: "notes", title: "쉼표 이름", url: "https://ele.douclass.com/viewer/TXB_C/316463" },
+  { format: "game", scope: "음악 메모리 게임", no: 5, art: "meter", title: "박자", url: "https://ele.douclass.com/viewer/TXB_C/316464" },
+  { format: "game", scope: "음악 메모리 게임", no: 6, art: "meter", title: "지휘", url: "https://ele.douclass.com/viewer/TXB_C/316465" },
+  { format: "game", scope: "음악 메모리 게임", no: 7, art: "pitch", title: "음이름", url: "https://ele.douclass.com/viewer/TXB_C/316466" },
+  { format: "game", scope: "음악 메모리 게임", no: 8, art: "pitch", title: "계이름", url: "https://ele.douclass.com/viewer/TXB_C/313740" },
+  { format: "game", scope: "음악 메모리 게임", no: 9, art: "pitch", title: "손기호", url: "https://ele.douclass.com/viewer/TXB_C/313741" },
+  { format: "game", scope: "음악 메모리 게임", no: 10, art: "accidental", title: "임시표", url: "https://ele.douclass.com/viewer/TXB_C/316472" },
+  { format: "game", scope: "음악 메모리 게임", no: 11, art: "dynamics", title: "셈여림표 뜻", url: "https://ele.douclass.com/viewer/TXB_C/313742" },
+  { format: "game", scope: "음악 메모리 게임", no: 12, art: "dynamics", title: "셈여림표 이름", url: "https://ele.douclass.com/viewer/TXB_C/313743" },
+  { format: "game", scope: "음악 메모리 게임", no: 13, art: "chord", title: "다장조 주요 3화음", url: "https://ele.douclass.com/viewer/TXB_C/316467" },
+  { format: "game", scope: "음악 메모리 게임", no: 14, art: "chord", title: "사장조 주요 3화음", url: "https://ele.douclass.com/viewer/TXB_C/316468" },
+  { format: "game", scope: "음악 메모리 게임", no: 15, art: "chord", title: "바장조 주요 3화음", url: "https://ele.douclass.com/viewer/TXB_C/316469" },
+  { format: "game", scope: "음악 메모리 게임", no: 16, art: "tori", title: "시김새", url: "https://ele.douclass.com/viewer/TXB_C/316471" },
+  { format: "game", scope: "음악 메모리 게임", no: 17, art: "tori", title: "토리와 지역", url: "https://ele.douclass.com/viewer/TXB_C/316473" },
+  { format: "game", scope: "음악 메모리 게임", no: 18, art: "tori", title: "토리와 대표 민요", url: "https://ele.douclass.com/viewer/TXB_C/316474" },
+  { format: "game", scope: "음악 메모리 게임", no: 19, art: "recorder", title: "리코더 운지법", url: "https://ele.douclass.com/viewer/TXB_C/313744" },
+  { format: "game", scope: "음악 메모리 게임", no: 20, art: "janggu", title: "장구 부호", url: "https://ele.douclass.com/viewer/TXB_C/313745" },
+  { format: "game", scope: "음악 메모리 게임", no: 21, art: "jeongganbo", title: "율명", url: "https://ele.douclass.com/viewer/TXB_C/313746" },
+];
+
+const hallView = document.querySelector("#musichall-view");
+const historyView = document.querySelector("#history-view");
+const hallGrid = document.querySelector("#hall-grid");
+const historyGrid = document.querySelector("#history-grid");
+const historyState = { format: "ppt", scope: "all" };
+
+function renderHall() {
+  hallGrid.innerHTML = hallCategories.map((item) => {
+    const inner = `<span class="hall-label">${item.label}</span><span class="hall-desc">${item.desc}</span><span class="hall-arrow" aria-hidden="true">→</span>`;
+    return item.href
+      ? `<li class="hall-item tone-${item.tone}"><a href="${item.href}">${inner}</a></li>`
+      : `<li class="hall-item tone-${item.tone} is-soon"><span class="hall-blob" aria-disabled="true">${inner}<span class="hall-soon">준비 중</span></span></li>`;
+  }).join("");
+}
+
+const FAV_KEY = "music-hall-favorites";
+
+function itemId(item) {
+  return `${item.format}:${item.scope}:${item.badge || item.no}:${item.title}`;
+}
+
+function readFavorites() {
+  try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY)) || []); }
+  catch { return new Set(); }
+}
+
+function writeFavorites(set) {
+  try { localStorage.setItem(FAV_KEY, JSON.stringify([...set])); } catch { /* 저장 불가 환경 */ }
+}
+
+const historySelection = new Set();
+
+function renderHistory() {
+  const list = historyItems.filter((item) => item.format === historyState.format && (historyState.scope === "all" || item.scope === historyState.scope));
+  const favorites = readFavorites();
+  document.querySelector("#history-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll(".format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === historyState.format)));
+  document.querySelectorAll(".history-tabs button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === historyState.scope)));
+
+  historyGrid.innerHTML = list.map((item, index) => {
+    const id = itemId(item);
+    const key = `${historyState.format}-${historyState.scope}-${index}`;
+    const caption = item.badge ? `[${item.badge}]${item.title}` : `${item.no}. ${item.title}`;
+    const overlay = item.format === "ppt"
+      ? `<span class="thumb-caption"><span class="thumb-title">${item.title}</span><span class="thumb-period">(${item.period})</span></span>`
+      : `<span class="thumb-play" aria-hidden="true">▶</span><span class="thumb-time">${item.duration}</span>`;
+    const thumb = `${historyArtFor(item)}<span class="thumb-overlay format-${item.format}">${overlay}</span>`;
+    const open = item.url
+      ? `<a class="history-open" href="${item.url}" target="_blank" rel="noopener"><span class="history-thumb scope-${item.scope}">${thumb}</span></a>`
+      : `<span class="history-open is-soon" aria-disabled="true"><span class="history-thumb scope-${item.scope}">${thumb}</span></span>`;
+    const picked = historyGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const menuItems = [
+      item.url ? `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="학생용 링크">↗ 학생에게 공유하기</button>` : "",
+      item.teacherUrl ? `<button role="menuitem" type="button" data-share="${item.teacherUrl}" data-share-label="교사용 링크">↗ 선생님에게 공유하기</button>` : "",
+    ].filter(Boolean).join("") || `<span role="menuitem" aria-disabled="true" class="is-soon">공유할 링크 없음</span>`;
+    return `
+      <li class="history-card${item.url ? "" : " is-soon"}${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${caption} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${caption} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot">
+          <span class="history-caption">${caption}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${caption} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+      </li>`;
+  }).join("");
+  syncToolbar(historyGrid);
+}
+
+function syncToolbar(grid) {
+  const cfg = grid._cfg;
+  if (!cfg) return;
+  const boxes = [...grid.querySelectorAll("[data-pick]")];
+  const picked = boxes.filter((box) => box.checked);
+  cfg.selectAll.checked = boxes.length > 0 && picked.length === boxes.length;
+  cfg.selectAll.indeterminate = picked.length > 0 && picked.length < boxes.length;
+  cfg.favTool.disabled = picked.length === 0;
+  cfg.favTool.textContent = picked.length ? `♡ 찜하기 (${picked.length})` : "♡ 찜하기";
+}
+
+function closeMenusIn(grid, except) {
+  grid.querySelectorAll(".history-menu").forEach((menu) => {
+    if (menu === except) return;
+    menu.hidden = true;
+    menu.parentElement.querySelector(".history-kebab").setAttribute("aria-expanded", "false");
+  });
+}
+
+function closeAllMenus() {
+  document.querySelectorAll(".history-menu").forEach((menu) => {
+    menu.hidden = true;
+    menu.parentElement.querySelector(".history-kebab")?.setAttribute("aria-expanded", "false");
+  });
+}
+
+function flashToast(message) {
+  let toast = document.querySelector("#history-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "history-toast";
+    toast.className = "history-toast";
+    toast.setAttribute("role", "status");
+    document.body.append(toast);
+  }
+  toast.textContent = message;
+  toast.classList.add("is-on");
+  clearTimeout(flashToast.timer);
+  flashToast.timer = setTimeout(() => toast.classList.remove("is-on"), 2200);
+}
+
+async function shareLink(url, label) {
+  try {
+    await navigator.clipboard.writeText(url);
+    flashToast(`${label}를 복사했습니다.`);
+  } catch {
+    const field = document.createElement("textarea");
+    field.value = url;
+    field.setAttribute("readonly", "");
+    field.style.cssText = "position:fixed;opacity:0";
+    document.body.append(field);
+    field.select();
+    const ok = document.execCommand("copy");
+    field.remove();
+    flashToast(ok ? `${label}를 복사했습니다.` : "복사에 실패했습니다. 주소를 직접 복사해 주세요.");
+  }
+}
+
+function toggleFavorite(grid, id) {
+  const favorites = readFavorites();
+  const on = !favorites.has(id);
+  if (on) favorites.add(id); else favorites.delete(id);
+  writeFavorites(favorites);
+  const button = grid.querySelector(`[data-like="${CSS.escape(id)}"]`);
+  button.classList.toggle("is-on", on);
+  button.setAttribute("aria-pressed", String(on));
+  button.textContent = on ? "♥" : "♡";
+  return on;
+}
+
+function wireResourceGrid(grid, { selectAll, favTool, rerender }) {
+  grid._cfg = { selectAll, favTool, selection: new Set(), rerender };
+
+  grid.addEventListener("change", (event) => {
+    const box = event.target.closest("[data-pick]");
+    if (!box) return;
+    if (box.checked) grid._cfg.selection.add(box.dataset.pick);
+    else grid._cfg.selection.delete(box.dataset.pick);
+    box.closest(".history-card").classList.toggle("is-picked", box.checked);
+    syncToolbar(grid);
+  });
+
+  grid.addEventListener("click", (event) => {
+    const like = event.target.closest("[data-like]");
+    if (like) {
+      flashToast(toggleFavorite(grid, like.dataset.like) ? "찜 목록에 담았습니다." : "찜을 해제했습니다.");
+      return;
+    }
+    const more = event.target.closest("[data-more]");
+    if (more) {
+      const panel = document.querySelector(`#${CSS.escape(more.getAttribute("aria-controls"))}`);
+      const open = panel.hidden;
+      panel.hidden = !open;
+      more.setAttribute("aria-expanded", String(open));
+      return;
+    }
+    const kebab = event.target.closest(".history-kebab");
+    if (kebab) {
+      const menu = document.querySelector(`#${CSS.escape(kebab.getAttribute("aria-controls"))}`);
+      const open = menu.hidden;
+      closeMenusIn(grid, menu);
+      menu.hidden = !open;
+      kebab.setAttribute("aria-expanded", String(open));
+      if (open) menu.querySelector("[role=menuitem]:not([aria-disabled])")?.focus();
+      return;
+    }
+    const share = event.target.closest("[data-share]");
+    if (share) {
+      shareLink(share.dataset.share, share.dataset.shareLabel);
+      closeMenusIn(grid);
+      return;
+    }
+    if (!event.target.closest(".history-menu")) closeMenusIn(grid);
+  });
+
+  selectAll.addEventListener("change", (event) => {
+    grid.querySelectorAll("[data-pick]").forEach((box) => {
+      box.checked = event.target.checked;
+      if (box.checked) grid._cfg.selection.add(box.dataset.pick);
+      else grid._cfg.selection.delete(box.dataset.pick);
+      box.closest(".history-card").classList.toggle("is-picked", box.checked);
+    });
+    syncToolbar(grid);
+  });
+
+  favTool.addEventListener("click", () => {
+    const picked = [...grid.querySelectorAll("[data-pick]")].filter((box) => box.checked);
+    if (!picked.length) return;
+    const favorites = readFavorites();
+    picked.forEach((box) => favorites.add(box.dataset.pick));
+    writeFavorites(favorites);
+    grid._cfg.rerender();
+    flashToast(`${picked.length}개를 찜 목록에 담았습니다.`);
+  });
+}
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest(".history-card")) closeAllMenus();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeAllMenus();
+});
+
+wireResourceGrid(historyGrid, {
+  selectAll: document.querySelector("#history-select-all"),
+  favTool: document.querySelector('#history-view [data-tool="favorite"]'),
+  rerender: renderHistory,
+});
+
+/* 작곡가 일러스트 — 시대별 머리 모양과 옷깃으로 구분한 흉상 */
+const composerArt = {
+  medieval: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><path d="M18 22a3 3 0 100 6 3 3 0 000-6zM24 23v-9l8-2v9"/><circle cx="21" cy="52" r="3"/><path d="M24 52v-8l7-2v8"/></g><path class="a-fill" d="M64 78c1-13 10-20 22-20s21 7 22 20z"/><path class="a-fill" d="M70 34c0-12 7-19 16-19s16 7 16 19c0 10-7 17-16 17s-16-7-16-17z"/><path class="a-hair" d="M68 36c0-16 8-24 18-24s18 8 18 24c-3-8-9-11-18-11s-15 3-18 11z"/><g class="a-line"><path d="M64 78c1-13 10-20 22-20s21 7 22 20"/><path d="M70 34c0-12 7-19 16-19s16 7 16 19c0 10-7 17-16 17s-16-7-16-17z"/><path d="M68 36c0-16 8-24 18-24s18 8 18 24c-3-8-9-11-18-11s-15 3-18 11z"/><path d="M78 58l8 8 8-8"/><path d="M86 66v12"/></g></svg>`,
+  renaissance: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><circle cx="20" cy="26" r="3"/><path d="M23 26v-9l8-2v9"/><circle cx="22" cy="54" r="3"/><path d="M25 54v-8"/></g><path class="a-fill" d="M64 78c1-13 10-20 22-20s21 7 22 20z"/><path class="a-fill" d="M72 38c0-11 6-18 14-18s14 7 14 18c0 10-6 16-14 16s-14-6-14-16z"/><path class="a-hair" d="M66 24c0-6 9-10 20-10s20 4 20 10c0 3-9 5-20 5s-20-2-20-5z"/><g class="a-line"><path d="M64 78c1-13 10-20 22-20s21 7 22 20"/><path d="M72 38c0-11 6-18 14-18s14 7 14 18c0 10-6 16-14 16s-14-6-14-16z"/><path d="M66 24c0-6 9-10 20-10s20 4 20 10c0 3-9 5-20 5s-20-2-20-5z"/><path d="M72 60q14 8 28 0"/><path d="M86 54v6"/></g></svg>`,
+  baroque: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><circle cx="20" cy="24" r="3"/><path d="M23 24v-10l9-2v10"/><circle cx="29" cy="22" r="3"/><circle cx="21" cy="54" r="3"/><path d="M24 54v-9l8-2v9"/></g><path class="a-fill" d="M62 78c1-13 11-20 24-20s23 7 24 20z"/><path class="a-fill" d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path class="a-hair" d="M66 34c0-16 8-24 20-24s20 8 20 24c0 10-3 18-7 18-3 0-4-6-4-16 0-8-3-12-9-12s-9 4-9 12c0 10-1 16-4 16-4 0-7-8-7-18z"/><g class="a-line"><path d="M62 78c1-13 11-20 24-20s23 7 24 20"/><path d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path d="M66 34c0-16 8-24 20-24s20 8 20 24c0 10-3 18-7 18-3 0-4-6-4-16 0-8-3-12-9-12s-9 4-9 12c0 10-1 16-4 16-4 0-7-8-7-18z"/><circle cx="70" cy="44" r="5"/><circle cx="102" cy="44" r="5"/><path d="M80 58l6 7 6-7"/></g></svg>`,
+  classical: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><circle cx="20" cy="26" r="3"/><path d="M23 26v-10l9-2v10"/><circle cx="21" cy="55" r="3"/><path d="M24 55v-9"/></g><path class="a-fill" d="M62 78c1-13 11-20 24-20s23 7 24 20z"/><path class="a-fill" d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path class="a-hair" d="M68 30c0-13 8-20 18-20s18 7 18 20c0 5-2 8-5 8-2 0-3-4-3-9 0-6-4-9-10-9s-10 3-10 9c0 5-1 9-3 9-3 0-5-3-5-8z"/><g class="a-line"><path d="M62 78c1-13 11-20 24-20s23 7 24 20"/><path d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path d="M68 30c0-13 8-20 18-20s18 7 18 20c0 5-2 8-5 8-2 0-3-4-3-9 0-6-4-9-10-9s-10 3-10 9c0 5-1 9-3 9-3 0-5-3-5-8z"/><circle cx="70" cy="40" r="5"/><circle cx="102" cy="40" r="5"/><circle cx="70" cy="49" r="5"/><circle cx="102" cy="49" r="5"/><path d="M78 58l8 6 8-6"/><path d="M86 64v14"/></g></svg>`,
+  romantic: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><circle cx="20" cy="24" r="3"/><path d="M23 24v-11l10-2v11"/><circle cx="30" cy="22" r="3"/><circle cx="22" cy="56" r="3"/><path d="M25 56v-9"/></g><path class="a-fill" d="M62 78c1-13 11-20 24-20s23 7 24 20z"/><path class="a-fill" d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path class="a-hair" d="M68 32c-2-8 0-14 4-18 3-3 8-4 14-4s11 1 14 4c4 4 6 10 4 18-2-6-5-9-8-11 1 4 0 7-2 9-1-6-5-9-8-9s-7 3-8 9c-2-2-3-5-2-9-3 2-6 5-8 11z"/><g class="a-line"><path d="M62 78c1-13 11-20 24-20s23 7 24 20"/><path d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path d="M68 32c-2-8 0-14 4-18 3-3 8-4 14-4s11 1 14 4c4 4 6 10 4 18-2-6-5-9-8-11 1 4 0 7-2 9-1-6-5-9-8-9s-7 3-8 9c-2-2-3-5-2-9-3 2-6 5-8 11z"/><path d="M78 58q8 10 16 0"/><path d="M86 62v16"/></g></svg>`,
+  nationalist: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><circle cx="20" cy="25" r="3"/><path d="M23 25v-10l9-2v10"/><circle cx="21" cy="55" r="3"/><path d="M24 55v-9l8-2v9"/></g><path class="a-fill" d="M62 78c1-13 11-20 24-20s23 7 24 20z"/><path class="a-fill" d="M74 36c0-11 5-17 12-17s12 6 12 17c0 6-2 11-5 13-2 6-5 9-7 9s-5-3-7-9c-3-2-5-7-5-13z"/><path class="a-hair" d="M69 30c0-13 7-20 17-20s17 7 17 20c-3-7-9-10-17-10s-14 3-17 10z"/><g class="a-line"><path d="M62 78c1-13 11-20 24-20s23 7 24 20"/><path d="M74 36c0-11 5-17 12-17s12 6 12 17c0 6-2 11-5 13-2 6-5 9-7 9s-5-3-7-9c-3-2-5-7-5-13z"/><path d="M69 30c0-13 7-20 17-20s17 7 17 20c-3-7-9-10-17-10s-14 3-17 10z"/><path d="M79 40h4M89 40h4"/><path d="M86 58v20"/><path d="M70 68l6 4M102 68l-6 4"/></g></svg>`,
+  modernist: `<svg class="history-art" viewBox="-12 -6 150 96" aria-hidden="true"><g class="c-note"><circle cx="20" cy="26" r="3"/><path d="M23 26v-10l9-2v10"/><path d="M20 54h12M20 58h8"/></g><path class="a-fill" d="M62 78c1-13 11-20 24-20s23 7 24 20z"/><path class="a-fill" d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path class="a-hair" d="M71 26c2-9 8-13 15-13s13 4 15 13c-4-4-9-6-15-6s-11 2-15 6z"/><g class="a-line"><path d="M62 78c1-13 11-20 24-20s23 7 24 20"/><path d="M74 38c0-11 5-17 12-17s12 6 12 17c0 9-5 15-12 15s-12-6-12-15z"/><path d="M71 26c2-9 8-13 15-13s13 4 15 13c-4-4-9-6-15-6s-11 2-15 6z"/><circle cx="79" cy="36" r="5"/><circle cx="93" cy="36" r="5"/><path d="M84 36h4M74 35l-3-1M98 35l3-1"/><path d="M78 58l8 8 8-8M86 66v12"/></g></svg>`,
+  world: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><rect class="a-fill" x="14" y="12" width="92" height="56" rx="6"/><path class="a-accent" d="M14 18a6 6 0 016-6h80a6 6 0 016 6v6H14z"/><g class="a-line"><rect x="14" y="12" width="92" height="56" rx="6"/><path d="M14 24h92"/><circle cx="22" cy="18" r="2"/><circle cx="29" cy="18" r="2"/><circle cx="36" cy="18" r="2"/></g><g class="a-line"><circle cx="60" cy="42" r="13"/><path d="M47 42h26M60 29c6 6 6 20 0 26M60 29c-6 6-6 20 0 26"/></g></svg>`,
+  korean: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><rect class="a-fill" x="14" y="12" width="92" height="56" rx="6"/><path class="a-accent" d="M14 18a6 6 0 016-6h80a6 6 0 016 6v6H14z"/><g class="a-line"><rect x="14" y="12" width="92" height="56" rx="6"/><path d="M14 24h92"/><circle cx="22" cy="18" r="2"/><circle cx="29" cy="18" r="2"/><circle cx="36" cy="18" r="2"/></g><path class="a-fill" d="M40 52h40l-4 10H44z"/><g class="a-line"><path d="M40 52h40l-4 10H44z"/><path d="M43 56h34M44 60h32"/><path d="M60 34v18M52 38l8-6 8 6"/><circle cx="60" cy="30" r="4"/></g></svg>`,
+  textbook: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M16 18h40q4 0 4 4v42q0-4-4-4H16z"/><path class="a-fill" d="M104 18H64q-4 0-4 4v42q0-4 4-4h40z"/><g class="a-line"><path d="M16 18h40q4 0 4 4v42q0-4-4-4H16zM104 18H64q-4 0-4 4v42q0-4 4-4h40z"/><path d="M60 22v42"/><path d="M22 30h28M22 36h28M22 42h22"/><path d="M70 48h28"/><circle cx="74" cy="46" r="3"/><path d="M77 46v-9l9-2v9"/><circle cx="83" cy="44" r="3"/><path d="M92 34h6M95 31v6"/></g></svg>`,
+};
+
+const composerGrid = document.querySelector("#composer-grid");
+const composerView = document.querySelector("#composer-view");
+const composerState = { format: "era", scope: "all" };
+const composerScopes = { webtoon: ["all", "해외편", "국내편"] };
+
+function composerId(item) {
+  return `composer:${item.format}:${item.no}:${item.title}`;
+}
+
+function renderComposers() {
+  const scoped = composerScopes[composerState.format];
+  const list = composerItems.filter((item) => item.format === composerState.format
+    && (!scoped || composerState.scope === "all" || item.scope === composerState.scope));
+  const favorites = readFavorites();
+
+  document.querySelector("#composer-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#composer-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === composerState.format)));
+
+  const tabs = document.querySelector("#composer-tabs");
+  tabs.hidden = !scoped;
+  if (scoped) {
+    const signature = scoped.join("|");
+    if (tabs.dataset.signature !== signature) {
+      tabs.dataset.signature = signature;
+      tabs.innerHTML = scoped.map((scope) => `<button type="button" role="tab" data-scope="${scope}">${scope === "all" ? "전체" : scope}</button>`).join("");
+    }
+    tabs.querySelectorAll("button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === composerState.scope)));
+  }
+
+  composerGrid.innerHTML = list.map((item, index) => {
+    const id = composerId(item);
+    const key = `composer-${composerState.format}-${index}`;
+    const picked = composerGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const badge = item.era || item.scope || "교과서";
+    const nameBlock = item.format === "era"
+      ? `<span class="composer-name"><b>${item.title}</b><i>${item.latin}</i><em>${item.years}</em></span>`
+      : `<span class="composer-name plain"><b>${item.title}</b>${item.work ? `<em>${item.work}</em>` : ""}</span>`;
+    const open = item.url
+      ? `<a class="history-open" href="${item.url}" target="_blank" rel="noopener"><span class="history-thumb composer-thumb art-${item.art}">${composerArt[item.art]}<span class="thumb-overlay format-composer">${nameBlock}</span><span class="composer-badge">${badge}</span></span></a>`
+      : `<span class="history-open is-soon"><span class="history-thumb composer-thumb art-${item.art}">${composerArt[item.art]}<span class="thumb-overlay format-composer">${nameBlock}</span><span class="composer-badge">${badge}</span></span></span>`;
+    const menuItems = [
+      item.url ? `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="수업 자료 링크">↗ 수업 자료 공유하기</button>` : "",
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("") || `<span role="menuitem" aria-disabled="true" class="is-soon">공유할 링크 없음</span>`;
+    const extra = item.sheetUrl
+      ? `<div class="history-extra">
+          <button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">수업 자료 보기 (1) <span aria-hidden="true">⌄</span></button>
+          <div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div>
+        </div>`
+      : "";
+    return `
+      <li class="history-card composer-card${item.url ? "" : " is-soon"}${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.caption} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.caption} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot">
+          <span class="history-caption">${item.caption}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.caption} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+  syncToolbar(composerGrid);
+}
+
+function showComposer() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true; historyView.hidden = true;
+  theorybookView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  composerView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "작곡가 | 연정쌤의 음악 교실";
+  renderComposers();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#composer-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  composerState.format = button.dataset.format;
+  composerState.scope = "all";
+  renderComposers();
+}));
+
+document.querySelector("#composer-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-scope]");
+  if (!tab) return;
+  composerState.scope = tab.dataset.scope;
+  renderComposers();
+});
+
+wireResourceGrid(composerGrid, {
+  selectAll: document.querySelector("#composer-select-all"),
+  favTool: document.querySelector('#composer-view [data-tool="favorite"]'),
+  rerender: renderComposers,
+});
+
+/* 음악 기초 이론 일러스트 — 개념별 기호 */
+const theoryArt = {
+  staff: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M16 26h88M16 34h88M16 42h88M16 50h88M16 58h88"/><path d="M34 62c6-2 9-7 9-14 0-9-3-14-6-14s-5 4-5 10c0 9 5 15 10 20 4 4 5 8 3 10-3 3-8 0-8-5"/><path d="M78 30v24M74 34h10M74 46h10"/></g><g class="a-fill"><circle cx="34" cy="42" r="3"/></g></svg>`,
+  notes: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M16 58h88"/></g><g class="a-fill"><ellipse cx="30" cy="54" rx="8" ry="6" transform="rotate(-18 30 54)"/><ellipse cx="62" cy="54" rx="8" ry="6" transform="rotate(-18 62 54)"/></g><g class="a-line"><ellipse cx="30" cy="54" rx="8" ry="6" transform="rotate(-18 30 54)"/><path d="M37 52V20"/><ellipse cx="62" cy="54" rx="8" ry="6" transform="rotate(-18 62 54)"/><path d="M69 52V20q12 4 12 14"/><path d="M92 20c6 0 8 5 4 9l-6 6c-4 4-2 9 4 9M92 20c-5 0-7 4-4 7"/><path d="M88 44h12v10H88z"/></g></svg>`,
+  repeat: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M14 24h92M14 32h92M14 40h92M14 48h92M14 56h92"/><path d="M26 24v32M32 24v32"/><path d="M94 24v32M88 24v32"/></g><g class="a-fill"><circle cx="40" cy="36" r="3.5"/><circle cx="40" cy="44" r="3.5"/><circle cx="80" cy="36" r="3.5"/><circle cx="80" cy="44" r="3.5"/></g><g class="a-line"><path d="M52 68q8-10 16 0"/><path d="M60 62v6"/></g></svg>`,
+  meter: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M14 24h92M14 32h92M14 40h92M14 48h92M14 56h92"/><path d="M44 24v32M76 24v32M104 24v32"/></g><g class="a-fill"><text x="26" y="38" font-size="17" font-weight="800" text-anchor="middle">4</text><text x="26" y="55" font-size="17" font-weight="800" text-anchor="middle">4</text></g><g class="a-line"><path d="M56 70l8-10 8 10"/></g></svg>`,
+  pitch: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M16 30h88v34H16z"/></g><g class="a-line"><path d="M16 30h88v34H16z"/><path d="M28 30v34M40 30v34M52 30v34M64 30v34M76 30v34M88 30v34"/></g><g class="a-fill" style="fill:var(--art-ink)"><path d="M24 30h8v20h-8zM46 30h8v20h-8zM58 30h8v20h-8zM80 30h8v20h-8zM92 30h8v20h-8z"/></g><g class="a-line"><path d="M20 18h12M20 22h8"/><circle cx="60" cy="18" r="4"/></g></svg>`,
+  accidental: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M24 22v40M34 18v40M18 32l22-5M18 46l22-5"/><path d="M58 16v38q0-12 10-14t0 12"/><path d="M92 16v40M84 30q8-6 8 4t-8 4"/></g></svg>`,
+  dynamics: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M14 34h44l-44 8"/><path d="M62 42h44l-44-8"/></g><g class="a-fill"><text x="36" y="68" font-size="18" font-style="italic" font-weight="800" text-anchor="middle">p</text><text x="84" y="68" font-size="18" font-style="italic" font-weight="800" text-anchor="middle">f</text></g></svg>`,
+  tempo: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M60 12l22 58H38z"/><g class="a-line"><path d="M60 12l22 58H38z"/><path d="M44 56h32"/><path d="M60 62V26"/><path d="M46 30h28"/></g><g class="a-fill"><circle cx="60" cy="26" r="4"/></g></svg>`,
+  scale: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M12 24h96M12 32h96M12 40h96M12 48h96M12 56h96"/></g><g class="a-fill"><circle cx="22" cy="56" r="4"/><circle cx="34" cy="52" r="4"/><circle cx="46" cy="48" r="4"/><circle cx="58" cy="44" r="4"/><circle cx="70" cy="40" r="4"/><circle cx="82" cy="36" r="4"/><circle cx="94" cy="32" r="4"/><circle cx="104" cy="28" r="4"/></g><g class="a-line"><path d="M22 56l82-28"/></g></svg>`,
+  chord: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M14 22h92M14 30h92M14 38h92M14 46h92M14 54h92"/></g><g class="a-fill"><ellipse cx="36" cy="54" rx="6" ry="4.5"/><ellipse cx="36" cy="46" rx="6" ry="4.5"/><ellipse cx="36" cy="38" rx="6" ry="4.5"/><ellipse cx="80" cy="46" rx="6" ry="4.5"/><ellipse cx="80" cy="38" rx="6" ry="4.5"/><ellipse cx="80" cy="30" rx="6" ry="4.5"/></g><g class="a-line"><path d="M42 54V24M86 46V16"/></g></svg>`,
+  form: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M12 26h28v24H12zM46 26h28v24H46zM80 26h28v24H80z"/><g class="a-line"><path d="M12 26h28v24H12zM46 26h28v24H46zM80 26h28v24H80z"/><path d="M40 38h6M74 38h6"/></g><g class="a-fill" style="fill:var(--art-ink)"><text x="26" y="45" font-size="14" font-weight="800" text-anchor="middle">A</text><text x="60" y="45" font-size="14" font-weight="800" text-anchor="middle">B</text><text x="94" y="45" font-size="14" font-weight="800" text-anchor="middle">A</text></g><g class="a-line"><path d="M20 62h80"/></g></svg>`,
+  janggu: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M34 26q12 12 0 24-8 4-8-12t8-12zM86 26q-12 12 0 24 8 4 8-12t-8-12z"/><path class="a-fill" d="M34 30h52v16H34z"/><g class="a-line"><path d="M34 26q12 12 0 24-8 4-8-12t8-12zM86 26q-12 12 0 24 8 4 8-12t-8-12z"/><path d="M34 30h52v16H34z"/><path d="M40 30l-2 16M74 30l2 16"/><path d="M20 60l12-8M100 60l-12-8"/></g></svg>`,
+  jeongganbo: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M42 12h36v58H42z"/><g class="a-line"><path d="M42 12h36v58H42z"/><path d="M42 26h36M42 40h36M42 54h36M60 12v58"/></g><g class="a-fill" style="fill:var(--art-ink)"><text x="51" y="23" font-size="9" font-weight="800" text-anchor="middle">黃</text><text x="69" y="37" font-size="9" font-weight="800" text-anchor="middle">太</text><text x="51" y="51" font-size="9" font-weight="800" text-anchor="middle">仲</text><text x="69" y="65" font-size="9" font-weight="800" text-anchor="middle">林</text></g></svg>`,
+  tori: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M46 14c14 0 24 10 26 22 2 12-2 22-8 28-5 5-12 6-18 2-7-5-8-14-4-20 3-5 9-6 13-3"/><g class="a-line"><path d="M46 14c14 0 24 10 26 22 2 12-2 22-8 28-5 5-12 6-18 2-7-5-8-14-4-20 3-5 9-6 13-3"/><path d="M20 46q8-8 16 0t16 0"/><path d="M84 30q8-8 16 0M84 46q8-8 16 0"/></g></svg>`,
+  recorder: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M22 34h72q8 0 8 6t-8 6H22q-6 0-6-6t6-6z"/><g class="a-line"><path d="M22 34h72q8 0 8 6t-8 6H22q-6 0-6-6t6-6z"/><path d="M28 34v12"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="40" cy="40" r="3"/><circle cx="52" cy="40" r="3"/><circle cx="64" cy="40" r="3"/><circle cx="76" cy="40" r="3"/><circle cx="88" cy="40" r="3"/></g><g class="a-line"><path d="M34 56q10 8 20 0t20 0"/></g></svg>`,
+  etiquette: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M18 22h84v34H18z"/><g class="a-line"><path d="M18 22h84v34H18z"/><path d="M18 30h84"/><path d="M30 56v10M90 56v10"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="44" cy="44" r="6"/><circle cx="60" cy="42" r="6"/><circle cx="76" cy="44" r="6"/></g><g class="a-line"><path d="M52 14q8-8 16 0"/><path d="M60 6v8"/></g></svg>`,
+  symbols: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M16 30h88M16 38h88M16 46h88M16 54h88"/><path d="M30 24q10-10 20 0"/><path d="M70 62q10 10 20 0"/><path d="M56 18v8M52 22h8"/></g><g class="a-fill"><circle cx="34" cy="46" r="4"/><circle cx="46" cy="38" r="4"/><circle cx="74" cy="54" r="4"/><circle cx="86" cy="46" r="4"/></g></svg>`,
+};
+
+const theorybookGrid = document.querySelector("#theorybook-grid");
+const theorybookView = document.querySelector("#theorybook-view");
+const theorybookState = { format: "all", scope: "all" };
+const theorybookScopes = {
+  sheet: ["all", "기초 이론집", "수업 도움 자료집", "그림 개념 용어집"],
+  game: ["all", "ZEP 퀴즈", "음악 메모리 게임"],
+};
+const theoryKindLabel = { anim: "애니메이션", sheet: "학습지", game: "게임" };
+
+function theoryId(item) {
+  return `theory:${item.format}:${item.scope || "-"}:${item.no}:${item.title}`;
+}
+
+function renderTheorybook() {
+  const scoped = theorybookScopes[theorybookState.format];
+  const list = theoryItems.filter((item) => (theorybookState.format === "all" || item.format === theorybookState.format)
+    && (!scoped || theorybookState.scope === "all" || item.scope === theorybookState.scope));
+  const favorites = readFavorites();
+
+  document.querySelector("#theorybook-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#theorybook-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === theorybookState.format)));
+
+  const tabs = document.querySelector("#theorybook-tabs");
+  tabs.hidden = !scoped;
+  if (scoped) {
+    const signature = scoped.join("|");
+    if (tabs.dataset.signature !== signature) {
+      tabs.dataset.signature = signature;
+      tabs.innerHTML = scoped.map((scope) => `<button type="button" role="tab" data-scope="${scope}">${scope === "all" ? "전체" : scope}</button>`).join("");
+    }
+    tabs.querySelectorAll("button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === theorybookState.scope)));
+  }
+
+  theorybookGrid.innerHTML = list.map((item, index) => {
+    const id = theoryId(item);
+    const key = `theory-${theorybookState.format}-${theorybookState.scope}-${index}`;
+    const picked = theorybookGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const badge = item.scope || theoryKindLabel[item.format];
+    const mark = item.format === "anim"
+      ? `<span class="thumb-play" aria-hidden="true">▶</span><span class="thumb-time">${item.duration}</span>`
+      : "";
+    const thumb = `<span class="history-thumb theory-thumb kind-${item.format}">${theoryArt[item.art] || theoryArt.symbols}<span class="thumb-overlay format-theory"><span class="theory-name">${item.title}</span>${mark}</span><span class="composer-badge">${badge}</span></span>`;
+    const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    const extra = item.sheetUrl
+      ? `<div class="history-extra">
+          <button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">수업 자료 보기 (1) <span aria-hidden="true">⌄</span></button>
+          <div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div>
+        </div>`
+      : "";
+    return `
+      <li class="history-card theory-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.title} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot">
+          <span class="history-caption">${item.title}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+  syncToolbar(theorybookGrid);
+}
+
+function showTheorybook() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  theorybookView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
+  renderTheorybook();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#theorybook-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  theorybookState.format = button.dataset.format;
+  theorybookState.scope = "all";
+  renderTheorybook();
+}));
+
+document.querySelector("#theorybook-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-scope]");
+  if (!tab) return;
+  theorybookState.scope = tab.dataset.scope;
+  renderTheorybook();
+});
+
+wireResourceGrid(theorybookGrid, {
+  selectAll: document.querySelector("#theorybook-select-all"),
+  favTool: document.querySelector('#theorybook-view [data-tool="favorite"]'),
+  rerender: renderTheorybook,
+});
+
+/* 노래 익히기 — 장르별 악보 일러스트 */
+const songArt = {
+  western: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><path d="M10 26h100M10 34h100M10 42h100M10 50h100M10 58h100"/><path d="M26 62c5-2 8-6 8-12 0-8-3-12-5-12s-4 3-4 8c0 8 4 13 8 17 4 4 4 7 2 9-2 2-6 0-6-4"/></g><g class="a-fill"><ellipse cx="52" cy="46" rx="5" ry="4"/><ellipse cx="68" cy="38" rx="5" ry="4"/><ellipse cx="84" cy="42" rx="5" ry="4"/><ellipse cx="100" cy="34" rx="5" ry="4"/></g><g class="a-line"><path d="M57 46V24M73 38V16M89 42V20M105 34V12"/><path d="M57 24q10 3 16 0M89 20q10 3 16 0"/></g></svg>`,
+  gugak: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M34 10h52v62H34z"/><g class="a-line"><path d="M34 10h52v62H34z"/><path d="M34 26h52M34 42h52M34 58h52M60 10v62"/></g><g class="a-fill" style="fill:var(--art-ink)"><text x="47" y="22" font-size="10" font-weight="800" text-anchor="middle">黃</text><text x="73" y="38" font-size="10" font-weight="800" text-anchor="middle">仲</text><text x="47" y="54" font-size="10" font-weight="800" text-anchor="middle">林</text><text x="73" y="70" font-size="10" font-weight="800" text-anchor="middle">南</text></g></svg>`,
+  newgugak: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M40 8h44v64H40z"/><g class="a-line"><path d="M40 8h44v64H40z"/><path d="M40 24h44M40 40h44M40 56h44M62 8v64"/></g><g class="a-fill" style="fill:var(--art-ink)"><text x="51" y="20" font-size="9" font-weight="800" text-anchor="middle">太</text><text x="73" y="36" font-size="9" font-weight="800" text-anchor="middle">姑</text></g><g class="a-fill"><ellipse cx="22" cy="50" rx="5" ry="4"/><ellipse cx="100" cy="30" rx="5" ry="4"/></g><g class="a-line"><path d="M27 50V28M105 30V8"/></g></svg>`,
+  pop: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M48 18h24v30a12 12 0 01-24 0z"/><g class="a-line"><path d="M48 18h24v30a12 12 0 01-24 0zM48 30h24M48 40h24"/><path d="M38 44c0 12 10 20 22 20s22-8 22-20"/><path d="M60 64v10M46 74h28"/></g><g class="a-fill"><circle cx="22" cy="34" r="4"/><circle cx="98" cy="26" r="4"/></g><g class="a-line"><path d="M26 34V16l8-2v18M102 26V10"/></g></svg>`,
+  world: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><circle class="a-fill" cx="60" cy="40" r="26"/><g class="a-line"><circle cx="60" cy="40" r="26"/><path d="M34 40h52"/><path d="M60 14c8 8 8 44 0 52M60 14c-8 8-8 44 0 52"/><path d="M39 24q21 8 42 0M39 56q21-8 42 0"/></g><g class="a-fill"><circle cx="20" cy="22" r="4"/><circle cx="100" cy="58" r="4"/></g><g class="a-line"><path d="M24 22V6M104 58V42"/></g></svg>`,
+};
+
+const songsGrid = document.querySelector("#songs-grid");
+const songsView = document.querySelector("#songs-view");
+const songsState = { genre: "western", scope: "all" };
+const songsScopes = {
+  western: ["all", "동요", "가곡"],
+  gugak: ["all", "전래 동요", "민요", "판소리 및 시조"],
+};
+const songGenreLabel = { western: "서양 음악", gugak: "국악", newgugak: "창작국악", pop: "대중음악", world: "세계음악" };
+
+function songId(item) {
+  return `song:${item.genre}:${item.scope || "-"}:${item.no}:${item.title}`;
+}
+
+function renderSongs() {
+  const scoped = songsScopes[songsState.genre];
+  const list = songItems.filter((item) => item.genre === songsState.genre
+    && (!scoped || songsState.scope === "all" || item.scope === songsState.scope));
+  const favorites = readFavorites();
+
+  document.querySelector("#songs-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#songs-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === songsState.genre)));
+
+  const tabs = document.querySelector("#songs-tabs");
+  tabs.hidden = !scoped;
+  if (scoped) {
+    const signature = scoped.join("|");
+    if (tabs.dataset.signature !== signature) {
+      tabs.dataset.signature = signature;
+      tabs.innerHTML = scoped.map((scope) => `<button type="button" role="tab" data-scope="${scope}">${scope === "all" ? "전체" : scope}</button>`).join("");
+    }
+    tabs.querySelectorAll("button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === songsState.scope)));
+  }
+
+  if (!list.length) {
+    songsGrid.innerHTML = `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>${songGenreLabel[songsState.genre]} 자료를 준비하고 있습니다.</h3><p>목록 데이터를 넣으면 악보와 활동지가 바로 연결됩니다.</p></li>`;
+    syncToolbar(songsGrid);
+    return;
+  }
+
+  songsGrid.innerHTML = list.map((item, index) => {
+    const id = songId(item);
+    const key = `song-${songsState.genre}-${songsState.scope}-${index}`;
+    const picked = songsGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const badge = item.scope || songGenreLabel[item.genre];
+    const thumb = `<span class="history-thumb song-thumb genre-${item.genre}">${songArt[item.genre] || songArt.western}<span class="thumb-overlay format-song"><span class="song-name">${item.title}${item.note ? `<em>${item.note}</em>` : ""}</span></span><span class="composer-badge">${badge}</span></span>`;
+    const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="악보 링크">↗ 악보 공유하기</button>`,
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    const extra = item.sheetUrl
+      ? `<div class="history-extra">
+          <button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">수업 자료 보기 (1) <span aria-hidden="true">⌄</span></button>
+          <div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div>
+        </div>`
+      : "";
+    return `
+      <li class="history-card song-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.title} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot">
+          <span class="history-caption">${item.title}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+  syncToolbar(songsGrid);
+}
+
+function showSongs() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  songsView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
+  renderSongs();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#songs-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  songsState.genre = button.dataset.format;
+  songsState.scope = "all";
+  renderSongs();
+}));
+
+document.querySelector("#songs-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-scope]");
+  if (!tab) return;
+  songsState.scope = tab.dataset.scope;
+  renderSongs();
+});
+
+wireResourceGrid(songsGrid, {
+  selectAll: document.querySelector("#songs-select-all"),
+  favTool: document.querySelector('#songs-view [data-tool="favorite"]'),
+  rerender: renderSongs,
+});
+
+/* 음악 연주 자료집 — 곡집 표지 */
+const playArt = {
+  recorder: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M52 8h42a6 6 0 016 6v52a6 6 0 01-6 6H52z"/><path class="a-accent" d="M40 8h12v64H40a6 6 0 01-6-6V14a6 6 0 016-6z"/><g class="a-line"><path d="M40 8h54a6 6 0 016 6v52a6 6 0 01-6 6H40a6 6 0 01-6-6V14a6 6 0 016-6zM52 8v64"/><path d="M62 22h28M62 28h20"/><path d="M64 46h26q4 0 4 4t-4 4H64q-3 0-3-4t3-4z"/><circle cx="70" cy="50" r="2"/><circle cx="78" cy="50" r="2"/><circle cx="86" cy="50" r="2"/></g></svg>`,
+  kalimba: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M52 8h42a6 6 0 016 6v52a6 6 0 01-6 6H52z"/><path class="a-accent" d="M40 8h12v64H40a6 6 0 01-6-6V14a6 6 0 016-6z"/><g class="a-line"><path d="M40 8h54a6 6 0 016 6v52a6 6 0 01-6 6H40a6 6 0 01-6-6V14a6 6 0 016-6zM52 8v64"/><path d="M62 20h28v34H62z"/><path d="M66 54V32M71 54V28M76 54V26M81 54V28M86 54V32"/><path d="M62 34h28"/></g></svg>`,
+  danso: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M52 8h42a6 6 0 016 6v52a6 6 0 01-6 6H52z"/><path class="a-accent" d="M40 8h12v64H40a6 6 0 01-6-6V14a6 6 0 016-6z"/><g class="a-line"><path d="M40 8h54a6 6 0 016 6v52a6 6 0 01-6 6H40a6 6 0 01-6-6V14a6 6 0 016-6zM52 8v64"/><path d="M76 18v40"/><circle cx="76" cy="26" r="2.5"/><circle cx="76" cy="34" r="2.5"/><circle cx="76" cy="42" r="2.5"/><circle cx="76" cy="50" r="2.5"/><path d="M64 64h24"/></g></svg>`,
+  ensemble: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M52 8h42a6 6 0 016 6v52a6 6 0 01-6 6H52z"/><path class="a-accent" d="M40 8h12v64H40a6 6 0 01-6-6V14a6 6 0 016-6z"/><g class="a-line"><path d="M40 8h54a6 6 0 016 6v52a6 6 0 01-6 6H40a6 6 0 01-6-6V14a6 6 0 016-6zM52 8v64"/><path d="M62 26h32M62 34h32M62 42h32M62 50h32"/></g><g class="a-fill"><circle cx="70" cy="42" r="3.5"/><circle cx="82" cy="34" r="3.5"/><circle cx="92" cy="38" r="3.5"/></g><g class="a-line"><path d="M73 42V24M85 34V16M95 38V20"/></g></svg>`,
+  guide: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M52 8h42a6 6 0 016 6v52a6 6 0 01-6 6H52z"/><path class="a-accent" d="M40 8h12v64H40a6 6 0 01-6-6V14a6 6 0 016-6z"/><g class="a-line"><path d="M40 8h54a6 6 0 016 6v52a6 6 0 01-6 6H40a6 6 0 01-6-6V14a6 6 0 016-6zM52 8v64"/><path d="M62 22h28M62 30h28M62 38h18"/><path d="M62 50h20v14H62z"/><path d="M86 52v12M92 52v12"/></g></svg>`,
+};
+
+const playGrid = document.querySelector("#play-grid");
+const playView = document.querySelector("#play-view");
+const playState = { group: "all", scope: "all" };
+const playGroupLabel = { all: "전체보기(PDF)", recorder: "리코더 TOP 40", kalimba: "칼림바 TOP 50", danso: "단소·소금 TOP 40", ensemble: "기악 연주곡집" };
+
+function playId(item) {
+  return `play:${item.group}:${item.no}:${item.title}`;
+}
+
+function playScopesFor(group) {
+  const found = [];
+  playItems.forEach((item) => {
+    if (item.group === group && item.scope && !found.includes(item.scope)) found.push(item.scope);
+  });
+  return found.length ? ["all", ...found] : null;
+}
+
+function renderPlay() {
+  const scoped = playScopesFor(playState.group);
+  const list = playItems.filter((item) => item.group === playState.group
+    && (!scoped || playState.scope === "all" || item.scope === playState.scope));
+  const favorites = readFavorites();
+
+  document.querySelector("#play-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#play-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === playState.group)));
+
+  const tabs = document.querySelector("#play-tabs");
+  tabs.hidden = !scoped;
+  if (scoped) {
+    const signature = scoped.join("|");
+    if (tabs.dataset.signature !== signature) {
+      tabs.dataset.signature = signature;
+      tabs.innerHTML = scoped.map((scope) => `<button type="button" role="tab" data-scope="${scope}">${scope === "all" ? "전체" : scope}</button>`).join("");
+    }
+    tabs.querySelectorAll("button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === playState.scope)));
+  }
+
+  if (!list.length) {
+    playGrid.innerHTML = `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>${playGroupLabel[playState.group]} 자료를 준비하고 있습니다.</h3><p>목록 데이터를 넣으면 악보와 연주 영상이 바로 연결됩니다.</p></li>`;
+    syncToolbar(playGrid);
+    return;
+  }
+
+  playGrid.innerHTML = list.map((item, index) => {
+    const id = playId(item);
+    const key = `play-${playState.group}-${index}`;
+    const picked = playGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const isVideo = item.art === "video";
+    const badge = isVideo ? "연주 듣기" : "PDF";
+    const cover = isVideo ? `<span class="thumb-play" aria-hidden="true">▶</span>` : (playArt[item.art] || playArt.guide);
+    const thumb = `<span class="history-thumb play-thumb cover-${item.art}">${cover}<span class="thumb-overlay format-play"><span class="play-name">${item.title}${item.note ? `<em>${item.note}</em>` : ""}</span></span><span class="composer-badge">${badge}</span></span>`;
+    const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="${isVideo ? "연주 영상" : "자료"} 링크">↗ ${isVideo ? "연주 영상" : "자료"} 공유하기</button>`,
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    return `
+      <li class="history-card play-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.title} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot">
+          <span class="history-caption">${item.title}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${item.sheetUrl ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">수업 자료 보기 (1) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div></div>` : ""}
+      </li>`;
+  }).join("");
+  syncToolbar(playGrid);
+}
+
+function showPlay() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
+  songsView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  playView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
+  renderPlay();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#play-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  playState.group = button.dataset.format;
+  playState.scope = "all";
+  renderPlay();
+}));
+
+document.querySelector("#play-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-scope]");
+  if (!tab) return;
+  playState.scope = tab.dataset.scope;
+  renderPlay();
+});
+
+wireResourceGrid(playGrid, {
+  selectAll: document.querySelector("#play-select-all"),
+  favTool: document.querySelector('#play-view [data-tool="favorite"]'),
+  rerender: renderPlay,
+});
+
+/* 스마트 악기 — 악기별 일러스트 */
+const smartArt = {
+  piano: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M14 20h92v44H14z"/><g class="a-line"><path d="M14 20h92v44H14z"/><path d="M27 20v44M40 20v44M53 20v44M66 20v44M79 20v44M92 20v44"/></g><g class="a-fill" style="fill:var(--art-ink)"><path d="M22 20h10v26H22zM35 20h10v26H35zM61 20h10v26H61zM74 20h10v26H74zM87 20h10v26H87z"/></g><g class="a-line"><path d="M14 64h92"/></g></svg>`,
+  kalimba: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M26 12h68a6 6 0 016 6v44a6 6 0 01-6 6H26a6 6 0 01-6-6V18a6 6 0 016-6z"/><g class="a-line"><path d="M26 12h68a6 6 0 016 6v44a6 6 0 01-6 6H26a6 6 0 01-6-6V18a6 6 0 016-6z"/><path d="M20 34h80"/><path d="M32 56V24M42 56V20M52 56V18M62 56V17M72 56V18M82 56V20M92 56V24"/><circle cx="60" cy="62" r="4"/></g></svg>`,
+  xylophone: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M12 18h14v52H12zM30 22h14v44H30zM48 26h14v36H48zM66 30h14v28H66zM84 34h14v20H84z"/></g><g class="a-line"><path d="M12 18h14v52H12zM30 22h14v44H30zM48 26h14v36H48zM66 30h14v28H66zM84 34h14v20H84z"/><path d="M8 28h96M8 60h96"/><path d="M104 24l8-8M104 30l8-8"/></g><g class="a-fill"><circle cx="110" cy="16" r="4"/></g></svg>`,
+  recorder: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M16 34h78q10 0 10 6t-10 6H16q-6 0-6-6t6-6z"/><g class="a-line"><path d="M16 34h78q10 0 10 6t-10 6H16q-6 0-6-6t6-6z"/><path d="M26 34v12M34 34v12"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="46" cy="40" r="3"/><circle cx="56" cy="40" r="3"/><circle cx="66" cy="40" r="3"/><circle cx="76" cy="40" r="3"/><circle cx="86" cy="40" r="3"/></g><g class="a-line"><path d="M30 56q14 10 28 0t28 0"/></g></svg>`,
+  ocarina: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M34 26c14-8 34-8 44 4 8 9 4 24-8 30-14 7-32 3-38-8-5-9-2-20 2-26z"/><g class="a-line"><path d="M34 26c14-8 34-8 44 4 8 9 4 24-8 30-14 7-32 3-38-8-5-9-2-20 2-26z"/><path d="M78 30l18-8q4 4 0 8l-16 8"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="46" cy="38" r="3"/><circle cx="58" cy="34" r="3"/><circle cx="70" cy="38" r="3"/><circle cx="50" cy="52" r="3"/><circle cx="64" cy="52" r="3"/></g></svg>`,
+  drum: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M34 36h44v26a22 8 0 01-44 0z"/><ellipse class="a-fill" cx="56" cy="36" rx="22" ry="8"/><g class="a-line"><path d="M34 36v26a22 8 0 0044 0V36"/><ellipse cx="56" cy="36" rx="22" ry="8"/></g><g class="a-fill"><ellipse cx="26" cy="24" rx="16" ry="4"/><ellipse cx="94" cy="30" rx="14" ry="4"/></g><g class="a-line"><ellipse cx="26" cy="24" rx="16" ry="4"/><path d="M26 28v34"/><ellipse cx="94" cy="30" rx="14" ry="4"/><path d="M94 34v28"/><path d="M14 70h92"/></g></svg>`,
+  cajon: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M32 10h56v60H32z"/><g class="a-line"><path d="M32 10h56v60H32z"/><path d="M32 18h56"/><circle cx="60" cy="42" r="9"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="60" cy="42" r="9"/></g><g class="a-line"><path d="M40 62h40"/><path d="M20 34q-6 6 0 12M100 34q6 6 0 12"/></g></svg>`,
+  rhythm: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="32" cy="28" r="14"/><path d="M62 16l16 26H46z"/><path d="M84 52h22v14H84z"/><circle cx="34" cy="58" r="10"/></g><g class="a-line"><circle cx="32" cy="28" r="14"/><circle cx="32" cy="28" r="8"/><path d="M62 16l16 26H46z"/><path d="M56 42h12"/><path d="M84 52h22v14H84z"/><path d="M90 52v14M96 52v14M100 52v14"/><circle cx="34" cy="58" r="10"/><path d="M34 48v20"/></g></svg>`,
+  metronome: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M60 8l24 62H36z"/><g class="a-line"><path d="M60 8l24 62H36z"/><path d="M44 56h32"/><path d="M60 62V22"/><path d="M48 30h24"/></g><g class="a-fill"><rect x="54" y="24" width="12" height="6" rx="2"/><circle cx="60" cy="20" r="4"/></g><g class="a-line"><rect x="54" y="24" width="12" height="6" rx="2"/></g></svg>`,
+  janggu: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M30 24q14 16 0 32-10 5-10-16t10-16zM90 24q-14 16 0 32 10 5 10-16t-10-16z"/><path class="a-fill" d="M30 30h60v20H30z"/><g class="a-line"><path d="M30 24q14 16 0 32-10 5-10-16t10-16zM90 24q-14 16 0 32 10 5 10-16t-10-16z"/><path d="M30 30h60v20H30z"/><path d="M38 30l-3 20M52 30l-2 20M68 30l2 20M82 30l3 20"/></g><g class="a-line"><path d="M12 66l14-10M108 66l-14-10"/></g></svg>`,
+  danso: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M52 6h16v68H52z"/><g class="a-line"><path d="M52 6h16v68H52z"/><path d="M52 18h16M52 62h16"/><path d="M56 6q4-4 8 0"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="60" cy="28" r="3.5"/><circle cx="60" cy="38" r="3.5"/><circle cx="60" cy="48" r="3.5"/><circle cx="60" cy="56" r="3.5"/></g></svg>`,
+  sogeum: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M10 32h100v16H10z"/><g class="a-line"><path d="M10 32h100v16H10z"/><path d="M24 32v16M98 32v16"/></g><g class="a-fill" style="fill:var(--art-ink)"><circle cx="34" cy="40" r="3.5"/><circle cx="46" cy="40" r="3.5"/><circle cx="58" cy="40" r="3.5"/><circle cx="70" cy="40" r="3.5"/><circle cx="82" cy="40" r="3.5"/></g><g class="a-line"><path d="M16 40h4"/><path d="M36 62q12 8 24 0t24 0"/></g></svg>`,
+  gayageum: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M8 16h104q6 0 6 6v36q0 6-6 6H8z"/><g class="a-line"><path d="M8 16h104q6 0 6 6v36q0 6-6 6H8z"/><path d="M8 24h110M8 32h110M8 40h110M8 48h110M8 56h110"/></g><g class="a-fill" style="fill:var(--art-ink)"><path d="M34 22l5 6-5 6-5-6zM50 30l5 6-5 6-5-6zM66 38l5 6-5 6-5-6zM82 46l5 6-5 6-5-6z"/></g></svg>`,
+  gugak: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="12" y="10" width="30" height="28" rx="5"/><rect x="48" y="10" width="30" height="28" rx="5"/><rect x="84" y="10" width="24" height="28" rx="5"/><rect x="12" y="44" width="30" height="28" rx="5"/><rect x="48" y="44" width="30" height="28" rx="5"/><rect x="84" y="44" width="24" height="28" rx="5"/></g><g class="a-line"><rect x="12" y="10" width="30" height="28" rx="5"/><rect x="48" y="10" width="30" height="28" rx="5"/><rect x="84" y="10" width="24" height="28" rx="5"/><rect x="12" y="44" width="30" height="28" rx="5"/><rect x="48" y="44" width="30" height="28" rx="5"/><rect x="84" y="44" width="24" height="28" rx="5"/><path d="M22 30q5-14 10 0"/><path d="M58 18v12M54 24h8"/><path d="M92 18v12"/><path d="M20 58h14M22 52h10"/><path d="M58 52q5 10 0 14"/><path d="M90 52l12 12"/></g></svg>`,
+};
+
+const smartGrid = document.querySelector("#smart-grid");
+const smartView = document.querySelector("#smart-view");
+const smartState = { group: "all" };
+const smartGroupLabel = { all: "스마트 악기", west: "서양 악기", gugak: "국악기" };
+
+function smartId(item) {
+  return `smart:${item.group}:${item.no}:${item.title}`;
+}
+
+function renderSmart() {
+  const list = smartItems.filter((item) => smartState.group === "all" || item.group === smartState.group);
+  const favorites = readFavorites();
+
+  document.querySelector("#smart-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#smart-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === smartState.group)));
+
+  smartGrid.innerHTML = list.map((item, index) => {
+    const id = smartId(item);
+    const key = `smart-${smartState.group}-${index}`;
+    const picked = smartGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const thumb = `<span class="history-thumb smart-thumb tone-${item.group}">${smartArt[item.art] || smartArt.gugak}<span class="thumb-overlay format-smart"><span class="smart-name">${item.title}</span></span><span class="composer-badge">${item.scope}</span></span>`;
+    const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="악기 링크">↗ 악기 공유하기</button>`,
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    const extra = item.sheetUrl
+      ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">수업 자료 보기 (1) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div></div>`
+      : "";
+    return `
+      <li class="history-card smart-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.title} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot">
+          <span class="history-caption">${item.title}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+  syncToolbar(smartGrid);
+}
+
+function showSmart() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
+  songsView.hidden = true; playView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  smartView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
+  renderSmart();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#smart-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  smartState.group = button.dataset.format;
+  renderSmart();
+}));
+
+wireResourceGrid(smartGrid, {
+  selectAll: document.querySelector("#smart-select-all"),
+  favTool: document.querySelector('#smart-view [data-tool="favorite"]'),
+  rerender: renderSmart,
+});
+
+/* 뮤직 에듀테크 — 분류별 아이콘 */
+const edutechArt = {
+  play: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><rect x="18" y="14" width="84" height="52" rx="8"/><path d="M18 26h84"/><circle cx="27" cy="20" r="2.5"/><circle cx="35" cy="20" r="2.5"/></g><g class="a-fill"><circle cx="60" cy="46" r="15"/></g><g class="a-line" style="stroke:var(--art-bg)"><path d="M55 39l12 7-12 7z" style="fill:var(--art-bg)"/></g></svg>`,
+  create: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><rect x="18" y="14" width="84" height="52" rx="8"/><path d="M18 26h84"/><circle cx="27" cy="20" r="2.5"/><circle cx="35" cy="20" r="2.5"/></g><g class="a-fill"><rect x="30" y="46" width="10" height="12" rx="2"/><rect x="44" y="38" width="10" height="20" rx="2"/><rect x="58" y="42" width="10" height="16" rx="2"/><rect x="72" y="34" width="10" height="24" rx="2"/><rect x="86" y="48" width="8" height="10" rx="2"/></g></svg>`,
+  fusion: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-line"><rect x="18" y="14" width="84" height="52" rx="8"/><path d="M18 26h84"/><circle cx="27" cy="20" r="2.5"/><circle cx="35" cy="20" r="2.5"/></g><g class="a-fill"><circle cx="48" cy="46" r="12"/></g><g class="a-line"><circle cx="48" cy="46" r="12"/><path d="M72 58l10-22 10 22z"/><path d="M64 34h6M64 40h6"/></g></svg>`,
+  video: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M20 22h58v36H20z"/><g class="a-line"><path d="M20 22h58v36H20z"/><path d="M78 34l22-10v32l-22-10z"/><path d="M20 30h58M20 50h58"/><path d="M30 22v8M42 22v8M54 22v8M66 22v8"/></g></svg>`,
+  tutorial: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M16 14h88a6 6 0 016 6v40a6 6 0 01-6 6H16a6 6 0 01-6-6V20a6 6 0 016-6z"/><g class="a-line"><path d="M16 14h88a6 6 0 016 6v40a6 6 0 01-6 6H16a6 6 0 01-6-6V20a6 6 0 016-6z"/><path d="M52 30l20 10-20 10z"/><path d="M40 72h40"/></g></svg>`,
+  lesson: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M24 10h56a6 6 0 016 6v54H24z"/><g class="a-line"><path d="M24 10h56a6 6 0 016 6v54H24z"/><path d="M24 10a6 6 0 00-6 6v54a6 6 0 016-6"/><path d="M36 26h38M36 36h38M36 46h24"/></g><g class="a-fill"><circle cx="76" cy="56" r="4"/></g><g class="a-line"><path d="M79 56v-12l10-2v12"/><circle cx="86" cy="54" r="4"/></g></svg>`,
+};
+
+const edutechGrid = document.querySelector("#edutech-grid");
+const edutechView = document.querySelector("#edutech-view");
+const edutechState = { group: "all", scope: "all" };
+const edutechGroupLabel = { all: "뮤직 에듀테크", site: "에듀테크 사이트", lab: "에듀테크 실습하기" };
+
+function edutechScopes() {
+  if (edutechState.group !== "lab") return null;
+  const found = [];
+  edutechItems.forEach((item) => {
+    if (item.group === "lab" && !found.includes(item.scope)) found.push(item.scope);
+  });
+  return ["all", ...found];
+}
+
+function edutechId(item) {
+  return `edutech:${item.group}:${item.scope}:${item.no}:${item.title}`;
+}
+
+function renderEdutech() {
+  const scoped = edutechScopes();
+  const list = edutechItems.filter((item) => (edutechState.group === "all" || item.group === edutechState.group)
+    && (!scoped || edutechState.scope === "all" || item.scope === edutechState.scope));
+  const favorites = readFavorites();
+
+  document.querySelector("#edutech-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#edutech-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === edutechState.group)));
+
+  const tabs = document.querySelector("#edutech-tabs");
+  tabs.hidden = !scoped;
+  if (scoped) {
+    const signature = scoped.join("|");
+    if (tabs.dataset.signature !== signature) {
+      tabs.dataset.signature = signature;
+      tabs.innerHTML = scoped.map((scope) => `<button type="button" role="tab" data-scope="${scope}">${scope === "all" ? "전체" : scope}</button>`).join("");
+    }
+    tabs.querySelectorAll("button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === edutechState.scope)));
+  }
+
+  edutechGrid.innerHTML = list.map((item, index) => {
+    const id = edutechId(item);
+    const key = `edutech-${edutechState.group}-${edutechState.scope}-${index}`;
+    const picked = edutechGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const badge = item.tag || item.scope;
+    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}">${edutechArt[item.art] || edutechArt.play}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span></span>`;
+    const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    const extra = item.sheetUrl
+      ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">수업 자료 보기 (1) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div></div>`
+      : "";
+    return `
+      <li class="history-card edutech-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.title} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot edutech-foot">
+          <span class="history-caption">${item.title}${item.desc ? `<em>${item.desc}</em>` : ""}${item.source ? `<i>출처 ${item.source}</i>` : ""}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+  syncToolbar(edutechGrid);
+}
+
+function showEdutech() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
+  songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
+  edutechView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "뮤직 에듀테크 | 연정쌤의 음악 교실";
+  renderEdutech();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#edutech-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  edutechState.group = button.dataset.format;
+  edutechState.scope = "all";
+  renderEdutech();
+}));
+
+document.querySelector("#edutech-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-scope]");
+  if (!tab) return;
+  edutechState.scope = tab.dataset.scope;
+  renderEdutech();
+});
+
+wireResourceGrid(edutechGrid, {
+  selectAll: document.querySelector("#edutech-select-all"),
+  favTool: document.querySelector('#edutech-view [data-tool="favorite"]'),
+  rerender: renderEdutech,
+});
+
+/* 음악 동영상 — 갈래별 아이콘 */
+const videoArt = {
+  mask: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M60 8c18 0 30 6 30 20 0 24-14 44-30 44S30 52 30 32c0-14 12-24 30-24z"/></g><g class="a-line"><path d="M60 8c18 0 30 6 30 20 0 24-14 44-30 44S30 52 30 32c0-14 12-24 30-24z"/><path d="M40 32c5-5 11-5 15 0M65 32c4-5 10-5 15 0"/><path d="M50 54c6 4 14 4 20 0"/><path d="M30 26l-14-6M90 26l14-6"/></g><g class="a-hair"><circle cx="47" cy="34" r="3"/><circle cx="73" cy="34" r="3"/></g></svg>`,
+  fan: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M60 70A44 44 0 0116 26h88A44 44 0 0160 70z" transform="rotate(180 60 48)"/></g><g class="a-line"><path d="M60 70A44 44 0 0116 26h88A44 44 0 0160 70z" transform="rotate(180 60 48)"/><path d="M60 70V26M60 70L30 40M60 70l30-30M60 70L42 30M60 70l18-40"/><circle cx="60" cy="70" r="4"/></g></svg>`,
+  pansori: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="40" cy="22" r="10"/><ellipse cx="86" cy="48" rx="20" ry="18"/></g><g class="a-line"><circle cx="40" cy="22" r="10"/><path d="M40 32v22M40 38l-14 8M40 38l14 6"/><path d="M40 54l-10 20M40 54l10 20"/><ellipse cx="86" cy="48" rx="20" ry="18"/><ellipse cx="86" cy="48" rx="11" ry="10"/></g></svg>`,
+  arirang: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M10 62l26-32 16 18 14-20 24 34z"/></g><g class="a-line"><path d="M10 62l26-32 16 18 14-20 24 34z"/><path d="M6 62h108"/><circle cx="92" cy="18" r="8"/><path d="M100 18V6l12-3v12"/></g><g class="a-fill"><circle cx="96" cy="18" r="5"/><circle cx="108" cy="15" r="5"/></g></svg>`,
+  court: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M30 24h60v8H30z"/><path d="M42 36c0 12-4 16-4 22h16c0-6-4-10-4-22z"/><path d="M74 36c0 12-4 16-4 22h16c0-6-4-10-4-22z"/></g><g class="a-line"><path d="M24 20h72l-6 12H30z"/><path d="M42 36c0 12-4 16-4 22h16c0-6-4-10-4-22zM74 36c0 12-4 16-4 22h16c0-6-4-10-4-22z"/><path d="M30 66h60"/><path d="M60 20V10"/></g></svg>`,
+  song: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="50" y="10" width="20" height="34" rx="10"/></g><g class="a-line"><rect x="50" y="10" width="20" height="34" rx="10"/><path d="M38 38a22 22 0 0044 0"/><path d="M60 60v10M46 70h28"/><path d="M22 24c6 6 6 14 0 20M98 24c-6 6-6 14 0 20"/></g></svg>`,
+  baton: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="34" cy="58" r="7"/></g><g class="a-line"><path d="M34 58L96 16"/><circle cx="34" cy="58" r="7"/><path d="M92 10c6 2 8 6 8 10"/><path d="M24 24c8-8 18-8 26 0M18 14c12-12 28-12 40 0"/></g></svg>`,
+  kid: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="44" cy="42" r="21"/><circle cx="82" cy="56" r="7"/></g><g class="a-line"><circle cx="44" cy="42" r="21"/><path d="M36 38h.01M52 38h.01" stroke-width="4"/><path d="M36 50c5 5 11 5 16 0"/><path d="M89 56V24l16-5v31"/><circle cx="82" cy="56" r="7"/><circle cx="98" cy="50" r="7"/></g></svg>`,
+  teen: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="20" y="42" width="16" height="24" rx="7"/><rect x="84" y="42" width="16" height="24" rx="7"/></g><g class="a-line"><path d="M26 44v-6a34 34 0 0168 0v6"/><rect x="20" y="42" width="16" height="24" rx="7"/><rect x="84" y="42" width="16" height="24" rx="7"/><path d="M52 60v-18l18-5v18"/></g><g class="a-fill"><circle cx="48" cy="60" r="5"/><circle cx="66" cy="55" r="5"/></g></svg>`,
+  body: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="58" cy="16" r="9"/></g><g class="a-line"><circle cx="58" cy="16" r="9"/><path d="M58 25v24"/><path d="M58 31L34 21M58 31l24-10"/><path d="M58 49L42 72M58 49l16 23"/><path d="M96 22a10 10 0 010 14M104 16a18 18 0 010 26"/></g></svg>`,
+  quiz: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M22 10h76a9 9 0 019 9v30a9 9 0 01-9 9H64L46 74V58H22a9 9 0 01-9-9V19a9 9 0 019-9z"/></g><g class="a-line"><path d="M22 10h76a9 9 0 019 9v30a9 9 0 01-9 9H64L46 74V58H22a9 9 0 01-9-9V19a9 9 0 019-9z"/></g><g class="a-line" style="stroke:var(--art-bg);stroke-width:4.5"><path d="M50 26a10 10 0 0120 3c0 7-10 7-10 14"/><path d="M60 50h.01" stroke-width="6"/></g></svg>`,
+  activity: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="16" y="20" width="44" height="44" rx="5" transform="rotate(-8 38 42)"/></g><g class="a-line"><rect x="16" y="20" width="44" height="44" rx="5" transform="rotate(-8 38 42)"/><circle cx="76" cy="26" r="7"/><circle cx="76" cy="58" r="7"/><path d="M82 31l24 16M82 53l24-16"/></g></svg>`,
+  perc: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><ellipse cx="52" cy="46" rx="28" ry="25"/></g><g class="a-line"><ellipse cx="52" cy="46" rx="28" ry="25"/><ellipse cx="52" cy="46" rx="17" ry="15"/><path d="M52 12v9M24 46h-9M80 46h9M52 71v7"/><path d="M108 18L84 38"/></g><g class="a-fill"><circle cx="108" cy="17" r="5"/></g></svg>`,
+  jang: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M32 20v40c0-13 11-18 28-20-17-2-28-7-28-20z"/><path d="M88 20v40c0-13-11-18-28-20 17-2 28-7 28-20z"/></g><g class="a-line"><path d="M32 20v40M88 20v40"/><path d="M32 20c0 13 11 18 28 20 17-2 28-7 28-20"/><path d="M32 60c0-13 11-18 28-20 17 2 28 7 28 20"/><path d="M40 28l40 24M40 52l40-24"/></g></svg>`,
+  keys: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="14" y="24" width="92" height="36" rx="5"/></g><g class="a-line"><rect x="14" y="24" width="92" height="36" rx="5"/><path d="M29 24v36M44 24v36M59 24v36M74 24v36M91 24v36"/></g><g class="a-hair"><rect x="24" y="24" width="9" height="21" rx="2"/><rect x="39" y="24" width="9" height="21" rx="2"/><rect x="69" y="24" width="9" height="21" rx="2"/><rect x="86" y="24" width="9" height="21" rx="2"/></g></svg>`,
+  recorder: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="53" y="6" width="14" height="66" rx="7"/></g><g class="a-line"><rect x="53" y="6" width="14" height="66" rx="7"/><path d="M53 19h14M53 62h14"/><circle cx="60" cy="28" r="2.4"/><circle cx="60" cy="37" r="2.4"/><circle cx="60" cy="46" r="2.4"/><circle cx="60" cy="55" r="2.4"/><path d="M84 34l14-4M84 44l14 4"/></g></svg>`,
+  danso: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="30" y="34" width="70" height="13" rx="6" transform="rotate(-12 65 40)"/></g><g class="a-line"><rect x="30" y="34" width="70" height="13" rx="6" transform="rotate(-12 65 40)"/><path d="M48 44l3-13M66 40l3-13M84 36l3-13"/><circle cx="56" cy="38" r="2.2"/><circle cx="70" cy="35" r="2.2"/><circle cx="84" cy="32" r="2.2"/><path d="M18 60c6-6 14-6 20 0"/></g></svg>`,
+  guitar: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="40" cy="52" r="18"/><circle cx="62" cy="46" r="14"/></g><g class="a-line"><circle cx="40" cy="52" r="18"/><circle cx="62" cy="46" r="14"/><path d="M74 40l26-18M98 16l8 7-6 8"/></g><g class="a-line" style="stroke:var(--art-bg);stroke-width:2.4"><circle cx="55" cy="48" r="6"/></g></svg>`,
+  gaya: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><path d="M10 28h100l-7 26H17z"/></g><g class="a-line"><path d="M10 28h100l-7 26H17z"/><path d="M18 34h86M18 41h84M18 48h82"/><path d="M44 28l-4 26M62 28l-4 26M80 28l-4 26"/></g></svg>`,
+  concept: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="26" y="12" width="62" height="52" rx="5"/></g><g class="a-line"><rect x="26" y="12" width="62" height="52" rx="5"/><path d="M38 26h38M38 36h38M38 46h24"/><path d="M26 12a7 7 0 000 14M88 50a7 7 0 010 14"/><path d="M76 60V44l14-4v14"/></g><g class="a-fill"><circle cx="72" cy="60" r="5"/><circle cx="86" cy="56" r="5"/></g></svg>`,
+  perform: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="10" y="8" width="100" height="12" rx="3"/><path d="M10 20c12 7 14 27 10 48H10zM110 20c-12 7-14 27-10 48h10z"/></g><g class="a-line"><rect x="10" y="8" width="100" height="12" rx="3"/><path d="M10 20c12 7 14 27 10 48M110 20c-12 7-14 27-10 48"/><circle cx="60" cy="44" r="13"/></g><g class="a-hair"><path d="M55 37l12 7-12 7z"/></g></svg>`,
+  trivia: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="52" cy="42" r="28"/></g><g class="a-line"><circle cx="52" cy="42" r="28"/></g><g class="a-line" style="stroke:var(--art-bg);stroke-width:5"><path d="M43 33a10 10 0 0119 3c0 7-9 8-9 15"/><path d="M53 60h.01" stroke-width="7"/></g><g class="a-fill"><path d="M94 12l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/></g></svg>`,
+};
+
+const videoArtKeywords = [
+  [/탈춤|봉산|강령|은율|사자놀음|가면/, "mask"],
+  [/강강술래|부채춤|춘앵전|오양선|포구락|처용무|무용|소고 춤|고사리|덕석|청어/, "fan"],
+  [/판소리|춘향가|수궁가|흥보가|명창|득음|화초장|박타령|사랑가/, "pansori"],
+  [/아리랑/, "arirang"],
+  [/종묘|문묘|제례|취타|여민락|보허자|영산회상|수제천|천년만세|낙양춘|평조회상|청성|정간보/, "court"],
+  [/노래|가곡|시조|민요|가창|호흡|합창|동요|랩 해요|응원 구호/, "song"],
+  [/지휘/, "baton"],
+];
+
+function videoArtFor(item) {
+  if (item.group !== "inst") {
+    for (const [pattern, art] of videoArtKeywords) {
+      if (pattern.test(item.title)) return art;
+    }
+  }
+  return item.art;
+}
+
+const videoGrid = document.querySelector("#video-grid");
+const videoView = document.querySelector("#video-view");
+const videoState = { group: "anim", scope: "all" };
+const videoGroupLabel = { anim: "음악 애니메이션", lesson: "수업 도움 동영상", inst: "악기 연주법", gugak: "국악 동영상" };
+
+function videoScopes() {
+  const found = [];
+  videoItems.forEach((item) => {
+    if (item.group === videoState.group && !found.includes(item.scope)) found.push(item.scope);
+  });
+  return ["all", ...found];
+}
+
+function videoId(item) {
+  return `video:${item.group}:${item.scope}:${item.no}:${item.title}`;
+}
+
+function renderVideo() {
+  const scoped = videoScopes();
+  const list = videoItems.filter((item) => item.group === videoState.group
+    && (videoState.scope === "all" || item.scope === videoState.scope));
+  const favorites = readFavorites();
+
+  document.querySelector("#video-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelectorAll("#video-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === videoState.group)));
+
+  const tabs = document.querySelector("#video-tabs");
+  const signature = `${videoState.group}|${scoped.join("|")}`;
+  if (tabs.dataset.signature !== signature) {
+    tabs.dataset.signature = signature;
+    tabs.innerHTML = scoped.map((scope) => `<button type="button" role="tab" data-scope="${scope}">${scope === "all" ? "전체" : scope}</button>`).join("");
+  }
+  tabs.querySelectorAll("button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === videoState.scope)));
+
+  videoGrid.innerHTML = list.map((item, index) => {
+    const id = videoId(item);
+    const key = `video-${videoState.group}-${videoState.scope}-${index}`;
+    const picked = videoGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const badge = item.tag || item.scope;
+    const length = item.len ? `<span class="video-len">${item.len}</span>` : "";
+    const art = videoArtFor(item);
+    const thumb = `<span class="history-thumb video-thumb kind-${art}">${videoArt[art] || videoArt.kid}<span class="thumb-overlay format-video"><span class="video-name">${item.title}</span></span><span class="composer-badge">${badge}</span>${length}</span>`;
+    const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="영상 링크">↗ 영상 공유하기</button>`,
+      item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    const extra = item.sheetUrl
+      ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">연주 악보 보기 (1) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} 열기 <span aria-hidden="true">↗</span></a></div></div>`
+      : "";
+    return `
+      <li class="history-card video-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.title} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot video-foot">
+          <span class="history-caption">${item.title}${item.source ? `<i>출처 ${item.source}</i>` : ""}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+  syncToolbar(videoGrid);
+}
+
+function showVideo() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
+  songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  videoView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "음악 동영상 | 연정쌤의 음악 교실";
+  renderVideo();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll("#video-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
+  videoState.group = button.dataset.format;
+  videoState.scope = "all";
+  renderVideo();
+}));
+
+document.querySelector("#video-tabs").addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-scope]");
+  if (!tab) return;
+  videoState.scope = tab.dataset.scope;
+  renderVideo();
+});
+
+wireResourceGrid(videoGrid, {
+  selectAll: document.querySelector("#video-select-all"),
+  favTool: document.querySelector('#video-view [data-tool="favorite"]'),
+  rerender: renderVideo,
+});
+
+function showHall() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  composerView.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; historyView.hidden = true;
+  theorybookView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  hallView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "음악관 | 연정쌤의 음악 교실";
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function showHistory() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  composerView.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  theorybookView.hidden = true;
+  songsView.hidden = true;
+  playView.hidden = true;
+  smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true;
+  historyView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "음악사 | 연정쌤의 음악 교실";
+  renderHistory();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.querySelectorAll(".format-switch button").forEach((button) => button.addEventListener("click", () => {
+  historyState.format = button.dataset.format;
+  renderHistory();
+}));
+
+document.querySelectorAll(".history-tabs button").forEach((button) => button.addEventListener("click", () => {
+  historyState.scope = button.dataset.scope;
+  renderHistory();
+}));
+
+renderHall();
 handleRoute();

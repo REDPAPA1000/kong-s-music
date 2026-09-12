@@ -28,6 +28,7 @@
         <a href="#grade-m3" data-route="m3">중3</a>
         <a href="#grade-h1" data-route="h1">고1</a>
         <a href="#theory" data-route="theory">이론</a>
+        <a href="#musichall" data-route="musichall">음악관</a>
       </nav>
       <div class="header-tools">
         <button id="login-button" class="header-tool login-button" type="button" aria-label="교사용 로그인"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 20v-2.2c0-3.1 2.9-5.3 6.5-5.3s6.5 2.2 6.5 5.3V20"></path></svg><span class="visually-hidden">로그인</span></button>
@@ -117,6 +118,207 @@
           <article><span>03</span><h2>음악의 형식</h2><p>동기와 악구, 다양한 곡의 구조를 살펴봐요.</p><b>자료 준비 중</b></article>
         </div>
       </section>
+
+      <section id="musichall-view" class="musichall-view" aria-labelledby="musichall-title" hidden>
+        <div class="hall-hero">
+          <p class="eyebrow">MUSIC HALL</p>
+          <h1 id="musichall-title">스마트한 수업 준비<br /><em>음악관</em></h1>
+          <p>이론·연주 멀티미디어 자료부터 에듀테크 콘텐츠까지, 음악 수업에 필요한 것을 한곳에 모았습니다.</p>
+        </div>
+        <ul id="hall-grid" class="hall-grid"></ul>
+      </section>
+
+      <section id="history-view" class="history-view" aria-labelledby="history-title" hidden>
+        <div class="history-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="history-title">음악사</h1>
+          <p>조선의 궁중 음악부터 유럽의 클래식까지!<br />역사의 흐름을 따라 음악사를 알아 보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="자료 형태">
+            <button type="button" role="tab" data-format="ppt" aria-selected="true">음악사 PPT</button>
+            <button type="button" role="tab" data-format="anim" aria-selected="false">애니메이션</button>
+          </div>
+        </div>
+        <div class="history-tabs" role="tablist" aria-label="음악사 분류">
+          <button type="button" role="tab" data-scope="all" aria-selected="true">전체</button>
+          <button type="button" role="tab" data-scope="west" aria-selected="false">서양 음악사</button>
+          <button type="button" role="tab" data-scope="korea" aria-selected="false">우리나라 음악사</button>
+        </div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="history-select-all" /><span id="history-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="history-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="composer-view" class="composer-view" aria-labelledby="composer-title" hidden>
+        <div class="history-hero composer-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="composer-title">작곡가</h1>
+          <p>위대한 음악가들의 삶!<br />시대와 인물로 따라가는 음악 이야기입니다.</p>
+          <div class="format-switch" role="tablist" aria-label="자료 형태">
+            <button type="button" role="tab" data-format="era" aria-selected="true">시대별 작곡가</button>
+            <button type="button" role="tab" data-format="webtoon" aria-selected="false">음악가 웹툰</button>
+            <button type="button" role="tab" data-format="textbook" aria-selected="false">교과서 속 작곡가</button>
+          </div>
+        </div>
+        <div id="composer-tabs" class="history-tabs" role="tablist" aria-label="작곡가 분류" hidden></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="composer-select-all" /><span id="composer-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="composer-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="theorybook-view" class="theorybook-view" aria-labelledby="theorybook-title" hidden>
+        <div class="history-hero theorybook-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="theorybook-title">음악 기초 이론</h1>
+          <p>애니메이션으로 쉽게 이해하는 음악 이론!<br />이론 학습지도 함께 활용해 보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="자료 형태">
+            <button type="button" role="tab" data-format="all" aria-selected="true">☰ 전체보기</button>
+            <button type="button" role="tab" data-format="anim" aria-selected="false">이론 애니메이션</button>
+            <button type="button" role="tab" data-format="sheet" aria-selected="false">이론 학습지</button>
+            <button type="button" role="tab" data-format="game" aria-selected="false">이론 게임</button>
+          </div>
+        </div>
+        <div id="theorybook-tabs" class="history-tabs" role="tablist" aria-label="이론 자료 분류" hidden></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="theorybook-select-all" /><span id="theorybook-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="theorybook-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="songs-view" class="songs-view" aria-labelledby="songs-title" hidden>
+        <div class="history-hero songs-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="songs-title">노래 익히기 모음</h1>
+          <p>교과서 제재곡으로는 부족할 때,<br />장르별 추가 악곡을 찾아보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="장르">
+            <button type="button" role="tab" data-format="western" aria-selected="true">서양 음악</button>
+            <button type="button" role="tab" data-format="gugak" aria-selected="false">국악</button>
+            <button type="button" role="tab" data-format="newgugak" aria-selected="false">창작국악</button>
+            <button type="button" role="tab" data-format="pop" aria-selected="false">대중음악</button>
+            <button type="button" role="tab" data-format="world" aria-selected="false">세계음악</button>
+          </div>
+        </div>
+        <div id="songs-tabs" class="history-tabs" role="tablist" aria-label="노래 분류" hidden></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="songs-select-all" /><span id="songs-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="songs-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="play-view" class="play-view" aria-labelledby="play-title" hidden>
+        <div class="history-hero play-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="play-title">음악 연주 자료집</h1>
+          <p>동요, 케이팝, OST 등 다양한 악곡!<br />모범 연주를 보며 익혀 보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="자료 분류">
+            <button type="button" role="tab" data-format="all" aria-selected="true">전체보기(PDF)</button>
+            <button type="button" role="tab" data-format="recorder" aria-selected="false">리코더 TOP 40</button>
+            <button type="button" role="tab" data-format="kalimba" aria-selected="false">칼림바 TOP 50</button>
+            <button type="button" role="tab" data-format="danso" aria-selected="false">단소·소금 TOP 40</button>
+            <button type="button" role="tab" data-format="ensemble" aria-selected="false">기악 연주곡집</button>
+          </div>
+        </div>
+        <div id="play-tabs" class="history-tabs" role="tablist" aria-label="연주곡 분류" hidden></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="play-select-all" /><span id="play-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="play-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="smart-view" class="smart-view" aria-labelledby="smart-title" hidden>
+        <div class="history-hero smart-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="smart-title">스마트 악기 연주</h1>
+          <p>교실에 악기가 없어도 OK!<br />화면으로 만나는 가상 악기</p>
+          <div class="format-switch" role="tablist" aria-label="악기 분류">
+            <button type="button" role="tab" data-format="all" aria-selected="true">☰ 전체보기</button>
+            <button type="button" role="tab" data-format="west" aria-selected="false">서양 악기</button>
+            <button type="button" role="tab" data-format="gugak" aria-selected="false">국악기</button>
+          </div>
+        </div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="smart-select-all" /><span id="smart-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="smart-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="edutech-view" class="edutech-view" aria-labelledby="edutech-title" hidden>
+        <div class="history-hero edutech-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="edutech-title">뮤직 에듀테크</h1>
+          <p>음악과 기술의 만남.<br />재미있는 실습을 통해 음악을 창작해 보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="자료 분류">
+            <button type="button" role="tab" data-format="all" aria-selected="true">☰ 전체보기</button>
+            <button type="button" role="tab" data-format="site" aria-selected="false">에듀테크 사이트</button>
+            <button type="button" role="tab" data-format="lab" aria-selected="false">에듀테크 실습하기</button>
+          </div>
+        </div>
+        <div id="edutech-tabs" class="history-tabs" role="tablist" aria-label="실습 분류" hidden></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="edutech-select-all" /><span id="edutech-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="edutech-grid" class="history-grid"></ul>
+        </div>
+      </section>
+
+      <section id="video-view" class="video-view" aria-labelledby="video-title" hidden>
+        <div class="history-hero video-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="video-title">음악 동영상</h1>
+          <p>음악의 A부터 Z까지!<br />풍성한 동영상 자료를 활용해 보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="영상 분류">
+            <button type="button" role="tab" data-format="anim" aria-selected="true">음악 애니메이션</button>
+            <button type="button" role="tab" data-format="lesson" aria-selected="false">수업 도움 동영상</button>
+            <button type="button" role="tab" data-format="inst" aria-selected="false">악기 연주법</button>
+            <button type="button" role="tab" data-format="gugak" aria-selected="false">국악 동영상</button>
+          </div>
+        </div>
+        <div id="video-tabs" class="history-tabs" role="tablist" aria-label="세부 분류"></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="video-select-all" /><span id="video-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="video-grid" class="history-grid"></ul>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -165,6 +367,11 @@
       </form>
     </dialog>
 
+    <script src="songs-data.js"></script>
+    <script src="play-data.js"></script>
+    <script src="smart-data.js"></script>
+    <script src="edutech-data.js"></script>
+    <script src="video-data.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
