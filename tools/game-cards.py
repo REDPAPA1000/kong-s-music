@@ -36,7 +36,8 @@ for card in cards:
     book = next((t.lstrip('#') for t in tags if t.endswith('권')), '')
     if not book:
         book = '공통' if '#공통' in tags else '그 밖'
-    grade = '중학' if '#중학' in tags else '공통'
+    # 놀이는 학교급을 가리지 않고 쓴다 — 학년으로 가르지 않는다
+    grade = '공통'
 
     rows.append({
         'cls_id': card['code'],

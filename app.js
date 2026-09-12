@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=d268406";
+  script.src = "listening-data.js?v=3eff834";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2636,7 +2636,7 @@ function renderBreakList(tab) {
         const id = `${tab}:${item.id}`;
         const liked = favorites.has(id);
         const time = item.lb ? `<span class="gap-time">${item.lb}</span>` : "";
-        const series = item.s && item.s !== item.t ? `<span class="gap-series">${item.s}</span>` : "";
+        const series = item.s && item.s !== item.t && item.s !== "그 밖" ? `<span class="gap-series">${item.s}</span>` : "";
         return `
         <li class="gap-card">
           <a class="gap-shot" href="${item.u}" target="_blank" rel="noopener">
