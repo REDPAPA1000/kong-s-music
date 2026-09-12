@@ -38,6 +38,11 @@ for row in rows:
     if row.get('sc_mplayer_docs'):
         sheet_viewer += 1
     video = row.get('ad_mplayer_url') or ''
+    # 추가자료 이름은 원본 표기를 쓰되, 오타만 바로잡는다
+    video_label = (row.get('ad_mplayer_disp_name') or '').strip()
+    video_label = {'동양상': '동영상', '노래익히기': '노래 익히기'}.get(video_label, video_label)
+    if video and not video_label:
+        video_label = '동영상'
     kind = row.get('mp_filter5') or ''
     if kind == '-':
         kind = ''
@@ -59,6 +64,7 @@ for row in rows:
         fields.append('s: "%s"' % sheet)
     if video:
         fields.append('v: "%s"' % video)
+        fields.append('vl: "%s"' % esc(video_label))
     lines.append('{%s}' % ','.join(fields))
 
     stats['학교급:' + (row.get('mp_filter2') or '?')] += 1

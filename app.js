@@ -2232,7 +2232,7 @@ function renderListening() {
       ? `<a class="row-btn" href="${item.s}" target="_blank" rel="noopener">악보 <span aria-hidden="true">♪</span></a>`
       : `<span class="row-none">—</span>`;
     const video = item.v
-      ? `<a class="row-btn is-ghost" href="${item.v}" target="_blank" rel="noopener">동영상</a>`
+      ? `<a class="row-btn is-ghost" href="${item.v}" target="_blank" rel="noopener">${item.vl || "동영상"}</a>`
       : `<span class="row-none">—</span>`;
     return `
       <tr class="listening-row${picked ? " is-picked" : ""}" data-id="${id}">
@@ -2282,7 +2282,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=392ab20";
+  script.src = "listening-data.js?v=21bccc4";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
