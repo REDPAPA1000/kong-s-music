@@ -6,7 +6,7 @@
     <meta name="description" content="초등 1학년부터 고등 1학년까지 함께하는 음악 수업 자료실" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef705e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='white'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
     <title>연정쌤의 음악 교실</title>
-    <link rel="stylesheet" href="styles.css?v=f7e67ee" />
+    <link rel="stylesheet" href="styles.css?v=e5a8b7f" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -325,11 +325,12 @@
           <h1 id="listening-title">음악 감상실 &amp; 악보은행</h1>
           <p>교과서 제재곡으로 부족할 때,<br />장르별 추가 악곡을 찾아보세요.</p>
         </div>
-        <div class="listening-filters" id="listening-filters"></div>
-        <div class="listening-search">
-          <label class="visually-hidden" for="listening-q">곡명 및 키워드 검색</label>
-          <input type="search" id="listening-q" placeholder="곡명 및 키워드를 입력해 주세요." />
-          <button type="button" id="listening-reset" class="listening-reset">↺ 초기화</button>
+        <div class="listening-panel">
+          <div class="listening-filters" id="listening-filters"></div>
+          <div class="listening-actions">
+            <button type="button" id="listening-reset" class="listening-reset">↺ 초기화</button>
+            <button type="button" id="listening-search" class="listening-go">검색</button>
+          </div>
         </div>
         <div class="history-body">
           <div class="history-toolbar">
@@ -338,7 +339,25 @@
               <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
             </div>
           </div>
-          <ul id="listening-grid" class="history-grid"></ul>
+          <div class="listening-tablewrap">
+            <table class="listening-table">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-pick"><span class="visually-hidden">선택</span></th>
+                  <th scope="col">학교급</th>
+                  <th scope="col">학년</th>
+                  <th scope="col" class="col-title">곡명</th>
+                  <th scope="col">장르</th>
+                  <th scope="col">영역</th>
+                  <th scope="col">유형</th>
+                  <th scope="col">듣기 · 악보</th>
+                  <th scope="col">추가자료</th>
+                  <th scope="col" class="col-fav"><span class="visually-hidden">찜하기</span></th>
+                </tr>
+              </thead>
+              <tbody id="listening-rows"></tbody>
+            </table>
+          </div>
           <nav class="listening-pager" id="listening-pager" aria-label="쪽 이동"></nav>
         </div>
       </section>
@@ -414,12 +433,12 @@
       </form>
     </dialog>
 
-    <script src="songs-data.js?v=f7e67ee"></script>
-    <script src="play-data.js?v=f7e67ee"></script>
-    <script src="smart-data.js?v=f7e67ee"></script>
-    <script src="edutech-data.js?v=f7e67ee"></script>
-    <script src="video-data.js?v=f7e67ee"></script>
-    <script src="books-data.js?v=f7e67ee"></script>
-    <script src="app.js?v=f7e67ee"></script>
+    <script src="songs-data.js?v=e5a8b7f"></script>
+    <script src="play-data.js?v=e5a8b7f"></script>
+    <script src="smart-data.js?v=e5a8b7f"></script>
+    <script src="edutech-data.js?v=e5a8b7f"></script>
+    <script src="video-data.js?v=e5a8b7f"></script>
+    <script src="books-data.js?v=e5a8b7f"></script>
+    <script src="app.js?v=e5a8b7f"></script>
   </body>
 </html>

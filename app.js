@@ -954,18 +954,18 @@ const composerItems = [
   { format: "era", no: 28, era: "근현대", art: "modernist", title: "쇤베르크", latin: "Arnold Schoenberg", years: "1874~1951", caption: "근현대_쇤베르크", url: "https://www.douclass.com/viewer/SPC_P/54590", img: "https://s3.douclass.com/pub/2026/thumb/2607/ykvvbpew9ehp.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/ah16x19o7ahy.hwpx", sheetLabel: "활동지 (hwpx)" },
   { format: "era", no: 29, era: "근현대", art: "modernist", title: "스트라빈스키", latin: "Igor Stravinsky", years: "1882~1971", caption: "근현대_스트라빈스키", url: "https://www.douclass.com/viewer/SPC_P/54591", img: "https://s3.douclass.com/pub/2026/thumb/2607/sazyq9okrwzw.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/vbxk8bf74dnk.hwpx", sheetLabel: "활동지 (hwpx)" },
   { format: "era", no: 30, era: "근현대", art: "modernist", title: "케이지", latin: "John Cage", years: "1912~1992", caption: "근현대_케이지", url: "https://www.douclass.com/viewer/SPC_P/54593", img: "https://s3.douclass.com/pub/2026/thumb/2607/4s7eiespfey2.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n9bbjrt1xbqi.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "webtoon", no: 1, scope: "해외편", art: "world", title: "모차르트", caption: "모차르트", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/54tiopseiie1.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/kintxo1j2jjn.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/yzzy7bn0srox.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 2, scope: "해외편", art: "world", title: "베토벤", caption: "베토벤", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/tlhotaa3bnvm.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/ll6z5jumkn3m.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/shno7dqjqole.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 3, scope: "해외편", art: "world", title: "차이콥스키", caption: "차이콥스키", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/lx9se4dqvfpv.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/th8w71o3tnhq.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/368kwtvq2ht2.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 4, scope: "해외편", art: "world", title: "존 케이지", caption: "존 케이지", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/birzsvhrbzcm.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/d10c3fsmyow9.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/9g37ysnnhjau.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 5, scope: "해외편", art: "world", title: "마이클 잭슨", caption: "마이클 잭슨", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/bddlimc7163g.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/0mzpauuv642o.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/q4wecii96qiq.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 6, scope: "해외편", art: "world", title: "히사이시 조", caption: "히사이시 조", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/xjzknl3b87g3.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/8sfn5f7hkkry.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/6g9n3zbvu06c.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 7, scope: "국내편", art: "korean", title: "세종 대왕과 박연", caption: "세종 대왕과 박연", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/a6im1ta3pbm0.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/9io5y8i9ut81.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/t299odiulj2w.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 8, scope: "국내편", art: "korean", title: "왕산악과 우륵", caption: "왕산악과 우륵", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/0fcgoj60vsjj.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/37smqpt7y1pc.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/kxoswshrvcbe.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 9, scope: "국내편", art: "korean", title: "황병기", caption: "황병기", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/ts0j6i5tiohe.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/o9dx88hvxe0p.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/fnwkormo50w8.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 10, scope: "국내편", art: "korean", title: "김덕수", caption: "김덕수", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/s2almgxauzk9.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/n48iqcmqx7v9.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/3wazv4vhdf5o.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 11, scope: "국내편", art: "korean", title: "조수미", caption: "조수미", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/rnh92xhcfyia.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/54vb3q02v9q8.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/sg0tvn65wmwm.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 12, scope: "국내편", art: "korean", title: "조성진", caption: "조성진", url: "https://s3.douclass.com/pub/2026/TC_PPT/2608/j2e11igj53ad.pptx", img: "https://s3.douclass.com/pub/2026/thumb/2608/9holty9mcx6e.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/o0odvsjvl7ar.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 1, scope: "해외편", art: "world", title: "모차르트", caption: "모차르트", url: "https://www.douclass.com/viewer/SPC_C/54542", img: "https://s3.douclass.com/pub/2026/thumb/2608/kintxo1j2jjn.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/yzzy7bn0srox.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 2, scope: "해외편", art: "world", title: "베토벤", caption: "베토벤", url: "https://www.douclass.com/viewer/SPC_C/54543", img: "https://s3.douclass.com/pub/2026/thumb/2608/ll6z5jumkn3m.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/shno7dqjqole.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 3, scope: "해외편", art: "world", title: "차이콥스키", caption: "차이콥스키", url: "https://www.douclass.com/viewer/SPC_C/54544", img: "https://s3.douclass.com/pub/2026/thumb/2608/th8w71o3tnhq.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/368kwtvq2ht2.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 4, scope: "해외편", art: "world", title: "존 케이지", caption: "존 케이지", url: "https://www.douclass.com/viewer/SPC_C/54545", img: "https://s3.douclass.com/pub/2026/thumb/2608/d10c3fsmyow9.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/9g37ysnnhjau.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 5, scope: "해외편", art: "world", title: "마이클 잭슨", caption: "마이클 잭슨", url: "https://www.douclass.com/viewer/SPC_C/54546", img: "https://s3.douclass.com/pub/2026/thumb/2608/0mzpauuv642o.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/q4wecii96qiq.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 6, scope: "해외편", art: "world", title: "히사이시 조", caption: "히사이시 조", url: "https://www.douclass.com/viewer/SPC_C/54547", img: "https://s3.douclass.com/pub/2026/thumb/2608/8sfn5f7hkkry.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/6g9n3zbvu06c.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 7, scope: "국내편", art: "korean", title: "세종 대왕과 박연", caption: "세종 대왕과 박연", url: "https://www.douclass.com/viewer/SPC_C/54548", img: "https://s3.douclass.com/pub/2026/thumb/2608/9io5y8i9ut81.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/t299odiulj2w.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 8, scope: "국내편", art: "korean", title: "왕산악과 우륵", caption: "왕산악과 우륵", url: "https://www.douclass.com/viewer/SPC_C/54549", img: "https://s3.douclass.com/pub/2026/thumb/2608/37smqpt7y1pc.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/kxoswshrvcbe.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 9, scope: "국내편", art: "korean", title: "황병기", caption: "황병기", url: "https://www.douclass.com/viewer/SPC_C/54550", img: "https://s3.douclass.com/pub/2026/thumb/2608/o9dx88hvxe0p.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/fnwkormo50w8.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 10, scope: "국내편", art: "korean", title: "김덕수", caption: "김덕수", url: "https://www.douclass.com/viewer/SPC_C/54551", img: "https://s3.douclass.com/pub/2026/thumb/2608/n48iqcmqx7v9.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/3wazv4vhdf5o.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 11, scope: "국내편", art: "korean", title: "조수미", caption: "조수미", url: "https://www.douclass.com/viewer/SPC_C/54552", img: "https://s3.douclass.com/pub/2026/thumb/2608/54vb3q02v9q8.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/sg0tvn65wmwm.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 12, scope: "국내편", art: "korean", title: "조성진", caption: "조성진", url: "https://www.douclass.com/viewer/SPC_C/54553", img: "https://s3.douclass.com/pub/2026/thumb/2608/9holty9mcx6e.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/o0odvsjvl7ar.pdf", sheetLabel: "활동지 (pdf)" },
   { format: "textbook", no: 1, art: "textbook", title: "생상스", work: "동물의 사육제", caption: "[생상스] 동물의 사육제", url: "https://canva.link/a0nd5vlpl64u7fs", img: "https://s3.douclass.com/pub/2026/thumb/2608/g8mu5s5nmie3.png", sheetUrl: "", sheetLabel: "" },
   { format: "textbook", no: 2, art: "textbook", title: "프로코피예프", work: "피터와 늑대", caption: "[프로코피예프] 피터와 늑대", url: "https://canva.link/53d5rdc6rg7i0xs", img: "https://s3.douclass.com/pub/2026/thumb/2608/j13wqi1c7gi4.jpg", sheetUrl: "", sheetLabel: "" },
   { format: "textbook", no: 3, art: "textbook", title: "비제", work: "&quot;아를의 여인&quot; 중 '파랑돌'", caption: "[비제] &quot;아를의 여인&quot; 중 '파랑돌'", url: "https://canva.link/6s5p051kpw5fv5j", img: "https://s3.douclass.com/pub/2026/thumb/2608/5b1gm270c108.jpg", sheetUrl: "", sheetLabel: "" },
@@ -1247,7 +1247,7 @@ function wireResourceGrid(grid, { selectAll, favTool, rerender }) {
     if (!box) return;
     if (box.checked) grid._cfg.selection.add(box.dataset.pick);
     else grid._cfg.selection.delete(box.dataset.pick);
-    box.closest(".history-card").classList.toggle("is-picked", box.checked);
+    box.closest(".history-card, .listening-row").classList.toggle("is-picked", box.checked);
     syncToolbar(grid);
   });
 
@@ -1289,7 +1289,7 @@ function wireResourceGrid(grid, { selectAll, favTool, rerender }) {
       box.checked = event.target.checked;
       if (box.checked) grid._cfg.selection.add(box.dataset.pick);
       else grid._cfg.selection.delete(box.dataset.pick);
-      box.closest(".history-card").classList.toggle("is-picked", box.checked);
+      box.closest(".history-card, .listening-row").classList.toggle("is-picked", box.checked);
     });
     syncToolbar(grid);
   });
@@ -2131,19 +2131,11 @@ wireResourceGrid(videoGrid, {
   rerender: renderVideo,
 });
 
-/* 음악 감상실 & 악보은행 — 영역별 아이콘 */
-const listeningArt = {
-  가창: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="51" y="12" width="18" height="30" rx="9"/></g><g class="a-line"><rect x="51" y="12" width="18" height="30" rx="9"/><path d="M40 36a20 20 0 0040 0"/><path d="M60 56v10M48 66h24"/></g></svg>`,
-  기악: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="20" y="28" width="80" height="30" rx="5"/></g><g class="a-line"><rect x="20" y="28" width="80" height="30" rx="5"/><path d="M34 28v30M48 28v30M62 28v30M76 28v30M90 28v30"/></g><g class="a-hair"><rect x="29" y="28" width="8" height="18" rx="2"/><rect x="43" y="28" width="8" height="18" rx="2"/><rect x="71" y="28" width="8" height="18" rx="2"/><rect x="85" y="28" width="8" height="18" rx="2"/></g></svg>`,
-  감상: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="60" cy="42" r="24"/></g><g class="a-line"><circle cx="60" cy="42" r="24"/><circle cx="60" cy="42" r="7"/><path d="M22 42a38 38 0 0176 0"/></g><g class="a-hair"><circle cx="60" cy="42" r="3"/></g></svg>`,
-};
-
 const listeningView = document.querySelector("#listening-view");
-const listeningGrid = document.querySelector("#listening-grid");
-const PAGE_SIZE = 60;
+const listeningRowsHost = document.querySelector("#listening-rows");
+const PAGE_SIZE = 50;
 
 const listeningRows = [
-  { key: "p", label: "출판사" },
   { key: "lv", label: "학교급" },
   { key: "gr", label: "학년" },
   { key: "ge", label: "장르" },
@@ -2152,34 +2144,32 @@ const listeningRows = [
 ];
 
 const listeningOrder = {
-  lv: ["초등", "중학", "중등"],
+  lv: ["초등", "중학"],
   gr: ["초등3", "초등4", "초등5", "초등6", "중학 음악①", "중학 음악②"],
   ge: ["서양", "국악", "창작국악", "대중음악", "세계음악"],
-  ar: ["가창", "기악", "감상"],
+  ar: ["가창", "감상", "기악"],
   ty: ["멜로디", "합주", "합창"],
 };
 
-const listeningState = { p: "전체", lv: "전체", gr: "전체", ge: "전체", ar: "전체", ty: "전체", q: "", page: 1 };
+// 고른 값이 없으면 전체로 본다
+const listeningState = { lv: [], gr: [], ge: [], ar: [], ty: [], q: "", page: 1 };
 let listeningLoaded = false;
 
 function listeningOptions(key) {
   const found = [];
   listeningItems.forEach((item) => {
     const value = item[key];
-    if (!value || found.includes(value)) return;
-    // 학년은 고른 학교급에 속한 것만 보여 준다
-    if (key === "gr" && listeningState.lv !== "전체" && item.lv !== listeningState.lv) return;
-    found.push(value);
+    if (value && !found.includes(value)) found.push(value);
   });
   const order = listeningOrder[key];
   if (order) found.sort((a, b) => order.indexOf(a) - order.indexOf(b));
-  return ["전체", ...found];
+  return found;
 }
 
 function listeningMatches(item) {
   for (const { key } of listeningRows) {
-    const want = listeningState[key];
-    if (want !== "전체" && item[key] !== want) return false;
+    const picked = listeningState[key];
+    if (picked.length && !picked.includes(item[key])) return false;
   }
   const q = listeningState.q.trim().toLowerCase();
   if (!q) return true;
@@ -2190,15 +2180,35 @@ function listeningId(item) {
   return `listening:${item.u}`;
 }
 
-function renderListeningFilters() {
+function buildListeningFilters() {
   const host = document.querySelector("#listening-filters");
+  if (host.dataset.ready) return;
+  host.dataset.ready = "1";
   host.innerHTML = listeningRows.map(({ key, label }) => {
-    const chips = listeningOptions(key).map((value) => {
-      const on = listeningState[key] === value;
-      return `<button type="button" role="tab" data-key="${key}" data-value="${value}" aria-selected="${on}">${value}</button>`;
-    }).join("");
-    return `<div class="filter-row"><span class="filter-label">${label}</span><div class="filter-chips">${chips}</div></div>`;
-  }).join("");
+    const boxes = listeningOptions(key).map((value) => `
+      <label class="filter-check"><input type="checkbox" data-key="${key}" value="${value}" /><span>${value}</span></label>`).join("");
+    return `<div class="filter-row"><span class="filter-label">${label}</span><div class="filter-checks">
+      <label class="filter-check"><input type="checkbox" data-key="${key}" data-all="1" checked /><span>전체</span></label>${boxes}</div></div>`;
+  }).join("") + `
+    <div class="filter-row"><span class="filter-label">검색</span><div class="filter-checks">
+      <input type="search" id="listening-q" class="filter-q" placeholder="곡명 및 키워드를 입력해 주세요." /></div></div>`;
+}
+
+function syncAllBox(key) {
+  const host = document.querySelector("#listening-filters");
+  const all = host.querySelector(`input[data-key="${key}"][data-all]`);
+  const picked = [...host.querySelectorAll(`input[data-key="${key}"]:not([data-all])`)].filter((box) => box.checked);
+  all.checked = picked.length === 0;
+}
+
+function collectListeningFilters() {
+  const host = document.querySelector("#listening-filters");
+  listeningRows.forEach(({ key }) => {
+    listeningState[key] = [...host.querySelectorAll(`input[data-key="${key}"]:not([data-all])`)]
+      .filter((box) => box.checked).map((box) => box.value);
+  });
+  listeningState.q = (document.querySelector("#listening-q")?.value || "").trim();
+  listeningState.page = 1;
 }
 
 function renderListening() {
@@ -2213,50 +2223,40 @@ function renderListening() {
     ? `총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i>`
     : `조건에 맞는 자료가 없습니다.`;
 
-  renderListeningFilters();
-
-  listeningGrid.innerHTML = slice.map((item, index) => {
+  listeningRowsHost.innerHTML = slice.length ? slice.map((item) => {
     const id = listeningId(item);
-    const key = `listening-${listeningState.page}-${index}`;
-    const picked = listeningGrid._cfg.selection.has(id);
+    const picked = listeningRowsHost._cfg.selection.has(id);
     const liked = favorites.has(id);
-    const art = listeningArt[item.ar] || listeningArt.감상;
-    const thumb = `<span class="history-thumb listening-thumb genre-${item.ge}">${art}${coverImg(item)}<span class="thumb-overlay format-listening"><span class="listening-name">${item.t}</span></span><span class="composer-badge">${item.gr}</span>${item.ty ? `<span class="video-len">${item.ty}</span>` : ""}</span>`;
-    const open = `<a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>`;
-    const menuItems = [
-      `<button role="menuitem" type="button" data-share="${item.u}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
-      item.s ? `<button role="menuitem" type="button" data-share="${item.s}" data-share-label="악보 링크">↗ 악보 공유하기</button>` : "",
-      item.v ? `<button role="menuitem" type="button" data-share="${item.v}" data-share-label="동영상 링크">↗ 동영상 공유하기</button>` : "",
-    ].filter(Boolean).join("");
-    const extras = [
-      item.s ? `<a href="${item.s}" target="_blank" rel="noopener">악보 ${sheetAction(item.s)} <span aria-hidden="true">↗</span></a>` : "",
-      item.v ? `<a href="${item.v}" target="_blank" rel="noopener">동영상 열기 <span aria-hidden="true">↗</span></a>` : "",
-    ].filter(Boolean);
-    const extra = extras.length
-      ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">추가 자료 (${extras.length}) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden>${extras.join("")}</div></div>`
+    const audio = `<a class="row-btn" href="${item.u}" target="_blank" rel="noopener">음원 <span aria-hidden="true">▶</span></a>`;
+    const sheet = item.s
+      ? `<a class="row-btn" href="${item.s}" target="_blank" rel="noopener">악보 <span aria-hidden="true">♪</span></a>`
       : "";
+    const video = item.v
+      ? `<a class="row-btn is-ghost" href="${item.v}" target="_blank" rel="noopener">동영상</a>`
+      : `<span class="row-none">—</span>`;
     return `
-      <li class="history-card listening-card${picked ? " is-picked" : ""}" data-id="${id}">
-        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.t} 선택</span></label>
-        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
-        ${open}
-        <div class="history-foot listening-foot">
-          <span class="history-caption">${item.t}${item.n ? `<em>${item.n}</em>` : ""}<i>${item.p} · ${item.ge} · ${item.ar}</i></span>
-          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>
-        </div>
-        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
-        ${extra}
-      </li>`;
-  }).join("");
+      <tr class="listening-row${picked ? " is-picked" : ""}" data-id="${id}">
+        <td class="col-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} aria-label="${item.t} 선택" /></td>
+        <td>${item.lv}</td>
+        <td>${item.gr}</td>
+        <th scope="row" class="col-title"><a href="${item.u}" target="_blank" rel="noopener">${item.t}</a>${item.n ? `<em>${item.n}</em>` : ""}</th>
+        <td>${item.ge}</td>
+        <td>${item.ar}</td>
+        <td>${item.ty || "—"}</td>
+        <td class="col-files">${audio}${sheet}</td>
+        <td>${video}</td>
+        <td class="col-fav"><button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button></td>
+      </tr>`;
+  }).join("") : `<tr><td colspan="10" class="listening-empty">조건에 맞는 자료가 없습니다. 조건을 줄이거나 초기화해 보세요.</td></tr>`;
 
   const pager = document.querySelector("#listening-pager");
   if (pages <= 1) {
     pager.innerHTML = "";
   } else {
-    const window_ = 5;
-    let from = Math.max(1, listeningState.page - Math.floor(window_ / 2));
-    const to = Math.min(pages, from + window_ - 1);
-    from = Math.max(1, to - window_ + 1);
+    const span = 5;
+    let from = Math.max(1, listeningState.page - Math.floor(span / 2));
+    const to = Math.min(pages, from + span - 1);
+    from = Math.max(1, to - span + 1);
     const btn = (page, text, disabled) =>
       `<button type="button" data-page="${page}"${disabled ? " disabled" : ""}${page === listeningState.page ? ' aria-current="page"' : ""}>${text}</button>`;
     const numbers = [];
@@ -2265,7 +2265,7 @@ function renderListening() {
       + numbers.join("") + btn(listeningState.page + 1, "→", listeningState.page === pages)
       + `<span class="pager-total">${listeningState.page} / ${pages}</span>`;
   }
-  syncToolbar(listeningGrid);
+  syncToolbar(listeningRowsHost);
 }
 
 function showListening() {
@@ -2273,7 +2273,7 @@ function showListening() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true;
   listeningView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
@@ -2282,19 +2282,48 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=f7e67ee";
-  script.onload = () => { listeningLoaded = true; renderListening(); };
+  script.src = "listening-data.js?v=e5a8b7f";
+  script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
   };
   document.head.appendChild(script);
 }
 
-document.querySelector("#listening-filters").addEventListener("click", (event) => {
-  const chip = event.target.closest("[data-key]");
-  if (!chip) return;
-  listeningState[chip.dataset.key] = chip.dataset.value;
-  if (chip.dataset.key === "lv") listeningState.gr = "전체";
+document.querySelector("#listening-filters").addEventListener("change", (event) => {
+  const box = event.target.closest("input[data-key]");
+  if (!box) return;
+  const key = box.dataset.key;
+  const host = document.querySelector("#listening-filters");
+  if (box.dataset.all) {
+    // 전체를 켜면 그 줄의 다른 선택을 비운다
+    host.querySelectorAll(`input[data-key="${key}"]:not([data-all])`).forEach((other) => { other.checked = false; });
+    box.checked = true;
+  } else {
+    syncAllBox(key);
+  }
+});
+
+document.querySelector("#listening-search").addEventListener("click", () => {
+  collectListeningFilters();
+  renderListening();
+});
+
+document.querySelector("#listening-filters").addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && event.target.id === "listening-q") {
+    event.preventDefault();
+    collectListeningFilters();
+    renderListening();
+  }
+});
+
+document.querySelector("#listening-reset").addEventListener("click", () => {
+  const host = document.querySelector("#listening-filters");
+  host.querySelectorAll("input[type=checkbox]").forEach((box) => { box.checked = !!box.dataset.all; });
+  const q = document.querySelector("#listening-q");
+  if (q) q.value = "";
+  listeningRows.forEach(({ key }) => { listeningState[key] = []; });
+  listeningState.q = "";
   listeningState.page = 1;
   renderListening();
 });
@@ -2307,26 +2336,7 @@ document.querySelector("#listening-pager").addEventListener("click", (event) => 
   listeningView.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
-let listeningTimer = null;
-document.querySelector("#listening-q").addEventListener("input", (event) => {
-  clearTimeout(listeningTimer);
-  const value = event.target.value;
-  listeningTimer = setTimeout(() => {
-    listeningState.q = value;
-    listeningState.page = 1;
-    renderListening();
-  }, 200);
-});
-
-document.querySelector("#listening-reset").addEventListener("click", () => {
-  listeningRows.forEach(({ key }) => { listeningState[key] = "전체"; });
-  listeningState.q = "";
-  listeningState.page = 1;
-  document.querySelector("#listening-q").value = "";
-  renderListening();
-});
-
-wireResourceGrid(listeningGrid, {
+wireResourceGrid(listeningRowsHost, {
   selectAll: document.querySelector("#listening-select-all"),
   favTool: document.querySelector('#listening-view [data-tool="favorite"]'),
   rerender: renderListening,
@@ -2384,7 +2394,6 @@ function renderBooks() {
     const picked = booksGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.scope || (item.group === "instrument" ? "가창 및 악기" : "창작 및 진로");
-    // 표지 이미지가 있으면 덮어 씌우고, 불러오지 못하면 직접 그린 그림이 그대로 남는다
     const cover = item.img
       ? `<img class="book-cover" src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
       : "";
@@ -2411,7 +2420,7 @@ function showBooks() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   booksView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 도서 | 연정쌤의 음악 교실";
