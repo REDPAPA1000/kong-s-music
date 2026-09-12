@@ -2283,7 +2283,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=7037c3a";
+  script.src = "listening-data.js?v=f2119bd";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2448,38 +2448,8 @@ wireResourceGrid(booksGrid, {
   rerender: renderBooks,
 });
 
-/* 수업도구 — 두클래스 제공 도구로 연결한다 */
-const classTools = [
-  { key: "attention", label: "깜깜이", desc: "화면을 가려 집중시키기", tone: "indigo",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M30 6a18 18 0 100 36 15 15 0 010-36z"/><circle cx="36" cy="15" r="1.8"/><circle cx="40" cy="23" r="1.4"/></svg>` },
-  { key: "stopwatch", label: "스톱워치", desc: "경과 시간 재기", tone: "teal",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="27" r="16"/><path d="M24 27v-9M19 5h10M24 5v6M38 14l3-3"/></svg>` },
-  { key: "ladder", label: "사다리", desc: "사다리 타기로 정하기", tone: "orange",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6v36M34 6v36M14 16h20M14 26h20M14 36h20"/></svg>` },
-  { key: "scoreboard", label: "모둠 점수", desc: "모둠별 점수 기록", tone: "magenta",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="17" r="6"/><circle cx="32" cy="19" r="5"/><path d="M7 40c0-6 5-10 10-10s10 4 10 10M27 40c0-5 4-8 8-8s7 3 7 8"/></svg>` },
-  { key: "chooser", label: "시킴이", desc: "무작위로 발표자 뽑기", tone: "violet",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="7"/><path d="M11 41c0-7 6-12 13-12s13 5 13 12"/><path d="M24 29v12"/></svg>` },
-  { key: "board", label: "판서", desc: "화면에 바로 쓰고 그리기", tone: "gold",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="10" width="36" height="24" rx="3"/><path d="M16 40h16M24 34v6"/><path d="M14 22h9M14 27h14"/></svg>` },
-  { key: "timer", label: "타이머", desc: "남은 시간 재기", tone: "salmon",
-    art: `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 6h20M14 42h20"/><path d="M17 6c0 9 7 12 7 18s-7 9-7 18M31 6c0 9-7 12-7 18s7 9 7 18"/></svg>` },
-];
-
-const TOOL_BASE = "https://chasi.douclass.com/tools/%s/index.html";
+/* 수업도구 — 화면과 기능은 tools.js 에 있다 */
 const toolsView = document.querySelector("#tools-view");
-const toolsGrid = document.querySelector("#tools-grid");
-
-function renderTools() {
-  toolsGrid.innerHTML = classTools.map((tool) => `
-    <li class="tool-card tone-${tool.tone}">
-      <a href="${TOOL_BASE.replace("%s", tool.key)}" target="_blank" rel="noopener">
-        <span class="tool-icon" aria-hidden="true">${tool.art}</span>
-        <span class="tool-text"><strong>${tool.label}</strong><em>${tool.desc}</em></span>
-        <span class="tool-go" aria-hidden="true">↗</span>
-      </a>
-    </li>`).join("");
-}
 
 function showTools() {
   homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
@@ -2487,11 +2457,11 @@ function showTools() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
-  booksView.hidden = true; toolsView.hidden = true;
+  booksView.hidden = true;
   toolsView.hidden = false;
   setCurrentNav("tools");
   document.title = "수업도구 | 연정쌤의 음악 교실";
-  renderTools();
+  if (typeof renderTools === "function") renderTools();
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
