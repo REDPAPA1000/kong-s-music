@@ -43,7 +43,9 @@ for card in cards:
         'cls_id': card['code'],
         'cls_title': title,
         'cls_thumbnail': card['img'],
-        'cls_url': SITE + card['detail'],
+        # startSinglePlay() 가 여는 주소 — 누르면 게임이 바로 뜬다
+        'cls_url': '%s/center/game/play?code=%s&isLand=true' % (SITE, card['code']),
+        'detail_url': SITE + card['detail'],
         'cls_ftype': 'URL',
         'rest_label': '',
         'rest_type': KIND,
