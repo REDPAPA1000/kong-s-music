@@ -2305,7 +2305,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=a5eff55";
+  script.src = "listening-data.js?v=18a3737";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2933,5 +2933,40 @@ function showActlist(tab) {
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
+/* 홈 사진의 오른쪽 테두리를 네비 마지막 항목(진로활동) 글자에 맞춘다.
+   네비는 가운데로 모이고 사진은 칸 배치를 따라가서, 화면 너비마다 어긋나는 양이
+   달라진다. 그래서 CSS 로는 묶이지 않아 여기서 재서 맞춘다. */
+function alignHeroPhoto() {
+  const card = document.querySelector(".portrait-card");
+  const nav = document.querySelector('.grade-nav a[data-route="activity"]')
+    || document.querySelector(".grade-nav a:last-of-type");
+  const intro = document.querySelector(".hero-intro");
+  if (!card || !nav || !intro) return;
+
+  card.style.setProperty("--photo-shift", "0px");
+  if (window.innerWidth < 1100) return;      // 좁은 화면은 위아래로 쌓이니 그대로 둔다
+
+  const cardBox = card.getBoundingClientRect();
+  let shift = nav.getBoundingClientRect().right - cardBox.right;
+
+  // 왼쪽으로 갈 때는 소개 문장과 노란 딱지가 부딪히지 않을 만큼만
+  const room = cardBox.left - 38 - intro.getBoundingClientRect().right - 24;
+  if (shift < -room) shift = -room;
+  // 오른쪽으로 갈 때는 쪽 여백을 넘지 않을 만큼만
+  const edge = document.documentElement.clientWidth
+    - parseFloat(getComputedStyle(document.querySelector(".home-view")).paddingRight);
+  shift = Math.min(shift, edge - cardBox.right);
+
+  card.style.setProperty("--photo-shift", Math.round(shift) + "px");
+}
+
+let heroAlignTimer = null;
+window.addEventListener("resize", () => {
+  clearTimeout(heroAlignTimer);
+  heroAlignTimer = setTimeout(alignHeroPhoto, 120);
+});
+window.addEventListener("load", alignHeroPhoto);
+
 renderHall();
 handleRoute();
+alignHeroPhoto();
