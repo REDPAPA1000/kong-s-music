@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=6cc1e4d";
+  script.src = "listening-data.js?v=6565ad0";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2586,9 +2586,9 @@ const breakLists = {
   card: { items: () => cardItems, empty: "두클래스 카드 짝 맞추기 목록을 주시면 이 자리에 넣겠습니다." },
   word: { items: () => wordItems, empty: "두클래스 숨은 단어 찾기 목록을 주시면 이 자리에 넣겠습니다." },
 };
+// 학교급으로는 가르지 않는다 — 초등·중등·고등이 같은 자료를 쓴다
 const breakFilters = [
   { key: "s", label: "묶음" },
-  { key: "gr", label: "학년" },
   { key: "ty", label: "갈래" },
   { key: "lb", label: "걸리는 시간" },
 ];
@@ -2647,7 +2647,7 @@ function renderBreakList(tab) {
             ${time}${series}
           </a>
           <div class="gap-foot">
-            <p class="gap-kind">${item.tg || `[${item.ty || "자료"}] ${item.gr || "공통"}`}</p>
+            <p class="gap-kind">${item.tg || `[${item.ty || "자료"}]`}</p>
             <p class="gap-title">${item.t}</p>
             ${item.by ? `<p class="gap-by">BY ${item.by}</p>` : ""}
           </div>

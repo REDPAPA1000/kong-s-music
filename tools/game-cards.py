@@ -10,6 +10,7 @@
 """
 import collections
 import io
+import re
 import json
 import os
 import sys
@@ -21,6 +22,8 @@ SRC_NAME, OUT_NAME, KIND = (sys.argv[1:4] + ['chosung-cards.json', 'chosung.json
 SRC = os.path.join(ROOT, 'tmp', SRC_NAME)
 OUT = os.path.join(ROOT, 'tmp', OUT_NAME)
 SITE = 'https://canvas.douclass.com'
+# 학교급을 가리키는 꼬리표 — #초등 #중학 #고등 #1권 #3단원 #공통 …
+LEVEL_TAG = re.compile(r'^#(초등|초|중학|중등|중|고등|고|공통|\d+학년|\d+권|\d+단원)$')
 
 cards = json.load(io.open(SRC, encoding='utf-8'))
 rows = []
@@ -32,12 +35,11 @@ for card in cards:
     by = next((t[3:].strip() for t in text if t.startswith('BY ')), '')
     tags = [t for t in text[1:] if t.startswith('#')]
 
-    # 교과서 권을 묶음으로 삼는다
-    book = next((t.lstrip('#') for t in tags if t.endswith('권')), '')
-    if not book:
-        book = '공통' if '#공통' in tags else '그 밖'
-    # 놀이는 학교급을 가리지 않고 쓴다 — 학년으로 가르지 않는다
-    grade = '공통'
+    # 놀이는 초등·중등·고등 어디서나 같이 쓴다.
+    # 그래서 학교급·교과서 권·단원 꼬리표는 떼고, 묶음도 두지 않는다.
+    tags = [t for t in tags if not LEVEL_TAG.match(t)]
+    book = ''
+    grade = ''
 
     rows.append({
         'cls_id': card['code'],
@@ -54,8 +56,7 @@ for card in cards:
         'by': by,
         'book': book,
     })
-    stats['묶음:' + book] += 1
-    stats['학년:' + grade] += 1
+    stats['꼬리표 수:%d' % len(tags)] += 1
 
 json.dump({'paging': {'total_count': len(rows)}, 'ret_data': rows},
           io.open(OUT, 'w', encoding='utf-8'), ensure_ascii=False)

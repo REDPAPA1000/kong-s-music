@@ -62,7 +62,8 @@ def build(src_names):
         fields = [
             'id: "%s"' % row['cls_id'],
             't: "%s"' % title,
-            's: "%s"' % esc(row.get('book') or series_of(title)),
+            # book 이 들어 있으면 그것만 쓴다. 빈 값이면 묶음을 두지 않는다는 뜻이다.
+            's: "%s"' % esc(row['book'] if 'book' in row else series_of(title)),
             'u: "%s"' % esc(row.get('cls_url') or row.get('cls_fname')),
             'img: "%s"' % esc(row.get('cls_thumbnail')),
             'lb: "%s"' % esc(row.get('rest_label')),
@@ -74,7 +75,7 @@ def build(src_names):
         if row.get('by'):
             fields.append('by: "%s"' % esc(row['by']))
         lines.append('{%s}' % ','.join(fields))
-        stats['묶음:' + (row.get('book') or series_of(title))] += 1
+        stats['묶음:' + ((row['book'] if 'book' in row else series_of(title)) or '없음')] += 1
         stats['길이:' + (row.get('rest_label') or '없음')] += 1
         stats['갈래:' + (row.get('rest_type') or '없음')] += 1
         stats['학년:' + (row.get('rest_grade') or '없음')] += 1
