@@ -761,11 +761,12 @@ function renderTools() {
   const grid = document.querySelector("#tools-grid");
   if (!grid) return;
   grid.innerHTML = classTools.map((tool) => `
-    <li class="tool-card tone-${tool.tone}">
-      <button type="button" data-open="${tool.key}">
-        <span class="tool-icon" aria-hidden="true">${tool.art}</span>
-        <span class="tool-text"><strong>${tool.label}</strong><em>${tool.desc}</em></span>
-        <span class="tool-go-mark" aria-hidden="true">›</span>
+    <li class="hall-item tone-${tool.tone}">
+      <button class="tool-blob" type="button" data-open="${tool.key}">
+        <span class="tool-mark" aria-hidden="true">${tool.art}</span>
+        <span class="hall-label">${tool.label}</span>
+        <span class="hall-desc">${tool.desc}</span>
+        <span class="hall-arrow" aria-hidden="true">→</span>
       </button>
     </li>`).join("");
 }

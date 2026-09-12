@@ -9,6 +9,8 @@ import collections
 import io
 import json
 import os
+import sys
+from importlib import import_module
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tmp', 'listening.json')
@@ -70,6 +72,27 @@ for row in rows:
 
     stats['학교급:' + (row.get('mp_filter2') or '?')] += 1
     stats['장르:' + (row.get('mp_filter1') or '?')] += 1
+
+
+# 지학사 '노래 익히기 모음' 가운데 두산동아 목록에 없는 곡을 뒤에 덧붙인다.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+jihak = import_module('jihak-songs')
+for title, genre in jihak.MISSING:
+    token = jihak.TOKENS[title]
+    url = jihak.link(token)
+    lines.append('{%s}' % ','.join([
+        'p: "지학사"',
+        'lv: "중학"',
+        'gr: "%s"' % jihak.grade(token),
+        'ge: "%s"' % genre,
+        'ar: "가창"',
+        'ty: ""',
+        't: "%s"' % esc(title),
+        'u: "%s"' % url,
+        'v: "%s"' % url,
+        'vl: "노래 익히기"',
+    ]))
+print('지학사 보탠 곡 %d개' % len(jihak.MISSING))
 
 with io.open(OUT, 'w', encoding='utf-8') as handle:
     handle.write('const listeningItems = [\n' + ',\n'.join(lines) + '\n];\n')

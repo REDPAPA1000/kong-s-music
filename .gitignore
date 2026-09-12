@@ -3,3 +3,4 @@ output/
 tmp/
 assets/yeonjeong-teacher-cutout.png
 
+tools/__pycache__/
