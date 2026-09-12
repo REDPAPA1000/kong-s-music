@@ -798,3 +798,5 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 :root[data-theme="dark"] .book-thumb.kind-classic { --art-fill: #2b2d4d; --art-ink: #a7abee; --art-bg: #1a1b2c; background: linear-gradient(150deg, #212238, #1a1b2c); }
 :root[data-theme="dark"] .book-thumb.kind-career { --art-fill: #233d2c; --art-ink: #8ed3a6; --art-bg: #16241b; background: linear-gradient(150deg, #1c2e22, #16241b); }
 :root[data-theme="dark"] .book-name { color: #1b1420; background: rgba(255,255,255,.88); }
+.book-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: var(--art-bg); }
+.book-card .composer-badge { z-index: 2; }

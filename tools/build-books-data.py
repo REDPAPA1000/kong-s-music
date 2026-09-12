@@ -9,6 +9,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'tools', 'books-data.py')
 BOOK = 'https://onbook.douclass.com/bookDetail/%s'
+THUMB = 'https://s3.douclass.com/pub/%s/thumb/%s/%s.png'
 
 ns = {}
 with io.open(SRC, encoding='utf-8') as handle:
@@ -27,6 +28,10 @@ for group, group_label, scope, art, rows in ns['GROUPS']:
                   'title: "%s"' % esc(title), 'url: "%s"' % (BOOK % book_id)]
         if scope:
             fields.append('scope: "%s"' % scope)
+        token = ns['THUMBS'].get(book_id)
+        if token:
+            year, month, fid = token.split('/')
+            fields.append('img: "%s"' % (THUMB % (year, month, fid)))
         lines.append('  { %s },' % ', '.join(fields))
     print('%-18s %-12s %3d' % (group_label, scope or '-', len(rows)))
     total += len(rows)

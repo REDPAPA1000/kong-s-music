@@ -2376,7 +2376,12 @@ function renderBooks() {
     const picked = booksGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.scope || (item.group === "instrument" ? "가창 및 악기" : "창작 및 진로");
-    const thumb = `<span class="history-thumb book-thumb kind-${item.art}">${bookArt[item.art] || bookArt.classic}<span class="thumb-overlay format-book"><span class="book-name">${item.title}</span></span><span class="composer-badge">${badge}</span></span>`;
+    // 표지 이미지가 있으면 덮어 씌우고, 불러오지 못하면 직접 그린 그림이 그대로 남는다
+    const cover = item.img
+      ? `<img class="book-cover" src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
+      : "";
+    const overlay = item.img ? "" : `<span class="thumb-overlay format-book"><span class="book-name">${item.title}</span></span>`;
+    const thumb = `<span class="history-thumb book-thumb kind-${item.art}">${bookArt[item.art] || bookArt.classic}${cover}${overlay}<span class="composer-badge">${badge}</span></span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     return `
       <li class="history-card book-card${picked ? " is-picked" : ""}" data-id="${id}">
