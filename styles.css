@@ -807,3 +807,35 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .history-thumb:has(.cover-shot) .thumb-overlay { display: none; }
 .history-thumb:has(.cover-shot) .composer-badge,
 .history-thumb:has(.cover-shot) .video-len { z-index: 2; }
+
+/* ── 수업도구 ─────────────────────────────────────── */
+.tools-hero { background: linear-gradient(150deg, #eef0ff, #dfe3fb); }
+:root[data-theme="dark"] .tools-hero { background: linear-gradient(150deg, #21243a, #1a1c2c); }
+
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; padding: 0; list-style: none; }
+.tool-card { border: 1px solid var(--line); border-radius: 14px; background: var(--card); overflow: hidden; transition: transform .12s ease, border-color .12s ease; }
+.tool-card:hover { transform: translateY(-2px); border-color: var(--tone, #6c6ce0); }
+.tool-card a { display: flex; align-items: center; gap: 12px; padding: 16px; color: var(--ink); text-decoration: none; }
+.tool-icon { display: grid; place-items: center; flex: none; width: 46px; height: 46px; border-radius: 12px; background: var(--tone-bg, #eef0ff); }
+.tool-icon svg { width: 26px; height: 26px; fill: none; stroke: var(--tone, #6c6ce0); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.tool-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tool-text strong { font-size: .94rem; font-weight: 800; letter-spacing: -.03em; }
+.tool-text em { color: var(--muted); font-size: .76rem; font-style: normal; font-weight: 600; }
+.tool-go { margin-left: auto; color: var(--muted); font-size: .9rem; font-weight: 800; }
+.tools-note { margin: 22px 0 0; color: var(--muted); font-size: .76rem; font-weight: 600; text-align: center; }
+
+.tool-card.tone-indigo { --tone: #5a5fd0; --tone-bg: #eceefc; }
+.tool-card.tone-teal { --tone: #2f9c8a; --tone-bg: #e3f6f2; }
+.tool-card.tone-orange { --tone: #d1762f; --tone-bg: #fdeee0; }
+.tool-card.tone-magenta { --tone: #c14d8b; --tone-bg: #fbe7f1; }
+.tool-card.tone-violet { --tone: #8a5ce0; --tone-bg: #f2ebfd; }
+.tool-card.tone-gold { --tone: #c08a1e; --tone-bg: #fbf1d9; }
+.tool-card.tone-salmon { --tone: #d5573a; --tone-bg: #fde9e4; }
+
+:root[data-theme="dark"] .tool-card.tone-indigo { --tone-bg: #23263c; }
+:root[data-theme="dark"] .tool-card.tone-teal { --tone-bg: #17302c; }
+:root[data-theme="dark"] .tool-card.tone-orange { --tone-bg: #33251a; }
+:root[data-theme="dark"] .tool-card.tone-magenta { --tone-bg: #331d2a; }
+:root[data-theme="dark"] .tool-card.tone-violet { --tone-bg: #2a2140; }
+:root[data-theme="dark"] .tool-card.tone-gold { --tone-bg: #332b16; }
+:root[data-theme="dark"] .tool-card.tone-salmon { --tone-bg: #351f1a; }
