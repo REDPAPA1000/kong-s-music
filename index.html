@@ -342,6 +342,30 @@
           <nav class="listening-pager" id="listening-pager" aria-label="쪽 이동"></nav>
         </div>
       </section>
+
+      <section id="books-view" class="books-view" aria-labelledby="books-title" hidden>
+        <div class="history-hero books-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="books-title">예스24 음악도서</h1>
+          <p>음악 지식이 뿜뿜!<br />관심 있는 책을 골라서 바로 읽어 보세요.</p>
+          <div class="format-switch" role="tablist" aria-label="도서 분류">
+            <button type="button" role="tab" data-format="all" aria-selected="true">☰ 전체보기</button>
+            <button type="button" role="tab" data-format="instrument" aria-selected="false">가창 및 악기</button>
+            <button type="button" role="tab" data-format="genre" aria-selected="false">장르별 음악 상식</button>
+            <button type="button" role="tab" data-format="career" aria-selected="false">창작 및 진로</button>
+          </div>
+        </div>
+        <div id="books-tabs" class="history-tabs" role="tablist" aria-label="장르 분류" hidden></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="books-select-all" /><span id="books-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="books-grid" class="history-grid"></ul>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -395,6 +419,7 @@
     <script src="smart-data.js"></script>
     <script src="edutech-data.js"></script>
     <script src="video-data.js"></script>
+    <script src="books-data.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

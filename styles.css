@@ -770,3 +770,31 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 @media (max-width: 1080px) and (min-width: 761px) {
   .hall-grid { grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 44px); }
 }
+
+/* ── 음악 도서 ─────────────────────────────────────── */
+.books-hero { background: linear-gradient(150deg, #fdeef6, #f8dcec); }
+:root[data-theme="dark"] .books-hero { background: linear-gradient(150deg, #2f1f2a, #241820); }
+
+.book-thumb { --art-fill: #f2dcea; --art-ink: #9a4a78; --art-accent: #c9569a; --art-bg: #fff8fc; background: linear-gradient(150deg, #fff8fc, #f6e4ef); }
+.book-thumb.kind-uku { --art-fill: #f5e2c4; --art-ink: #96683a; --art-accent: #c98c3a; --art-bg: #fffaf2; background: linear-gradient(150deg, #fffaf2, #f7ebd8); }
+.book-thumb.kind-classic { --art-fill: #dfe0f7; --art-ink: #545bb0; --art-accent: #6a72d5; --art-bg: #f8f9ff; background: linear-gradient(150deg, #f8f9ff, #e7e9fa); }
+.book-thumb.kind-korean { --art-fill: #f7e3d4; --art-ink: #a8703f; --art-accent: #d1762f; --art-bg: #fffaf4; background: linear-gradient(150deg, #fef8f1, #f6e6d5); }
+.book-thumb.kind-pop { --art-fill: #f5dce6; --art-ink: #a84a6f; --art-accent: #d5477e; --art-bg: #fff7fa; background: linear-gradient(150deg, #fff7fa, #f8e4ed); }
+.book-thumb.kind-career { --art-fill: #dcf0e2; --art-ink: #3f8a5c; --art-accent: #3aab6c; --art-bg: #f5fdf8; background: linear-gradient(150deg, #f5fdf8, #e2f4e8); }
+
+.format-book { align-items: flex-end; padding: 12px 16px 16px; }
+.book-name { max-width: 100%; padding: 4px 10px; color: #7d2f5c; background: rgba(255,255,255,.92); border-radius: 8px; font-size: .76rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; text-align: left; }
+.kind-uku .book-name, .kind-korean .book-name { color: #7a4a1e; }
+.kind-classic .book-name { color: #3b4191; }
+.kind-pop .book-name { color: #8a2f56; }
+.kind-career .book-name { color: #26603f; }
+
+.book-foot { align-items: flex-start; }
+.book-foot .history-caption { display: flex; flex-direction: column; gap: 3px; }
+.book-foot .history-caption i { color: var(--muted); font-size: .66rem; font-weight: 700; font-style: normal; opacity: .8; }
+
+:root[data-theme="dark"] .book-thumb { --art-fill: #3d2434; --art-ink: #e290bd; --art-bg: #241620; background: linear-gradient(150deg, #2e1c28, #241620); }
+:root[data-theme="dark"] .book-thumb.kind-uku, :root[data-theme="dark"] .book-thumb.kind-korean { --art-fill: #3d3120; --art-ink: #d8a56d; --art-bg: #241d13; background: linear-gradient(150deg, #2e2618, #241d13); }
+:root[data-theme="dark"] .book-thumb.kind-classic { --art-fill: #2b2d4d; --art-ink: #a7abee; --art-bg: #1a1b2c; background: linear-gradient(150deg, #212238, #1a1b2c); }
+:root[data-theme="dark"] .book-thumb.kind-career { --art-fill: #233d2c; --art-ink: #8ed3a6; --art-bg: #16241b; background: linear-gradient(150deg, #1c2e22, #16241b); }
+:root[data-theme="dark"] .book-name { color: #1b1420; background: rgba(255,255,255,.88); }
