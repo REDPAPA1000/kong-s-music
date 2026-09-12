@@ -557,7 +557,8 @@ const loginDialog = document.querySelector("#login-dialog");
 function hideAllViews() {
   [homeView, aboutView, domainPreview, libraryView, theoryView, hallView, historyView,
     composerView, theorybookView, songsView, playView, smartView, edutechView,
-    videoView, listeningView, booksView, toolsView, breakView, breaklistView]
+    videoView, listeningView, booksView, toolsView, breakView, breaklistView,
+    activityView, momentView]
     .forEach((view) => { if (view) view.hidden = true; });
 }
 
@@ -583,6 +584,7 @@ function showHome() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -603,6 +605,7 @@ function showGrade(grade) {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -627,6 +630,7 @@ function showTheory() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -726,6 +730,8 @@ function handleRoute() {
   else if (hash === "#tools") showTools();
   else if (hash === "#break") showBreak();
   else if (hash.startsWith("#break-") && breakLists[hash.slice(7)]) showBreaklist(hash.slice(7));
+  else if (hash === "#activity") showActivity();
+  else if (hash === "#activity-moment") showMoment();
   else showHome();
   document.querySelector("#grade-nav").classList.remove("open");
   document.querySelector(".menu-button").setAttribute("aria-expanded", "false");
@@ -1418,6 +1424,7 @@ function showComposer() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   composerView.hidden = false;
   setCurrentNav("musichall");
   document.title = "작곡가 | 연정쌤의 음악 교실";
@@ -1543,6 +1550,7 @@ function showTheorybook() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   theorybookView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
@@ -1658,6 +1666,7 @@ function showSongs() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   songsView.hidden = false;
   setCurrentNav("musichall");
   document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
@@ -1773,6 +1782,7 @@ function showPlay() {
   songsView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   playView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
@@ -1869,6 +1879,7 @@ function showSmart() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   smartView.hidden = false;
   setCurrentNav("musichall");
   document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
@@ -2115,6 +2126,7 @@ function showVideo() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   videoView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 동영상 | 연정쌤의 음악 교실";
@@ -2284,6 +2296,7 @@ function showListening() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   listeningView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
@@ -2292,7 +2305,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=1afa5c7";
+  script.src = "listening-data.js?v=bfbae57";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2483,6 +2496,7 @@ function showHall() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   hallView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악관 | 연정쌤의 음악 교실";
@@ -2498,6 +2512,7 @@ function showHistory() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
+  activityView.hidden = true; momentView.hidden = true;
   historyView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악사 | 연정쌤의 음악 교실";
@@ -2742,6 +2757,126 @@ function showBreaklist(tab) {
   setCurrentNav("break");
   document.title = `${breakLists[tab].label} | 연정쌤의 음악 교실`;
   renderBreaklist();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+/* ── 창의적 체험활동 ─────────────────────────────── */
+
+const activityView = document.querySelector("#activity-view");
+const activityGrid = document.querySelector("#activity-grid");
+const momentView = document.querySelector("#moment-view");
+const momentGrid = document.querySelector("#moment-grid");
+
+const activityCards = [
+  { key: "moment", label: "계기 교육", desc: "달마다 뜻깊은 날", tone: "salmon", ready: true,
+    art: `<svg viewBox="0 0 48 48"><rect x="5" y="9" width="38" height="33" rx="5" fill="#fff" stroke="#3d4157" stroke-width="2.4"/><path d="M5 18h38" stroke="#3d4157" stroke-width="2.4"/><path d="M14 4v9M34 4v9" stroke="#3d4157" stroke-width="3" stroke-linecap="round"/><rect x="12" y="24" width="8" height="7" rx="2" fill="#ef705e"/><rect x="24" y="24" width="8" height="7" rx="2" fill="#f7bb2e"/><rect x="12" y="34" width="8" height="4" rx="2" fill="#c9cbe0"/><rect x="24" y="34" width="8" height="4" rx="2" fill="#c9cbe0"/></svg>` },
+  { key: "self", label: "자율 · 자치 활동", desc: "스스로 꾸리는 활동", tone: "teal",
+    art: `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="#3ecf96"/><path d="M15 24.5l6 6 12-13" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>` },
+  { key: "club", label: "동아리 활동", desc: "같은 관심끼리", tone: "violet",
+    art: `<svg viewBox="0 0 48 48"><circle cx="16" cy="15" r="7" fill="#9a7cf0"/><circle cx="33" cy="19" r="6" fill="#f57fb0"/><path d="M4 41c0-7 5.4-12 12-12s12 5 12 12z" fill="#9a7cf0"/><path d="M23 41c0-6 4.5-10 10-10s10 4 10 10z" fill="#f57fb0"/></svg>` },
+  { key: "career", label: "진로 교육", desc: "나를 찾아가는 길", tone: "gold",
+    art: `<svg viewBox="0 0 48 48"><path d="M24 5l5.5 11.5L42 18l-9 8.6L35.2 39 24 33l-11.2 6L15 26.6 6 18l12.5-1.5z" fill="#f7bb2e"/></svg>` },
+  { key: "major", label: "학과 정보", desc: "무엇을 배울까", tone: "blue",
+    art: `<svg viewBox="0 0 48 48"><path d="M24 8L4 17l20 9 20-9z" fill="#59a9f0"/><path d="M12 22v10c0 3 5.4 6 12 6s12-3 12-6V22" fill="none" stroke="#3d4157" stroke-width="2.8" stroke-linecap="round"/><path d="M41 18v11" stroke="#f7bb2e" stroke-width="2.8" stroke-linecap="round"/></svg>` },
+  { key: "job", label: "직업 정보", desc: "어떤 일을 할까", tone: "orange",
+    art: `<svg viewBox="0 0 48 48"><rect x="4" y="15" width="40" height="26" rx="5" fill="#f2955a"/><path d="M17 15v-4a3 3 0 013-3h8a3 3 0 013 3v4" fill="none" stroke="#3d4157" stroke-width="2.8" stroke-linecap="round"/><rect x="19" y="24" width="10" height="6" rx="2" fill="#fff"/></svg>` },
+];
+
+function renderActivityHub() {
+  activityGrid.innerHTML = activityCards.map((card, i) => {
+    const inner = `
+      <span class="tool-index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+      <span class="tool-badge" aria-hidden="true">${card.art}</span>
+      <span class="hall-label">${card.label}</span>
+      <span class="hall-desc">${card.desc}</span>`;
+    return card.ready
+      ? `<li class="hall-item tone-${card.tone}">
+          <a class="tool-blob" href="#activity-moment">${inner}<span class="hall-arrow" aria-hidden="true">→</span></a>
+        </li>`
+      : `<li class="hall-item tone-${card.tone} is-soon">
+          <span class="tool-blob is-soon" aria-disabled="true">${inner}<span class="hall-soon">준비 중</span></span>
+        </li>`;
+  }).join("");
+}
+
+function showActivity() {
+  hideAllViews();
+  activityView.hidden = false;
+  setCurrentNav("activity");
+  document.title = "창의적 체험활동 | 연정쌤의 음악 교실";
+  renderActivityHub();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+/* 계기 교육 — 달마다 고른다 */
+const momentState = { month: new Date().getMonth() + 1 };
+
+function momentMonths() {
+  const found = new Set(momentItems.map((item) => item.m));
+  return Array.from({ length: 12 }, (_, i) => i + 1).filter((m) => found.has(m) || !found.size);
+}
+
+function renderMoment() {
+  const sw = document.querySelector("#moment-switch");
+  sw.innerHTML = activityCards.map((card) =>
+    `<button type="button" role="tab" data-activity-go="${card.key}"${card.ready ? "" : " disabled"} aria-selected="${card.key === "moment"}">${card.label}</button>`).join("");
+
+  const months = momentMonths();
+  if (!months.includes(momentState.month)) momentState.month = months[0] || 1;
+  document.querySelector("#moment-months").innerHTML = months.map((m) =>
+    `<button type="button" role="tab" data-month="${m}" aria-selected="${m === momentState.month}">${m}월</button>`).join("");
+
+  const list = momentItems.filter((item) => item.m === momentState.month);
+  const favorites = readFavorites();
+
+  document.querySelector("#moment-count").innerHTML = list.length
+    ? `총 <b>${list.length}개</b>의 자료가 있습니다.`
+    : `자료를 준비하고 있습니다. 두클래스 계기 교육 목록을 주시면 이 자리에 넣겠습니다.`;
+
+  momentGrid.innerHTML = list.map((item, index) => {
+    const id = `moment:${item.id}`;
+    const key = `moment-${momentState.month}-${index}`;
+    const picked = momentGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const day = item.d ? `<span class="composer-badge">${item.m}.${String(item.d).padStart(2, "0")}</span>` : "";
+    const thumb = `<span class="history-thumb moment-thumb">${coverImg(item)}<span class="thumb-overlay format-break"><span class="break-name">${item.t}</span></span>${day}</span>`;
+    return `
+      <li class="history-card break-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.t} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
+        <a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>
+        <div class="history-foot">
+          <span class="history-caption">${item.t}${item.n ? `<i>${item.n}</i>` : ""}</span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>
+          <button role="menuitem" type="button" data-share="${item.u}" data-share-label="계기 교육 링크">↗ 링크 공유하기</button>
+        </div>
+      </li>`;
+  }).join("");
+
+  syncToolbar(momentGrid);
+}
+
+wireResourceGrid(momentGrid, {
+  selectAll: document.querySelector("#moment-select-all"),
+  favTool: document.querySelector("#moment-view [data-tool=favorite]"),
+  rerender: renderMoment,
+});
+
+document.querySelector("#moment-months").addEventListener("click", (event) => {
+  const btn = event.target.closest("[data-month]");
+  if (!btn) return;
+  momentState.month = Number(btn.dataset.month);
+  renderMoment();
+});
+
+function showMoment() {
+  hideAllViews();
+  momentView.hidden = false;
+  setCurrentNav("activity");
+  document.title = "계기 교육 | 연정쌤의 음악 교실";
+  renderMoment();
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 

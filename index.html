@@ -6,7 +6,7 @@
     <meta name="description" content="초등 1학년부터 고등 1학년까지 함께하는 음악 수업 자료실" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef705e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='white'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
     <title>연정쌤의 음악 교실</title>
-    <link rel="stylesheet" href="styles.css?v=classcards-20260912" />
+    <link rel="stylesheet" href="styles.css?v=bfbae57" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -30,6 +30,7 @@
         <a href="#musichall" data-route="musichall">음악관</a>
         <a href="#tools" data-route="tools">수업도구</a>
         <a href="#break" data-route="break">쉬는 시간</a>
+        <a href="#activity" data-route="activity">체험활동</a>
       </nav>
       <div class="header-tools">
         <button id="login-button" class="header-tool login-button" type="button" aria-label="교사용 로그인"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 20v-2.2c0-3.1 2.9-5.3 6.5-5.3s6.5 2.2 6.5 5.3V20"></path></svg><span class="visually-hidden">로그인</span></button>
@@ -427,6 +428,35 @@
           <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>
         </div>
       </section>
+
+      <section id="activity-view" class="activity-view" aria-labelledby="activity-title" hidden>
+        <div class="hall-hero">
+          <p class="eyebrow">CREATIVE ACTIVITIES</p>
+          <h1 id="activity-title">교실 밖으로 넓히는<br /><em>창의적 체험활동</em></h1>
+          <p>계기 교육부터 진로 활동까지, 수업 시간 너머의 배움을 모았습니다.</p>
+        </div>
+        <ul id="activity-grid" class="hall-grid activity-grid"></ul>
+      </section>
+
+      <section id="moment-view" class="moment-view" aria-labelledby="moment-title" hidden>
+        <div class="history-hero moment-hero">
+          <a class="hall-back" href="#activity">← 체험활동</a>
+          <h1 id="moment-title">계기 교육</h1>
+          <p>달마다 찾아오는 뜻깊은 날!<br />그날의 이야기로 수업을 열어 보세요.</p>
+          <div id="moment-switch" class="format-switch" role="tablist" aria-label="체험활동 갈래"></div>
+        </div>
+        <div id="moment-months" class="history-tabs moment-months" role="tablist" aria-label="달 고르기"></div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="moment-select-all" /><span id="moment-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="moment-grid" class="history-grid"></ul>
+          <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>
+        </div>
+      </section>
     </main>
 
     <div id="tool-stage" class="tool-stage" hidden>
@@ -482,14 +512,15 @@
       </form>
     </dialog>
 
-    <script src="songs-data.js?v=1afa5c7"></script>
-    <script src="play-data.js?v=1afa5c7"></script>
-    <script src="smart-data.js?v=1afa5c7"></script>
-    <script src="edutech-data.js?v=1afa5c7"></script>
-    <script src="video-data.js?v=1afa5c7"></script>
-    <script src="books-data.js?v=1afa5c7"></script>
-    <script src="break-data.js?v=1afa5c7"></script>
-    <script src="tools.js?v=classcards-20260912"></script>
-    <script src="app.js?v=classcards-20260912"></script>
+    <script src="songs-data.js?v=bfbae57"></script>
+    <script src="play-data.js?v=bfbae57"></script>
+    <script src="smart-data.js?v=bfbae57"></script>
+    <script src="edutech-data.js?v=bfbae57"></script>
+    <script src="video-data.js?v=bfbae57"></script>
+    <script src="books-data.js?v=bfbae57"></script>
+    <script src="activity-data.js"></script>
+    <script src="break-data.js?v=bfbae57"></script>
+    <script src="tools.js?v=bfbae57"></script>
+    <script src="app.js?v=bfbae57"></script>
   </body>
 </html>

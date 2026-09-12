@@ -817,7 +817,7 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .tools-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(91,115,232,.12), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(63,198,189,.10), transparent 29rem); }
 .tools-view .hall-hero { max-width: 720px; }
 .tools-view .hall-hero p { max-width: 620px; white-space: normal; }
-.tool-blob { position: relative; display: flex; width: 100%; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; isolation: isolate; overflow: hidden; color: white; background-color: var(--hall-a); background-image: linear-gradient(180deg, rgba(8,12,33,.03) 14%, rgba(8,12,33,.86) 100%), var(--card-art), linear-gradient(140deg, var(--hall-a), var(--hall-b)); background-position: center, calc(var(--sprite-x, 0) * 33.333%) calc(var(--sprite-y, 0) * 33.333%), center; background-size: cover, 400% 400%, cover; border: 0; border-radius: 20px; box-shadow: 0 12px 28px rgba(31,38,83,.14); font: inherit; text-align: left; cursor: pointer; transition: transform .28s ease, box-shadow .28s ease; }
+.tool-blob { position: relative; display: flex; width: 100%; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; isolation: isolate; overflow: hidden; color: white; background-color: var(--hall-a); background-image: linear-gradient(180deg, rgba(8,12,33,.03) 14%, rgba(8,12,33,.86) 100%), var(--card-art, linear-gradient(transparent, transparent)), linear-gradient(140deg, var(--hall-a), var(--hall-b)); background-position: center, calc(var(--sprite-x, 0) * 33.333%) calc(var(--sprite-y, 0) * 33.333%), center; background-size: cover, 400% 400%, cover; border: 0; border-radius: 20px; box-shadow: 0 12px 28px rgba(31,38,83,.14); font: inherit; text-align: left; cursor: pointer; transition: transform .28s ease, box-shadow .28s ease; }
 .tool-blob::before { position: absolute; z-index: 0; top: 0; right: 0; width: 78px; height: 78px; content: ""; background: linear-gradient(135deg, rgba(255,255,255,.18), transparent 62%); }
 .tool-blob::after { position: absolute; z-index: 0; inset: auto 0 0; height: 56%; content: ""; background: linear-gradient(transparent, rgba(6,9,25,.48)); pointer-events: none; }
 .tool-blob:hover, .tool-blob:focus-visible { transform: translateY(-5px); box-shadow: 0 20px 36px rgba(31,38,83,.23); outline: none; }
@@ -1088,3 +1088,26 @@ body.tool-open { overflow: hidden; }
 :root[data-theme="dark"] .break-thumb { background: linear-gradient(150deg, #1a2e25, #16241d); }
 :root[data-theme="dark"] .break-name { color: #9ce2c0; background: rgba(26,46,37,.92); }
 :root[data-theme="dark"] .break-note { background: rgba(31,33,53,.65); }
+
+/* ── 창의적 체험활동 ─────────────────────────────── */
+.activity-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(245,184,32,.12), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(239,112,94,.09), transparent 29rem); }
+.activity-view .hall-hero { max-width: 720px; }
+.activity-view .hall-hero p { max-width: 620px; white-space: normal; }
+.activity-grid { grid-template-columns: repeat(6, 1fr); gap: clamp(20px, 2.4vw, 32px); margin: clamp(38px, 5vw, 58px) 0 0; }
+@media (max-width: 1180px) { .activity-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px) { .activity-grid { grid-template-columns: repeat(2, 1fr); } }
+.activity-grid .tool-blob.is-soon { cursor: default; filter: saturate(.45); opacity: .72; }
+.activity-grid .hall-soon { right: 14px; bottom: 16px; }
+
+.moment-hero { background: linear-gradient(150deg, #fff0d9, #ffe2c6 52%, #ffd9d2); }
+.moment-hero h1 { color: #5b3a10; }
+.moment-hero > p { color: #82603a; max-width: 480px; }
+.moment-hero .hall-back { color: #6b4715; }
+:root[data-theme="dark"] .moment-hero { background: linear-gradient(150deg, #332618, #2a1d18); }
+:root[data-theme="dark"] .moment-hero h1 { color: #f0bd85; }
+:root[data-theme="dark"] .moment-hero > p { color: #c79b6d; }
+.moment-months { gap: clamp(8px, 1.6vw, 22px); overflow-x: auto; }
+.moment-months button { white-space: nowrap; }
+.moment-thumb { background: linear-gradient(150deg, #fff8ee, #f8e8d6); }
+.moment-thumb + .break-name, .moment-thumb .break-name { color: #6b4715; }
+.break-card .moment-thumb ~ * .composer-badge { color: #6b4715; }
