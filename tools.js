@@ -1114,6 +1114,32 @@ document.addEventListener("keydown", (event) => {
 });
 
 window.classTools = classTools;
+
+/* 진로활동 메인 카드 — 음악관과 같은 이미지형 카드로 덧입힌다.
+   진로활동 자료 렌더링은 app.js에서 담당하므로, 이 부분은 카드 장식만 맡는다. */
+const CAREER_CARD_ART = {
+  "진로 교육": "assets/career-cards/career-education.png",
+  "학과 정보": "assets/career-cards/major-information.png",
+  "직업 정보": "assets/career-cards/job-information.png",
+};
+
+function applyCareerCardArt() {
+  document.querySelectorAll("#activity-grid .tool-blob").forEach((card) => {
+    const label = card.querySelector(".hall-label")?.textContent.trim();
+    const image = CAREER_CARD_ART[label];
+    if (!image) return;
+    card.style.setProperty("--card-art", `url('${image}')`);
+    card.style.setProperty("background-size", "cover, cover, cover");
+    card.style.setProperty("background-position", "center, center, center");
+  });
+}
+
+const activityGridForArt = document.querySelector("#activity-grid");
+if (activityGridForArt) {
+  new MutationObserver(applyCareerCardArt).observe(activityGridForArt, { childList: true });
+  window.addEventListener("hashchange", () => window.setTimeout(applyCareerCardArt, 0));
+  window.addEventListener("DOMContentLoaded", () => window.setTimeout(applyCareerCardArt, 0));
+}
 window.openTool = openTool;
 window.closeTool = closeTool;
 window.renderTools = renderTools;
