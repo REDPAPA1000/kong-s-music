@@ -1024,3 +1024,30 @@ body.tool-open { overflow: hidden; }
 .tool-side .tool-range { width: 100%; }
 .tool-set-grid .tool-chip { line-height: 1.35; }
 .tool-pane > .tool-sub { max-width: 480px; }
+
+/* ── 쉬는 시간 ────────────────────────────────────── */
+.break-view { padding: clamp(34px, 5vw, 64px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); }
+.break-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 14px; }
+.break-head h1 { margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.2rem); font-weight: 900; letter-spacing: -.04em; }
+.break-head p { margin: 0; color: var(--muted); font-size: .9rem; font-weight: 650; }
+.break-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+.break-tabs button { min-width: 116px; padding: 13px 20px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font: inherit; font-size: .9rem; font-weight: 800; cursor: pointer; transition: border-color .16s ease, color .16s ease; }
+.break-tabs button:hover { color: var(--ink); border-color: #21c17a; }
+.break-tabs button.is-on { color: #fff; background: #21c17a; border-color: #21c17a; box-shadow: 0 7px 16px rgba(33, 193, 122, .27); }
+.break-body { margin-top: clamp(26px, 4vw, 44px); }
+.break-lead { margin: 0 0 clamp(24px, 3vw, 34px); color: var(--muted); font-size: .92rem; font-weight: 650; }
+.break-grid { margin: 0; }
+.break-note { margin: 22px auto 0; width: fit-content; max-width: 100%; padding: 9px 14px; color: var(--muted); background: rgba(255,255,255,.56); border: 1px solid var(--line); border-radius: 999px; font-size: .76rem; font-weight: 650; text-align: center; }
+
+.break-empty { display: grid; place-items: center; gap: 8px; padding: clamp(46px, 8vw, 96px) 24px; color: var(--muted); background: var(--surface); border: 1px dashed var(--line); border-radius: 22px; text-align: center; }
+.break-empty p { margin: 0; font-size: .86rem; font-weight: 650; }
+.break-empty-title { color: var(--ink); font-size: 1.02rem; font-weight: 900; letter-spacing: -.03em; }
+
+.game-card { --stage-a: #d94ac0; --stage-b: #9b2fb4; display: flex; flex-direction: column; align-items: center; gap: 13px; max-width: 640px; margin: 0 auto; padding: clamp(26px, 4vw, 42px); background: var(--surface); border: 1px solid var(--line); border-radius: 26px; box-shadow: 0 16px 34px rgba(31, 38, 83, .08); text-align: center; }
+.game-kicker { margin: 0; color: #21c17a; font-size: .7rem; font-weight: 900; letter-spacing: .14em; }
+.game-card h2 { margin: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); font-weight: 900; letter-spacing: -.04em; }
+.game-desc { margin: 0; max-width: 420px; color: var(--muted); font-size: .86rem; font-weight: 650; line-height: 1.6; }
+.game-score { display: flex; gap: 18px; margin-top: 4px; color: var(--muted); font-size: .82rem; font-weight: 750; }
+.game-score b { color: var(--ink); font-size: 1.1rem; font-weight: 900; }
+.game-say { margin: 6px 0 0; padding: 11px 20px; color: #fff; background: #21c17a; border-radius: 999px; font-size: .92rem; font-weight: 800; }
+.game-say.is-wrong { background: #ef705e; }

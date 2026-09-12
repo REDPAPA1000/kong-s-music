@@ -6,7 +6,7 @@
     <meta name="description" content="초등 1학년부터 고등 1학년까지 함께하는 음악 수업 자료실" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef705e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='white'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
     <title>연정쌤의 음악 교실</title>
-    <link rel="stylesheet" href="styles.css?v=9c9dc2e" />
+    <link rel="stylesheet" href="styles.css?v=90472a0" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -29,6 +29,7 @@
         <a href="#grade-h1" data-route="h1">고1</a>
         <a href="#musichall" data-route="musichall">음악관</a>
         <a href="#tools" data-route="tools">수업도구</a>
+        <a href="#break" data-route="break">쉬는 시간</a>
       </nav>
       <div class="header-tools">
         <button id="login-button" class="header-tool login-button" type="button" aria-label="교사용 로그인"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"></circle><path d="M5.5 20v-2.2c0-3.1 2.9-5.3 6.5-5.3s6.5 2.2 6.5 5.3V20"></path></svg><span class="visually-hidden">로그인</span></button>
@@ -396,6 +397,15 @@
         <ul id="tools-grid" class="hall-grid"></ul>
         <p class="tools-note">모든 도구는 이 사이트 안에서 바로 열리며, 설정은 현재 브라우저에만 저장됩니다.</p>
       </section>
+
+      <section id="break-view" class="break-view" aria-labelledby="break-title" hidden>
+        <div class="break-head">
+          <h1 id="break-title">쉬는 시간</h1>
+          <p>쉬는 시간 활동부터 교실 운영 자료까지, 현장에서 자유롭게 활용해 보세요.</p>
+        </div>
+        <div class="break-tabs" id="break-tabs" role="tablist" aria-label="쉬는 시간 갈래"></div>
+        <div id="break-body" class="break-body"></div>
+      </section>
     </main>
 
     <div id="tool-stage" class="tool-stage" hidden>
@@ -451,13 +461,13 @@
       </form>
     </dialog>
 
-    <script src="songs-data.js?v=9c9dc2e"></script>
-    <script src="play-data.js?v=9c9dc2e"></script>
-    <script src="smart-data.js?v=9c9dc2e"></script>
-    <script src="edutech-data.js?v=9c9dc2e"></script>
-    <script src="video-data.js?v=9c9dc2e"></script>
-    <script src="books-data.js?v=9c9dc2e"></script>
-    <script src="tools.js?v=9c9dc2e"></script>
-    <script src="app.js?v=9c9dc2e"></script>
+    <script src="songs-data.js?v=90472a0"></script>
+    <script src="play-data.js?v=90472a0"></script>
+    <script src="smart-data.js?v=90472a0"></script>
+    <script src="edutech-data.js?v=90472a0"></script>
+    <script src="video-data.js?v=90472a0"></script>
+    <script src="books-data.js?v=90472a0"></script>
+    <script src="tools.js?v=90472a0"></script>
+    <script src="app.js?v=90472a0"></script>
   </body>
 </html>

@@ -554,6 +554,13 @@ const resourceGrid = document.querySelector("#resource-grid");
 const dialog = document.querySelector("#lesson-dialog");
 const loginDialog = document.querySelector("#login-dialog");
 
+function hideAllViews() {
+  [homeView, aboutView, domainPreview, libraryView, theoryView, hallView, historyView,
+    composerView, theorybookView, songsView, playView, smartView, edutechView,
+    videoView, listeningView, booksView, toolsView, breakView]
+    .forEach((view) => { if (view) view.hidden = true; });
+}
+
 function setCurrentNav(route) {
   document.querySelectorAll(".grade-nav a").forEach((link) => {
     const active = link.dataset.route === route;
@@ -575,7 +582,7 @@ function showHome() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -595,7 +602,7 @@ function showGrade(grade) {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -619,7 +626,7 @@ function showTheory() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -717,6 +724,7 @@ function handleRoute() {
   else if (hash === "#listening") showListening();
   else if (hash === "#books") showBooks();
   else if (hash === "#tools") showTools();
+  else if (hash === "#break") showBreak();
   else showHome();
   document.querySelector("#grade-nav").classList.remove("open");
   document.querySelector(".menu-button").setAttribute("aria-expanded", "false");
@@ -1408,7 +1416,7 @@ function showComposer() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   composerView.hidden = false;
   setCurrentNav("musichall");
   document.title = "작곡가 | 연정쌤의 음악 교실";
@@ -1533,7 +1541,7 @@ function showTheorybook() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   theorybookView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
@@ -1648,7 +1656,7 @@ function showSongs() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   songsView.hidden = false;
   setCurrentNav("musichall");
   document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
@@ -1763,7 +1771,7 @@ function showPlay() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   playView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
@@ -1859,7 +1867,7 @@ function showSmart() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   smartView.hidden = false;
   setCurrentNav("musichall");
   document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
@@ -2105,7 +2113,7 @@ function showVideo() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   videoView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 동영상 | 연정쌤의 음악 교실";
@@ -2274,7 +2282,7 @@ function showListening() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   listeningView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
@@ -2283,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=9c9dc2e";
+  script.src = "listening-data.js?v=90472a0";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2473,7 +2481,7 @@ function showHall() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   hallView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악관 | 연정쌤의 음악 교실";
@@ -2488,7 +2496,7 @@ function showHistory() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true;
   historyView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악사 | 연정쌤의 음악 교실";
@@ -2505,6 +2513,159 @@ document.querySelectorAll("#history-view .history-tabs button").forEach((button)
   historyState.scope = button.dataset.scope;
   renderHistory();
 }));
+
+/* ── 쉬는 시간 ────────────────────────────────────── */
+
+const breakView = document.querySelector("#break-view");
+const breakTabsHost = document.querySelector("#break-tabs");
+const breakBody = document.querySelector("#break-body");
+
+const breakTabs = [
+  { key: "home", label: "홈" },
+  { key: "gap", label: "#틈새 시간 365" },
+  { key: "audio", label: "#오디오북" },
+  { key: "game", label: "#게임" },
+];
+
+const breakCards = [
+  { key: "gap", label: "틈새 시간 365", desc: "남는 몇 분 채우기", tone: "teal" },
+  { key: "audio", label: "오디오북", desc: "귀로 듣는 읽을거리", tone: "blue" },
+  { key: "game", label: "게임", desc: "화면으로 하는 놀이", tone: "magenta" },
+];
+
+const breakState = { tab: "home" };
+
+function renderBreakTabs() {
+  breakTabsHost.innerHTML = breakTabs.map((tab) => `
+    <button type="button" role="tab" data-break-tab="${tab.key}"
+      class="${tab.key === breakState.tab ? "is-on" : ""}"
+      aria-selected="${tab.key === breakState.tab}">${tab.label}</button>`).join("");
+}
+
+function breakEmpty(title, hint) {
+  return `<div class="break-empty">
+    <p class="break-empty-title">${title}</p>
+    <p>${hint}</p>
+  </div>`;
+}
+
+function renderBreak() {
+  renderBreakTabs();
+  if (breakState.tab === "home") {
+    breakBody.innerHTML = `
+      <p class="break-lead">쉬는 시간과 자투리 시간에 아이들과 함께할 거리를 모아 둡니다. 위의 갈래를 눌러 보세요.</p>
+      <ul class="hall-grid break-grid">
+        ${breakCards.map((card, i) => `
+          <li class="hall-item tone-${card.tone}">
+            <button class="tool-blob" type="button" data-break-go="${card.key}">
+              <span class="tool-index" aria-hidden="true">${String(i + 1).padStart(2, "0")}</span>
+              <span class="hall-label">${card.label}</span>
+              <span class="hall-desc">${card.desc}</span>
+              <span class="hall-arrow" aria-hidden="true">→</span>
+            </button>
+          </li>`).join("")}
+      </ul>`;
+    return;
+  }
+  if (breakState.tab === "gap") {
+    breakBody.innerHTML = breakEmpty("틈새 시간 365 — 자료를 준비하고 있습니다",
+      "쓰실 활동 목록을 주시면 이 자리에 넣겠습니다.");
+    return;
+  }
+  if (breakState.tab === "audio") {
+    breakBody.innerHTML = breakEmpty("오디오북 — 자료를 준비하고 있습니다",
+      "들려주실 오디오북 목록과 주소를 주시면 이 자리에 넣겠습니다.");
+    return;
+  }
+  mountPitchGame();
+}
+
+/* 게임 1 — 소리 듣고 높낮이 맞히기 */
+function mountPitchGame(){
+  breakBody.innerHTML = `
+    <div class="game-card">
+      <p class="game-kicker">게임 1</p>
+      <h2>소리 듣고 높낮이 맞히기</h2>
+      <p class="game-desc">두 음을 잇달아 들려줍니다. 뒤에 나온 음이 앞의 음보다 높은지 낮은지 골라 보세요.</p>
+      <div class="game-score">
+        <span>맞힌 개수 <b data-role="hit">0</b></span>
+        <span>푼 문제 <b data-role="all">0</b></span>
+      </div>
+      <div class="tool-row tool-main">
+        <button class="tool-pill is-go" data-play>다시 듣기</button>
+      </div>
+      <div class="tool-row tool-main">
+        <button class="tool-pill" data-answer="up">더 높아요 ↑</button>
+        <button class="tool-pill" data-answer="down">더 낮아요 ↓</button>
+      </div>
+      <p class="game-say" data-role="say" hidden></p>
+      <div class="tool-row">
+        <label class="tool-check">어려운 문제로
+          <input type="checkbox" data-hard /></label>
+      </div>
+    </div>
+    <p class="break-note">게임은 이 브라우저에서 바로 소리를 만들어 냅니다. 따로 내려받을 것이 없습니다.</p>`;
+
+  const say = breakBody.querySelector("[data-role=say]");
+  const hitView = breakBody.querySelector("[data-role=hit]");
+  const allView = breakBody.querySelector("[data-role=all]");
+  let first = 0;
+  let second = 0;
+  let hit = 0;
+  let all = 0;
+  let waiting = false;
+
+  const make = () => {
+    const hard = breakBody.querySelector("[data-hard]").checked;
+    const steps = hard ? [1, 2, 3] : [4, 5, 7, 12];        // 반음 수
+    const base = 60 + Math.floor(Math.random() * 12);       // 도 언저리
+    const step = steps[Math.floor(Math.random() * steps.length)];
+    first = base;
+    second = base + (Math.random() < 0.5 ? step : -step);
+    waiting = true;
+    say.hidden = true;
+    play();
+  };
+  const hz = (midi) => 440 * Math.pow(2, (midi - 69) / 12);
+  const play = () => {
+    const t = ac().currentTime + 0.1;
+    blip(hz(first), t, 0.7, "triangle", 0.25);
+    blip(hz(second), t + 0.85, 0.7, "triangle", 0.25);
+  };
+
+  breakBody.querySelector("[data-play]").addEventListener("click", play);
+  breakBody.querySelectorAll("[data-answer]").forEach((b) => b.addEventListener("click", () => {
+    if (!waiting) { make(); return; }
+    const right = (b.dataset.answer === "up") === (second > first);
+    all += 1;
+    if (right) hit += 1;
+    hitView.textContent = hit;
+    allView.textContent = all;
+    say.textContent = right ? "맞았어요! 다음 문제를 들려줄게요." : "아쉬워요. 다음 문제를 들려줄게요.";
+    say.classList.toggle("is-wrong", !right);
+    say.hidden = false;
+    waiting = false;
+    setTimeout(make, 1200);
+  }));
+
+  make();
+}
+
+function showBreak() {
+  hideAllViews();
+  breakView.hidden = false;
+  setCurrentNav("break");
+  document.title = "쉬는 시간 | 연정쌤의 음악 교실";
+  renderBreak();
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+document.addEventListener("click", (event) => {
+  const tab = event.target.closest("[data-break-tab]");
+  if (tab) { breakState.tab = tab.dataset.breakTab; renderBreak(); return; }
+  const go = event.target.closest("[data-break-go]");
+  if (go) { breakState.tab = go.dataset.breakGo; renderBreak(); }
+});
 
 renderHall();
 handleRoute();
