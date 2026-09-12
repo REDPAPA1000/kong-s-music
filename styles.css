@@ -1094,6 +1094,7 @@ body.tool-open { overflow: hidden; }
 .activity-view .hall-hero { max-width: 720px; }
 .activity-view .hall-hero p { max-width: 620px; white-space: normal; }
 .activity-grid { grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 32px); margin: clamp(38px, 5vw, 58px) 0 0; }
+.activity-grid .tool-blob { aspect-ratio: 1.62 / 1; min-height: 220px; }
 @media (max-width: 700px) { .activity-grid { grid-template-columns: repeat(2, 1fr); } }
 .activity-grid .tool-blob.is-soon { cursor: default; filter: saturate(.45); opacity: .72; }
 .activity-grid .hall-soon { right: 14px; bottom: 16px; }
