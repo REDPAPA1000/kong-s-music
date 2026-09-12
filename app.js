@@ -2283,7 +2283,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=d52fea1";
+  script.src = "listening-data.js?v=47ec262";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
