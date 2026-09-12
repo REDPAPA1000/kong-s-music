@@ -1134,8 +1134,8 @@ function renderHistory() {
   const list = historyItems.filter((item) => item.format === historyState.format && (historyState.scope === "all" || item.scope === historyState.scope));
   const favorites = readFavorites();
   document.querySelector("#history-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
-  document.querySelectorAll(".format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === historyState.format)));
-  document.querySelectorAll(".history-tabs button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === historyState.scope)));
+  document.querySelectorAll("#history-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === historyState.format)));
+  document.querySelectorAll("#history-view .history-tabs button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.scope === historyState.scope)));
 
   historyGrid.innerHTML = list.map((item, index) => {
     const id = itemId(item);
@@ -2469,12 +2469,12 @@ function showHistory() {
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
-document.querySelectorAll(".format-switch button").forEach((button) => button.addEventListener("click", () => {
+document.querySelectorAll("#history-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
   historyState.format = button.dataset.format;
   renderHistory();
 }));
 
-document.querySelectorAll(".history-tabs button").forEach((button) => button.addEventListener("click", () => {
+document.querySelectorAll("#history-view .history-tabs button").forEach((button) => button.addEventListener("click", () => {
   historyState.scope = button.dataset.scope;
   renderHistory();
 }));
