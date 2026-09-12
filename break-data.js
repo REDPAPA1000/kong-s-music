@@ -239,3 +239,5 @@ const chosungItems = [
 {id: "01147376",t: "서양 음악사",s: "2권",u: "https://canvas.douclass.com/center/game/detail/consonant/01147376",img: "https://dzbmtsnd1t9iu.cloudfront.net/game/resource/upload/consonant/thumbnail/default/set-thumbnail.png",lb: "",ty: "초성게임",gr: "중학",tg: "#중학 #음악 #2권 #3단원",by: "예*능선생님"},
 {id: "01851938",t: "다양한 악기",s: "공통",u: "https://canvas.douclass.com/center/game/detail/consonant/01851938",img: "https://dzbmtsnd1t9iu.cloudfront.net/game/resource/upload/consonant/thumbnail/default/set-thumbnail.png",lb: "",ty: "초성게임",gr: "중학",tg: "#중학 #음악 #공통",by: "예*능선생님"}
 ];
+
+const cardItems = [];

@@ -22,6 +22,7 @@ SETS = [
     ('audioItems', 'audiobook.json', '오디오북'),
     ('gameItems', 'game.json', '게임'),
     ('chosungItems', 'chosung.json', '초성게임'),
+    ('cardItems', 'card.json', '카드 짝 맞추기'),
 ]
 
 
