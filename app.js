@@ -575,7 +575,7 @@ function showHome() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -595,7 +595,7 @@ function showGrade(grade) {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -619,7 +619,7 @@ function showTheory() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -714,6 +714,7 @@ function handleRoute() {
   else if (hash === "#smart") showSmart();
   else if (hash === "#edutech") showEdutech();
   else if (hash === "#video") showVideo();
+  else if (hash === "#listening") showListening();
   else showHome();
   document.querySelector("#grade-nav").classList.remove("open");
   document.querySelector(".menu-button").setAttribute("aria-expanded", "false");
@@ -842,7 +843,7 @@ const hallCategories = [
   { key: "history", label: "음악사", desc: "시대별 흐름", tone: "gold", href: "#music-history" },
   { key: "composer", label: "작곡가", desc: "인물로 보는 음악", tone: "teal", href: "#composer" },
   { key: "theory", label: "음악 기초 이론", desc: "악전과 원리", tone: "orange", href: "#theory-book" },
-  { key: "listening", label: "음악 감상실 · 악보은행", desc: "감상곡과 악보", tone: "sky", href: "" },
+  { key: "listening", label: "음악 감상실 · 악보은행", desc: "감상곡과 악보", tone: "sky", href: "#listening" },
   { key: "singing", label: "노래 익히기 모음", desc: "장르별 추가 악곡", tone: "blue", href: "#songs" },
   { key: "playing", label: "음악 연주 자료집", desc: "기악 합주 자료", tone: "magenta", href: "#play" },
   { key: "smart", label: "스마트 악기", desc: "화면으로 연주하기", tone: "indigo", href: "#smart" },
@@ -1397,7 +1398,7 @@ function showComposer() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   composerView.hidden = false;
   setCurrentNav("musichall");
   document.title = "작곡가 | 연정쌤의 음악 교실";
@@ -1522,7 +1523,7 @@ function showTheorybook() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   theorybookView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
@@ -1637,7 +1638,7 @@ function showSongs() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   songsView.hidden = false;
   setCurrentNav("musichall");
   document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
@@ -1752,7 +1753,7 @@ function showPlay() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   playView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
@@ -1848,7 +1849,7 @@ function showSmart() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   smartView.hidden = false;
   setCurrentNav("musichall");
   document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
@@ -2094,7 +2095,7 @@ function showVideo() {
   libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   videoView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 동영상 | 연정쌤의 음악 교실";
@@ -2121,6 +2122,207 @@ wireResourceGrid(videoGrid, {
   rerender: renderVideo,
 });
 
+/* 음악 감상실 & 악보은행 — 영역별 아이콘 */
+const listeningArt = {
+  가창: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="51" y="12" width="18" height="30" rx="9"/></g><g class="a-line"><rect x="51" y="12" width="18" height="30" rx="9"/><path d="M40 36a20 20 0 0040 0"/><path d="M60 56v10M48 66h24"/></g></svg>`,
+  기악: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><rect x="20" y="28" width="80" height="30" rx="5"/></g><g class="a-line"><rect x="20" y="28" width="80" height="30" rx="5"/><path d="M34 28v30M48 28v30M62 28v30M76 28v30M90 28v30"/></g><g class="a-hair"><rect x="29" y="28" width="8" height="18" rx="2"/><rect x="43" y="28" width="8" height="18" rx="2"/><rect x="71" y="28" width="8" height="18" rx="2"/><rect x="85" y="28" width="8" height="18" rx="2"/></g></svg>`,
+  감상: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><g class="a-fill"><circle cx="60" cy="42" r="24"/></g><g class="a-line"><circle cx="60" cy="42" r="24"/><circle cx="60" cy="42" r="7"/><path d="M22 42a38 38 0 0176 0"/></g><g class="a-hair"><circle cx="60" cy="42" r="3"/></g></svg>`,
+};
+
+const listeningView = document.querySelector("#listening-view");
+const listeningGrid = document.querySelector("#listening-grid");
+const PAGE_SIZE = 60;
+
+const listeningRows = [
+  { key: "p", label: "출판사" },
+  { key: "lv", label: "학교급" },
+  { key: "gr", label: "학년" },
+  { key: "ge", label: "장르" },
+  { key: "ar", label: "영역" },
+  { key: "ty", label: "유형" },
+];
+
+const listeningOrder = {
+  lv: ["초등", "중학", "중등"],
+  gr: ["초등3", "초등4", "초등5", "초등6", "중학 음악①", "중학 음악②"],
+  ge: ["서양", "국악", "창작국악", "대중음악", "세계음악"],
+  ar: ["가창", "기악", "감상"],
+  ty: ["멜로디", "합주", "합창"],
+};
+
+const listeningState = { p: "전체", lv: "전체", gr: "전체", ge: "전체", ar: "전체", ty: "전체", q: "", page: 1 };
+let listeningLoaded = false;
+
+function listeningOptions(key) {
+  const found = [];
+  listeningItems.forEach((item) => {
+    const value = item[key];
+    if (!value || found.includes(value)) return;
+    // 학년은 고른 학교급에 속한 것만 보여 준다
+    if (key === "gr" && listeningState.lv !== "전체" && item.lv !== listeningState.lv) return;
+    found.push(value);
+  });
+  const order = listeningOrder[key];
+  if (order) found.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  return ["전체", ...found];
+}
+
+function listeningMatches(item) {
+  for (const { key } of listeningRows) {
+    const want = listeningState[key];
+    if (want !== "전체" && item[key] !== want) return false;
+  }
+  const q = listeningState.q.trim().toLowerCase();
+  if (!q) return true;
+  return `${item.t} ${item.n || ""}`.toLowerCase().includes(q);
+}
+
+function listeningId(item) {
+  return `listening:${item.u}`;
+}
+
+function renderListeningFilters() {
+  const host = document.querySelector("#listening-filters");
+  host.innerHTML = listeningRows.map(({ key, label }) => {
+    const chips = listeningOptions(key).map((value) => {
+      const on = listeningState[key] === value;
+      return `<button type="button" role="tab" data-key="${key}" data-value="${value}" aria-selected="${on}">${value}</button>`;
+    }).join("");
+    return `<div class="filter-row"><span class="filter-label">${label}</span><div class="filter-chips">${chips}</div></div>`;
+  }).join("");
+}
+
+function renderListening() {
+  const list = listeningItems.filter(listeningMatches);
+  const pages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+  if (listeningState.page > pages) listeningState.page = pages;
+  const start = (listeningState.page - 1) * PAGE_SIZE;
+  const slice = list.slice(start, start + PAGE_SIZE);
+  const favorites = readFavorites();
+
+  document.querySelector("#listening-count").innerHTML = list.length
+    ? `총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i>`
+    : `조건에 맞는 자료가 없습니다.`;
+
+  renderListeningFilters();
+
+  listeningGrid.innerHTML = slice.map((item, index) => {
+    const id = listeningId(item);
+    const key = `listening-${listeningState.page}-${index}`;
+    const picked = listeningGrid._cfg.selection.has(id);
+    const liked = favorites.has(id);
+    const art = listeningArt[item.ar] || listeningArt.감상;
+    const thumb = `<span class="history-thumb listening-thumb genre-${item.ge}">${art}<span class="thumb-overlay format-listening"><span class="listening-name">${item.t}</span></span><span class="composer-badge">${item.gr}</span>${item.ty ? `<span class="video-len">${item.ty}</span>` : ""}</span>`;
+    const open = `<a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>`;
+    const menuItems = [
+      `<button role="menuitem" type="button" data-share="${item.u}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
+      item.s ? `<button role="menuitem" type="button" data-share="${item.s}" data-share-label="악보 링크">↗ 악보 공유하기</button>` : "",
+      item.v ? `<button role="menuitem" type="button" data-share="${item.v}" data-share-label="동영상 링크">↗ 동영상 공유하기</button>` : "",
+    ].filter(Boolean).join("");
+    const extras = [
+      item.s ? `<a href="${item.s}" target="_blank" rel="noopener">악보 ${sheetAction(item.s)} <span aria-hidden="true">↗</span></a>` : "",
+      item.v ? `<a href="${item.v}" target="_blank" rel="noopener">동영상 열기 <span aria-hidden="true">↗</span></a>` : "",
+    ].filter(Boolean);
+    const extra = extras.length
+      ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">추가 자료 (${extras.length}) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden>${extras.join("")}</div></div>`
+      : "";
+    return `
+      <li class="history-card listening-card${picked ? " is-picked" : ""}" data-id="${id}">
+        <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.t} 선택</span></label>
+        <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
+        ${open}
+        <div class="history-foot listening-foot">
+          <span class="history-caption">${item.t}${item.n ? `<em>${item.n}</em>` : ""}<i>${item.p} · ${item.ge} · ${item.ar}</i></span>
+          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>
+        </div>
+        <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
+        ${extra}
+      </li>`;
+  }).join("");
+
+  const pager = document.querySelector("#listening-pager");
+  if (pages <= 1) {
+    pager.innerHTML = "";
+  } else {
+    const window_ = 5;
+    let from = Math.max(1, listeningState.page - Math.floor(window_ / 2));
+    const to = Math.min(pages, from + window_ - 1);
+    from = Math.max(1, to - window_ + 1);
+    const btn = (page, text, disabled) =>
+      `<button type="button" data-page="${page}"${disabled ? " disabled" : ""}${page === listeningState.page ? ' aria-current="page"' : ""}>${text}</button>`;
+    const numbers = [];
+    for (let page = from; page <= to; page += 1) numbers.push(btn(page, page));
+    pager.innerHTML = btn(listeningState.page - 1, "←", listeningState.page === 1)
+      + numbers.join("") + btn(listeningState.page + 1, "→", listeningState.page === pages)
+      + `<span class="pager-total">${listeningState.page} / ${pages}</span>`;
+  }
+  syncToolbar(listeningGrid);
+}
+
+function showListening() {
+  homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
+  libraryView.hidden = true; theoryView.hidden = true; hallView.hidden = true;
+  historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
+  songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
+  listeningView.hidden = false;
+  setCurrentNav("musichall");
+  document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
+  window.scrollTo({ top: 0, behavior: "instant" });
+
+  if (listeningLoaded) { renderListening(); return; }
+  document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
+  const script = document.createElement("script");
+  script.src = "listening-data.js";
+  script.onload = () => { listeningLoaded = true; renderListening(); };
+  script.onerror = () => {
+    document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
+  };
+  document.head.appendChild(script);
+}
+
+document.querySelector("#listening-filters").addEventListener("click", (event) => {
+  const chip = event.target.closest("[data-key]");
+  if (!chip) return;
+  listeningState[chip.dataset.key] = chip.dataset.value;
+  if (chip.dataset.key === "lv") listeningState.gr = "전체";
+  listeningState.page = 1;
+  renderListening();
+});
+
+document.querySelector("#listening-pager").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-page]");
+  if (!button || button.disabled) return;
+  listeningState.page = Number(button.dataset.page);
+  renderListening();
+  listeningView.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+let listeningTimer = null;
+document.querySelector("#listening-q").addEventListener("input", (event) => {
+  clearTimeout(listeningTimer);
+  const value = event.target.value;
+  listeningTimer = setTimeout(() => {
+    listeningState.q = value;
+    listeningState.page = 1;
+    renderListening();
+  }, 200);
+});
+
+document.querySelector("#listening-reset").addEventListener("click", () => {
+  listeningRows.forEach(({ key }) => { listeningState[key] = "전체"; });
+  listeningState.q = "";
+  listeningState.page = 1;
+  document.querySelector("#listening-q").value = "";
+  renderListening();
+});
+
+wireResourceGrid(listeningGrid, {
+  selectAll: document.querySelector("#listening-select-all"),
+  favTool: document.querySelector('#listening-view [data-tool="favorite"]'),
+  rerender: renderListening,
+});
+
 function showHall() {
   homeView.hidden = true; aboutView.hidden = true; domainPreview.hidden = true;
   composerView.hidden = true;
@@ -2129,7 +2331,7 @@ function showHall() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   hallView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악관 | 연정쌤의 음악 교실";
@@ -2144,7 +2346,7 @@ function showHistory() {
   songsView.hidden = true;
   playView.hidden = true;
   smartView.hidden = true;
-  edutechView.hidden = true; videoView.hidden = true;
+  edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true;
   historyView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악사 | 연정쌤의 음악 교실";

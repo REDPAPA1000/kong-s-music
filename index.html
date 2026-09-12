@@ -318,6 +318,30 @@
           <ul id="video-grid" class="history-grid"></ul>
         </div>
       </section>
+
+      <section id="listening-view" class="listening-view" aria-labelledby="listening-title" hidden>
+        <div class="history-hero listening-hero">
+          <a class="hall-back" href="#musichall">← 음악관</a>
+          <h1 id="listening-title">음악 감상실 &amp; 악보은행</h1>
+          <p>교과서 제재곡으로 부족할 때,<br />장르별 추가 악곡을 찾아보세요.</p>
+        </div>
+        <div class="listening-filters" id="listening-filters"></div>
+        <div class="listening-search">
+          <label class="visually-hidden" for="listening-q">곡명 및 키워드 검색</label>
+          <input type="search" id="listening-q" placeholder="곡명 및 키워드를 입력해 주세요." />
+          <button type="button" id="listening-reset" class="listening-reset">↺ 초기화</button>
+        </div>
+        <div class="history-body">
+          <div class="history-toolbar">
+            <label class="history-selectall"><input type="checkbox" id="listening-select-all" /><span id="listening-count" class="history-count"></span></label>
+            <div class="history-tools">
+              <button type="button" class="history-tool" data-tool="favorite" disabled>♡ 찜하기</button>
+            </div>
+          </div>
+          <ul id="listening-grid" class="history-grid"></ul>
+          <nav class="listening-pager" id="listening-pager" aria-label="쪽 이동"></nav>
+        </div>
+      </section>
     </main>
 
     <footer>

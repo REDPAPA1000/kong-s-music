@@ -340,7 +340,7 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .hall-hero h1 { margin: 0 0 14px; font-size: clamp(2rem, 4.6vw, 3.2rem); font-weight: 900; letter-spacing: -.04em; line-height: 1.16; }
 .hall-hero p { margin: 0; color: var(--muted); }
 
-.hall-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: clamp(16px, 2.4vw, 30px); margin: clamp(34px, 5vw, 56px) 0 0; padding: 0; list-style: none; }
+.hall-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(28px, 4vw, 64px) clamp(24px, 3.4vw, 52px); margin: clamp(44px, 6vw, 72px) 0 clamp(20px, 3vw, 36px); padding: 0; list-style: none; }
 .hall-item > a, .hall-blob { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 168px; padding: 22px 22px 26px; color: white; background: linear-gradient(140deg, var(--hall-a), var(--hall-b)); border-radius: 62% 38% 56% 44% / 44% 56% 38% 62%; transition: border-radius .45s ease, transform .3s ease; }
 .hall-item > a:hover, .hall-item > a:focus-visible { border-radius: 40% 60% 42% 58% / 58% 42% 60% 40%; transform: translateY(-4px); }
 .hall-label { font-size: 1.02rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; }
@@ -449,7 +449,7 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 :root[data-theme="dark"] .thumb-period { color: #c2a184; }
 
 @media (max-width: 720px) {
-  .hall-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .hall-grid { grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 5vw, 32px); }
   .history-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   .hall-back { position: static; display: inline-block; margin-bottom: 14px; }
 }
@@ -712,3 +712,61 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 :root[data-theme="dark"] .video-thumb.kind-court { --art-fill: #2e2b4b; --art-ink: #aba4ec; --art-bg: #1b1a2b; background: linear-gradient(150deg, #232237, #1b1a2b); }
 :root[data-theme="dark"] .video-thumb.kind-song { --art-fill: #233d30; --art-ink: #8ed3b0; --art-bg: #16241d; background: linear-gradient(150deg, #1c2e25, #16241d); }
 :root[data-theme="dark"] .video-thumb.kind-baton { --art-fill: #3a3120; --art-ink: #d4b271; --art-bg: #221d13; background: linear-gradient(150deg, #2c2618, #221d13); }
+
+/* ── 음악 감상실 & 악보은행 ─────────────────────────── */
+.listening-hero { background: linear-gradient(150deg, #eef6ff, #d8ecfb); }
+:root[data-theme="dark"] .listening-hero { background: linear-gradient(150deg, #1c2836, #16202b); }
+
+.listening-filters { max-width: 1100px; margin: 18px auto 0; padding: 0 20px; display: grid; gap: 6px; }
+.filter-row { display: grid; grid-template-columns: 88px 1fr; align-items: start; gap: 10px; padding: 7px 10px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.filter-label { padding-top: 5px; color: var(--muted); font-size: .74rem; font-weight: 800; letter-spacing: -.02em; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.filter-chips button { padding: 5px 12px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; font: inherit; font-size: .76rem; font-weight: 700; letter-spacing: -.02em; cursor: pointer; }
+.filter-chips button:hover { color: var(--ink); border-color: var(--ink); }
+.filter-chips button[aria-selected="true"] { color: #fff; background: #3a7bd5; border-color: #3a7bd5; }
+
+.listening-search { max-width: 1100px; margin: 10px auto 0; padding: 0 20px; display: flex; gap: 8px; align-items: center; }
+.listening-search input { flex: 1; padding: 11px 14px; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 12px; font: inherit; font-size: .86rem; }
+.listening-search input:focus-visible { outline: 2px solid #3a7bd5; outline-offset: 1px; }
+.listening-reset { padding: 11px 14px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 12px; font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.listening-reset:hover { color: var(--ink); border-color: var(--ink); }
+
+.history-count i { color: var(--muted); font-size: .72rem; font-style: normal; font-weight: 600; }
+
+.listening-thumb { --art-fill: #dce8fb; --art-ink: #4a6fa8; --art-accent: #3a7bd5; background: linear-gradient(150deg, #f6faff, #e4eefc); }
+.listening-thumb.genre-국악, .listening-thumb.genre-창작국악 { --art-fill: #f7e3d4; --art-ink: #a8703f; --art-accent: #d1762f; background: linear-gradient(150deg, #fef8f1, #f6e6d5); }
+.listening-thumb.genre-대중음악 { --art-fill: #f5dce6; --art-ink: #a84a6f; --art-accent: #d5477e; background: linear-gradient(150deg, #fff7fa, #f8e4ed); }
+.listening-thumb.genre-세계음악 { --art-fill: #dcf0e2; --art-ink: #3f8a5c; --art-accent: #3aab6c; background: linear-gradient(150deg, #f5fdf8, #e2f4e8); }
+
+.format-listening { align-items: flex-end; padding: 12px 16px 16px; }
+.listening-name { max-width: 100%; padding: 4px 10px; color: #2a4d80; background: rgba(255,255,255,.92); border-radius: 8px; font-size: .76rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; text-align: left; }
+.genre-국악 .listening-name, .genre-창작국악 .listening-name { color: #7a4a1e; }
+.genre-대중음악 .listening-name { color: #8a2f56; }
+.genre-세계음악 .listening-name { color: #26603f; }
+
+.listening-foot { align-items: flex-start; }
+.listening-foot .history-caption { display: flex; flex-direction: column; gap: 3px; }
+.listening-foot .history-caption em { color: var(--muted); font-size: .72rem; font-weight: 600; font-style: normal; line-height: 1.4; }
+.listening-foot .history-caption i { color: var(--muted); font-size: .66rem; font-weight: 700; font-style: normal; opacity: .8; }
+
+.listening-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin-top: 22px; }
+.listening-pager button { min-width: 36px; padding: 8px 11px; color: var(--muted); background: var(--card); border: 1px solid var(--line); border-radius: 9px; font: inherit; font-size: .78rem; font-weight: 800; cursor: pointer; }
+.listening-pager button:hover:not(:disabled) { color: var(--ink); border-color: var(--ink); }
+.listening-pager button[aria-current="page"] { color: #fff; background: #3a7bd5; border-color: #3a7bd5; }
+.listening-pager button:disabled { opacity: .4; cursor: default; }
+.pager-total { margin-left: 8px; color: var(--muted); font-size: .74rem; font-weight: 700; }
+
+:root[data-theme="dark"] .listening-thumb { --art-fill: #253449; --art-ink: #8fb4e8; background: linear-gradient(150deg, #1e2635, #18202c); }
+:root[data-theme="dark"] .listening-thumb.genre-국악, :root[data-theme="dark"] .listening-thumb.genre-창작국악 { --art-fill: #3d3120; --art-ink: #d8a56d; background: linear-gradient(150deg, #2e2618, #241d13); }
+:root[data-theme="dark"] .listening-thumb.genre-대중음악 { --art-fill: #3d2434; --art-ink: #e290bd; background: linear-gradient(150deg, #2e1c28, #241620); }
+:root[data-theme="dark"] .listening-thumb.genre-세계음악 { --art-fill: #233d2c; --art-ink: #8ed3a6; background: linear-gradient(150deg, #1c2e22, #16241b); }
+:root[data-theme="dark"] .listening-name { color: #1b1420; background: rgba(255,255,255,.88); }
+
+@media (max-width: 640px) {
+  .filter-row { grid-template-columns: 1fr; gap: 4px; }
+  .filter-label { padding-top: 0; }
+}
+
+@media (max-width: 1080px) and (min-width: 761px) {
+  .hall-grid { grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 44px); }
+}
