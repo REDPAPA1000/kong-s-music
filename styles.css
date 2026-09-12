@@ -817,18 +817,17 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .tools-view { min-height: 100%; padding: clamp(40px, 6vw, 84px) clamp(20px, 5vw, 72px) clamp(60px, 8vw, 110px); background: radial-gradient(circle at 90% 4%, rgba(91,115,232,.12), transparent 27rem), radial-gradient(circle at 4% 42%, rgba(63,198,189,.10), transparent 29rem); }
 .tools-view .hall-hero { max-width: 720px; }
 .tools-view .hall-hero p { max-width: 620px; white-space: normal; }
-.tools-view .hall-grid { grid-template-columns: repeat(auto-fit, minmax(218px, 1fr)); gap: 16px; margin: clamp(38px, 5vw, 58px) 0 18px; }
-.tool-blob { position: relative; display: flex; width: 100%; flex-direction: column; justify-content: flex-end; gap: 5px; min-height: 218px; padding: 22px; isolation: isolate; overflow: hidden; color: var(--ink); background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.76)); border: 1px solid rgba(55, 62, 109, .12); border-radius: 23px; box-shadow: 0 12px 28px rgba(31, 38, 83, .09); font: inherit; text-align: left; cursor: pointer; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
-.tool-blob::before { position: absolute; z-index: -2; top: -58px; right: -48px; width: 172px; height: 172px; content: ""; background: linear-gradient(135deg, var(--hall-a), var(--hall-b)); border-radius: 50%; opacity: .16; }
+.tool-blob { position: relative; display: flex; width: 100%; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 176px; padding: 20px 20px 24px; isolation: isolate; overflow: hidden; color: var(--ink); background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(255,255,255,.76)); border: 1px solid rgba(55, 62, 109, .12); border-radius: 20px; box-shadow: 0 12px 28px rgba(31, 38, 83, .09); font: inherit; text-align: left; cursor: pointer; transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease; }
+.tool-blob::before { position: absolute; z-index: -2; top: -52px; right: -44px; width: 148px; height: 148px; content: ""; background: linear-gradient(135deg, var(--hall-a), var(--hall-b)); border-radius: 50%; opacity: .16; }
 .tool-blob::after { position: absolute; z-index: -1; inset: 0; content: ""; background-image: linear-gradient(rgba(54,62,108,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(54,62,108,.035) 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(135deg, #000, transparent 72%); }
 .tool-blob:hover, .tool-blob:focus-visible { transform: translateY(-5px); border-color: color-mix(in srgb, var(--hall-a) 54%, transparent); box-shadow: 0 20px 36px rgba(31, 38, 83, .16); outline: none; }
-.tool-index { position: absolute; top: 19px; left: 20px; padding: 4px 7px; color: var(--hall-b); background: color-mix(in srgb, var(--hall-a) 13%, white); border-radius: 999px; font-family: "Montserrat", sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .08em; }
+.tool-index { position: absolute; top: 18px; left: 20px; padding: 4px 7px; color: var(--hall-b); background: color-mix(in srgb, var(--hall-a) 13%, white); border-radius: 999px; font-family: "Montserrat", sans-serif; font-size: .66rem; font-weight: 900; letter-spacing: .08em; }
 .tool-mark { position: absolute; right: 17px; top: 19px; display: grid; place-items: center; width: 58px; height: 58px; padding: 12px; background: color-mix(in srgb, var(--hall-a) 13%, white); border: 1px solid color-mix(in srgb, var(--hall-a) 20%, transparent); border-radius: 18px; }
 .tool-mark svg { width: 100%; height: 100%; fill: none; stroke: var(--hall-b); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .tool-blob .hall-label, .tool-blob .hall-desc { position: relative; z-index: 1; }
-.tool-blob .hall-label { max-width: calc(100% - 42px); font-size: 1.08rem; }
-.tool-blob .hall-desc { padding-right: 20px; color: var(--muted); font-size: .8rem; line-height: 1.55; opacity: 1; }
-.tool-blob .hall-arrow { right: 20px; bottom: 20px; color: white; background: var(--hall-b); box-shadow: 0 5px 12px color-mix(in srgb, var(--hall-b) 35%, transparent); }
+.tool-blob .hall-label { max-width: calc(100% - 40px); font-size: 1.02rem; }
+.tool-blob .hall-desc { padding-right: 42px; color: var(--muted); font-size: .78rem; line-height: 1.45; opacity: 1; }
+.tool-blob .hall-arrow { right: 20px; bottom: 22px; color: white; background: var(--hall-b); box-shadow: 0 5px 12px color-mix(in srgb, var(--hall-b) 35%, transparent); }
 .tool-card { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; transition: transform .12s ease, border-color .12s ease; }
 .tool-card:hover { transform: translateY(-2px); border-color: var(--tone, #6c6ce0); }
 .tool-card a { display: flex; align-items: center; gap: 12px; padding: 16px; color: var(--ink); text-decoration: none; }
@@ -1003,7 +1002,7 @@ body.tool-open { overflow: hidden; }
 @keyframes seatPop { from { transform: scale(.82); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
 /* 카드 위 그림 배지 — 그림에 색이 들어 있어 테두리만 맞춘다 */
-.tool-badge { position: absolute; right: 17px; top: 19px; display: grid; place-items: center; width: 58px; height: 58px; padding: 9px; background: color-mix(in srgb, var(--hall-a) 13%, white); border: 1px solid color-mix(in srgb, var(--hall-a) 20%, transparent); border-radius: 18px; }
+.tool-badge { position: absolute; right: 16px; top: 16px; display: grid; place-items: center; width: 48px; height: 48px; padding: 7px; background: color-mix(in srgb, var(--hall-a) 13%, white); border: 1px solid color-mix(in srgb, var(--hall-a) 20%, transparent); border-radius: 18px; }
 .tool-badge svg { width: 100%; height: 100%; }
 :root[data-theme="dark"] .tool-badge { background: color-mix(in srgb, var(--hall-a) 16%, #202238); }
 
