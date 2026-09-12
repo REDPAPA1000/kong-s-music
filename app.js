@@ -871,28 +871,28 @@ const historyItems = [
   { format: "ppt", scope: "korea", no: 6, title: "조선 후기", period: "1592 ~ 1876", url: "https://mh.douclass.com/viewer/SPC_P/56374?type=student" },
   { format: "ppt", scope: "korea", no: 7, title: "근·현대", period: "1876 ~", url: "https://mh.douclass.com/viewer/SPC_P/56375?type=student" },
   // 애니메이션 · 서양 음악사 (음악 박물관)
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "고대", duration: "0:31", url: "https://www.douclass.com/viewer/SPC_P/56387" },
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "중세", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56388" },
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "르네상스", duration: "0:23", url: "https://www.douclass.com/viewer/SPC_P/56389" },
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "바로크", duration: "0:29", url: "https://www.douclass.com/viewer/SPC_P/56390" },
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "고전주의", duration: "0:35", url: "https://www.douclass.com/viewer/SPC_P/56391" },
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "낭만주의", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56392" },
-  { format: "anim", scope: "west", badge: "음악 박물관", title: "근·현대", duration: "0:41", url: "https://www.douclass.com/viewer/SPC_P/56393" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "고대", duration: "0:31", url: "https://www.douclass.com/viewer/SPC_P/56387", img: "https://s3.douclass.com/pub/2026/thumb/2607/zzyekg5r4kwk.jpg" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "중세", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56388", img: "https://s3.douclass.com/pub/2026/thumb/2607/gkkgbfmorf3y.jpg" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "르네상스", duration: "0:23", url: "https://www.douclass.com/viewer/SPC_P/56389", img: "https://s3.douclass.com/pub/2026/thumb/2607/f7i0cd6fijwy.jpg" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "바로크", duration: "0:29", url: "https://www.douclass.com/viewer/SPC_P/56390", img: "https://s3.douclass.com/pub/2026/thumb/2607/arep5ujzncaz.jpg" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "고전주의", duration: "0:35", url: "https://www.douclass.com/viewer/SPC_P/56391", img: "https://s3.douclass.com/pub/2026/thumb/2607/gryax9nlb4s3.jpg" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "낭만주의", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56392", img: "https://s3.douclass.com/pub/2026/thumb/2607/irs0u3zlqzzp.jpg" },
+  { format: "anim", scope: "west", badge: "음악 박물관", title: "근·현대", duration: "0:41", url: "https://www.douclass.com/viewer/SPC_P/56393", img: "https://s3.douclass.com/pub/2026/thumb/2607/f5hrrwty55px.jpg" },
   // 애니메이션 · 서양 음악사 (시대별)
-  { format: "anim", scope: "west", no: 1, title: "고대", duration: "0:15", url: "https://www.douclass.com/viewer/SPC_P/56426" },
-  { format: "anim", scope: "west", no: 2, title: "중세", duration: "0:13", url: "https://www.douclass.com/viewer/SPC_P/56427" },
-  { format: "anim", scope: "west", no: 3, title: "르네상스", duration: "0:22", url: "https://www.douclass.com/viewer/SPC_P/56428" },
-  { format: "anim", scope: "west", no: 4, title: "바로크", duration: "0:24", url: "https://www.douclass.com/viewer/SPC_P/56429" },
-  { format: "anim", scope: "west", no: 5, title: "고전주의", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56430" },
-  { format: "anim", scope: "west", no: 6, title: "낭만주의", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56431" },
-  { format: "anim", scope: "west", no: 7, title: "근·현대", duration: "0:25", url: "https://www.douclass.com/viewer/SPC_P/56432" },
+  { format: "anim", scope: "west", no: 1, title: "고대", duration: "0:15", url: "https://www.douclass.com/viewer/SPC_P/56426", img: "https://s3.douclass.com/pub/2026/thumb/2607/v2ou8ud4rq2c.jpg" },
+  { format: "anim", scope: "west", no: 2, title: "중세", duration: "0:13", url: "https://www.douclass.com/viewer/SPC_P/56427", img: "https://s3.douclass.com/pub/2026/thumb/2607/cna347se60ux.jpg" },
+  { format: "anim", scope: "west", no: 3, title: "르네상스", duration: "0:22", url: "https://www.douclass.com/viewer/SPC_P/56428", img: "https://s3.douclass.com/pub/2026/thumb/2607/arlwaic1dm8l.jpg" },
+  { format: "anim", scope: "west", no: 4, title: "바로크", duration: "0:24", url: "https://www.douclass.com/viewer/SPC_P/56429", img: "https://s3.douclass.com/pub/2026/thumb/2607/egz3dmri933f.jpg" },
+  { format: "anim", scope: "west", no: 5, title: "고전주의", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56430", img: "https://s3.douclass.com/pub/2026/thumb/2607/juw9z7n9jdxx.jpg" },
+  { format: "anim", scope: "west", no: 6, title: "낭만주의", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/56431", img: "https://s3.douclass.com/pub/2026/thumb/2607/ucj2ovnna9p5.jpg" },
+  { format: "anim", scope: "west", no: 7, title: "근·현대", duration: "0:25", url: "https://www.douclass.com/viewer/SPC_P/56432", img: "https://s3.douclass.com/pub/2026/thumb/2607/0yfd76f4pnz3.jpg" },
   // 애니메이션 · 우리나라 음악사 (국악 박물관)
-  { format: "anim", scope: "korea", badge: "국악 박물관", title: "상고 시대", duration: "0:29", url: "https://www.douclass.com/viewer/SPC_P/30122" },
-  { format: "anim", scope: "korea", badge: "국악 박물관", title: "삼국 시대", duration: "0:55", url: "https://www.douclass.com/viewer/SPC_P/30123" },
-  { format: "anim", scope: "korea", badge: "국악 박물관", title: "통일 신라·발해", duration: "0:50", url: "https://www.douclass.com/viewer/SPC_P/30124" },
-  { format: "anim", scope: "korea", badge: "국악 박물관", title: "고려 시대", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/30125" },
-  { format: "anim", scope: "korea", badge: "국악 박물관", title: "조선 시대", duration: "0:39", url: "https://www.douclass.com/viewer/SPC_P/30126" },
-  { format: "anim", scope: "korea", badge: "국악 박물관", title: "근·현대", duration: "0:32", url: "https://www.douclass.com/viewer/SPC_P/30127" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "상고 시대", duration: "0:29", url: "https://www.douclass.com/viewer/SPC_P/30122", img: "https://s3.douclass.com/pub/2024/thumb/2407/fdvfum3re0hv.png" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "삼국 시대", duration: "0:55", url: "https://www.douclass.com/viewer/SPC_P/30123", img: "https://s3.douclass.com/pub/2024/thumb/2407/6ombxvf9dzg1.png" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "통일 신라·발해", duration: "0:50", url: "https://www.douclass.com/viewer/SPC_P/30124", img: "https://s3.douclass.com/pub/2024/thumb/2407/yxbuaq71pwmg.png" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "고려 시대", duration: "0:28", url: "https://www.douclass.com/viewer/SPC_P/30125", img: "https://s3.douclass.com/pub/2024/thumb/2407/r6axy2k4mbmr.png" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "조선 시대", duration: "0:39", url: "https://www.douclass.com/viewer/SPC_P/30126", img: "https://s3.douclass.com/pub/2024/thumb/2407/3k4mpks0z5yz.png" },
+  { format: "anim", scope: "korea", badge: "국악 박물관", title: "근·현대", duration: "0:32", url: "https://www.douclass.com/viewer/SPC_P/30127", img: "https://s3.douclass.com/pub/2024/thumb/2407/q6g7ttbvnzqp.png" },
 ];
 
 /* 시대별 일러스트 — 직접 그린 SVG */
@@ -924,48 +924,48 @@ function historyArtFor(item) {
 }
 
 const composerItems = [
-  { format: "era", no: 1, era: "중세", art: "medieval", title: "다레초", latin: "Guido d'Arezzo", years: "995?~1050?", caption: "중세_다레초", url: "https://www.douclass.com/viewer/SPC_P/54533", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wfsbxcby3uh3.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 2, era: "중세", art: "medieval", title: "마쇼", latin: "Guillaume de Machaut", years: "1300?~1377", caption: "중세_마쇼", url: "https://www.douclass.com/viewer/SPC_P/54554", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/uz8i3x7bwbga.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 3, era: "르네상스", art: "renaissance", title: "조스캥", latin: "Josquin des Prez", years: "1440?~1521", caption: "르네상스_조스캥", url: "https://www.douclass.com/viewer/SPC_P/54555", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/k9tk2lpm4cx3.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 4, era: "르네상스", art: "renaissance", title: "팔레스트리나", latin: "G. P. da Palestrina", years: "1525?~1594", caption: "르네상스_팔레스트리나", url: "https://www.douclass.com/viewer/SPC_P/54556", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/0ji7poh6g9ub.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 5, era: "바로크", art: "baroque", title: "비발디", latin: "Antonio Vivaldi", years: "1678~1741", caption: "바로크_비발디", url: "https://www.douclass.com/viewer/SPC_P/54557", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/mqp4m3xkj450.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 6, era: "바로크", art: "baroque", title: "바흐", latin: "J. S. Bach", years: "1685~1750", caption: "바로크_바흐", url: "https://www.douclass.com/viewer/SPC_P/54558", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/npfm8majrskt.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 7, era: "바로크", art: "baroque", title: "헨델", latin: "G. F. Handel", years: "1685~1759", caption: "바로크_헨델", url: "https://www.douclass.com/viewer/SPC_P/54559", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/oehp5a6c1rhv.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 8, era: "고전", art: "classical", title: "하이든", latin: "Joseph Haydn", years: "1732~1809", caption: "고전_하이든", url: "https://www.douclass.com/viewer/SPC_P/54560", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/0gydxpisbt4n.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 9, era: "고전", art: "classical", title: "모차르트", latin: "W. A. Mozart", years: "1756~1791", caption: "고전_모차르트", url: "https://www.douclass.com/viewer/SPC_P/54561", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/xspw343vrnku.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 10, era: "고전", art: "classical", title: "베토벤", latin: "L. van Beethoven", years: "1770~1827", caption: "고전_베토벤", url: "https://www.douclass.com/viewer/SPC_P/54562", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/olb5chjn7f4q.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 11, era: "낭만", art: "romantic", title: "로시니", latin: "Gioachino Rossini", years: "1792~1868", caption: "낭만_로시니", url: "https://www.douclass.com/viewer/SPC_P/54563", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/t4zh90twizam.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 12, era: "낭만", art: "romantic", title: "슈베르트", latin: "Franz Schubert", years: "1797~1828", caption: "낭만_슈베르트", url: "https://www.douclass.com/viewer/SPC_P/54564", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/w99x48farjuo.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 13, era: "낭만", art: "romantic", title: "베를리오즈", latin: "Hector Berlioz", years: "1803~1869", caption: "낭만_베를리오즈", url: "https://www.douclass.com/viewer/SPC_P/54565", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/5126caro3ib8.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 14, era: "낭만", art: "romantic", title: "멘델스존", latin: "Felix Mendelssohn", years: "1809~1847", caption: "낭만_멘델스존", url: "https://www.douclass.com/viewer/SPC_P/54566", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wovkwc2o28ty.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 15, era: "낭만", art: "romantic", title: "쇼팽", latin: "Frederic Chopin", years: "1810~1849", caption: "낭만_쇼팽", url: "https://www.douclass.com/viewer/SPC_P/54567", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/mf6y375fuahz.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 16, era: "낭만", art: "romantic", title: "슈만", latin: "Robert Schumann", years: "1810~1856", caption: "낭만_슈만", url: "https://www.douclass.com/viewer/SPC_P/54568", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/roz286kq0oxc.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 17, era: "낭만", art: "romantic", title: "리스트", latin: "Franz Liszt", years: "1811~1886", caption: "낭만_리스트", url: "https://www.douclass.com/viewer/SPC_P/54569", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/e5duyun7794t.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 18, era: "낭만", art: "romantic", title: "베르디", latin: "Giuseppe Verdi", years: "1813~1901", caption: "낭만_베르디", url: "https://www.douclass.com/viewer/SPC_P/54570", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/gzr8innf27h5.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 19, era: "낭만", art: "romantic", title: "바그너", latin: "Richard Wagner", years: "1813~1883", caption: "낭만_바그너", url: "https://www.douclass.com/viewer/SPC_P/54571", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/g0bw53f0dczp.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 20, era: "낭만", art: "romantic", title: "브람스", latin: "Johannes Brahms", years: "1833~1897", caption: "낭만_브람스", url: "https://www.douclass.com/viewer/SPC_P/54572", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/jxlhr0xnf49l.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 21, era: "낭만", art: "romantic", title: "비제", latin: "Georges Bizet", years: "1838~1875", caption: "낭만_비제", url: "https://www.douclass.com/viewer/SPC_P/54575", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/lde0v2vr2v6z.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 22, era: "낭만", art: "romantic", title: "차이콥스키", latin: "P. I. Tchaikovsky", years: "1840~1893", caption: "낭만_차이콥스키", url: "https://www.douclass.com/viewer/SPC_P/54577", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n96myu9pgiod.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 23, era: "낭만(민족주의)", art: "nationalist", title: "스메타나", latin: "Bedrich Smetana", years: "1824~1884", caption: "낭만(민족주의)_스메타나", url: "https://www.douclass.com/viewer/SPC_P/54579", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/9fzpxwbze5c6.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 24, era: "낭만(민족주의)", art: "nationalist", title: "무소륵스키", latin: "Modest Mussorgsky", years: "1839~1881", caption: "낭만(민족주의)_무소륵스키", url: "https://www.douclass.com/viewer/SPC_P/54582", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/zbroru114diq.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 25, era: "낭만(민족주의)", art: "nationalist", title: "드보르자크", latin: "Antonin Dvorak", years: "1841~1904", caption: "낭만(민족주의)_드보르자크", url: "https://www.douclass.com/viewer/SPC_P/54585", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/1x0g7byzk25q.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 26, era: "낭만(민족주의)", art: "nationalist", title: "그리그", latin: "Edvard Grieg", years: "1843~1907", caption: "낭만(민족주의)_그리그", url: "https://www.douclass.com/viewer/SPC_P/54586", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wx1lz0q3znso.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 27, era: "근현대", art: "modernist", title: "드뷔시", latin: "Claude Debussy", years: "1862~1918", caption: "근현대_드뷔시", url: "https://www.douclass.com/viewer/SPC_P/54588", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/j59ssnxo62gk.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 28, era: "근현대", art: "modernist", title: "쇤베르크", latin: "Arnold Schoenberg", years: "1874~1951", caption: "근현대_쇤베르크", url: "https://www.douclass.com/viewer/SPC_P/54590", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/ah16x19o7ahy.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 29, era: "근현대", art: "modernist", title: "스트라빈스키", latin: "Igor Stravinsky", years: "1882~1971", caption: "근현대_스트라빈스키", url: "https://www.douclass.com/viewer/SPC_P/54591", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/vbxk8bf74dnk.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "era", no: 30, era: "근현대", art: "modernist", title: "케이지", latin: "John Cage", years: "1912~1992", caption: "근현대_케이지", url: "https://www.douclass.com/viewer/SPC_P/54593", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n9bbjrt1xbqi.hwpx", sheetLabel: "활동지 (hwpx)" },
-  { format: "webtoon", no: 1, scope: "해외편", art: "world", title: "모차르트", caption: "모차르트", url: "https://www.douclass.com/viewer/SPC_P/54542", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/yzzy7bn0srox.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 2, scope: "해외편", art: "world", title: "베토벤", caption: "베토벤", url: "https://www.douclass.com/viewer/SPC_P/54543", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/shno7dqjqole.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 3, scope: "해외편", art: "world", title: "차이콥스키", caption: "차이콥스키", url: "https://www.douclass.com/viewer/SPC_P/54544", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/368kwtvq2ht2.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 4, scope: "해외편", art: "world", title: "존 케이지", caption: "존 케이지", url: "https://www.douclass.com/viewer/SPC_P/54545", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/9g37ysnnhjau.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 5, scope: "해외편", art: "world", title: "마이클 잭슨", caption: "마이클 잭슨", url: "https://www.douclass.com/viewer/SPC_P/54546", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/q4wecii96qiq.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 6, scope: "해외편", art: "world", title: "히사이시 조", caption: "히사이시 조", url: "https://www.douclass.com/viewer/SPC_P/54547", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/6g9n3zbvu06c.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 7, scope: "국내편", art: "korean", title: "세종 대왕과 박연", caption: "세종 대왕과 박연", url: "https://www.douclass.com/viewer/SPC_P/54548", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/t299odiulj2w.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 8, scope: "국내편", art: "korean", title: "왕산악과 우륵", caption: "왕산악과 우륵", url: "https://www.douclass.com/viewer/SPC_P/54549", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/kxoswshrvcbe.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 9, scope: "국내편", art: "korean", title: "황병기", caption: "황병기", url: "https://www.douclass.com/viewer/SPC_P/54550", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/fnwkormo50w8.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 10, scope: "국내편", art: "korean", title: "김덕수", caption: "김덕수", url: "https://www.douclass.com/viewer/SPC_P/54551", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/3wazv4vhdf5o.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 11, scope: "국내편", art: "korean", title: "조수미", caption: "조수미", url: "https://www.douclass.com/viewer/SPC_P/54552", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/sg0tvn65wmwm.pdf", sheetLabel: "활동지 (pdf)" },
-  { format: "webtoon", no: 12, scope: "국내편", art: "korean", title: "조성진", caption: "조성진", url: "https://www.douclass.com/viewer/SPC_P/54553", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/o0odvsjvl7ar.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "era", no: 1, era: "중세", art: "medieval", title: "다레초", latin: "Guido d'Arezzo", years: "995?~1050?", caption: "중세_다레초", url: "https://www.douclass.com/viewer/SPC_P/54533", img: "https://s3.douclass.com/pub/2026/thumb/2607/0n6np2bfgvia.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wfsbxcby3uh3.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 2, era: "중세", art: "medieval", title: "마쇼", latin: "Guillaume de Machaut", years: "1300?~1377", caption: "중세_마쇼", url: "https://www.douclass.com/viewer/SPC_P/54554", img: "https://s3.douclass.com/pub/2026/thumb/2607/d6mudnznf5kw.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/uz8i3x7bwbga.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 3, era: "르네상스", art: "renaissance", title: "조스캥", latin: "Josquin des Prez", years: "1440?~1521", caption: "르네상스_조스캥", url: "https://www.douclass.com/viewer/SPC_P/54555", img: "https://s3.douclass.com/pub/2026/thumb/2607/owozc2235wnu.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/k9tk2lpm4cx3.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 4, era: "르네상스", art: "renaissance", title: "팔레스트리나", latin: "G. P. da Palestrina", years: "1525?~1594", caption: "르네상스_팔레스트리나", url: "https://www.douclass.com/viewer/SPC_P/54556", img: "https://s3.douclass.com/pub/2026/thumb/2607/ichtkwb0a0v2.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/0ji7poh6g9ub.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 5, era: "바로크", art: "baroque", title: "비발디", latin: "Antonio Vivaldi", years: "1678~1741", caption: "바로크_비발디", url: "https://www.douclass.com/viewer/SPC_P/54557", img: "https://s3.douclass.com/pub/2026/thumb/2607/jhmwohdxu2x2.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/mqp4m3xkj450.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 6, era: "바로크", art: "baroque", title: "바흐", latin: "J. S. Bach", years: "1685~1750", caption: "바로크_바흐", url: "https://www.douclass.com/viewer/SPC_P/54558", img: "https://s3.douclass.com/pub/2026/thumb/2607/v73r3guois2j.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/npfm8majrskt.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 7, era: "바로크", art: "baroque", title: "헨델", latin: "G. F. Handel", years: "1685~1759", caption: "바로크_헨델", url: "https://www.douclass.com/viewer/SPC_P/54559", img: "https://s3.douclass.com/pub/2026/thumb/2607/jbmchw5tj65x.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/oehp5a6c1rhv.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 8, era: "고전", art: "classical", title: "하이든", latin: "Joseph Haydn", years: "1732~1809", caption: "고전_하이든", url: "https://www.douclass.com/viewer/SPC_P/54560", img: "https://s3.douclass.com/pub/2026/thumb/2607/np1jj7gspy4q.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/0gydxpisbt4n.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 9, era: "고전", art: "classical", title: "모차르트", latin: "W. A. Mozart", years: "1756~1791", caption: "고전_모차르트", url: "https://www.douclass.com/viewer/SPC_P/54561", img: "https://s3.douclass.com/pub/2026/thumb/2607/lqttfy6bc338.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/xspw343vrnku.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 10, era: "고전", art: "classical", title: "베토벤", latin: "L. van Beethoven", years: "1770~1827", caption: "고전_베토벤", url: "https://www.douclass.com/viewer/SPC_P/54562", img: "https://s3.douclass.com/pub/2026/thumb/2607/uhz2nkhpkq4h.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/olb5chjn7f4q.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 11, era: "낭만", art: "romantic", title: "로시니", latin: "Gioachino Rossini", years: "1792~1868", caption: "낭만_로시니", url: "https://www.douclass.com/viewer/SPC_P/54563", img: "https://s3.douclass.com/pub/2026/thumb/2607/vs4lt5o5opg0.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/t4zh90twizam.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 12, era: "낭만", art: "romantic", title: "슈베르트", latin: "Franz Schubert", years: "1797~1828", caption: "낭만_슈베르트", url: "https://www.douclass.com/viewer/SPC_P/54564", img: "https://s3.douclass.com/pub/2026/thumb/2607/rfmh74b1zjdw.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/w99x48farjuo.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 13, era: "낭만", art: "romantic", title: "베를리오즈", latin: "Hector Berlioz", years: "1803~1869", caption: "낭만_베를리오즈", url: "https://www.douclass.com/viewer/SPC_P/54565", img: "https://s3.douclass.com/pub/2026/thumb/2607/wgcm22gx9qj4.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/5126caro3ib8.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 14, era: "낭만", art: "romantic", title: "멘델스존", latin: "Felix Mendelssohn", years: "1809~1847", caption: "낭만_멘델스존", url: "https://www.douclass.com/viewer/SPC_P/54566", img: "https://s3.douclass.com/pub/2026/thumb/2607/mlryo7ecd4cg.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wovkwc2o28ty.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 15, era: "낭만", art: "romantic", title: "쇼팽", latin: "Frederic Chopin", years: "1810~1849", caption: "낭만_쇼팽", url: "https://www.douclass.com/viewer/SPC_P/54567", img: "https://s3.douclass.com/pub/2026/thumb/2607/97qbzksbn93z.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/mf6y375fuahz.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 16, era: "낭만", art: "romantic", title: "슈만", latin: "Robert Schumann", years: "1810~1856", caption: "낭만_슈만", url: "https://www.douclass.com/viewer/SPC_P/54568", img: "https://s3.douclass.com/pub/2026/thumb/2607/homq0mt8lnuq.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/roz286kq0oxc.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 17, era: "낭만", art: "romantic", title: "리스트", latin: "Franz Liszt", years: "1811~1886", caption: "낭만_리스트", url: "https://www.douclass.com/viewer/SPC_P/54569", img: "https://s3.douclass.com/pub/2026/thumb/2607/ek65avjrgzoe.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/e5duyun7794t.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 18, era: "낭만", art: "romantic", title: "베르디", latin: "Giuseppe Verdi", years: "1813~1901", caption: "낭만_베르디", url: "https://www.douclass.com/viewer/SPC_P/54570", img: "https://s3.douclass.com/pub/2026/thumb/2607/fuhcbcqnlf9z.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/gzr8innf27h5.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 19, era: "낭만", art: "romantic", title: "바그너", latin: "Richard Wagner", years: "1813~1883", caption: "낭만_바그너", url: "https://www.douclass.com/viewer/SPC_P/54571", img: "https://s3.douclass.com/pub/2026/thumb/2607/fp3arf2mko5d.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/g0bw53f0dczp.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 20, era: "낭만", art: "romantic", title: "브람스", latin: "Johannes Brahms", years: "1833~1897", caption: "낭만_브람스", url: "https://www.douclass.com/viewer/SPC_P/54572", img: "https://s3.douclass.com/pub/2026/thumb/2607/l3sg0t94hj2a.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/jxlhr0xnf49l.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 21, era: "낭만", art: "romantic", title: "비제", latin: "Georges Bizet", years: "1838~1875", caption: "낭만_비제", url: "https://www.douclass.com/viewer/SPC_P/54575", img: "https://s3.douclass.com/pub/2026/thumb/2607/fkxh417ns82p.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/lde0v2vr2v6z.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 22, era: "낭만", art: "romantic", title: "차이콥스키", latin: "P. I. Tchaikovsky", years: "1840~1893", caption: "낭만_차이콥스키", url: "https://www.douclass.com/viewer/SPC_P/54577", img: "https://s3.douclass.com/pub/2026/thumb/2607/6jo0ksg1594j.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n96myu9pgiod.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 23, era: "낭만(민족주의)", art: "nationalist", title: "스메타나", latin: "Bedrich Smetana", years: "1824~1884", caption: "낭만(민족주의)_스메타나", url: "https://www.douclass.com/viewer/SPC_P/54579", img: "https://s3.douclass.com/pub/2026/thumb/2607/x3i9tw2vujzd.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/9fzpxwbze5c6.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 24, era: "낭만(민족주의)", art: "nationalist", title: "무소륵스키", latin: "Modest Mussorgsky", years: "1839~1881", caption: "낭만(민족주의)_무소륵스키", url: "https://www.douclass.com/viewer/SPC_P/54582", img: "https://s3.douclass.com/pub/2026/thumb/2607/bfl1a80i6pwd.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/zbroru114diq.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 25, era: "낭만(민족주의)", art: "nationalist", title: "드보르자크", latin: "Antonin Dvorak", years: "1841~1904", caption: "낭만(민족주의)_드보르자크", url: "https://www.douclass.com/viewer/SPC_P/54585", img: "https://s3.douclass.com/pub/2026/thumb/2607/1cvyue2ll1s4.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/1x0g7byzk25q.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 26, era: "낭만(민족주의)", art: "nationalist", title: "그리그", latin: "Edvard Grieg", years: "1843~1907", caption: "낭만(민족주의)_그리그", url: "https://www.douclass.com/viewer/SPC_P/54586", img: "https://s3.douclass.com/pub/2026/thumb/2607/xe1q91frfinz.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/wx1lz0q3znso.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 27, era: "근현대", art: "modernist", title: "드뷔시", latin: "Claude Debussy", years: "1862~1918", caption: "근현대_드뷔시", url: "https://www.douclass.com/viewer/SPC_P/54588", img: "https://s3.douclass.com/pub/2026/thumb/2607/aovvs7m5bwzk.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/j59ssnxo62gk.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 28, era: "근현대", art: "modernist", title: "쇤베르크", latin: "Arnold Schoenberg", years: "1874~1951", caption: "근현대_쇤베르크", url: "https://www.douclass.com/viewer/SPC_P/54590", img: "https://s3.douclass.com/pub/2026/thumb/2607/ykvvbpew9ehp.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/ah16x19o7ahy.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 29, era: "근현대", art: "modernist", title: "스트라빈스키", latin: "Igor Stravinsky", years: "1882~1971", caption: "근현대_스트라빈스키", url: "https://www.douclass.com/viewer/SPC_P/54591", img: "https://s3.douclass.com/pub/2026/thumb/2607/sazyq9okrwzw.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/vbxk8bf74dnk.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "era", no: 30, era: "근현대", art: "modernist", title: "케이지", latin: "John Cage", years: "1912~1992", caption: "근현대_케이지", url: "https://www.douclass.com/viewer/SPC_P/54593", img: "https://s3.douclass.com/pub/2026/thumb/2607/4s7eiespfey2.png", sheetUrl: "https://s3.douclass.com/pub/2026/TC_ACTIVE/2607/n9bbjrt1xbqi.hwpx", sheetLabel: "활동지 (hwpx)" },
+  { format: "webtoon", no: 1, scope: "해외편", art: "world", title: "모차르트", caption: "모차르트", url: "https://www.douclass.com/viewer/SPC_P/54542", img: "https://s3.douclass.com/pub/2026/thumb/2608/kintxo1j2jjn.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/yzzy7bn0srox.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 2, scope: "해외편", art: "world", title: "베토벤", caption: "베토벤", url: "https://www.douclass.com/viewer/SPC_P/54543", img: "https://s3.douclass.com/pub/2026/thumb/2608/ll6z5jumkn3m.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/shno7dqjqole.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 3, scope: "해외편", art: "world", title: "차이콥스키", caption: "차이콥스키", url: "https://www.douclass.com/viewer/SPC_P/54544", img: "https://s3.douclass.com/pub/2026/thumb/2608/th8w71o3tnhq.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/368kwtvq2ht2.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 4, scope: "해외편", art: "world", title: "존 케이지", caption: "존 케이지", url: "https://www.douclass.com/viewer/SPC_P/54545", img: "https://s3.douclass.com/pub/2026/thumb/2608/d10c3fsmyow9.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/9g37ysnnhjau.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 5, scope: "해외편", art: "world", title: "마이클 잭슨", caption: "마이클 잭슨", url: "https://www.douclass.com/viewer/SPC_P/54546", img: "https://s3.douclass.com/pub/2026/thumb/2608/0mzpauuv642o.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/q4wecii96qiq.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 6, scope: "해외편", art: "world", title: "히사이시 조", caption: "히사이시 조", url: "https://www.douclass.com/viewer/SPC_P/54547", img: "https://s3.douclass.com/pub/2026/thumb/2608/8sfn5f7hkkry.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/6g9n3zbvu06c.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 7, scope: "국내편", art: "korean", title: "세종 대왕과 박연", caption: "세종 대왕과 박연", url: "https://www.douclass.com/viewer/SPC_P/54548", img: "https://s3.douclass.com/pub/2026/thumb/2608/9io5y8i9ut81.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/t299odiulj2w.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 8, scope: "국내편", art: "korean", title: "왕산악과 우륵", caption: "왕산악과 우륵", url: "https://www.douclass.com/viewer/SPC_P/54549", img: "https://s3.douclass.com/pub/2026/thumb/2608/37smqpt7y1pc.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/kxoswshrvcbe.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 9, scope: "국내편", art: "korean", title: "황병기", caption: "황병기", url: "https://www.douclass.com/viewer/SPC_P/54550", img: "https://s3.douclass.com/pub/2026/thumb/2608/o9dx88hvxe0p.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/fnwkormo50w8.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 10, scope: "국내편", art: "korean", title: "김덕수", caption: "김덕수", url: "https://www.douclass.com/viewer/SPC_P/54551", img: "https://s3.douclass.com/pub/2026/thumb/2608/n48iqcmqx7v9.png", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/3wazv4vhdf5o.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 11, scope: "국내편", art: "korean", title: "조수미", caption: "조수미", url: "https://www.douclass.com/viewer/SPC_P/54552", img: "https://s3.douclass.com/pub/2026/thumb/2608/54vb3q02v9q8.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/sg0tvn65wmwm.pdf", sheetLabel: "활동지 (pdf)" },
+  { format: "webtoon", no: 12, scope: "국내편", art: "korean", title: "조성진", caption: "조성진", url: "https://www.douclass.com/viewer/SPC_P/54553", img: "https://s3.douclass.com/pub/2026/thumb/2608/9holty9mcx6e.jpg", sheetUrl: "https://s3.douclass.com/pub/2026/ST_ACTIVE/2608/o0odvsjvl7ar.pdf", sheetLabel: "활동지 (pdf)" },
   { format: "textbook", no: 1, art: "textbook", title: "생상스", work: "동물의 사육제", caption: "[생상스] 동물의 사육제", url: "https://canva.link/a0nd5vlpl64u7fs", sheetUrl: "", sheetLabel: "" },
   { format: "textbook", no: 2, art: "textbook", title: "프로코피예프", work: "피터와 늑대", caption: "[프로코피예프] 피터와 늑대", url: "https://canva.link/53d5rdc6rg7i0xs", sheetUrl: "", sheetLabel: "" },
   { format: "textbook", no: 3, art: "textbook", title: "비제", work: "&quot;아를의 여인&quot; 중 '파랑돌'", caption: "[비제] &quot;아를의 여인&quot; 중 '파랑돌'", url: "https://canva.link/6s5p051kpw5fv5j", sheetUrl: "", sheetLabel: "" },
@@ -978,76 +978,76 @@ const composerItems = [
 ];
 
 const theoryItems = [
-  { format: "anim", no: 1, art: "staff", title: "오선과 음자리표", duration: "2:42", url: "https://www.douclass.com/viewer/SPC_P/30288", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/4b/21/c5cc90ca48b6c9efc666c5a28a88496ab78c/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 2, art: "notes", title: "음표와 쉼표", duration: "1:26", url: "https://www.douclass.com/viewer/SPC_P/30293", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/8b/b1/012be6d118162ab3533d538c9b82759a7591/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 3, art: "repeat", title: "반복 기호", duration: "3:30", url: "https://www.douclass.com/viewer/SPC_P/30295", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/40/13/d44d0daac383837efb2ce0a4b4cc2c01e32f/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 4, art: "meter", title: "박자", duration: "1:44", url: "https://www.douclass.com/viewer/SPC_P/30300", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a8/d1/8478d8a2b36c8648fefef36069b34fea0f04/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 5, art: "pitch", title: "음이름과 계이름", duration: "1:56", url: "https://www.douclass.com/viewer/SPC_P/30304", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/5e/8c/a3d3e40a9cab46fdf1e43ab1858c3ba45321/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 6, art: "accidental", title: "임시표", duration: "2:28", url: "https://www.douclass.com/viewer/SPC_P/30308", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/92/dc/c44cecc1834d8326ff60f94eb0ca081d364f/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 7, art: "symbols", title: "다양한 음악 기호", duration: "1:58", url: "https://www.douclass.com/viewer/SPC_P/30315", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/ad/96/244c0f242f5beb4e116a1e8c027fc712247b/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 8, art: "dynamics", title: "셈여림표", duration: "2:17", url: "https://www.douclass.com/viewer/SPC_P/30318", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/97/a6/53179ee1f62cf2775efb13207379033e3033/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 9, art: "tempo", title: "빠르기말", duration: "2:38", url: "https://www.douclass.com/viewer/SPC_P/30330", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/eb/ac/803c4d71d165be9f77583046fcec5bdf5795/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 10, art: "scale", title: "장음계", duration: "1:57", url: "https://www.douclass.com/viewer/SPC_P/30333", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/3f/c6/407369276abfd5823a99b34d3e8be72f2fce/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 11, art: "scale", title: "단음계", duration: "3:52", url: "https://www.douclass.com/viewer/SPC_P/30338", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/78/40/d95946cc12d28759f6a50bfb6ecd003816f0/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 12, art: "chord", title: "화음", duration: "1:37", url: "https://www.douclass.com/viewer/SPC_P/30342", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/62/31/6ef55157461fb3ea593e8440afe866ac8b3e/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 13, art: "form", title: "음악의 형식", duration: "2:41", url: "https://www.douclass.com/viewer/SPC_P/30346", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/7d/f4/69d70e2b1fa196e34e04bbb30fddf6752aff/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 14, art: "form", title: "메기고 받는 형식", duration: "2:05", url: "https://www.douclass.com/viewer/SPC_P/43114", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/ae/0e/cf236890caa0726fafc3377dc8226b68afd3/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 15, art: "meter", title: "한배", duration: "1:49", url: "https://www.douclass.com/viewer/SPC_P/43115", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a5/49/0cccd60d87adab8c5ca339e3c2fb7f5a5f49/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 16, art: "tori", title: "시김새", duration: "2:07", url: "https://www.douclass.com/viewer/SPC_P/43116", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/7e/36/23b7998a2c9acb945bd8de34336bc153829f/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 17, art: "janggu", title: "장구 장단의 부호와 구음", duration: "2:50", url: "https://www.douclass.com/viewer/SPC_P/43117", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a1/56/8ce1b6a4d580ee9d8a1a105b7ddbed6dfe30/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 18, art: "janggu", title: "여러 가지 장단", duration: "3:38", url: "https://www.douclass.com/viewer/SPC_P/43118", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/31/c0/5b16c4d2b605683221c3c29752aa963d98c2/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 19, art: "jeongganbo", title: "율명", duration: "2:15", url: "https://www.douclass.com/viewer/SPC_P/43119", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/b8/50/47e3869961b305b2add7160aec5e74aeec68/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "anim", no: 20, art: "tori", title: "토리", duration: "5:31", url: "https://www.douclass.com/viewer/SPC_P/43120", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/67/59/2535f2a5be287d6371b23aebe3689d72ef44/hview.html", sheetLabel: "수업용 PPT" },
-  { format: "sheet", scope: "기초 이론집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://www.douclass.com/viewer/SPC_P/43121" },
-  { format: "sheet", scope: "기초 이론집", no: 2, art: "notes", title: "음표와 쉼표", url: "https://www.douclass.com/viewer/SPC_P/43122" },
-  { format: "sheet", scope: "기초 이론집", no: 3, art: "repeat", title: "반복 기호", url: "https://www.douclass.com/viewer/SPC_P/43123" },
-  { format: "sheet", scope: "기초 이론집", no: 4, art: "meter", title: "박자와 세로줄", url: "https://www.douclass.com/viewer/SPC_P/43124" },
-  { format: "sheet", scope: "기초 이론집", no: 5, art: "pitch", title: "음이름과 계이름", url: "https://www.douclass.com/viewer/SPC_P/43125" },
-  { format: "sheet", scope: "기초 이론집", no: 6, art: "accidental", title: "임시표", url: "https://www.douclass.com/viewer/SPC_P/43126" },
-  { format: "sheet", scope: "기초 이론집", no: 7, art: "symbols", title: "다양한 음악 기호", url: "https://www.douclass.com/viewer/SPC_P/43127" },
-  { format: "sheet", scope: "기초 이론집", no: 8, art: "dynamics", title: "셈여림표", url: "https://www.douclass.com/viewer/SPC_P/43128" },
-  { format: "sheet", scope: "기초 이론집", no: 9, art: "tempo", title: "빠르기말", url: "https://www.douclass.com/viewer/SPC_P/43129" },
-  { format: "sheet", scope: "기초 이론집", no: 10, art: "scale", title: "장음계", url: "https://www.douclass.com/viewer/SPC_P/43130" },
-  { format: "sheet", scope: "기초 이론집", no: 11, art: "scale", title: "단음계", url: "https://www.douclass.com/viewer/SPC_P/43131" },
-  { format: "sheet", scope: "기초 이론집", no: 12, art: "chord", title: "화음", url: "https://www.douclass.com/viewer/SPC_P/43132" },
-  { format: "sheet", scope: "기초 이론집", no: 13, art: "form", title: "음악의 형식", url: "https://www.douclass.com/viewer/SPC_P/43133" },
-  { format: "sheet", scope: "기초 이론집", no: 14, art: "form", title: "메기고 받는 형식", url: "https://www.douclass.com/viewer/SPC_P/43134" },
-  { format: "sheet", scope: "기초 이론집", no: 15, art: "meter", title: "한배", url: "https://www.douclass.com/viewer/SPC_P/43135" },
-  { format: "sheet", scope: "기초 이론집", no: 16, art: "tori", title: "시김새", url: "https://www.douclass.com/viewer/SPC_P/43136" },
-  { format: "sheet", scope: "기초 이론집", no: 17, art: "janggu", title: "장구", url: "https://www.douclass.com/viewer/SPC_P/43137" },
-  { format: "sheet", scope: "기초 이론집", no: 18, art: "janggu", title: "장단", url: "https://www.douclass.com/viewer/SPC_P/43138" },
-  { format: "sheet", scope: "기초 이론집", no: 19, art: "jeongganbo", title: "율명과 정간보", url: "https://www.douclass.com/viewer/SPC_P/43139" },
-  { format: "sheet", scope: "기초 이론집", no: 20, art: "tori", title: "토리", url: "https://www.douclass.com/viewer/SPC_P/43140" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://www.douclass.com/viewer/SPC_P/43141" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 2, art: "notes", title: "음표와 쉼표", url: "https://www.douclass.com/viewer/SPC_P/43142" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 3, art: "repeat", title: "도돌이표", url: "https://www.douclass.com/viewer/SPC_P/43143" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 4, art: "meter", title: "박자와 세로줄", url: "https://www.douclass.com/viewer/SPC_P/43144" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 5, art: "pitch", title: "음이름과 계이름", url: "https://www.douclass.com/viewer/SPC_P/43145" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 6, art: "dynamics", title: "빠르기말과 셈여림표", url: "https://www.douclass.com/viewer/SPC_P/43146" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 7, art: "scale", title: "음계와 조", url: "https://www.douclass.com/viewer/SPC_P/43147" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 8, art: "chord", title: "화음", url: "https://www.douclass.com/viewer/SPC_P/43148" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 9, art: "janggu", title: "장구 장단", url: "https://www.douclass.com/viewer/SPC_P/43149" },
-  { format: "sheet", scope: "수업 도움 자료집", no: 10, art: "jeongganbo", title: "율명과 정간보", url: "https://www.douclass.com/viewer/SPC_P/43150" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://www.douclass.com/viewer/SPC_P/43151" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 2, art: "repeat", title: "반복 기호", url: "https://www.douclass.com/viewer/SPC_P/43152" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 3, art: "notes", title: "음표와 쉼표", url: "https://www.douclass.com/viewer/SPC_P/43153" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 4, art: "accidental", title: "임시표", url: "https://www.douclass.com/viewer/SPC_P/43154" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 5, art: "meter", title: "박자", url: "https://www.douclass.com/viewer/SPC_P/43155" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 6, art: "dynamics", title: "셈여림표", url: "https://www.douclass.com/viewer/SPC_P/43156" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 7, art: "tempo", title: "빠르기말", url: "https://www.douclass.com/viewer/SPC_P/43157" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 8, art: "pitch", title: "음이름과 계이름", url: "https://www.douclass.com/viewer/SPC_P/43160" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 9, art: "scale", title: "장음계", url: "https://www.douclass.com/viewer/SPC_P/43161" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 10, art: "scale", title: "단음계", url: "https://www.douclass.com/viewer/SPC_P/43162" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 11, art: "chord", title: "화음", url: "https://www.douclass.com/viewer/SPC_P/43163" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 12, art: "symbols", title: "다양한 음악 기호", url: "https://www.douclass.com/viewer/SPC_P/43164" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 13, art: "form", title: "음악의 형식", url: "https://www.douclass.com/viewer/SPC_P/43165" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 14, art: "form", title: "메기고 받는 형식", url: "https://www.douclass.com/viewer/SPC_P/43166" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 15, art: "meter", title: "한배", url: "https://www.douclass.com/viewer/SPC_P/43167" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 16, art: "tori", title: "시김새", url: "https://www.douclass.com/viewer/SPC_P/43168" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 17, art: "janggu", title: "장구", url: "https://www.douclass.com/viewer/SPC_P/43169" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 18, art: "janggu", title: "장단", url: "https://www.douclass.com/viewer/SPC_P/43170" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 19, art: "tori", title: "토리", url: "https://www.douclass.com/viewer/SPC_P/43171" },
-  { format: "sheet", scope: "그림 개념 용어집", no: 20, art: "jeongganbo", title: "율명", url: "https://www.douclass.com/viewer/SPC_P/43172" },
+  { format: "anim", no: 1, art: "staff", title: "오선과 음자리표", duration: "2:42", url: "https://www.douclass.com/viewer/SPC_P/30288", img: "https://s3.douclass.com/pub/2024/thumb/2407/xv5ygr1kmu24.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/4b/21/c5cc90ca48b6c9efc666c5a28a88496ab78c/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 2, art: "notes", title: "음표와 쉼표", duration: "1:26", url: "https://www.douclass.com/viewer/SPC_P/30293", img: "https://s3.douclass.com/pub/2024/thumb/2407/mtxlv8vj6py2.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/8b/b1/012be6d118162ab3533d538c9b82759a7591/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 3, art: "repeat", title: "반복 기호", duration: "3:30", url: "https://www.douclass.com/viewer/SPC_P/30295", img: "https://s3.douclass.com/pub/2024/thumb/2407/1lcd9s5mhs18.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/40/13/d44d0daac383837efb2ce0a4b4cc2c01e32f/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 4, art: "meter", title: "박자", duration: "1:44", url: "https://www.douclass.com/viewer/SPC_P/30300", img: "https://s3.douclass.com/pub/2024/thumb/2407/tld0qz8pujxh.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a8/d1/8478d8a2b36c8648fefef36069b34fea0f04/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 5, art: "pitch", title: "음이름과 계이름", duration: "1:56", url: "https://www.douclass.com/viewer/SPC_P/30304", img: "https://s3.douclass.com/pub/2024/thumb/2407/fslpn7i1z8y5.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/5e/8c/a3d3e40a9cab46fdf1e43ab1858c3ba45321/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 6, art: "accidental", title: "임시표", duration: "2:28", url: "https://www.douclass.com/viewer/SPC_P/30308", img: "https://s3.douclass.com/pub/2024/thumb/2407/0zg0xjbxo1s0.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/92/dc/c44cecc1834d8326ff60f94eb0ca081d364f/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 7, art: "symbols", title: "다양한 음악 기호", duration: "1:58", url: "https://www.douclass.com/viewer/SPC_P/30315", img: "https://s3.douclass.com/pub/2024/thumb/2407/ezv5ji25aizg.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/ad/96/244c0f242f5beb4e116a1e8c027fc712247b/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 8, art: "dynamics", title: "셈여림표", duration: "2:17", url: "https://www.douclass.com/viewer/SPC_P/30318", img: "https://s3.douclass.com/pub/2024/thumb/2407/zm4c7ninjet0.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/97/a6/53179ee1f62cf2775efb13207379033e3033/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 9, art: "tempo", title: "빠르기말", duration: "2:38", url: "https://www.douclass.com/viewer/SPC_P/30330", img: "https://s3.douclass.com/pub/2024/thumb/2407/9sby6rxiyc2e.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/eb/ac/803c4d71d165be9f77583046fcec5bdf5795/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 10, art: "scale", title: "장음계", duration: "1:57", url: "https://www.douclass.com/viewer/SPC_P/30333", img: "https://s3.douclass.com/pub/2024/thumb/2407/n14pn3s7hbk1.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/3f/c6/407369276abfd5823a99b34d3e8be72f2fce/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 11, art: "scale", title: "단음계", duration: "3:52", url: "https://www.douclass.com/viewer/SPC_P/30338", img: "https://s3.douclass.com/pub/2024/thumb/2407/s3giwsi4aeg3.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/78/40/d95946cc12d28759f6a50bfb6ecd003816f0/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 12, art: "chord", title: "화음", duration: "1:37", url: "https://www.douclass.com/viewer/SPC_P/30342", img: "https://s3.douclass.com/pub/2024/thumb/2407/7ej3egb6ubak.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/62/31/6ef55157461fb3ea593e8440afe866ac8b3e/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 13, art: "form", title: "음악의 형식", duration: "2:41", url: "https://www.douclass.com/viewer/SPC_P/30346", img: "https://s3.douclass.com/pub/2024/thumb/2407/0ju89ckc33sb.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/7d/f4/69d70e2b1fa196e34e04bbb30fddf6752aff/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 14, art: "form", title: "메기고 받는 형식", duration: "2:05", url: "https://www.douclass.com/viewer/SPC_P/43114", img: "https://s3.douclass.com/pub/2025/thumb/2506/u34kj2ht15z8.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/ae/0e/cf236890caa0726fafc3377dc8226b68afd3/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 15, art: "meter", title: "한배", duration: "1:49", url: "https://www.douclass.com/viewer/SPC_P/43115", img: "https://s3.douclass.com/pub/2025/thumb/2506/r0zgnupo55fo.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a5/49/0cccd60d87adab8c5ca339e3c2fb7f5a5f49/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 16, art: "tori", title: "시김새", duration: "2:07", url: "https://www.douclass.com/viewer/SPC_P/43116", img: "https://s3.douclass.com/pub/2025/thumb/2506/0xo0qtl3wt20.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/7e/36/23b7998a2c9acb945bd8de34336bc153829f/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 17, art: "janggu", title: "장구 장단의 부호와 구음", duration: "2:50", url: "https://www.douclass.com/viewer/SPC_P/43117", img: "https://s3.douclass.com/pub/2025/thumb/2506/2k14xih3be9m.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/a1/56/8ce1b6a4d580ee9d8a1a105b7ddbed6dfe30/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 18, art: "janggu", title: "여러 가지 장단", duration: "3:38", url: "https://www.douclass.com/viewer/SPC_P/43118", img: "https://s3.douclass.com/pub/2025/thumb/2506/ya8to2x6vgoz.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/31/c0/5b16c4d2b605683221c3c29752aa963d98c2/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 19, art: "jeongganbo", title: "율명", duration: "2:15", url: "https://www.douclass.com/viewer/SPC_P/43119", img: "https://s3.douclass.com/pub/2025/thumb/2506/wei894nto9bx.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/b8/50/47e3869961b305b2add7160aec5e74aeec68/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "anim", no: 20, art: "tori", title: "토리", duration: "5:31", url: "https://www.douclass.com/viewer/SPC_P/43120", img: "https://s3.douclass.com/pub/2025/thumb/2506/s1eki49mbscm.png", sheetUrl: "https://hermes.douclass.com/hermes/resource/store/67/59/2535f2a5be287d6371b23aebe3689d72ef44/hview.html", sheetLabel: "수업용 PPT" },
+  { format: "sheet", scope: "기초 이론집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://www.douclass.com/viewer/SPC_P/43121", img: "https://s3.douclass.com/pub/2025/thumb/2506/qu86xm7xmlm5.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 2, art: "notes", title: "음표와 쉼표", url: "https://www.douclass.com/viewer/SPC_P/43122", img: "https://s3.douclass.com/pub/2025/thumb/2506/evz73nu5xvyr.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 3, art: "repeat", title: "반복 기호", url: "https://www.douclass.com/viewer/SPC_P/43123", img: "https://s3.douclass.com/pub/2025/thumb/2506/7lomdev3xx26.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 4, art: "meter", title: "박자와 세로줄", url: "https://www.douclass.com/viewer/SPC_P/43124", img: "https://s3.douclass.com/pub/2025/thumb/2506/ftuv59zn6c9h.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 5, art: "pitch", title: "음이름과 계이름", url: "https://www.douclass.com/viewer/SPC_P/43125", img: "https://s3.douclass.com/pub/2025/thumb/2506/1zuuvfe55eth.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 6, art: "accidental", title: "임시표", url: "https://www.douclass.com/viewer/SPC_P/43126", img: "https://s3.douclass.com/pub/2025/thumb/2506/92cg5xodtqji.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 7, art: "symbols", title: "다양한 음악 기호", url: "https://www.douclass.com/viewer/SPC_P/43127", img: "https://s3.douclass.com/pub/2025/thumb/2506/4uczb1boignc.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 8, art: "dynamics", title: "셈여림표", url: "https://www.douclass.com/viewer/SPC_P/43128", img: "https://s3.douclass.com/pub/2025/thumb/2506/xy2nvog658j3.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 9, art: "tempo", title: "빠르기말", url: "https://www.douclass.com/viewer/SPC_P/43129", img: "https://s3.douclass.com/pub/2025/thumb/2506/l7c3omuqkurx.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 10, art: "scale", title: "장음계", url: "https://www.douclass.com/viewer/SPC_P/43130", img: "https://s3.douclass.com/pub/2025/thumb/2506/ek5yon3uls7m.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 11, art: "scale", title: "단음계", url: "https://www.douclass.com/viewer/SPC_P/43131", img: "https://s3.douclass.com/pub/2025/thumb/2506/7xzpyvcgz93q.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 12, art: "chord", title: "화음", url: "https://www.douclass.com/viewer/SPC_P/43132", img: "https://s3.douclass.com/pub/2025/thumb/2506/pnul8wp5fljp.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 13, art: "form", title: "음악의 형식", url: "https://www.douclass.com/viewer/SPC_P/43133", img: "https://s3.douclass.com/pub/2025/thumb/2506/n4rwsgj2tsc3.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 14, art: "form", title: "메기고 받는 형식", url: "https://www.douclass.com/viewer/SPC_P/43134", img: "https://s3.douclass.com/pub/2025/thumb/2506/97sdotycmfmm.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 15, art: "meter", title: "한배", url: "https://www.douclass.com/viewer/SPC_P/43135", img: "https://s3.douclass.com/pub/2025/thumb/2506/xbq2rsrpxuoq.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 16, art: "tori", title: "시김새", url: "https://www.douclass.com/viewer/SPC_P/43136", img: "https://s3.douclass.com/pub/2025/thumb/2506/ali3rdlzjawn.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 17, art: "janggu", title: "장구", url: "https://www.douclass.com/viewer/SPC_P/43137", img: "https://s3.douclass.com/pub/2025/thumb/2506/y81xni5u31i0.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 18, art: "janggu", title: "장단", url: "https://www.douclass.com/viewer/SPC_P/43138", img: "https://s3.douclass.com/pub/2025/thumb/2506/r2jh8zd7cvpy.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 19, art: "jeongganbo", title: "율명과 정간보", url: "https://www.douclass.com/viewer/SPC_P/43139", img: "https://s3.douclass.com/pub/2025/thumb/2506/v6ln7kg4lzjk.jpg" },
+  { format: "sheet", scope: "기초 이론집", no: 20, art: "tori", title: "토리", url: "https://www.douclass.com/viewer/SPC_P/43140", img: "https://s3.douclass.com/pub/2025/thumb/2506/epl34igbsuhy.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://www.douclass.com/viewer/SPC_P/43141", img: "https://s3.douclass.com/pub/2025/thumb/2506/f73f2dxl4rcd.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 2, art: "notes", title: "음표와 쉼표", url: "https://www.douclass.com/viewer/SPC_P/43142", img: "https://s3.douclass.com/pub/2025/thumb/2506/ib6iwqraie0a.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 3, art: "repeat", title: "도돌이표", url: "https://www.douclass.com/viewer/SPC_P/43143", img: "https://s3.douclass.com/pub/2025/thumb/2506/9q4dypxybyv9.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 4, art: "meter", title: "박자와 세로줄", url: "https://www.douclass.com/viewer/SPC_P/43144", img: "https://s3.douclass.com/pub/2025/thumb/2506/5s62u57wr9if.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 5, art: "pitch", title: "음이름과 계이름", url: "https://www.douclass.com/viewer/SPC_P/43145", img: "https://s3.douclass.com/pub/2025/thumb/2506/mzmk63213c2e.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 6, art: "dynamics", title: "빠르기말과 셈여림표", url: "https://www.douclass.com/viewer/SPC_P/43146", img: "https://s3.douclass.com/pub/2025/thumb/2506/ow3jmvpibk00.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 7, art: "scale", title: "음계와 조", url: "https://www.douclass.com/viewer/SPC_P/43147", img: "https://s3.douclass.com/pub/2025/thumb/2506/346ojn770s9a.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 8, art: "chord", title: "화음", url: "https://www.douclass.com/viewer/SPC_P/43148", img: "https://s3.douclass.com/pub/2025/thumb/2506/pcz07wkwghda.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 9, art: "janggu", title: "장구 장단", url: "https://www.douclass.com/viewer/SPC_P/43149", img: "https://s3.douclass.com/pub/2025/thumb/2506/deu1lpy0b7hz.jpg" },
+  { format: "sheet", scope: "수업 도움 자료집", no: 10, art: "jeongganbo", title: "율명과 정간보", url: "https://www.douclass.com/viewer/SPC_P/43150", img: "https://s3.douclass.com/pub/2025/thumb/2506/1rnexgnzmkz0.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 1, art: "staff", title: "오선과 음자리표", url: "https://www.douclass.com/viewer/SPC_P/43151", img: "https://s3.douclass.com/pub/2025/thumb/2506/fe0y89iyzw7c.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 2, art: "repeat", title: "반복 기호", url: "https://www.douclass.com/viewer/SPC_P/43152", img: "https://s3.douclass.com/pub/2025/thumb/2506/cpgfglk3r3fk.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 3, art: "notes", title: "음표와 쉼표", url: "https://www.douclass.com/viewer/SPC_P/43153", img: "https://s3.douclass.com/pub/2025/thumb/2506/7co6yuxkt744.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 4, art: "accidental", title: "임시표", url: "https://www.douclass.com/viewer/SPC_P/43154", img: "https://s3.douclass.com/pub/2025/thumb/2506/ateiq8f57agv.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 5, art: "meter", title: "박자", url: "https://www.douclass.com/viewer/SPC_P/43155", img: "https://s3.douclass.com/pub/2025/thumb/2506/5nwunttnbogq.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 6, art: "dynamics", title: "셈여림표", url: "https://www.douclass.com/viewer/SPC_P/43156", img: "https://s3.douclass.com/pub/2025/thumb/2506/nmujd1ctzg4i.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 7, art: "tempo", title: "빠르기말", url: "https://www.douclass.com/viewer/SPC_P/43157", img: "https://s3.douclass.com/pub/2026/thumb/2607/g3m34qrrh8u5.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 8, art: "pitch", title: "음이름과 계이름", url: "https://www.douclass.com/viewer/SPC_P/43160", img: "https://s3.douclass.com/pub/2025/thumb/2506/ofgl70x5a1sb.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 9, art: "scale", title: "장음계", url: "https://www.douclass.com/viewer/SPC_P/43161", img: "https://s3.douclass.com/pub/2025/thumb/2506/l7nvmegqvouc.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 10, art: "scale", title: "단음계", url: "https://www.douclass.com/viewer/SPC_P/43162", img: "https://s3.douclass.com/pub/2025/thumb/2506/spor3dhdqisf.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 11, art: "chord", title: "화음", url: "https://www.douclass.com/viewer/SPC_P/43163", img: "https://s3.douclass.com/pub/2025/thumb/2506/11ktcdfrt0p0.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 12, art: "symbols", title: "다양한 음악 기호", url: "https://www.douclass.com/viewer/SPC_P/43164", img: "https://s3.douclass.com/pub/2025/thumb/2506/v4lcw6ic05tf.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 13, art: "form", title: "음악의 형식", url: "https://www.douclass.com/viewer/SPC_P/43165", img: "https://s3.douclass.com/pub/2025/thumb/2506/68m4rqvlyun9.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 14, art: "form", title: "메기고 받는 형식", url: "https://www.douclass.com/viewer/SPC_P/43166", img: "https://s3.douclass.com/pub/2025/thumb/2506/4msx5o8hpjfd.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 15, art: "meter", title: "한배", url: "https://www.douclass.com/viewer/SPC_P/43167", img: "https://s3.douclass.com/pub/2025/thumb/2506/kh8pluf2ith5.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 16, art: "tori", title: "시김새", url: "https://www.douclass.com/viewer/SPC_P/43168", img: "https://s3.douclass.com/pub/2025/thumb/2506/aapethewji12.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 17, art: "janggu", title: "장구", url: "https://www.douclass.com/viewer/SPC_P/43169", img: "https://s3.douclass.com/pub/2025/thumb/2506/7ye578cqguno.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 18, art: "janggu", title: "장단", url: "https://www.douclass.com/viewer/SPC_P/43170", img: "https://s3.douclass.com/pub/2025/thumb/2506/d5z16peik8qf.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 19, art: "tori", title: "토리", url: "https://www.douclass.com/viewer/SPC_P/43171", img: "https://s3.douclass.com/pub/2025/thumb/2506/dne157r6cahi.jpg" },
+  { format: "sheet", scope: "그림 개념 용어집", no: 20, art: "jeongganbo", title: "율명", url: "https://www.douclass.com/viewer/SPC_P/43172", img: "https://s3.douclass.com/pub/2025/thumb/2506/r4077dkxax2x.jpg" },
   { format: "game", scope: "ZEP 퀴즈", no: 1, art: "notes", title: "음표", url: "https://quiz.zep.us/play/7R01ZK" },
   { format: "game", scope: "ZEP 퀴즈", no: 2, art: "notes", title: "음표의 덧셈과 뺄셈", url: "https://quiz.zep.us/play/GpLwQm" },
   { format: "game", scope: "ZEP 퀴즈", no: 3, art: "notes", title: "쉼표", url: "https://quiz.zep.us/play/WaQ7eq" },
@@ -1111,6 +1111,13 @@ function sheetAction(url) {
   return isViewerLink(url) ? "열기" : "내려받기";
 }
 
+function coverImg(item) {
+  // 두클래스 원본 썸네일. 못 불러오면 지워져서 밑에 깔린 그림이 그대로 보인다.
+  return item && item.img
+    ? `<img class="cover-shot" src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`
+    : "";
+}
+
 function readFavorites() {
   try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY)) || []); }
   catch { return new Set(); }
@@ -1136,7 +1143,7 @@ function renderHistory() {
     const overlay = item.format === "ppt"
       ? `<span class="thumb-caption"><span class="thumb-title">${item.title}</span><span class="thumb-period">(${item.period})</span></span>`
       : `<span class="thumb-play" aria-hidden="true">▶</span><span class="thumb-time">${item.duration}</span>`;
-    const thumb = `${historyArtFor(item)}<span class="thumb-overlay format-${item.format}">${overlay}</span>`;
+    const thumb = `${historyArtFor(item)}${coverImg(item)}<span class="thumb-overlay format-${item.format}">${overlay}</span>`;
     const open = item.url
       ? `<a class="history-open" href="${item.url}" target="_blank" rel="noopener"><span class="history-thumb scope-${item.scope}">${thumb}</span></a>`
       : `<span class="history-open is-soon" aria-disabled="true"><span class="history-thumb scope-${item.scope}">${thumb}</span></span>`;
@@ -1364,8 +1371,8 @@ function renderComposers() {
       ? `<span class="composer-name"><b>${item.title}</b><i>${item.latin}</i><em>${item.years}</em></span>`
       : `<span class="composer-name plain"><b>${item.title}</b>${item.work ? `<em>${item.work}</em>` : ""}</span>`;
     const open = item.url
-      ? `<a class="history-open" href="${item.url}" target="_blank" rel="noopener"><span class="history-thumb composer-thumb art-${item.art}">${composerArt[item.art]}<span class="thumb-overlay format-composer">${nameBlock}</span><span class="composer-badge">${badge}</span></span></a>`
-      : `<span class="history-open is-soon"><span class="history-thumb composer-thumb art-${item.art}">${composerArt[item.art]}<span class="thumb-overlay format-composer">${nameBlock}</span><span class="composer-badge">${badge}</span></span></span>`;
+      ? `<a class="history-open" href="${item.url}" target="_blank" rel="noopener"><span class="history-thumb composer-thumb art-${item.art}">${composerArt[item.art]}${coverImg(item)}<span class="thumb-overlay format-composer">${nameBlock}</span><span class="composer-badge">${badge}</span></span></a>`
+      : `<span class="history-open is-soon"><span class="history-thumb composer-thumb art-${item.art}">${composerArt[item.art]}${coverImg(item)}<span class="thumb-overlay format-composer">${nameBlock}</span><span class="composer-badge">${badge}</span></span></span>`;
     const menuItems = [
       item.url ? `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="수업 자료 링크">↗ 수업 자료 공유하기</button>` : "",
       item.sheetUrl ? `<button role="menuitem" type="button" data-share="${item.sheetUrl}" data-share-label="${item.sheetLabel} 링크">↗ ${item.sheetLabel} 공유하기</button>` : "",
@@ -1489,7 +1496,7 @@ function renderTheorybook() {
     const mark = item.format === "anim"
       ? `<span class="thumb-play" aria-hidden="true">▶</span><span class="thumb-time">${item.duration}</span>`
       : "";
-    const thumb = `<span class="history-thumb theory-thumb kind-${item.format}">${theoryArt[item.art] || theoryArt.symbols}<span class="thumb-overlay format-theory"><span class="theory-name">${item.title}</span>${mark}</span><span class="composer-badge">${badge}</span></span>`;
+    const thumb = `<span class="history-thumb theory-thumb kind-${item.format}">${theoryArt[item.art] || theoryArt.symbols}${coverImg(item)}<span class="thumb-overlay format-theory"><span class="theory-name">${item.title}</span>${mark}</span><span class="composer-badge">${badge}</span></span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
@@ -1605,7 +1612,7 @@ function renderSongs() {
     const picked = songsGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.scope || songGenreLabel[item.genre];
-    const thumb = `<span class="history-thumb song-thumb genre-${item.genre}">${songArt[item.genre] || songArt.western}<span class="thumb-overlay format-song"><span class="song-name">${item.title}${item.note ? `<em>${item.note}</em>` : ""}</span></span><span class="composer-badge">${badge}</span></span>`;
+    const thumb = `<span class="history-thumb song-thumb genre-${item.genre}">${songArt[item.genre] || songArt.western}${coverImg(item)}<span class="thumb-overlay format-song"><span class="song-name">${item.title}${item.note ? `<em>${item.note}</em>` : ""}</span></span><span class="composer-badge">${badge}</span></span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="악보 링크">↗ 악보 공유하기</button>`,
@@ -1726,7 +1733,7 @@ function renderPlay() {
     const isVideo = item.art === "video";
     const badge = isVideo ? "연주 듣기" : "PDF";
     const cover = isVideo ? `<span class="thumb-play" aria-hidden="true">▶</span>` : (playArt[item.art] || playArt.guide);
-    const thumb = `<span class="history-thumb play-thumb cover-${item.art}">${cover}<span class="thumb-overlay format-play"><span class="play-name">${item.title}${item.note ? `<em>${item.note}</em>` : ""}</span></span><span class="composer-badge">${badge}</span></span>`;
+    const thumb = `<span class="history-thumb play-thumb cover-${item.art}">${cover}${coverImg(item)}<span class="thumb-overlay format-play"><span class="play-name">${item.title}${item.note ? `<em>${item.note}</em>` : ""}</span></span><span class="composer-badge">${badge}</span></span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="${isVideo ? "연주 영상" : "자료"} 링크">↗ ${isVideo ? "연주 영상" : "자료"} 공유하기</button>`,
@@ -1820,7 +1827,7 @@ function renderSmart() {
     const key = `smart-${smartState.group}-${index}`;
     const picked = smartGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
-    const thumb = `<span class="history-thumb smart-thumb tone-${item.group}">${smartArt[item.art] || smartArt.gugak}<span class="thumb-overlay format-smart"><span class="smart-name">${item.title}</span></span><span class="composer-badge">${item.scope}</span></span>`;
+    const thumb = `<span class="history-thumb smart-thumb tone-${item.group}">${smartArt[item.art] || smartArt.gugak}${coverImg(item)}<span class="thumb-overlay format-smart"><span class="smart-name">${item.title}</span></span><span class="composer-badge">${item.scope}</span></span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="악기 링크">↗ 악기 공유하기</button>`,
@@ -1923,7 +1930,7 @@ function renderEdutech() {
     const picked = edutechGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.tag || item.scope;
-    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}">${edutechArt[item.art] || edutechArt.play}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span></span>`;
+    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}">${edutechArt[item.art] || edutechArt.play}${coverImg(item)}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span></span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
@@ -2066,7 +2073,7 @@ function renderVideo() {
     const badge = item.tag || item.scope;
     const length = item.len ? `<span class="video-len">${item.len}</span>` : "";
     const art = videoArtFor(item);
-    const thumb = `<span class="history-thumb video-thumb kind-${art}">${videoArt[art] || videoArt.kid}<span class="thumb-overlay format-video"><span class="video-name">${item.title}</span></span><span class="composer-badge">${badge}</span>${length}</span>`;
+    const thumb = `<span class="history-thumb video-thumb kind-${art}">${videoArt[art] || videoArt.kid}${coverImg(item)}<span class="thumb-overlay format-video"><span class="video-name">${item.title}</span></span><span class="composer-badge">${badge}</span>${length}</span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="영상 링크">↗ 영상 공유하기</button>`,
@@ -2213,7 +2220,7 @@ function renderListening() {
     const picked = listeningGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const art = listeningArt[item.ar] || listeningArt.감상;
-    const thumb = `<span class="history-thumb listening-thumb genre-${item.ge}">${art}<span class="thumb-overlay format-listening"><span class="listening-name">${item.t}</span></span><span class="composer-badge">${item.gr}</span>${item.ty ? `<span class="video-len">${item.ty}</span>` : ""}</span>`;
+    const thumb = `<span class="history-thumb listening-thumb genre-${item.ge}">${art}${coverImg(item)}<span class="thumb-overlay format-listening"><span class="listening-name">${item.t}</span></span><span class="composer-badge">${item.gr}</span>${item.ty ? `<span class="video-len">${item.ty}</span>` : ""}</span>`;
     const open = `<a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.u}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
