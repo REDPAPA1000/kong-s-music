@@ -2291,7 +2291,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=8610415";
+  script.src = "listening-data.js?v=6ec2ab7";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2577,31 +2577,47 @@ function renderBreak() {
 }
 
 /* 틈새 시간 365 — 두클래스 자료로 연결한다 */
-const gapState = { lb: "전체", ty: "전체" };
+const GAP_PAGE = 24;
+const gapState = { s: "전체", gr: "전체", ty: "전체", lb: "전체", page: 1 };
+const gapRows = [
+  { key: "s", label: "묶음" },
+  { key: "gr", label: "학년" },
+  { key: "ty", label: "갈래" },
+  { key: "lb", label: "걸리는 시간" },
+];
 
 function gapValues(key) {
-  const found = ["전체"];
+  const found = [];
   gapItems.forEach((item) => { if (item[key] && !found.includes(item[key])) found.push(item[key]); });
   return found;
 }
 
 function gapMatches(item) {
-  return (gapState.lb === "전체" || item.lb === gapState.lb)
-    && (gapState.ty === "전체" || item.ty === gapState.ty);
+  return gapRows.every(({ key }) => gapState[key] === "전체" || item[key] === gapState[key]);
 }
 
 function renderGap() {
   const list = gapItems.filter(gapMatches);
+  const pages = Math.max(1, Math.ceil(list.length / GAP_PAGE));
+  if (gapState.page > pages) gapState.page = pages;
+  const start = (gapState.page - 1) * GAP_PAGE;
+  const slice = list.slice(start, start + GAP_PAGE);
   const favorites = readFavorites();
-  const row = (key, label) => `<div class="gap-filter"><span>${label}</span>${gapValues(key)
-    .map((value) => `<button type="button" data-gap="${key}:${value}" class="${gapState[key] === value ? "is-on" : ""}">${value}</button>`)
-    .join("")}</div>`;
+
+  // 값이 하나뿐인 거르개는 고를 것이 없으니 내보내지 않는다
+  const filters = gapRows.map(({ key, label }) => {
+    const values = gapValues(key);
+    if (values.length < 2) return "";
+    return `<div class="gap-filter"><span>${label}</span>${["전체", ...values]
+      .map((value) => `<button type="button" data-gap="${key}:${value}" class="${gapState[key] === value ? "is-on" : ""}">${value}</button>`)
+      .join("")}</div>`;
+  }).filter(Boolean).join("");
 
   breakBody.innerHTML = `
-    <div class="gap-filters">${row("ty", "갈래")}${row("lb", "걸리는 시간")}</div>
-    <p class="gap-count">총 <b>${list.length}개</b>의 자료가 있습니다.</p>
+    <div class="gap-filters">${filters}</div>
+    <p class="gap-count">총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i></p>
     <ul class="gap-grid">
-      ${list.map((item) => {
+      ${slice.map((item) => {
         const id = `gap:${item.id}`;
         const liked = favorites.has(id);
         return `
@@ -2609,6 +2625,7 @@ function renderGap() {
           <a class="gap-shot" href="${item.u}" target="_blank" rel="noopener">
             <img src="${item.img}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />
             <span class="gap-time">${item.lb}</span>
+            <span class="gap-series">${item.s}</span>
           </a>
           <div class="gap-foot">
             <p class="gap-kind">[${item.ty}] ${item.gr}</p>
@@ -2618,7 +2635,20 @@ function renderGap() {
         </li>`;
       }).join("")}
     </ul>
+    ${gapPager(pages)}
     <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>`;
+}
+
+function gapPager(pages) {
+  if (pages <= 1) return "";
+  const btn = (page, text, off) =>
+    `<button type="button" data-gap-page="${page}"${off ? " disabled" : ""}${page === gapState.page ? ' aria-current="page"' : ""}>${text}</button>`;
+  const span = Math.min(10, pages);
+  let from = Math.max(1, gapState.page - Math.floor(span / 2));
+  from = Math.min(from, Math.max(1, pages - span + 1));
+  const numbers = Array.from({ length: Math.min(span, pages - from + 1) }, (_, i) => btn(from + i, from + i, false));
+  return `<div class="gap-pager">${btn(gapState.page - 1, "←", gapState.page === 1)}${numbers.join("")}`
+    + `${btn(gapState.page + 1, "→", gapState.page === pages)}<span class="pager-total">${gapState.page} / ${pages}</span></div>`;
 }
 
 /* 게임 1 — 소리 듣고 높낮이 맞히기 */
@@ -2710,7 +2740,15 @@ document.addEventListener("click", (event) => {
   if (gap) {
     const [key, value] = gap.dataset.gap.split(":");
     gapState[key] = value;
+    gapState.page = 1;
     renderGap();
+    return;
+  }
+  const gapPage = event.target.closest("[data-gap-page]");
+  if (gapPage) {
+    gapState.page = Number(gapPage.dataset.gapPage);
+    renderGap();
+    breakBody.scrollIntoView({ block: "start", behavior: "smooth" });
     return;
   }
   const like = event.target.closest("#break-view [data-like]");

@@ -1072,3 +1072,11 @@ body.tool-open { overflow: hidden; }
 .gap-kind { margin: 0 0 4px; color: #9b2fb4; font-size: .74rem; font-weight: 800; }
 .gap-title { margin: 0; font-size: .95rem; font-weight: 800; letter-spacing: -.03em; }
 .gap-card .history-like { right: 10px; bottom: 10px; top: auto; }
+.gap-series { position: absolute; right: 10px; top: 10px; padding: 4px 10px; color: #5b3aa8; background: rgba(255,255,255,.9); border-radius: 999px; font-size: .66rem; font-weight: 900; }
+.gap-count i { color: var(--muted); font-style: normal; font-weight: 650; }
+.gap-pager { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin-top: clamp(24px, 3vw, 36px); }
+.gap-pager button { min-width: 36px; padding: 8px 11px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 9px; font: inherit; font-size: .82rem; font-weight: 750; cursor: pointer; }
+.gap-pager button:hover:not(:disabled) { border-color: #21c17a; }
+.gap-pager button[aria-current="page"] { color: #fff; background: #21c17a; border-color: #21c17a; }
+.gap-pager button:disabled { opacity: .4; cursor: default; }
+.gap-pager .pager-total { margin-left: 8px; color: var(--muted); font-size: .78rem; font-weight: 700; }
