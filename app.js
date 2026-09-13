@@ -2305,7 +2305,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=1294b9d";
+  script.src = "listening-data.js?v=b62d0dd";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2960,7 +2960,9 @@ function showActlist(tab) {
 
 /* 홈 사진의 오른쪽 테두리를 네비 마지막 항목(진로활동) 글자에 맞춘다.
    네비는 가운데로 모이고 사진은 칸 배치를 따라가서, 화면 너비마다 어긋나는 양이
-   달라진다. 그래서 CSS 로는 묶이지 않아 여기서 재서 맞춘다. */
+   달라진다. 그래서 CSS 로는 묶이지 않아 여기서 재서 맞춘다.
+   글꼴이 늦게 자리잡으면 재는 값이 달라지므로, 자리를 잡기 전에는 사진을
+   내보이지 않는다. 그래야 옆으로 미끄러지는 것처럼 보이지 않는다. */
 function alignHeroPhoto() {
   const card = document.querySelector(".portrait-card");
   const nav = document.querySelector('.grade-nav a[data-route="activity"]')
@@ -2969,20 +2971,19 @@ function alignHeroPhoto() {
   if (!card || !nav || !intro) return;
 
   card.style.setProperty("--photo-shift", "0px");
-  if (window.innerWidth < 1100) return;      // 좁은 화면은 위아래로 쌓이니 그대로 둔다
-
-  const cardBox = card.getBoundingClientRect();
-  let shift = nav.getBoundingClientRect().right - cardBox.right;
-
-  // 왼쪽으로 갈 때는 소개 문장과 노란 딱지가 부딪히지 않을 만큼만
-  const room = cardBox.left - 38 - intro.getBoundingClientRect().right - 24;
-  if (shift < -room) shift = -room;
-  // 오른쪽으로 갈 때는 쪽 여백을 넘지 않을 만큼만
-  const edge = document.documentElement.clientWidth
-    - parseFloat(getComputedStyle(document.querySelector(".home-view")).paddingRight);
-  shift = Math.min(shift, edge - cardBox.right);
-
-  card.style.setProperty("--photo-shift", Math.round(shift) + "px");
+  if (window.innerWidth >= 1100) {
+    const cardBox = card.getBoundingClientRect();
+    let shift = nav.getBoundingClientRect().right - cardBox.right;
+    // 왼쪽으로 갈 때는 소개 문장과 노란 딱지가 부딪히지 않을 만큼만
+    const room = cardBox.left - 38 - intro.getBoundingClientRect().right - 24;
+    if (shift < -room) shift = -room;
+    // 오른쪽으로 갈 때는 쪽 여백을 넘지 않을 만큼만
+    const edge = document.documentElement.clientWidth
+      - parseFloat(getComputedStyle(document.querySelector(".home-view")).paddingRight);
+    shift = Math.min(shift, edge - cardBox.right);
+    card.style.setProperty("--photo-shift", Math.round(shift) + "px");
+  }
+  card.classList.add("is-placed");
 }
 
 let heroAlignTimer = null;
@@ -2990,7 +2991,11 @@ window.addEventListener("resize", () => {
   clearTimeout(heroAlignTimer);
   heroAlignTimer = setTimeout(alignHeroPhoto, 120);
 });
-window.addEventListener("load", alignHeroPhoto);
+// 글꼴이 자리잡은 뒤에 한 번 더 맞춘다. 글꼴을 못 읽어도 사진은 반드시 내보인다.
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(alignHeroPhoto);
+}
+setTimeout(alignHeroPhoto, 1200);
 
 renderHall();
 handleRoute();

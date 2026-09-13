@@ -1113,3 +1113,7 @@ body.tool-open { overflow: hidden; }
 .break-card .career-thumb ~ * .composer-badge { color: #6b4715; }
 .history-open.is-plain { cursor: default; }
 .break-card .history-caption i { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+/* 자리를 잡기 전에는 사진을 감춰 둔다 — 옆으로 미끄러지는 것을 막는다 */
+.portrait-card { visibility: hidden; }
+.portrait-card.is-placed { visibility: visible; }
+@media (max-width: 1099px) { .portrait-card { visibility: visible; } }
