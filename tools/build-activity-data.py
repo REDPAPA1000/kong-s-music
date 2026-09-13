@@ -19,6 +19,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'activity-data.js')
 MAJOR_VIEW = 'https://www.career.go.kr/cloud/w/major/uView?seq='
 CAREER_SITE = 'https://www.career.go.kr'
+JOB_VIEW = 'https://www.career.go.kr/cloud/w/job/view?seq='
 
 
 def esc(text):
@@ -105,26 +106,42 @@ def build_major():
     return lines, stats
 
 
+JOB_ORDER = [
+    '경영·사무·금융·보험직', '연구직 및 공학 기술직', '교육·법률·사회복지·경찰·소방직 및 군인',
+    '보건·의료직', '예술·디자인·방송·스포츠직', '미용·여행·숙박·음식·경비·청소직',
+    '영업·판매·운전·운송직', '건설·채굴직', '설치·정비·생산직', '농림어업직',
+]
+
+
 def build_job():
-    rows = load('job.json')
+    """커리어넷 직업백과. job_cd 가 상세 쪽의 seq 와 같다 (262=기자로 확인).
+       직업군(top_nm)은 커리어넷 목록에 없어 두클래스에서 받아 둔 것을 붙였다."""
+    rows = load('job-careernet.json')
     if not rows:
         return [], collections.Counter()
+    rows = sorted(rows, key=lambda r: (JOB_ORDER.index(r.get('top_nm'))
+                                       if r.get('top_nm') in JOB_ORDER else len(JOB_ORDER),
+                                       r.get('job_nm') or ''))
     lines, stats, seen = [], collections.Counter(), set()
-    for row in rows:
-        item = row.get('row', row) if isinstance(row, dict) else row
-        name = esc(item.get('job_nm') or item.get('jobNm') or item.get('name'))
-        if not name or name in seen:
+    for item in rows:
+        name = esc(item.get('job_nm'))
+        code = item.get('job_cd')
+        if not name or not code or code in seen:
             continue
-        seen.add(name)
-        group = esc(item.get('aptit_name') or item.get('lClass') or '')
-        fields = ['id: "%s"' % (item.get('job_cd') or item.get('jobCd') or len(lines)), 't: "%s"' % name]
+        seen.add(code)
+        fields = ['id: "%s"' % code, 't: "%s"' % name, 'u: "%s%s"' % (JOB_VIEW, code)]
+        if item.get('thumbnail'):
+            fields.append('img: "%s%s"' % (CAREER_SITE, esc(item['thumbnail'])))
+        group = esc(item.get('top_nm') or '')
         if group:
             fields.append('c: "%s"' % group)
-        note = esc(item.get('summary') or item.get('work') or '')
+        note = esc(' '.join((item.get('work') or '').split()))
+        if len(note) > 90:
+            note = note[:90].rstrip() + '…'
         if note:
-            fields.append('n: "%s"' % (note[:110] + ' 외' if len(note) > 110 else note))
+            fields.append('n: "%s"' % note)
         lines.append('{%s}' % ','.join(fields))
-        stats['갈래:' + (group or '없음')] += 1
+        stats['직업군:' + (group or '그 밖')] += 1
     return lines, stats
 
 
@@ -135,7 +152,7 @@ for var, builder, label in [
     ('jobItems', build_job, '직업 정보'),
 ]:
     lines, stats = builder()
-    chunks.append('const %s = [\n%s\n];' % (var, ',\n'.join(lines)) if lines else 'const %s = [];' % var)
+    chunks.append('var %s = [\n%s\n];' % (var, ',\n'.join(lines)) if lines else 'var %s = [];' % var)
     if lines:
         print('%s %d개' % (label, len(lines)))
         for key in sorted(stats):

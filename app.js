@@ -2305,7 +2305,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=48f996c";
+  script.src = "listening-data.js?v=1294b9d";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2768,23 +2768,40 @@ const actlistView = document.querySelector("#actlist-view");
 const actlistGrid = document.querySelector("#actlist-grid");
 
 const ACT_PAGE = 24;
+let activityLoaded = false;
+
+/* 진로활동 자료는 꽤 커서 그 화면에 들어갈 때만 읽어 온다 */
+function loadActivityData(after) {
+  if (activityLoaded) { after(); return; }
+  const script = document.createElement("script");
+  script.src = "activity-data.js";
+  script.onload = () => {
+    activityLoaded = true;
+    after();
+  };
+  script.onerror = () => {
+    document.querySelector("#actlist-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
+  };
+  document.head.appendChild(script);
+}
+
 const activityLists = {
   career: {
     label: "진로 교육", hash: "#activity-career", tone: "gold",
     desc: "나를 알고 앞날을 그리는 시간!<br />진로 수업에 바로 쓰는 자료입니다.",
-    items: () => careerItems,
+    items: () => window.careerItems || [],
     art: `<svg viewBox="0 0 48 48"><path d="M24 5l5.5 11.5L42 18l-9 8.6L35.2 39 24 33l-11.2 6L15 26.6 6 18l12.5-1.5z" fill="#f7bb2e"/></svg>`,
   },
   major: {
     label: "학과 정보", hash: "#activity-major", tone: "blue",
     desc: "무엇을 배우는 곳일까?<br />계열별로 학과를 살펴보세요.",
-    items: () => majorItems,
+    items: () => window.majorItems || [],
     art: `<svg viewBox="0 0 48 48"><path d="M24 8L4 17l20 9 20-9z" fill="#59a9f0"/><path d="M12 22v10c0 3 5.4 6 12 6s12-3 12-6V22" fill="none" stroke="#3d4157" stroke-width="2.8" stroke-linecap="round"/><path d="M41 18v11" stroke="#f7bb2e" stroke-width="2.8" stroke-linecap="round"/></svg>`,
   },
   job: {
     label: "직업 정보", hash: "#activity-job", tone: "orange",
     desc: "어떤 일을 하는 사람일까?<br />직업군별로 찾아보세요.",
-    items: () => jobItems,
+    items: () => window.jobItems || [],
     art: `<svg viewBox="0 0 48 48"><rect x="4" y="15" width="40" height="26" rx="5" fill="#f2955a"/><path d="M17 15v-4a3 3 0 013-3h8a3 3 0 013 3v4" fill="none" stroke="#3d4157" stroke-width="2.8" stroke-linecap="round"/><rect x="19" y="24" width="10" height="6" rx="2" fill="#fff"/></svg>`,
   },
 };
@@ -2811,8 +2828,8 @@ function showActivity() {
   activityView.hidden = false;
   setCurrentNav("activity");
   document.title = "진로활동 | 연정쌤의 음악 교실";
-  renderActivityHub();
   window.scrollTo({ top: 0, behavior: "instant" });
+  loadActivityData(renderActivityHub);
 }
 
 /* 갈래 화면 — 음악관 하위 화면과 같은 얼개 */
@@ -2936,8 +2953,9 @@ function showActlist(tab) {
   actlistView.hidden = false;
   setCurrentNav("activity");
   document.title = `${activityLists[tab].label} | 연정쌤의 음악 교실`;
-  renderActlist();
   window.scrollTo({ top: 0, behavior: "instant" });
+  document.querySelector("#actlist-count").textContent = "자료를 불러오는 중입니다…";
+  loadActivityData(renderActlist);
 }
 
 /* 홈 사진의 오른쪽 테두리를 네비 마지막 항목(진로활동) 글자에 맞춘다.
