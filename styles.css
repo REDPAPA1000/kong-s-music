@@ -1111,3 +1111,5 @@ body.tool-open { overflow: hidden; }
 .career-thumb { background: linear-gradient(150deg, #fff8ee, #f8e8d6); }
 .career-thumb + .break-name, .career-thumb .break-name { color: #6b4715; }
 .break-card .career-thumb ~ * .composer-badge { color: #6b4715; }
+.history-open.is-plain { cursor: default; }
+.break-card .history-caption i { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }

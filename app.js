@@ -2305,7 +2305,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=18a3737";
+  script.src = "listening-data.js?v=48f996c";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2859,18 +2859,25 @@ function renderActlist() {
     const liked = favorites.has(id);
     const badge = item.c ? `<span class="composer-badge">${item.c}</span>` : "";
     const thumb = `<span class="history-thumb career-thumb">${coverImg(item)}<span class="thumb-overlay format-break"><span class="break-name">${item.t}</span></span>${badge}</span>`;
+    // 학과 정보처럼 들어갈 쪽이 없는 자료는 눌리지 않는 카드로 둔다
+    const open = item.u
+      ? `<a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>`
+      : `<span class="history-open is-plain">${thumb}</span>`;
+    const menu = item.u
+      ? `<button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>`
+      : "";
     return `
       <li class="history-card break-card${picked ? " is-picked" : ""}" data-id="${id}">
         <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.t} 선택</span></label>
         <button class="history-like${liked ? " is-on" : ""}" type="button" data-like="${id}" aria-pressed="${liked}" aria-label="${item.t} 찜하기">${liked ? "♥" : "♡"}</button>
-        <a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>
+        ${open}
         <div class="history-foot">
           <span class="history-caption">${item.t}${item.n ? `<i>${item.n}</i>` : ""}</span>
-          <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>
+          ${menu}
         </div>
-        <div class="history-menu" id="menu-${key}" role="menu" hidden>
+        ${item.u ? `<div class="history-menu" id="menu-${key}" role="menu" hidden>
           <button role="menuitem" type="button" data-share="${item.u}" data-share-label="${config.label} 링크">↗ 링크 공유하기</button>
-        </div>
+        </div>` : ""}
       </li>`;
   }).join("");
 

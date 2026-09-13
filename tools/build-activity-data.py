@@ -17,6 +17,8 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'activity-data.js')
+MAJOR_VIEW = 'https://www.career.go.kr/cloud/w/major/uView?seq='
+CAREER_SITE = 'https://www.career.go.kr'
 
 
 def esc(text):
@@ -57,25 +59,70 @@ def build_career():
     return lines, stats
 
 
-def build_careernet(name, label_key, code_key, extra):
-    """커리어넷 학과·직업 목록. 칸 이름이 자료마다 달라 넉넉하게 찾는다."""
-    rows = load(name)
+FIELDS = {
+    '100391': '인문계열', '100392': '사회계열', '100393': '교육계열',
+    '100394': '공학계열', '100395': '자연계열', '100396': '의약계열',
+    '100397': '예체능계열',
+}
+
+
+def build_major():
+    """커리어넷 학과 정보(대학교). tools/fetch-careernet.py 가 받아 둔 것을 쓴다.
+       seq 로 커리어넷 학과 쪽에 바로 연결하고, 그림도 커리어넷 것을 그대로 참조한다."""
+    rows = load('major-careernet.json')
     if not rows:
         return [], collections.Counter()
-    lines, stats = [], collections.Counter()
-    for i, row in enumerate(rows):
-        title = esc(next((row[k] for k in label_key if row.get(k)), ''))
-        if not title:
+    lines, stats, seen = [], collections.Counter(), set()
+    # 계열은 인문·사회·교육·공학·자연·의약·예체능 차례로 둔다
+    order = list(FIELDS)
+    rows = sorted(rows, key=lambda r: (order.index(str(r.get('major_cl1')))
+                                       if str(r.get('major_cl1')) in order else len(order),
+                                       r.get('major_nm') or ''))
+    for item in rows:
+        name = esc(item.get('major_nm'))
+        seq = item.get('seq')
+        if not name or not seq or seq in seen:
             continue
-        code = next((str(row[k]) for k in code_key if row.get(k)), str(i))
-        group = esc(next((row[k] for k in extra if row.get(k)), ''))
+        seen.add(seq)
+        field = FIELDS.get(str(item.get('major_cl1')), '')
         fields = [
-            'id: "%s"' % code,
-            't: "%s"' % title,
-            'u: "%s"' % esc(row.get('link') or row.get('url') or ''),
+            'id: "%s"' % seq,
+            't: "%s"' % name,
+            'u: "%s%s"' % (MAJOR_VIEW, seq),
         ]
+        if item.get('thumbnail'):
+            fields.append('img: "%s%s"' % (CAREER_SITE, esc(item['thumbnail'])))
+        if field:
+            fields.append('c: "%s"' % field)
+        # 설명에 줄바꿈이 섞여 있어 한 줄로 모은다
+        note = esc(' '.join((item.get('major_sumry') or '').split()))
+        if len(note) > 90:
+            note = note[:90].rstrip() + '…'
+        if note:
+            fields.append('n: "%s"' % note)
+        lines.append('{%s}' % ','.join(fields))
+        stats['계열:' + (field or '그 밖')] += 1
+    return lines, stats
+
+
+def build_job():
+    rows = load('job.json')
+    if not rows:
+        return [], collections.Counter()
+    lines, stats, seen = [], collections.Counter(), set()
+    for row in rows:
+        item = row.get('row', row) if isinstance(row, dict) else row
+        name = esc(item.get('job_nm') or item.get('jobNm') or item.get('name'))
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        group = esc(item.get('aptit_name') or item.get('lClass') or '')
+        fields = ['id: "%s"' % (item.get('job_cd') or item.get('jobCd') or len(lines)), 't: "%s"' % name]
         if group:
             fields.append('c: "%s"' % group)
+        note = esc(item.get('summary') or item.get('work') or '')
+        if note:
+            fields.append('n: "%s"' % (note[:110] + ' 외' if len(note) > 110 else note))
         lines.append('{%s}' % ','.join(fields))
         stats['갈래:' + (group or '없음')] += 1
     return lines, stats
@@ -84,8 +131,8 @@ def build_careernet(name, label_key, code_key, extra):
 chunks = []
 for var, builder, label in [
     ('careerItems', build_career, '진로 교육'),
-    ('majorItems', lambda: build_careernet('major.json', ('mClass', 'major', 'facilName'), ('majorSeq', 'seq'), ('lClass', 'mClass')), '학과 정보'),
-    ('jobItems', lambda: build_careernet('job.json', ('job_nm', 'jobNm', 'name'), ('job_cd', 'jobCd', 'seq'), ('aptit_name', 'lClass')), '직업 정보'),
+    ('majorItems', build_major, '학과 정보'),
+    ('jobItems', build_job, '직업 정보'),
 ]:
     lines, stats = builder()
     chunks.append('const %s = [\n%s\n];' % (var, ',\n'.join(lines)) if lines else 'const %s = [];' % var)
