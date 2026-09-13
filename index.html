@@ -6,7 +6,7 @@
     <meta name="description" content="초등 1학년부터 고등 1학년까지 함께하는 음악 수업 자료실" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef705e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='white'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
     <title>연정쌤의 음악 교실</title>
-    <link rel="stylesheet" href="styles.css?v=b62d0dd" />
+    <link rel="stylesheet" href="styles.css?v=b49298d" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -455,7 +455,22 @@
           </div>
           <ul id="actlist-grid" class="history-grid"></ul>
           <div id="actlist-pager" class="gap-pager"></div>
-          <p class="break-note">자료는 동아출판 두클래스에서 열립니다.</p>
+          <p class="break-note" id="actlist-note">자료는 동아출판 두클래스에서 열립니다.</p>
+        </div>
+      </section>
+
+      <!-- 학과·직업 한 쪽 — 사이트를 떠나지 않고 읽는다 -->
+      <section id="actpage-view" class="actpage-view" aria-labelledby="actpage-title" hidden>
+        <div class="history-hero career-hero">
+          <a class="hall-back" id="actpage-back" href="#activity-major">← 학과 정보</a>
+          <p class="actpage-kind" id="actpage-kind"></p>
+          <h1 id="actpage-title">불러오는 중…</h1>
+          <p id="actpage-lead"></p>
+          <div class="actpage-facts" id="actpage-facts"></div>
+        </div>
+        <div class="history-body">
+          <div class="actpage-body" id="actpage-body"></div>
+          <p class="break-note">내용 출처 : <a href="https://www.career.go.kr" target="_blank" rel="noopener">커리어넷(한국직업능력연구원)</a></p>
         </div>
       </section>
     </main>
@@ -513,14 +528,14 @@
       </form>
     </dialog>
 
-    <script src="songs-data.js?v=b62d0dd"></script>
-    <script src="play-data.js?v=b62d0dd"></script>
-    <script src="smart-data.js?v=b62d0dd"></script>
-    <script src="edutech-data.js?v=b62d0dd"></script>
-    <script src="video-data.js?v=b62d0dd"></script>
-    <script src="books-data.js?v=b62d0dd"></script>
-    <script src="break-data.js?v=b62d0dd"></script>
-    <script src="tools.js?v=b62d0dd"></script>
-    <script src="app.js?v=b62d0dd"></script>
+    <script src="songs-data.js?v=b49298d"></script>
+    <script src="play-data.js?v=b49298d"></script>
+    <script src="smart-data.js?v=b49298d"></script>
+    <script src="edutech-data.js?v=b49298d"></script>
+    <script src="video-data.js?v=b49298d"></script>
+    <script src="books-data.js?v=b49298d"></script>
+    <script src="break-data.js?v=b49298d"></script>
+    <script src="tools.js?v=b49298d"></script>
+    <script src="app.js?v=b49298d"></script>
   </body>
 </html>

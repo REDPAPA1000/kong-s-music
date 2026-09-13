@@ -1117,3 +1117,49 @@ body.tool-open { overflow: hidden; }
 .portrait-card { visibility: hidden; }
 .portrait-card.is-placed { visibility: visible; }
 @media (max-width: 1099px) { .portrait-card { visibility: visible; } }
+
+/* ── 학과·직업 한 쪽 ── */
+/* 되돌아가기 딱지가 왼쪽 위에 떠 있어서, 글은 그 아래에서 시작한다 */
+.actpage-view .career-hero { text-align: left; padding-top: clamp(72px, 9vw, 104px); }
+.actpage-kind { margin: 0 0 6px; color: #8a6533; font-size: .76rem; font-weight: 800; letter-spacing: .04em; }
+.actpage-view .career-hero h1 { margin: 0 0 12px; }
+.actpage-view .career-hero > p { margin: 0; max-width: 62ch; line-height: 1.72; }
+.actpage-facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.actpage-facts span { padding: 6px 13px; color: #6b4715; background: rgba(255,255,255,.62); border-radius: 999px; font-size: .78rem; font-weight: 700; }
+.actpage-facts b { font-weight: 900; }
+:root[data-theme="dark"] .actpage-kind { color: #c79b6d; }
+:root[data-theme="dark"] .actpage-facts span { color: #f0bd85; background: rgba(255,255,255,.08); }
+
+.actpage-body { max-width: 860px; margin: 0 auto; }
+.actpage-block { margin: 0 0 clamp(24px, 3.4vw, 38px); }
+.actpage-block h2 { margin: 0 0 12px; color: var(--ink); font-size: 1.04rem; font-weight: 900; letter-spacing: -.02em; }
+.actpage-block h2::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 9px; background: var(--coral); border-radius: 50%; vertical-align: 2px; }
+.actpage-block p { margin: 0 0 10px; color: var(--ink); font-size: .93rem; line-height: 1.82; }
+
+.actpage-notes { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; }
+.actpage-notes li { padding: 13px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; font-size: .89rem; line-height: 1.7; }
+.actpage-notes b { display: block; margin-bottom: 3px; font-weight: 800; }
+.actpage-notes span { color: var(--muted); }
+
+.actpage-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.actpage-tags span, .actpage-tags a { padding: 7px 13px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; font-size: .82rem; font-weight: 700; }
+.actpage-tags.is-link a { color: #2f6fd8; background: rgba(89,169,240,.14); border-color: rgba(89,169,240,.34); text-decoration: none; }
+.actpage-tags.is-link a:hover { background: rgba(89,169,240,.26); }
+.actpage-tags.is-link span { color: var(--muted); }
+
+.actpage-more { margin: 0 0 clamp(24px, 3.4vw, 38px); padding: 14px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+.actpage-more summary { font-size: .92rem; font-weight: 800; cursor: pointer; }
+.actpage-unis { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 5px; max-height: 460px; overflow-y: auto; }
+.actpage-unis li { display: grid; grid-template-columns: minmax(120px, 1fr) minmax(120px, 1.3fr) 92px; gap: 10px; align-items: baseline; padding: 8px 12px; border-radius: 10px; font-size: .83rem; }
+.actpage-unis li:nth-child(odd) { background: rgba(125,125,145,.07); }
+.actpage-unis b { font-weight: 800; }
+.actpage-unis span { color: var(--ink); opacity: .82; }
+.actpage-unis i { color: var(--muted); font-style: normal; font-size: .76rem; }
+
+.actpage-origin { margin: 0; text-align: center; }
+.actpage-origin a { font-size: .84rem; font-weight: 700; }
+.actpage-fail { color: var(--muted); text-align: center; }
+
+@media (max-width: 640px) {
+  .actpage-unis li { grid-template-columns: 1fr; gap: 2px; }
+}

@@ -558,7 +558,7 @@ function hideAllViews() {
   [homeView, aboutView, domainPreview, libraryView, theoryView, hallView, historyView,
     composerView, theorybookView, songsView, playView, smartView, edutechView,
     videoView, listeningView, booksView, toolsView, breakView, breaklistView,
-    activityView, actlistView]
+    activityView, actlistView, actpageView]
     .forEach((view) => { if (view) view.hidden = true; });
 }
 
@@ -584,7 +584,7 @@ function showHome() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -605,7 +605,7 @@ function showGrade(grade) {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -630,7 +630,7 @@ function showTheory() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -731,6 +731,7 @@ function handleRoute() {
   else if (hash === "#break") showBreak();
   else if (hash.startsWith("#break-") && breakLists[hash.slice(7)]) showBreaklist(hash.slice(7));
   else if (hash === "#activity") showActivity();
+  else if (/^#activity-(major|job)\/\d+$/.test(hash)) showActpage(...hash.slice(10).split("/"));
   else if (hash.startsWith("#activity-") && activityLists[hash.slice(10)]) showActlist(hash.slice(10));
   else showHome();
   document.querySelector("#grade-nav").classList.remove("open");
@@ -1424,7 +1425,7 @@ function showComposer() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   composerView.hidden = false;
   setCurrentNav("musichall");
   document.title = "작곡가 | 연정쌤의 음악 교실";
@@ -1550,7 +1551,7 @@ function showTheorybook() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   theorybookView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
@@ -1666,7 +1667,7 @@ function showSongs() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   songsView.hidden = false;
   setCurrentNav("musichall");
   document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
@@ -1782,7 +1783,7 @@ function showPlay() {
   songsView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   playView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
@@ -1879,7 +1880,7 @@ function showSmart() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   smartView.hidden = false;
   setCurrentNav("musichall");
   document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
@@ -2126,7 +2127,7 @@ function showVideo() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   videoView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 동영상 | 연정쌤의 음악 교실";
@@ -2296,7 +2297,7 @@ function showListening() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   listeningView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
@@ -2305,7 +2306,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=b62d0dd";
+  script.src = "listening-data.js?v=b49298d";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2496,7 +2497,7 @@ function showHall() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   hallView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악관 | 연정쌤의 음악 교실";
@@ -2512,7 +2513,7 @@ function showHistory() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   historyView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악사 | 연정쌤의 음악 교실";
@@ -2876,10 +2877,13 @@ function renderActlist() {
     const liked = favorites.has(id);
     const badge = item.c ? `<span class="composer-badge">${item.c}</span>` : "";
     const thumb = `<span class="history-thumb career-thumb">${coverImg(item)}<span class="thumb-overlay format-break"><span class="break-name">${item.t}</span></span>${badge}</span>`;
-    // 학과 정보처럼 들어갈 쪽이 없는 자료는 눌리지 않는 카드로 둔다
-    const open = item.u
-      ? `<a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>`
-      : `<span class="history-open is-plain">${thumb}</span>`;
+    // 학과·직업은 우리 쪽 화면에서 열고, 나머지는 만든 곳으로 보낸다
+    const inside = actpageKinds[actlistState.tab] ? `#activity-${actlistState.tab}/${item.id}` : "";
+    const open = inside
+      ? `<a class="history-open" href="${inside}">${thumb}</a>`
+      : item.u
+        ? `<a class="history-open" href="${item.u}" target="_blank" rel="noopener">${thumb}</a>`
+        : `<span class="history-open is-plain">${thumb}</span>`;
     const menu = item.u
       ? `<button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.t} 자료 메뉴">⋮</button>`
       : "";
@@ -2893,7 +2897,7 @@ function renderActlist() {
           ${menu}
         </div>
         ${item.u ? `<div class="history-menu" id="menu-${key}" role="menu" hidden>
-          <button role="menuitem" type="button" data-share="${item.u}" data-share-label="${config.label} 링크">↗ 링크 공유하기</button>
+          <button role="menuitem" type="button" data-share="${inside ? location.origin + location.pathname + inside : item.u}" data-share-label="${config.label} 링크">↗ 링크 공유하기</button>
         </div>` : ""}
       </li>`;
   }).join("");
@@ -2955,7 +2959,140 @@ function showActlist(tab) {
   document.title = `${activityLists[tab].label} | 연정쌤의 음악 교실`;
   window.scrollTo({ top: 0, behavior: "instant" });
   document.querySelector("#actlist-count").textContent = "자료를 불러오는 중입니다…";
+  document.querySelector("#actlist-note").textContent = tab === "career"
+    ? "자료는 동아출판 두클래스에서 열립니다."
+    : "내용은 커리어넷(한국직업능력연구원) 자료입니다.";
   loadActivityData(renderActlist);
+}
+
+/* ── 학과·직업 한 쪽 ──────────────────────────────────
+   누르면 커리어넷으로 나가 버리던 것을, 우리 쪽에서 읽도록 바꾼다.
+   내용이 5MB 가 넘어 tools/build-career-detail.py 가 쪽마다 나눠 두었고,
+   여기서는 누른 쪽 하나만 받아 온다. */
+const actpageView = document.querySelector("#actpage-view");
+const actpageCache = new Map();
+
+const actpageKinds = {
+  major: {
+    label: "학과 정보", hash: "#activity-major",
+    origin: (seq) => `https://www.career.go.kr/cloud/w/major/uView?seq=${seq}`,
+  },
+  job: {
+    label: "직업 정보", hash: "#activity-job",
+    origin: (seq) => `https://www.career.go.kr/cloud/w/job/view?seq=${seq}`,
+  },
+};
+
+const escText = (value) => String(value ?? "").replace(/[&<>"]/g,
+  (one) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[one]));
+
+function actBlock(title, body) {
+  return body ? `<section class="actpage-block"><h2>${title}</h2>${body}</section>` : "";
+}
+
+const actParas = (rows) => (rows || []).map((text) => `<p>${escText(text)}</p>`).join("");
+
+const actNotes = (rows) => (rows || []).length
+  ? `<ul class="actpage-notes">${rows.map((row) =>
+    `<li><b>${escText(row.t)}</b>${row.n ? `<span>${escText(row.n)}</span>` : ""}</li>`).join("")}</ul>`
+  : "";
+
+const actTags = (rows) => (rows || []).length
+  ? `<p class="actpage-tags">${rows.map((row) => escText(row)).map((one) => `<span>${one}</span>`).join("")}</p>`
+  : "";
+
+/* 이어지는 학과·직업. 커리어넷 직업사전에 없는 이름은 눌리지 않게 둔다. */
+function actLinks(rows, kind) {
+  if (!(rows || []).length) return "";
+  return `<p class="actpage-tags is-link">${rows.map((row) => {
+    const seq = kind === "job" ? row.j : row.m;
+    return seq
+      ? `<a href="#activity-${kind}/${seq}">${escText(row.t)}</a>`
+      : `<span>${escText(row.t)}</span>`;
+  }).join("")}</p>`;
+}
+
+function renderMajorPage(page) {
+  const areas = [...new Set(page.unis.map((uni) => uni.a).filter(Boolean))];
+  document.querySelector("#actpage-facts").innerHTML = [
+    page.field ? `<span>${escText(page.field)}</span>` : "",
+    page.unis.length ? `<span>개설 대학 <b>${page.unis.length}곳</b></span>` : "",
+    page.employmentRate ? `<span>취업률 <b>${escText(page.employmentRate)}%</b></span>` : "",
+  ].join("");
+
+  return actBlock("이런 학과예요", page.characteristics ? `<p>${escText(page.characteristics)}</p>` : "")
+    + actBlock("이런 학생에게 어울려요", page.interest ? `<p>${escText(page.interest)}</p>` : "")
+    + actBlock("무엇을 배우나요", actNotes(page.subjects))
+    + actBlock("졸업하면 어디로 가나요", actNotes(page.after))
+    + actBlock("이어지는 직업", actLinks(page.jobs, "job"))
+    + actBlock("관련 자격", actTags(page.certs))
+    + actBlock("대학에서 부르는 이름", actTags(page.names))
+    + (page.unis.length ? `<details class="actpage-more">
+        <summary>어느 대학에 있나요 (${page.unis.length}곳${areas.length ? ` · ${areas.length}개 지역` : ""})</summary>
+        <ul class="actpage-unis">${page.unis.map((uni) =>
+          `<li><b>${escText(uni.t)}</b><span>${escText(uni.d)}</span><i>${escText(uni.a)}</i></li>`).join("")}</ul>
+      </details>` : "");
+}
+
+function renderJobPage(page) {
+  document.querySelector("#actpage-facts").innerHTML = [
+    page.group ? `<span>${escText(page.group)}</span>` : "",
+    page.wage ? `<span>평균 연봉 <b>${escText(page.wage)}만원</b></span>` : "",
+    page.satisfaction ? `<span>직업 만족도 <b>${escText(page.satisfaction)}%</b></span>` : "",
+  ].join("");
+
+  return actBlock("하는 일", actParas(page.work))
+    + actBlock("이런 사람에게 어울려요", actParas(page.fit))
+    + actBlock("어떻게 하면 될 수 있나요", actParas(page.become))
+    + actBlock("앞으로는 어떨까요", actParas(page.forecast))
+    + actBlock("미리 알아보는 방법", actParas(page.explore))
+    + actBlock("이어지는 학과", actLinks(page.majors, "major"))
+    + actBlock("관련 자격", actTags(page.certs))
+    + actBlock("더 알아볼 곳", (page.orgs || []).length
+      ? `<p class="actpage-tags is-link">${page.orgs.map((org) => (org.u
+        ? `<a href="${escText(org.u)}" target="_blank" rel="noopener">${escText(org.t)} ↗</a>`
+        : `<span>${escText(org.t)}</span>`)).join("")}</p>` : "");
+}
+
+async function showActpage(kind, seq) {
+  const config = actpageKinds[kind];
+  hideAllViews();
+  actpageView.hidden = false;
+  setCurrentNav("activity");
+  window.scrollTo({ top: 0, behavior: "instant" });
+
+  const back = document.querySelector("#actpage-back");
+  back.href = config.hash;
+  back.textContent = `← ${config.label}`;
+  document.querySelector("#actpage-kind").textContent = config.label;
+  document.querySelector("#actpage-title").textContent = "불러오는 중…";
+  document.querySelector("#actpage-lead").textContent = "";
+  document.querySelector("#actpage-facts").innerHTML = "";
+  document.querySelector("#actpage-body").innerHTML = "";
+
+  const key = `${kind}/${seq}`;
+  try {
+    if (!actpageCache.has(key)) {
+      const res = await fetch(`career/${kind}/${seq}.json`);
+      if (!res.ok) throw new Error(String(res.status));
+      actpageCache.set(key, await res.json());
+    }
+  } catch (error) {
+    document.querySelector("#actpage-title").textContent = "자료를 불러오지 못했습니다";
+    document.querySelector("#actpage-body").innerHTML =
+      `<p class="actpage-fail">잠시 뒤에 다시 열어 보세요. <a href="${config.origin(seq)}" target="_blank" rel="noopener">커리어넷에서 보기 ↗</a></p>`;
+    return;
+  }
+  if (location.hash !== `#activity-${key}`) return;   // 그 사이 다른 쪽으로 옮겨 갔다
+
+  const page = actpageCache.get(key);
+  document.title = `${page.name} | 연정쌤의 음악 교실`;
+  document.querySelector("#actpage-title").textContent = page.name;
+  document.querySelector("#actpage-lead").textContent = page.summary
+    || (page.work && page.work[0]) || "";
+  document.querySelector("#actpage-body").innerHTML =
+    (kind === "major" ? renderMajorPage(page) : renderJobPage(page))
+    + `<p class="actpage-origin"><a href="${config.origin(page.seq)}" target="_blank" rel="noopener">커리어넷에서 더 자세히 보기 ↗</a></p>`;
 }
 
 /* 홈 사진의 오른쪽 테두리를 네비 마지막 항목(진로활동) 글자에 맞춘다.
