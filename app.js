@@ -1910,6 +1910,21 @@ const edutechArt = {
   lesson: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><path class="a-fill" d="M24 10h56a6 6 0 016 6v54H24z"/><g class="a-line"><path d="M24 10h56a6 6 0 016 6v54H24z"/><path d="M24 10a6 6 0 00-6 6v54a6 6 0 016-6"/><path d="M36 26h38M36 36h38M36 46h24"/></g><g class="a-fill"><circle cx="76" cy="56" r="4"/></g><g class="a-line"><path d="M79 56v-12l10-2v12"/><circle cx="86" cy="54" r="4"/></g></svg>`,
 };
 
+/* 새로 더한 사이트는 기능을 바로 떠올릴 수 있는 고유 그림과 공식 파비콘을 함께 쓴다.
+   화면을 베끼지 않고, 각 도구의 쓰임만 원본 일러스트로 재해석한다. */
+const edutechSiteVisual = {
+  38: "✹", 39: "⌨", 40: "◉", 41: "∿", 42: "♫", 43: "♬", 44: "▦",
+  45: "◔", 46: "♩", 47: "≋", 48: "◌", 49: "✦", 50: "⌁", 51: "⌂",
+  52: "◫", 53: "♬", 54: "✋", 55: "↭", 56: "♮", 57: "◯", 58: "✧"
+};
+
+function edutechSiteArt(item) {
+  const glyph = edutechSiteVisual[item.no];
+  if (!glyph || item.group !== "site") return "";
+  const favicon = `https://www.google.com/s2/favicons?sz=128&domain_url=${encodeURIComponent(item.url)}`;
+  return `<span class="edutech-site-art site-art-${item.no}" aria-hidden="true"><i></i><b>${glyph}</b><em></em></span><img class="edutech-site-logo" src="${favicon}" alt="" loading="lazy" decoding="async" onerror="this.remove()" />`;
+}
+
 const edutechGrid = document.querySelector("#edutech-grid");
 const edutechView = document.querySelector("#edutech-view");
 const edutechState = { group: "all", scope: "all", level: "all" };
@@ -1961,7 +1976,8 @@ function renderEdutech() {
     const badge = item.tag || item.scope;
     /* 학교급과 대표 표시 — 도구에만 붙는다 */
     const levelMark = item.level ? `<span class="level-mark${item.pick ? " is-pick" : ""}">${item.pick ? "★ " : ""}${item.level}</span>` : "";
-    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}">${edutechArt[item.art] || edutechArt.play}${coverImg(item)}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span>${levelMark}</span>`;
+    const siteArt = edutechSiteArt(item);
+    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}${siteArt ? ` has-site-art site-art-${item.no}` : ""}">${siteArt || edutechArt[item.art] || edutechArt.play}${coverImg(item)}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span>${levelMark}</span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
@@ -2489,7 +2505,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=207116d";
+  script.src = "listening-data.js?v=8309b83";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";

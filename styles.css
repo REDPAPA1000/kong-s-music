@@ -623,6 +623,46 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .edutech-thumb.kind-video, .edutech-thumb.kind-tutorial { --art-fill: #f5dce6; --art-ink: #a84a6f; --art-accent: #d5477e; --art-bg: #fff7fa; background: linear-gradient(150deg, #fff7fa, #f8e4ed); }
 .edutech-thumb.kind-lesson { --art-fill: #dcf0e2; --art-ink: #3f8a5c; --art-accent: #3aab6c; --art-bg: #f5fdf8; background: linear-gradient(150deg, #f5fdf8, #e2f4e8); }
 
+/* 새 사이트 카드: 원본 서비스를 알아볼 수 있는 파비콘 + 기능을 해석한 고유 일러스트 */
+.edutech-thumb.has-site-art { --site-a: #6437df; --site-b: #1fb5d7; --site-c: #ffd45b; background: linear-gradient(135deg, var(--site-a), var(--site-b)); isolation: isolate; }
+.edutech-site-art { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+.edutech-site-art::before, .edutech-site-art::after, .edutech-site-art i, .edutech-site-art em { content: ""; position: absolute; display: block; pointer-events: none; }
+.edutech-site-art::before { width: 150%; height: 90%; left: -25%; top: -34%; border-radius: 48%; background: rgba(255,255,255,.16); transform: rotate(-12deg); }
+.edutech-site-art::after { width: 130%; height: 90%; right: -58%; bottom: -58%; border: 14px solid rgba(255,255,255,.16); border-radius: 50%; }
+.edutech-site-art i { width: 74px; height: 74px; right: 11%; top: 17%; border: 11px solid rgba(255,255,255,.22); border-radius: 22px; transform: rotate(16deg); }
+.edutech-site-art b { position: absolute; right: 13%; top: 20%; z-index: 1; color: rgba(255,255,255,.96); font-family: Arial, sans-serif; font-size: 3.5rem; font-weight: 900; line-height: 1; text-shadow: 0 5px 18px rgba(16,10,55,.24); }
+.edutech-site-art em { width: 120%; height: 5px; left: -10%; bottom: 23%; background: repeating-linear-gradient(90deg, rgba(255,255,255,.28) 0 9px, transparent 9px 17px); transform: rotate(-8deg); }
+.edutech-site-logo { position: absolute; right: 10px; top: 42px; z-index: 2; width: 28px; height: 28px; padding: 5px; object-fit: contain; background: rgba(255,255,255,.94); border-radius: 10px; box-shadow: 0 4px 12px rgba(18,12,55,.18); }
+.has-site-art .thumb-overlay, .has-site-art .composer-badge, .has-site-art .level-mark { z-index: 2; }
+.has-site-art .edutech-name { color: #fff; background: rgba(17,18,47,.66); backdrop-filter: blur(5px); }
+.site-art-38 { --site-a: #15174f; --site-b: #fa4f69; --site-c: #ffe35d; }
+.site-art-39 { --site-a: #5a3fbd; --site-b: #d65ba3; --site-c: #81e4db; }
+.site-art-40 { --site-a: #232336; --site-b: #e74665; --site-c: #ffcc4d; }
+.site-art-41 { --site-a: #251965; --site-b: #2e97d4; --site-c: #ed57c3; }
+.site-art-42 { --site-a: #2b3eb5; --site-b: #19a7a6; --site-c: #f9cb4f; }
+.site-art-43 { --site-a: #166ec2; --site-b: #41b2e4; --site-c: #f6d65f; }
+.site-art-44 { --site-a: #352387; --site-b: #7c4ee4; --site-c: #f0d261; }
+.site-art-45 { --site-a: #ec5b39; --site-b: #f3a133; --site-c: #ffe580; }
+.site-art-46 { --site-a: #197dcb; --site-b: #4dc4e8; --site-c: #f8fbff; }
+.site-art-47 { --site-a: #168d6b; --site-b: #20c39a; --site-c: #b8ffdb; }
+.site-art-48 { --site-a: #823cdb; --site-b: #e45cc9; --site-c: #8be1ff; }
+.site-art-49 { --site-a: #11152f; --site-b: #5d43e7; --site-c: #ffb459; }
+.site-art-50 { --site-a: #159da7; --site-b: #4bc9d2; --site-c: #f7ef8c; }
+.site-art-51 { --site-a: #3c7b5f; --site-b: #8ebc55; --site-c: #f6d874; }
+.site-art-52 { --site-a: #263b94; --site-b: #6f63dd; --site-c: #fba85b; }
+.site-art-53 { --site-a: #243470; --site-b: #5b73e7; --site-c: #ffbd47; }
+.site-art-54 { --site-a: #5b226d; --site-b: #c14492; --site-c: #f4bd71; }
+.site-art-55 { --site-a: #21284d; --site-b: #5c76c8; --site-c: #ed7495; }
+.site-art-56 { --site-a: #66369b; --site-b: #c062c6; --site-c: #ffd574; }
+.site-art-57 { --site-a: #f0643e; --site-b: #e39a39; --site-c: #ffe9ad; }
+.site-art-58 { --site-a: #16182a; --site-b: #4b4f7f; --site-c: #f99e73; }
+.site-art-38 b, .site-art-53 b { transform: rotate(-16deg); }
+.site-art-39 i, .site-art-44 i, .site-art-46 i { border-radius: 4px; }
+.site-art-40 i, .site-art-45 i, .site-art-57 i { border-radius: 50%; }
+.site-art-41 em, .site-art-48 em, .site-art-55 em { height: 10px; border-radius: 50%; }
+.site-art-51::after { border-radius: 16px; transform: rotate(22deg); }
+.site-art-54 b { font-size: 3rem; }
+
 .thumb-overlay.format-edutech { justify-content: flex-end; align-items: flex-start; padding: 12px 14px; }
 .edutech-name { max-width: 100%; padding: 4px 10px; color: #4c3a94; background: rgba(255,255,255,.92); border-radius: 8px; font-size: .78rem; font-weight: 900; letter-spacing: -.03em; line-height: 1.3; text-align: left; }
 .kind-fusion .edutech-name { color: #275b85; }
