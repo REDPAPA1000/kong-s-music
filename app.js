@@ -2121,7 +2121,15 @@ function showGuide(title) {
   if (guide.caution) bits.push(`<span class="guide-chip is-warn">⚠ ${escText(guide.caution)}</span>`);
   document.querySelector("#guide-chips").innerHTML = bits.join("");
 
+  const hasShots = (guide.steps || []).some((one) => one.shot);
   document.querySelector("#guide-extra").innerHTML = [
+    hasShots ? `<section class="guide-block">
+      <h2>직접 해보기</h2>
+      <p>위 그림으로 순서를 익혔다면, 이제 진짜 도구를 열어 그대로 해 보세요.</p>
+      ${guide.embed ? `<div class="guide-try"><iframe class="guide-frame" src="${escText(guide.url)}"
+        title="${escText(guide.title)} 실행 화면" loading="lazy" allow="microphone; autoplay"></iframe></div>` : ""}
+      <a class="guide-open" href="${escText(guide.url)}" rel="noopener">${escText(guide.title)} 새 창에서 열기 ↗</a>
+    </section>` : "",
     guide.video ? `<section class="guide-block">
       <h2>소개 영상</h2>
       <div class="guide-video"><iframe src="${escText(guide.video)}" title="${escText(guide.title)} 소개 영상"
@@ -2505,7 +2513,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=8309b83";
+  script.src = "listening-data.js?v=4ffa681";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
