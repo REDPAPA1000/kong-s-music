@@ -1912,7 +1912,7 @@ const edutechArt = {
 
 const edutechGrid = document.querySelector("#edutech-grid");
 const edutechView = document.querySelector("#edutech-view");
-const edutechState = { group: "all", scope: "all" };
+const edutechState = { group: "all", scope: "all", level: "all" };
 const edutechGroupLabel = { all: "뮤직 에듀테크", site: "에듀테크 사이트", lab: "에듀테크 실습하기" };
 
 function edutechScopes() {
@@ -1931,7 +1931,10 @@ function edutechId(item) {
 function renderEdutech() {
   const scoped = edutechScopes();
   const list = edutechItems.filter((item) => (edutechState.group === "all" || item.group === edutechState.group)
-    && (!scoped || edutechState.scope === "all" || item.scope === edutechState.scope));
+    && (!scoped || edutechState.scope === "all" || item.scope === edutechState.scope)
+    /* 학교급은 도구에만 매겨 두었다. 실습 자료·영상은 걸러내지 않는다. */
+    && (edutechState.level === "all" || item.group !== "site"
+      || (edutechState.level === "pick" ? Boolean(item.pick) : item.level === edutechState.level)));
   const favorites = readFavorites();
 
   document.querySelector("#edutech-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
@@ -1954,7 +1957,9 @@ function renderEdutech() {
     const picked = edutechGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.tag || item.scope;
-    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}">${edutechArt[item.art] || edutechArt.play}${coverImg(item)}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span></span>`;
+    /* 학교급과 대표 표시 — 도구에만 붙는다 */
+    const levelMark = item.level ? `<span class="level-mark${item.pick ? " is-pick" : ""}">${item.pick ? "★ " : ""}${item.level}</span>` : "";
+    const thumb = `<span class="history-thumb edutech-thumb kind-${item.art}">${edutechArt[item.art] || edutechArt.play}${coverImg(item)}<span class="thumb-overlay format-edutech"><span class="edutech-name">${item.title}</span></span><span class="composer-badge">${badge}</span>${levelMark}</span>`;
     const open = `<a class="history-open" href="${item.url}" target="_blank" rel="noopener">${thumb}</a>`;
     const menuItems = [
       `<button role="menuitem" type="button" data-share="${item.url}" data-share-label="자료 링크">↗ 자료 공유하기</button>`,
@@ -2079,6 +2084,13 @@ function showEdutech() {
   renderEdutech();
   window.scrollTo({ top: 0, behavior: "instant" });
 }
+
+document.querySelectorAll("#edutech-view .level-switch button").forEach((button) => button.addEventListener("click", () => {
+  edutechState.level = button.dataset.level;
+  document.querySelectorAll("#edutech-view .level-switch button").forEach((one) =>
+    one.setAttribute("aria-selected", String(one.dataset.level === edutechState.level)));
+  renderEdutech();
+}));
 
 document.querySelectorAll("#edutech-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
   edutechState.group = button.dataset.format;
@@ -2396,7 +2408,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=ae55d9e";
+  script.src = "listening-data.js?v=caceca7";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";

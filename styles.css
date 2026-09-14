@@ -1222,3 +1222,21 @@ body.tool-open { overflow: hidden; }
   .guide-split { grid-template-columns: 1fr; }
   .guide-stage iframe { height: 56vh; }
 }
+
+/* ── 에듀테크 학교급 탭과 표시 ── */
+.level-switch { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
+.level-switch button {
+  padding: 6px 14px; color: #6b4715; background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.7); border-radius: 999px;
+  font: inherit; font-size: .8rem; font-weight: 700; cursor: pointer;
+}
+.level-switch button[aria-selected="true"] { color: #fff; background: var(--coral); border-color: var(--coral); }
+:root[data-theme="dark"] .level-switch button { color: #f0bd85; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.14); }
+:root[data-theme="dark"] .level-switch button[aria-selected="true"] { color: #fff; background: var(--coral); }
+
+.level-mark {
+  position: absolute; left: 8px; top: 8px; z-index: 2;
+  padding: 3px 9px; color: #3d4157; background: rgba(255,255,255,.9);
+  border-radius: 999px; font-size: .7rem; font-weight: 800;
+}
+.level-mark.is-pick { color: #fff; background: var(--coral); }
