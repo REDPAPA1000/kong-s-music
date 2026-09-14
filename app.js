@@ -1935,6 +1935,8 @@ function renderEdutech() {
     /* 학교급은 도구에만 매겨 두었다. 실습 자료·영상은 걸러내지 않는다. */
     && (edutechState.level === "all" || item.group !== "site"
       || (edutechState.level === "pick" ? Boolean(item.pick) : item.level === edutechState.level)));
+  /* 대표를 맨 앞에 둔다. 그다음은 원래 차례 그대로. */
+  list.sort((a, b) => (b.pick ? 1 : 0) - (a.pick ? 1 : 0));
   const favorites = readFavorites();
 
   document.querySelector("#edutech-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
@@ -2408,7 +2410,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=caceca7";
+  script.src = "listening-data.js?v=0620962";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
