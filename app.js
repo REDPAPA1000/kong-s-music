@@ -724,7 +724,7 @@ function handleRoute() {
   else if (hash === "#play") showPlay();
   else if (hash === "#smart") showSmart();
   else if (hash === "#edutech") showEdutech();
-  else if (hash.startsWith("#guide/")) { const [name, focus] = hash.slice(7).split("/"); showGuide(decodeURIComponent(name), focus); }
+  else if (hash.startsWith("#guide/")) { showGuide(decodeURIComponent(hash.slice(7).split("/")[0])); }
   else if (hash === "#video") showVideo();
   else if (hash === "#listening") showListening();
   else if (hash === "#books") showBooks();
@@ -1994,10 +1994,14 @@ function renderEdutech() {
 }
 
 /* ── 에듀테크 사용설명서 ────────────────────────────────
-   도구 목록(edutech-data.js)에 학생용 안내(edutech-guide.js)를 얹는다.
-   띄울 수 있는 도구는 화면 안에 그대로 띄우고, 막아 둔 곳은 열기 단추만 준다.
-   글과 그림이 낡지 않도록 캡처 대신 도구 자체를 보여 주는 쪽을 먼저 쓴다. */
+   도구를 크게 띄우고 설명은 화면 아래에 자막으로 얹는다. 좌우 단추로 넘긴다.
+   옆에 목록을 두면 눈이 두 군데를 오가야 해서 처음 쓰는 학생이 따라오기 어렵다.
+
+   살아 있는 도구를 우리 쪽에서 조작할 수는 없다. 남의 사이트라 브라우저가 막는다.
+   그래서 자막으로 무엇을 누를지 알려 주고, 짚을 자리를 적어 둔 단계는 동그라미로
+   표시해 준다. 도구를 띄울 수 없는 곳은 단계마다 찍어 둔 그림을 대신 보여 준다. */
 const guideView = document.querySelector("#guide-view");
+const guideState = { title: "", step: 0 };
 
 function edutechGuideFor(item) {
   const box = window.edutechGuides || {};
@@ -2006,75 +2010,150 @@ function edutechGuideFor(item) {
   return { ...one, title: item.title, url: item.url, desc: item.desc || "" };
 }
 
-function guideStepsHtml(guide) {
-  if (!(guide.steps || []).length) return "";
-  return `<ol class="guide-steps">${guide.steps
-    .map((step) => `<li>${escText(step)}</li>`).join("")}</ol>`;
+/* 단계는 글만 적어도 되고, 그림이나 짚을 자리를 함께 적어도 된다 */
+function guideStep(one) {
+  return typeof one === "string" ? { text: one } : (one || { text: "" });
 }
 
-function guideStageHtml(guide) {
-  if (guide.embed) {
-    return `<div class="guide-stage">
-      <iframe src="${escText(guide.url)}" title="${escText(guide.title)} 실행 화면"
-        loading="lazy" allow="microphone; camera; autoplay; clipboard-write"></iframe>
-      <p class="guide-stage-note">여기서 바로 해 볼 수 있습니다. 소리가 나지 않으면 화면을 한 번 눌러 주세요.</p>
+function currentGuide() {
+  const item = (typeof edutechItems !== "undefined" ? edutechItems : [])
+    .find((one) => one.title === guideState.title);
+  return item ? edutechGuideFor(item) : null;
+}
+
+function renderGuideStage() {
+  const guide = currentGuide();
+  if (!guide) return;
+  const steps = (guide.steps || []).map(guideStep);
+  const step = steps[guideState.step] || { text: "" };
+  const total = steps.length;
+
+  /* 무대 — 그림이 있으면 그림, 없으면 살아 있는 도구, 둘 다 없으면 열기 안내 */
+  let stage;
+  if (step.shot) {
+    stage = `<img class="guide-shot" src="${escText(step.shot)}" alt="${escText(guide.title)} ${guideState.step + 1}단계 화면" />`;
+  } else if (guide.embed) {
+    stage = `<iframe class="guide-frame" src="${escText(step.url || guide.url)}" title="${escText(guide.title)} 실행 화면"
+      loading="lazy" allow="microphone; camera; autoplay; clipboard-write"></iframe>`;
+  } else {
+    stage = `<div class="guide-blocked">
+      <p>이 도구는 다른 사이트 안에서 열리지 않도록 막아 두었습니다. 새 창으로 열어 자막을 보며 따라 해 보세요.</p>
+      <a class="guide-open" href="${escText(guide.url)}" target="_blank" rel="noopener">${escText(guide.title)} 새 창으로 열기 ↗</a>
     </div>`;
   }
-  return `<div class="guide-stage is-link">
-    <p>이 도구는 다른 사이트 안에서만 열리도록 되어 있어 여기에 띄울 수 없습니다.</p>
-    <a class="guide-open" href="${escText(guide.url)}" target="_blank" rel="noopener">${escText(guide.title)} 열기 ↗</a>
-  </div>`;
+
+  const spot = step.spot
+    ? `<span class="guide-spot" style="left:${step.spot[0]}%;top:${step.spot[1]}%"></span>` : "";
+
+  const dots = steps.map((one, i) =>
+    `<button type="button" class="guide-dot${i === guideState.step ? " is-on" : ""}" data-step="${i}"
+      aria-label="${i + 1}단계"></button>`).join("");
+
+  const box = document.querySelector("#guide-stage");
+  const caption = `<div class="guide-caption">
+      <span class="guide-no">${guideState.step + 1} / ${total}</span>
+      <p>${escText(step.text)}</p>
+      ${step.tip ? `<small>${escText(step.tip)}</small>` : ""}
+    </div>`;
+
+  /* 단계를 넘길 때마다 판을 새로 그리면 도구가 다시 켜져 학생이 만들던 것이
+     날아간다. 무대가 그대로면 자막과 표시만 갈아 끼운다. */
+  const live = box.querySelector(".guide-frame");
+  const sameFrame = live && !step.shot && guide.embed
+    && live.getAttribute("src") === (step.url || guide.url);
+  if (sameFrame) {
+    box.querySelector(".guide-spot")?.remove();
+    box.querySelector(".guide-caption")?.remove();
+    box.insertAdjacentHTML("beforeend", `${spot}${caption}`);
+  } else {
+    box.innerHTML = `${stage}${spot}${caption}`;
+  }
+  document.querySelector("#guide-dots").innerHTML = dots;
+  document.querySelector("#guide-prev").disabled = guideState.step === 0;
+  document.querySelector("#guide-next").disabled = guideState.step >= total - 1;
 }
 
-function showGuide(title, focus) {
+function guideGo(step) {
+  const guide = currentGuide();
+  const total = (guide && guide.steps ? guide.steps.length : 1);
+  guideState.step = Math.max(0, Math.min(total - 1, step));
+  renderGuideStage();
+}
+
+function showGuide(title) {
   const item = (typeof edutechItems !== "undefined" ? edutechItems : []).find((one) => one.title === title);
   const guide = item ? edutechGuideFor(item) : null;
   hideAllViews();
   guideView.hidden = false;
   setCurrentNav("musichall");
   window.scrollTo({ top: 0, behavior: "instant" });
+  guideState.title = title;
+  guideState.step = 0;
 
   if (!guide) {
     document.querySelector("#guide-title").textContent = "안내를 찾지 못했습니다";
-    document.querySelector("#guide-body").innerHTML = "";
+    document.querySelector("#guide-stage").innerHTML = "";
+    document.querySelector("#guide-dots").innerHTML = "";
     return;
   }
   document.title = `${guide.title} 사용법 | 연정쌤의 음악 교실`;
-  document.querySelector("#guide-kind").textContent = focus === "video" ? "소개 영상" : "사용설명서";
   document.querySelector("#guide-title").textContent = guide.title;
   document.querySelector("#guide-lead").textContent = guide.desc;
 
-  const video = guide.video ? `<section class="guide-block">
+  const bits = [];
+  if (guide.ready) bits.push(`<span class="guide-chip">준비물 ${escText(guide.ready)}</span>`);
+  if (guide.caution) bits.push(`<span class="guide-chip is-warn">⚠ ${escText(guide.caution)}</span>`);
+  document.querySelector("#guide-chips").innerHTML = bits.join("");
+
+  document.querySelector("#guide-extra").innerHTML = [
+    guide.video ? `<section class="guide-block">
       <h2>소개 영상</h2>
       <div class="guide-video"><iframe src="${escText(guide.video)}" title="${escText(guide.title)} 소개 영상"
         loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
       ${guide.videoSource ? `<p class="guide-source">영상 출처 ${escText(guide.videoSource)}</p>` : ""}
-    </section>` : "";
+    </section>` : "",
+    (guide.stuck || []).length ? `<section class="guide-block">
+      <h2>막히면 이렇게</h2>
+      <ul class="guide-list">${guide.stuck.map((one) => `<li>${escText(one)}</li>`).join("")}</ul>
+    </section>` : "",
+    (guide.more || []).length ? `<section class="guide-block">
+      <h2>더 해보기</h2>
+      <ul class="guide-list">${guide.more.map((one) => `<li>${escText(one)}</li>`).join("")}</ul>
+    </section>` : "",
+    guide.forTeacher ? `<section class="guide-block is-teacher">
+      <h2>선생님께</h2><p>${escText(guide.forTeacher)}</p>
+    </section>` : "",
+  ].filter(Boolean).join("");
 
-  const steps = guideStepsHtml(guide);
-  const how = steps ? `<section class="guide-block">
-      <h2>이렇게 해 보세요</h2>
-      ${steps}
-    </section>` : `<section class="guide-block">
-      <p class="guide-empty">사용설명서는 준비 중입니다. 아래에서 도구를 먼저 열어 보세요.</p>
-    </section>`;
-
-  const caution = guide.caution
-    ? `<p class="guide-caution">⚠ ${escText(guide.caution)}</p>` : "";
-
-  /* 영상 단추로 들어왔으면 영상을 먼저, 설명서로 들어왔으면 도구를 먼저 보여 준다 */
-  const body = focus === "video"
-    ? video + how + guideStageHtml(guide)
-    : `<div class="guide-split">${guideStageHtml(guide)}${how}</div>` + video;
-
-  document.querySelector("#guide-body").innerHTML = caution + body;
+  if (!(guide.steps || []).length) {
+    document.querySelector("#guide-stage").innerHTML = guide.embed
+      ? `<iframe class="guide-frame" src="${escText(guide.url)}" title="${escText(guide.title)}" loading="lazy"></iframe>`
+      : `<div class="guide-blocked"><p>사용설명서는 준비 중입니다.</p><a class="guide-open" href="${escText(guide.url)}" target="_blank" rel="noopener">${escText(guide.title)} 열기 ↗</a></div>`;
+    document.querySelector("#guide-dots").innerHTML = "";
+    document.querySelector("#guide-prev").disabled = true;
+    document.querySelector("#guide-next").disabled = true;
+    return;
+  }
+  renderGuideStage();
 }
 
+document.querySelector("#guide-prev").addEventListener("click", () => guideGo(guideState.step - 1));
+document.querySelector("#guide-next").addEventListener("click", () => guideGo(guideState.step + 1));
+document.querySelector("#guide-dots").addEventListener("click", (event) => {
+  const dot = event.target.closest("[data-step]");
+  if (dot) guideGo(Number(dot.dataset.step));
+});
+document.addEventListener("keydown", (event) => {
+  if (guideView.hidden) return;
+  if (event.key === "ArrowLeft") guideGo(guideState.step - 1);
+  if (event.key === "ArrowRight") guideGo(guideState.step + 1);
+});
+
 edutechGrid.addEventListener("click", (event) => {
-  const video = event.target.closest("[data-guide-video]");
-  if (video) { location.hash = `#guide/${encodeURIComponent(video.dataset.guideVideo)}/video`; return; }
   const guide = event.target.closest("[data-guide]");
   if (guide) location.hash = `#guide/${encodeURIComponent(guide.dataset.guide)}`;
+  const video = event.target.closest("[data-guide-video]");
+  if (video) location.hash = `#guide/${encodeURIComponent(video.dataset.guideVideo)}`;
 });
 
 function showEdutech() {
@@ -2410,7 +2489,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=0620962";
+  script.src = "listening-data.js?v=207116d";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
