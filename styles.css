@@ -1158,13 +1158,38 @@ body.tool-open { overflow: hidden; }
 .career-fallback > i:nth-of-type(1) { left: 15%; top: 19%; }
 .career-fallback > i:nth-of-type(2) { right: 18%; bottom: 23%; width: 8px; height: 8px; }
 .career-fallback > i:nth-of-type(3) { left: 24%; bottom: 14%; width: 18px; height: 18px; opacity: .5; }
-.career-tone-0 { --career-a: #6687e8; --career-b: #85b7ef; }
-.career-tone-1 { --career-a: #43a99f; --career-b: #86cfb8; }
-.career-tone-2 { --career-a: #8a6ad8; --career-b: #bf94e7; }
-.career-tone-3 { --career-a: #e47a73; --career-b: #f2ad8c; }
-.career-tone-4 { --career-a: #d18b35; --career-b: #efc168; }
-.career-tone-5 { --career-a: #3d93b6; --career-b: #72c7d4; }
-.career-tone-6 { --career-a: #ba6e9e; --career-b: #e0a2c2; }
+/* 계열·직업군마다 고유한 색 — 목록을 훑을 때 무리가 눈에 들어온다 */
+.career-tone-ink    { --career-a: #4a5a91; --career-b: #7f8fc4; }
+.career-tone-sky    { --career-a: #3d7fd4; --career-b: #78b4ee; }
+.career-tone-grass  { --career-a: #3f9a62; --career-b: #86c98c; }
+.career-tone-steel  { --career-a: #4d7f96; --career-b: #82b7c6; }
+.career-tone-mint   { --career-a: #2f9f92; --career-b: #7bcdb9; }
+.career-tone-rose   { --career-a: #d1596b; --career-b: #f0959c; }
+.career-tone-violet { --career-a: #7c5bd0; --career-b: #b294e6; }
+.career-tone-gold   { --career-a: #cc8b2a; --career-b: #eec163; }
+.career-tone-amber  { --career-a: #d9722f; --career-b: #f3a86a; }
+.career-tone-copper { --career-a: #a86a4d; --career-b: #d3a084; }
+/* 같은 무리 안에서도 카드마다 결이 달라 보이게 한다 — 줄줄이 붙어 보이지 않도록 */
+.career-shade-1 .career-fallback { background: linear-gradient(35deg, var(--career-a), var(--career-b)); }
+.career-shade-2 .career-fallback { background: linear-gradient(200deg, var(--career-b), var(--career-a)); }
+.career-shade-3 .career-fallback { background: linear-gradient(110deg, var(--career-a), var(--career-b)); }
+.career-shade-4 .career-fallback { background: linear-gradient(255deg, var(--career-b), var(--career-a)); }
+.career-shade-5 .career-fallback { background: linear-gradient(170deg, var(--career-a), var(--career-b)); }
+.career-shade-1 .career-fallback-shape { transform: scale(1.08) rotate(-4deg); }
+.career-shade-2 .career-fallback-shape { transform: scale(.93) rotate(4deg); }
+.career-shade-3 .career-fallback-shape { transform: scale(1.02) rotate(2deg); }
+.career-shade-4 .career-fallback-shape { transform: scale(.97) rotate(-2deg); }
+.career-shade-5 .career-fallback-shape { transform: scale(1.05); }
+.career-shade-1 .career-fallback::before { right: -30px; top: -92px; }
+.career-shade-2 .career-fallback::before { right: -78px; top: -44px; width: 206px; height: 206px; }
+.career-shade-3 .career-fallback::before { right: auto; left: -70px; top: -60px; width: 190px; height: 190px; }
+.career-shade-4 .career-fallback::before { right: -20px; top: auto; bottom: -96px; }
+.career-shade-5 .career-fallback::before { right: -96px; top: -20px; width: 160px; height: 160px; }
+.career-shade-2 .career-fallback::after { transform: rotate(4deg); }
+.career-shade-4 .career-fallback::after { height: 72px; bottom: -30px; }
+.career-shade-1 > i:nth-of-type(1) { left: auto; right: 14%; top: 24%; }
+.career-shade-3 > i:nth-of-type(3) { left: auto; right: 22%; bottom: 18%; }
+.career-shade-5 > i:nth-of-type(2) { right: auto; left: 12%; bottom: 20%; }
 .career-thumb + .break-name, .career-thumb .break-name { color: #6b4715; }
 .break-card .career-thumb ~ * .composer-badge { color: #6b4715; }
 .history-open.is-plain { cursor: default; }

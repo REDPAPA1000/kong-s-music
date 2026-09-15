@@ -2334,7 +2334,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=5d26e43";
+  script.src = "listening-data.js?v=7dd7347";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2870,14 +2870,46 @@ function actValues(items) {
   return found;
 }
 
+/* 계열·직업군마다 다른 그림 — 커리어넷 이미지는 자주 막혀서 우리 그림만 쓴다.
+   바깥에서 받아오는 것이 없으니 카드가 뜨는 순간 그림도 함께 보인다. */
+const careerMotifs = {
+  /* 학과 — 7계열 */
+  "인문계열": { tone: "ink", art: `<path d="M60 26c-9-7-21-9-33-8v41c12-1 24 1 33 8 9-7 21-9 33-8V18c-12-1-24 1-33 8z"/><path d="M60 26v41"/>` },
+  "사회계열": { tone: "sky", art: `<circle cx="60" cy="40" r="26"/><path d="M34 40h52M60 14c8 8 12 17 12 26s-4 18-12 26c-8-8-12-17-12-26s4-18 12-26z"/>` },
+  "교육계열": { tone: "grass", art: `<rect x="20" y="14" width="80" height="48" rx="5"/><path d="M34 30h30M34 42h44M46 62v8h28v-8"/>` },
+  "공학계열": { tone: "steel", art: `<path d="M83.6 35.4 L91.8 36.2 L91.8 43.8 L83.6 44.6 L79.9 53.4 L85.2 59.8 L79.8 65.2 L73.4 59.9 L64.6 63.6 L63.8 71.8 L56.2 71.8 L55.4 63.6 L46.6 59.9 L40.2 65.2 L34.8 59.8 L40.1 53.4 L36.4 44.6 L28.2 43.8 L28.2 36.2 L36.4 35.4 L40.1 26.6 L34.8 20.2 L40.2 14.8 L46.6 20.1 L55.4 16.4 L56.2 8.2 L63.8 8.2 L64.6 16.4 L73.4 20.1 L79.8 14.8 L85.2 20.2 L79.9 26.6 Z"/><circle cx="60" cy="40" r="11"/>` },
+  "자연계열": { tone: "mint", art: `<path d="M52 12h16M56 12v20L38 62c-4 6 0 12 7 12h30c7 0 11-6 7-12L64 32V12"/><path d="M45 52h30"/>` },
+  "의약계열": { tone: "rose", art: `<circle cx="44" cy="40" r="24"/><path d="M44 28v24M32 40h24"/><rect x="76" y="20" width="22" height="42" rx="11"/><path d="M76 41h22"/>` },
+  "예체능계열": { tone: "violet", art: `<path d="M60 12c-22 0-40 14-40 32 0 12 10 20 22 20 6 0 8-4 8-8 0-6 4-9 10-9h10c14 0 22-8 22-19 0-9-12-16-32-16z"/><circle cx="42" cy="32" r="5"/><circle cx="62" cy="26" r="5"/><circle cx="80" cy="36" r="5"/>` },
+
+  /* 직업 — 10직업군 */
+  "경영·사무·금융·보험직": { tone: "sky", art: `<rect x="18" y="26" width="84" height="44" rx="8"/><path d="M44 26v-8c0-4 3-7 7-7h18c4 0 7 3 7 7v8M18 44h84"/><path d="M52 40h16v10H52z"/>` },
+  "연구직 및 공학 기술직": { tone: "steel", art: `<path d="M66 8l12 12-20 20-12-12z"/><path d="M58 40c-16 6-24 24-16 38"/><path d="M52 58h30"/><path d="M28 72h64"/><path d="M42 72v-8h24v8"/>` },
+  "교육·법률·사회복지·경찰·소방직 및 군인": { tone: "ink", art: `<path d="M60 10l32 11v20c0 16-13 27-32 33-19-6-32-17-32-33V21z"/><path d="M46 40l10 10 20-19"/>` },
+  "보건·의료직": { tone: "rose", art: `<path d="M16 42h20l7-16 12 32 9-20 6 10 4-6h30"/><path d="M84 12v16M76 20h16"/>` },
+  "예술·디자인·방송·스포츠직": { tone: "violet", art: `<rect x="46" y="8" width="28" height="36" rx="14"/><path d="M30 38c0 16 13 28 30 28s30-12 30-28M60 66v10M44 76h32"/>` },
+  "미용·여행·숙박·음식·경비·청소직": { tone: "mint", art: `<circle cx="30" cy="20" r="9"/><circle cx="30" cy="60" r="9"/><path d="M38 26l50 38M38 54l50-38"/><path d="M70 40l20-14M70 40l20 14"/>` },
+  "영업·판매·운전·운송직": { tone: "gold", art: `<path d="M14 22h52v34H14zM66 32h18l16 16v8H66z"/><circle cx="34" cy="62" r="8"/><circle cx="84" cy="62" r="8"/>` },
+  "건설·채굴직": { tone: "amber", art: `<path d="M30 54c0-18 13-30 30-30s30 12 30 30"/><path d="M47 26v28M73 26v28"/><path d="M16 54h88v10H16z"/>` },
+  "농림어업직": { tone: "grass", art: `<path d="M60 70V34"/><path d="M60 40c-16 0-26-8-26-22 16 0 26 8 26 22zM60 46c16 0 26-8 26-22-16 0-26 8-26 22z"/><path d="M28 70h64"/>` },
+  "설치·정비·생산직": { tone: "copper", art: `<path d="M84 14a18 18 0 00-24 24L26 72l10 10 34-34a18 18 0 0024-24l-13 13-11-11z"/><circle cx="90" cy="62" r="10"/>` },
+};
+
+const careerToneList = ["ink", "sky", "grass", "steel", "mint", "rose", "violet", "gold", "amber", "copper"];
+
 function careerFallbackArt(item, kind) {
-  const value = `${item.c || ""}${item.id || item.t || ""}`;
-  const tone = Array.from(value).reduce((sum, char) => sum + char.charCodeAt(0), 0) % 7;
-  const icon = kind === "major"
-    ? `<svg viewBox="0 0 120 80"><path d="M60 15 16 34l44 19 44-19z"/><path d="M34 44v15c0 8 12 14 26 14s26-6 26-14V44"/><path d="M100 36v25"/></svg>`
-    : `<svg viewBox="0 0 120 80"><rect x="18" y="25" width="84" height="45" rx="10"/><path d="M43 25v-8c0-5 4-8 9-8h16c5 0 9 3 9 8v8"/><path d="M18 45h84M52 41h16v10H52z"/></svg>`;
-  return `<span class="career-fallback career-fallback-${kind} career-tone-${tone}" aria-hidden="true">
-    <span class="career-fallback-shape">${icon}</span>
+  const motif = careerMotifs[item.c];
+  const seed = Array.from(`${item.c || ""}${item.id || item.t || ""}`)
+    .reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  /* 분류가 있으면 그 분류의 그림과 색, 없으면 예전처럼 골고루 나눠 준다 */
+  const tone = motif ? motif.tone : careerToneList[seed % careerToneList.length];
+  const art = motif ? motif.art : (kind === "major"
+    ? `<path d="M60 15 16 34l44 19 44-19z"/><path d="M34 44v15c0 8 12 14 26 14s26-6 26-14V44"/><path d="M100 36v25"/>`
+    : `<rect x="18" y="25" width="84" height="45" rx="10"/><path d="M43 25v-8c0-5 4-8 9-8h16c5 0 9 3 9 8v8"/><path d="M18 45h84M52 41h16v10H52z"/>`);
+  /* 같은 분류 안에서도 카드마다 조금씩 달라 보이게 한다 */
+  const shade = seed % 6;
+  return `<span class="career-fallback career-fallback-${kind} career-tone-${tone} career-shade-${shade}" aria-hidden="true">
+    <span class="career-fallback-shape"><svg viewBox="0 0 120 80">${art}</svg></span>
     <i></i><i></i><i></i>
   </span>`;
 }
