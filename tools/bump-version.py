@@ -12,8 +12,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ASSETS = ['styles.css', 'app.js', 'tools.js', 'songs-data.js', 'play-data.js', 'smart-data.js',
-          'edutech-data.js', 'video-data.js', 'books-data.js', 'break-data.js', 'activity-data.js',
-          'edutech-guide.js']
+          'edutech-data.js', 'video-data.js', 'books-data.js', 'break-data.js', 'activity-data.js']
 
 version = subprocess.run(['git', 'rev-parse', '--short', 'HEAD'],
                          capture_output=True, text=True, cwd=ROOT).stdout.strip()

@@ -558,7 +558,7 @@ function hideAllViews() {
   [homeView, aboutView, domainPreview, libraryView, theoryView, hallView, historyView,
     composerView, theorybookView, songsView, playView, smartView, edutechView,
     videoView, listeningView, booksView, toolsView, breakView, breaklistView,
-    activityView, actlistView, actpageView, guideView]
+    activityView, actlistView, actpageView]
     .forEach((view) => { if (view) view.hidden = true; });
 }
 
@@ -584,7 +584,7 @@ function showHome() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
 }
@@ -605,7 +605,7 @@ function showGrade(grade) {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   document.querySelector("#grade-kicker").textContent = data.kicker;
   document.querySelector("#library-title").textContent = data.label;
   document.querySelector("#grade-description").textContent = data.description;
@@ -630,7 +630,7 @@ function showTheory() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   setCurrentNav("theory");
   document.title = "음악 이론 | 연정쌤의 음악 교실";
   window.scrollTo({ top: 0, behavior: "instant" });
@@ -724,7 +724,6 @@ function handleRoute() {
   else if (hash === "#play") showPlay();
   else if (hash === "#smart") showSmart();
   else if (hash === "#edutech") showEdutech();
-  else if (hash.startsWith("#guide/")) { showGuide(decodeURIComponent(hash.slice(7).split("/")[0])); }
   else if (hash === "#video") showVideo();
   else if (hash === "#listening") showListening();
   else if (hash === "#books") showBooks();
@@ -1426,7 +1425,7 @@ function showComposer() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   composerView.hidden = false;
   setCurrentNav("musichall");
   document.title = "작곡가 | 연정쌤의 음악 교실";
@@ -1552,7 +1551,7 @@ function showTheorybook() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   theorybookView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 기초 이론 | 연정쌤의 음악 교실";
@@ -1668,7 +1667,7 @@ function showSongs() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   songsView.hidden = false;
   setCurrentNav("musichall");
   document.title = "노래 익히기 모음 | 연정쌤의 음악 교실";
@@ -1784,7 +1783,7 @@ function showPlay() {
   songsView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   playView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 연주 자료집 | 연정쌤의 음악 교실";
@@ -1881,7 +1880,7 @@ function showSmart() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   smartView.hidden = false;
   setCurrentNav("musichall");
   document.title = "스마트 악기 연주 | 연정쌤의 음악 교실";
@@ -1986,12 +1985,6 @@ function renderEdutech() {
     const extra = item.sheetUrl
       ? `<div class="history-extra"><button class="extra-toggle" type="button" data-more aria-expanded="false" aria-controls="extra-${key}">${sheetAction(item.sheetUrl) === "열기" ? "수업 자료 보기" : "수업 자료 내려받기"} (1) <span aria-hidden="true">⌄</span></button><div class="extra-panel" id="extra-${key}" hidden><a href="${item.sheetUrl}" target="_blank" rel="noopener">${item.sheetLabel} ${sheetAction(item.sheetUrl)} <span aria-hidden="true">↗</span></a></div></div>`
       : "";
-    /* 영상과 설명서는 채워 넣은 도구에만 나온다. 비어 있으면 단추 자체가 안 보인다. */
-    const guide = edutechGuideFor(item);
-    const guideRow = guide ? [
-      guide.video ? `<button class="edutech-go" type="button" data-guide-video="${escText(item.title)}">▶ 소개 영상</button>` : "",
-      (guide.steps && guide.steps.length) ? `<button class="edutech-go" type="button" data-guide="${escText(item.title)}">📖 사용설명서</button>` : "",
-    ].filter(Boolean).join("") : "";
     return `
       <li class="history-card edutech-card${picked ? " is-picked" : ""}" data-id="${id}">
         <label class="history-pick"><input type="checkbox" data-pick="${id}"${picked ? " checked" : ""} /><span class="visually-hidden">${item.title} 선택</span></label>
@@ -2002,164 +1995,11 @@ function renderEdutech() {
           <button class="history-kebab" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu-${key}" aria-label="${item.title} 자료 메뉴">⋮</button>
         </div>
         <div class="history-menu" id="menu-${key}" role="menu" hidden>${menuItems}</div>
-        ${guideRow ? `<div class="edutech-actions">${guideRow}</div>` : ""}
         ${extra}
       </li>`;
   }).join("");
   syncToolbar(edutechGrid);
 }
-
-/* ── 에듀테크 사용설명서 ────────────────────────────────
-   외부 도구는 iframe 차단이 잦으므로 설명 화면 안에 억지로 넣지 않는다.
-   실제 화면 또는 안정적인 시작 패널을 왼쪽에, 단계 설명과 이동 수단을 오른쪽에 둔다. */
-const guideView = document.querySelector("#guide-view");
-const guideState = { title: "", step: 0 };
-
-function edutechGuideFor(item) {
-  const box = window.edutechGuides || {};
-  const one = box[item.title];
-  if (!one) return null;
-  return { ...one, title: item.title, url: item.url, desc: item.desc || "" };
-}
-
-/* 단계는 글만 적어도 되고, 그림이나 짚을 자리를 함께 적어도 된다 */
-function guideStep(one) {
-  return typeof one === "string" ? { text: one } : (one || { text: "" });
-}
-
-function currentGuide() {
-  const item = (typeof edutechItems !== "undefined" ? edutechItems : [])
-    .find((one) => one.title === guideState.title);
-  return item ? edutechGuideFor(item) : null;
-}
-
-function renderGuideStage() {
-  const guide = currentGuide();
-  if (!guide) return;
-  const steps = (guide.steps || []).map(guideStep);
-  const step = steps[guideState.step] || { text: "" };
-  const total = steps.length;
-
-  /* 무대 — 실제 화면이 있으면 보여 주고, 없으면 안정적인 실행 안내를 보여 준다 */
-  let stage;
-  if (step.shot) {
-    stage = `<img class="guide-shot" src="${escText(step.shot)}" alt="${escText(guide.title)} ${guideState.step + 1}단계 화면" />`;
-  } else {
-    stage = `<div class="guide-launchpad" aria-hidden="true">
-      <span class="guide-launchpad-icon">↗</span>
-      <b>${escText(guide.title)}</b>
-      <p>도구를 새 창으로 열고 오른쪽 설명을 한 단계씩 따라 해 보세요.</p>
-    </div>`;
-  }
-
-  const spot = step.shot && step.spot
-    ? `<span class="guide-spot" style="left:${step.spot[0]}%;top:${step.spot[1]}%"></span>` : "";
-
-  const dots = steps.map((one, i) =>
-    `<button type="button" role="tab" class="guide-dot${i === guideState.step ? " is-on" : ""}" data-step="${i}"
-      aria-label="${i + 1}단계" aria-selected="${i === guideState.step}">${i + 1}</button>`).join("");
-
-  const box = document.querySelector("#guide-stage");
-  box.innerHTML = `${stage}${spot}`;
-  document.querySelector("#guide-caption").innerHTML = `
-    <span class="guide-no">${guideState.step + 1}단계</span>
-    <p>${escText(step.text)}</p>
-    ${step.tip ? `<small><b>도움말</b>${escText(step.tip)}</small>` : ""}`;
-  document.querySelector("#guide-progress-label").textContent = `${guideState.step + 1}단계`;
-  document.querySelector("#guide-progress-total").textContent = `전체 ${total}단계`;
-  document.querySelector("#guide-progress-fill").style.width = `${((guideState.step + 1) / total) * 100}%`;
-  document.querySelector("#guide-dots").innerHTML = dots;
-  document.querySelector("#guide-prev").disabled = guideState.step === 0;
-  document.querySelector("#guide-next").disabled = guideState.step >= total - 1;
-}
-
-function guideGo(step) {
-  const guide = currentGuide();
-  const total = (guide && guide.steps ? guide.steps.length : 1);
-  guideState.step = Math.max(0, Math.min(total - 1, step));
-  renderGuideStage();
-}
-
-function showGuide(title) {
-  const item = (typeof edutechItems !== "undefined" ? edutechItems : []).find((one) => one.title === title);
-  const guide = item ? edutechGuideFor(item) : null;
-  hideAllViews();
-  guideView.hidden = false;
-  setCurrentNav("musichall");
-  window.scrollTo({ top: 0, behavior: "instant" });
-  guideState.title = title;
-  guideState.step = 0;
-
-  if (!guide) {
-    document.querySelector("#guide-title").textContent = "안내를 찾지 못했습니다";
-    document.querySelector("#guide-stage").innerHTML = "";
-    document.querySelector("#guide-dots").innerHTML = "";
-    return;
-  }
-  document.title = `${guide.title} 사용법 | 연정쌤의 음악 교실`;
-  document.querySelector("#guide-title").textContent = guide.title;
-  document.querySelector("#guide-lead").textContent = guide.desc;
-  const openTool = document.querySelector("#guide-open-tool");
-  openTool.href = guide.url;
-  openTool.textContent = `${guide.title} 바로 실행 ↗`;
-
-  const bits = [];
-  if (guide.ready) bits.push(`<span class="guide-chip">준비물 ${escText(guide.ready)}</span>`);
-  if (guide.caution) bits.push(`<span class="guide-chip is-warn">⚠ ${escText(guide.caution)}</span>`);
-  document.querySelector("#guide-chips").innerHTML = bits.join("");
-
-  document.querySelector("#guide-extra").innerHTML = [
-    guide.video ? `<section class="guide-block">
-      <h2>소개 영상</h2>
-      <div class="guide-video"><iframe src="${escText(guide.video)}" title="${escText(guide.title)} 소개 영상"
-        loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>
-      ${guide.videoSource ? `<p class="guide-source">영상 출처 ${escText(guide.videoSource)}</p>` : ""}
-    </section>` : "",
-    (guide.stuck || []).length ? `<section class="guide-block">
-      <h2>막히면 이렇게</h2>
-      <ul class="guide-list">${guide.stuck.map((one) => `<li>${escText(one)}</li>`).join("")}</ul>
-    </section>` : "",
-    (guide.more || []).length ? `<section class="guide-block">
-      <h2>더 해보기</h2>
-      <ul class="guide-list">${guide.more.map((one) => `<li>${escText(one)}</li>`).join("")}</ul>
-    </section>` : "",
-    guide.forTeacher ? `<section class="guide-block is-teacher">
-      <h2>선생님께</h2><p>${escText(guide.forTeacher)}</p>
-    </section>` : "",
-  ].filter(Boolean).join("");
-
-  if (!(guide.steps || []).length) {
-    document.querySelector("#guide-stage").innerHTML = `<div class="guide-blocked"><p>사용설명서는 준비 중입니다.</p></div>`;
-    document.querySelector("#guide-caption").innerHTML = `<p>준비된 설명은 없지만 도구는 바로 실행할 수 있습니다.</p>`;
-    document.querySelector("#guide-progress-label").textContent = "안내 준비 중";
-    document.querySelector("#guide-progress-total").textContent = "";
-    document.querySelector("#guide-progress-fill").style.width = "0%";
-    document.querySelector("#guide-dots").innerHTML = "";
-    document.querySelector("#guide-prev").disabled = true;
-    document.querySelector("#guide-next").disabled = true;
-    return;
-  }
-  renderGuideStage();
-}
-
-document.querySelector("#guide-prev").addEventListener("click", () => guideGo(guideState.step - 1));
-document.querySelector("#guide-next").addEventListener("click", () => guideGo(guideState.step + 1));
-document.querySelector("#guide-dots").addEventListener("click", (event) => {
-  const dot = event.target.closest("[data-step]");
-  if (dot) guideGo(Number(dot.dataset.step));
-});
-document.addEventListener("keydown", (event) => {
-  if (guideView.hidden) return;
-  if (event.key === "ArrowLeft") guideGo(guideState.step - 1);
-  if (event.key === "ArrowRight") guideGo(guideState.step + 1);
-});
-
-edutechGrid.addEventListener("click", (event) => {
-  const guide = event.target.closest("[data-guide]");
-  if (guide) location.hash = `#guide/${encodeURIComponent(guide.dataset.guide)}`;
-  const video = event.target.closest("[data-guide-video]");
-  if (video) location.hash = `#guide/${encodeURIComponent(video.dataset.guideVideo)}`;
-});
 
 function showEdutech() {
   /* 감출 화면을 따로 적어 두면 새 화면이 생길 때마다 빠뜨린다 (설명서가 그랬다) */
@@ -2315,7 +2155,7 @@ function showVideo() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   videoView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 동영상 | 연정쌤의 음악 교실";
@@ -2485,7 +2325,7 @@ function showListening() {
   historyView.hidden = true; composerView.hidden = true; theorybookView.hidden = true;
   songsView.hidden = true; playView.hidden = true; smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   listeningView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악 감상실 & 악보은행 | 연정쌤의 음악 교실";
@@ -2494,7 +2334,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=4ffa681";
+  script.src = "listening-data.js?v=5d26e43";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2685,7 +2525,7 @@ function showHall() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   hallView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악관 | 연정쌤의 음악 교실";
@@ -2701,7 +2541,7 @@ function showHistory() {
   playView.hidden = true;
   smartView.hidden = true;
   edutechView.hidden = true; videoView.hidden = true; listeningView.hidden = true; booksView.hidden = true; toolsView.hidden = true; breakView.hidden = true; breaklistView.hidden = true;
-  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true; guideView.hidden = true;
+  activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   historyView.hidden = false;
   setCurrentNav("musichall");
   document.title = "음악사 | 연정쌤의 음악 교실";

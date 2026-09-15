@@ -1220,14 +1220,6 @@ body.tool-open { overflow: hidden; }
   .actpage-unis li { grid-template-columns: 1fr; gap: 2px; }
 }
 
-/* ── 에듀테크 카드의 영상·설명서 단추 ── */
-.edutech-actions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 14px; }
-.edutech-go {
-  padding: 7px 12px; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 999px;
-  font: inherit; font-size: .78rem; font-weight: 700; cursor: pointer;
-}
-.edutech-go:hover { border-color: var(--coral); background: rgba(239,112,94,.08); }
 
 
 /* ── 에듀테크 학교급 탭과 표시 ── */
@@ -1251,87 +1243,3 @@ body.tool-open { overflow: hidden; }
 }
 .level-mark.is-pick { color: #fff; background: var(--coral); }
 
-/* ── 사용설명서 — 실제 화면과 단계 안내를 나란히 둔다 ── */
-.guide-view .history-hero { text-align: left; padding-top: clamp(72px, 9vw, 104px); }
-.guide-kind { margin: 0 0 6px; color: #6b4715; font-size: .76rem; font-weight: 800; letter-spacing: .04em; }
-.guide-view .history-hero h1 { margin: 0 0 10px; }
-.guide-view .history-hero > p { margin: 0; max-width: 62ch; }
-.guide-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
-.guide-chip { padding: 6px 13px; color: #6b4715; background: rgba(255,255,255,.62); border-radius: 999px; font-size: .78rem; font-weight: 700; }
-.guide-chip.is-warn { color: #8a5a12; background: rgba(247,187,46,.3); }
-
-.guide-player { max-width: 1180px; margin: 0 auto; }
-.guide-workspace {
-  display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, .72fr); gap: 18px;
-  align-items: stretch;
-}
-.guide-stage {
-  position: relative; display: grid; place-items: center; min-height: 480px; overflow: hidden;
-  border: 1px solid var(--line); border-radius: 22px; background: #f4f5f8;
-  box-shadow: var(--shadow);
-}
-.guide-shot { display: block; width: 100%; height: 100%; max-height: 650px; object-fit: contain; border: 0; }
-.guide-blocked { display: grid; place-items: center; gap: 14px; min-height: 320px; padding: 30px; text-align: center; }
-.guide-blocked p { margin: 0; max-width: 46ch; color: var(--muted); font-size: .9rem; line-height: 1.7; }
-.guide-open { display: inline-block; padding: 11px 20px; color: #fff; background: var(--coral); border-radius: 999px; font-size: .88rem; font-weight: 800; text-decoration: none; }
-.guide-launchpad { display: grid; place-items: center; gap: 12px; max-width: 420px; padding: 44px; text-align: center; }
-.guide-launchpad-icon { display: grid; place-items: center; width: 76px; height: 76px; color: #fff; background: linear-gradient(145deg, #7458e8, #4f8ff3); border-radius: 24px; box-shadow: 0 16px 34px rgba(79,91,210,.26); font-size: 2rem; font-weight: 900; }
-.guide-launchpad b { font-size: clamp(1.25rem, 2vw, 1.65rem); }
-.guide-launchpad p { margin: 0; color: var(--muted); line-height: 1.65; }
-
-.guide-panel { display: flex; min-height: 480px; flex-direction: column; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
-.guide-progress { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .78rem; font-weight: 800; }
-.guide-progress span:first-child { color: #5f45c8; }
-.guide-progress-track { height: 7px; margin: 10px 0 22px; overflow: hidden; background: var(--line); border-radius: 999px; }
-.guide-progress-track span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, #7458e8, #4f8ff3); border-radius: inherit; transition: width .25s ease; }
-
-.guide-caption {
-  flex: 1; padding: 18px; color: var(--ink); background: color-mix(in srgb, #7458e8 7%, var(--surface));
-  border: 1px solid color-mix(in srgb, #7458e8 18%, var(--line)); border-radius: 16px;
-}
-.guide-no { display: inline-block; margin-bottom: 10px; color: #6549cf; font-size: .76rem; font-weight: 900; }
-.guide-caption p { margin: 0; font-size: 1rem; line-height: 1.75; font-weight: 650; }
-.guide-caption small { display: block; margin-top: 16px; padding-top: 14px; color: var(--muted); border-top: 1px solid var(--line); font-size: .82rem; line-height: 1.65; }
-.guide-caption small b { display: block; margin-bottom: 3px; color: #5f45c8; }
-
-/* 어디를 누를지 짚어 준다 */
-.guide-spot {
-  position: absolute; width: 42px; height: 42px; margin: -21px 0 0 -21px;
-  border: 3px solid var(--coral); border-radius: 50%; pointer-events: none;
-  box-shadow: 0 0 0 4px rgba(239,112,94,.25);
-  animation: guidePulse 1.6s ease-out infinite;
-}
-@keyframes guidePulse { 0% { transform: scale(.85); opacity: 1; } 70% { transform: scale(1.15); opacity: .45; } 100% { transform: scale(.85); opacity: 1; } }
-
-.guide-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
-.guide-move {
-  min-height: 44px; padding: 0 16px; color: var(--ink); background: var(--surface);
-  border: 1px solid var(--line); border-radius: 12px;
-  font-size: .86rem; font-weight: 850; line-height: 1; cursor: pointer;
-}
-.guide-move.is-next { color: #fff; background: #6549cf; border-color: #6549cf; }
-.guide-move:hover:not(:disabled) { transform: translateY(-1px); border-color: #6549cf; }
-.guide-move:disabled { opacity: .35; cursor: default; }
-.guide-dots { display: grid; grid-template-columns: repeat(8, minmax(28px, 1fr)); gap: 6px; margin-top: 18px; }
-.guide-dot { min-width: 28px; height: 30px; padding: 0; color: var(--muted); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; font-size: .7rem; font-weight: 800; cursor: pointer; }
-.guide-dot.is-on { color: #fff; background: #6549cf; border-color: #6549cf; box-shadow: 0 5px 12px rgba(101,73,207,.22); }
-.guide-open-tool { display: block; margin-top: 9px; text-align: center; background: linear-gradient(100deg, #7458e8, #4f8ff3); }
-
-.guide-extra { max-width: 1060px; margin: clamp(28px, 4vw, 44px) auto 0; }
-.guide-block { margin: 0 0 clamp(20px, 3vw, 30px); }
-.guide-block h2 { margin: 0 0 11px; font-size: 1.02rem; font-weight: 900; letter-spacing: -.02em; }
-.guide-block h2::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 9px; background: var(--coral); border-radius: 50%; vertical-align: 2px; }
-.guide-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-.guide-list li { padding: 11px 15px; background: var(--surface); border: 1px solid var(--line); border-radius: 11px; font-size: .89rem; line-height: 1.7; }
-.guide-block.is-teacher p { margin: 0; padding: 13px 16px; background: rgba(89,169,240,.1); border-left: 3px solid var(--blue); border-radius: 0 11px 11px 0; font-size: .89rem; line-height: 1.75; }
-.guide-video { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #000; }
-.guide-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
-.guide-source { margin: 8px 0 0; color: var(--muted); font-size: .76rem; }
-
-@media (max-width: 700px) {
-  .guide-workspace { grid-template-columns: 1fr; }
-  .guide-stage { min-height: 260px; }
-  .guide-panel { min-height: 0; padding: 18px; }
-  .guide-dots { grid-template-columns: repeat(6, 1fr); }
-  .guide-caption p { font-size: .88rem; }
-}
