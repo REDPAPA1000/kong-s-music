@@ -2334,7 +2334,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=22d67ff";
+  script.src = "listening-data.js?v=70fda6a";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2796,7 +2796,15 @@ const activityGrid = document.querySelector("#activity-grid");
 const actlistView = document.querySelector("#actlist-view");
 const actlistGrid = document.querySelector("#actlist-grid");
 
-const ACT_PAGE = 30;   /* 2·3·5·6칸 어디서나 줄이 딱 떨어지는 수 */
+/* 쪽마다 카드가 꽉 차게 — 칸 수는 화면 폭에 따라 달라지므로 개수도 따라 정한다.
+   고정된 수를 쓰면 마지막 줄이 비는데도 다음 쪽에 카드가 남아 헷갈린다. */
+const ACT_ROWS = 6;
+let actPerPage = 0;   /* 마지막으로 그려낸 쪽 크기 */
+function actPageSize() {
+  const columns = getComputedStyle(actlistGrid).gridTemplateColumns.split(" ")
+    .filter((one) => one && one !== "none").length;
+  return Math.max(1, columns || 5) * ACT_ROWS;
+}
 let activityLoaded = false;
 
 /* 진로활동 자료는 꽤 커서 그 화면에 들어갈 때만 읽어 온다 */
@@ -2933,10 +2941,12 @@ function renderActlist() {
     : "";
 
   const list = actlistState.scope === "전체" ? items : items.filter((item) => item.c === actlistState.scope);
-  const pages = Math.max(1, Math.ceil(list.length / ACT_PAGE));
+  const per = actPageSize();
+  actPerPage = per;   /* 창이 바뀔 때 어디를 보고 있었는지 되짚는 데 쓴다 */
+  const pages = Math.max(1, Math.ceil(list.length / per));
   if (actlistState.page > pages) actlistState.page = pages;
-  const start = (actlistState.page - 1) * ACT_PAGE;
-  const slice = list.slice(start, start + ACT_PAGE);
+  const start = (actlistState.page - 1) * per;
+  const slice = list.slice(start, start + per);
 
   document.querySelector("#actlist-count").innerHTML = list.length
     ? `총 <b>${list.length}개</b>의 자료가 있습니다. <i>(${start + 1}–${start + slice.length})</i>`
@@ -3020,6 +3030,17 @@ document.querySelector("#actlist-pager").addEventListener("click", (event) => {
   actlistState.page = Number(page.dataset.actPage);
   renderActlist();
   actlistView.scrollIntoView({ block: "start", behavior: "smooth" });
+});
+
+/* 창 폭이 바뀌면 칸 수가 바뀌므로 쪽 개수도 다시 잡는다.
+   보던 카드가 몇 번째였는지를 기준으로 삼아 자리를 잃지 않게 한다. */
+window.addEventListener("resize", () => {
+  if (actlistView.hidden || !actPerPage) return;
+  const per = actPageSize();
+  if (per === actPerPage) return;
+  const firstItem = (actlistState.page - 1) * actPerPage;   /* 지금 쪽의 첫 카드가 몇 번째인지 */
+  actlistState.page = Math.floor(firstItem / per) + 1;
+  renderActlist();
 });
 
 function showActlist(tab) {
