@@ -6,7 +6,7 @@
     <meta name="description" content="초등 1학년부터 고등 1학년까지 함께하는 음악 수업 자료실" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ef705e'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-size='36' fill='white'%3E%E2%99%AA%3C/text%3E%3C/svg%3E" />
     <title>연정쌤의 음악 교실</title>
-    <link rel="stylesheet" href="styles.css?v=4ffa681" />
+    <link rel="stylesheet" href="styles.css?v=guide-career-fix-20260915" />
   </head>
   <body>
     <a class="skip-link" href="#main">본문 바로가기</a>
@@ -466,7 +466,7 @@
         </div>
       </section>
 
-      <!-- 에듀테크 사용설명서 — 도구를 옆에 띄우고 차례를 읽는다 -->
+      <!-- 에듀테크 사용설명서 — 화면과 설명을 나란히 두고 단계별로 읽는다 -->
       <section id="guide-view" class="guide-view" aria-labelledby="guide-title" hidden>
         <div class="history-hero edutech-hero">
           <a class="hall-back" href="#edutech">← 뮤직 에듀테크</a>
@@ -477,11 +477,22 @@
         </div>
         <div class="history-body">
           <div class="guide-player">
-            <div class="guide-stage" id="guide-stage"></div>
-            <div class="guide-bar">
-              <button class="guide-move" id="guide-prev" type="button" aria-label="앞 단계">‹</button>
-              <div class="guide-dots" id="guide-dots" role="tablist" aria-label="단계"></div>
-              <button class="guide-move" id="guide-next" type="button" aria-label="다음 단계">›</button>
+            <div class="guide-workspace">
+              <div class="guide-stage" id="guide-stage"></div>
+              <aside class="guide-panel" aria-label="단계별 사용 안내">
+                <div class="guide-progress">
+                  <span id="guide-progress-label">1단계</span>
+                  <span id="guide-progress-total"></span>
+                </div>
+                <div class="guide-progress-track" aria-hidden="true"><span id="guide-progress-fill"></span></div>
+                <div class="guide-caption" id="guide-caption" aria-live="polite"></div>
+                <div class="guide-dots" id="guide-dots" role="tablist" aria-label="단계 선택"></div>
+                <div class="guide-bar">
+                  <button class="guide-move" id="guide-prev" type="button">← 이전</button>
+                  <button class="guide-move is-next" id="guide-next" type="button">다음 →</button>
+                </div>
+                <a class="guide-open guide-open-tool" id="guide-open-tool" href="#" target="_blank" rel="noopener">도구 바로 실행 ↗</a>
+              </aside>
             </div>
           </div>
           <div class="guide-extra" id="guide-extra"></div>
@@ -561,11 +572,11 @@
     <script src="play-data.js?v=4ffa681"></script>
     <script src="smart-data.js?v=4ffa681"></script>
     <script src="edutech-data.js?v=shared-piano-20260915"></script>
-    <script src="edutech-guide.js?v=4ffa681"></script>
+    <script src="edutech-guide.js?v=guide-workspace-20260915"></script>
     <script src="video-data.js?v=4ffa681"></script>
     <script src="books-data.js?v=4ffa681"></script>
     <script src="break-data.js?v=4ffa681"></script>
-    <script src="tools.js?v=4ffa681"></script>
-    <script src="app.js?v=4ffa681"></script>
+    <script src="tools.js?v=career-image-fix-20260915"></script>
+    <script src="app.js?v=guide-career-fix-20260915"></script>
   </body>
 </html>

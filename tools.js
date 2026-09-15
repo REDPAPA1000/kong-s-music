@@ -1118,9 +1118,9 @@ window.classTools = classTools;
 /* 진로활동 메인 카드 — 음악관과 같은 이미지형 카드로 덧입힌다.
    진로활동 자료 렌더링은 app.js에서 담당하므로, 이 부분은 카드 장식만 맡는다. */
 const CAREER_CARD_ART = {
-  "진로 교육": "assets/career-cards/career-education.png",
-  "학과 정보": "assets/career-cards/major-information.png",
-  "직업 정보": "assets/career-cards/job-information.png",
+  "진로 교육": "assets/career-cards/career-education.webp",
+  "학과 정보": "assets/career-cards/major-information.webp",
+  "직업 정보": "assets/career-cards/job-information.webp",
 };
 
 function applyCareerCardArt() {

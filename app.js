@@ -2010,12 +2010,8 @@ function renderEdutech() {
 }
 
 /* ── 에듀테크 사용설명서 ────────────────────────────────
-   도구를 크게 띄우고 설명은 화면 아래에 자막으로 얹는다. 좌우 단추로 넘긴다.
-   옆에 목록을 두면 눈이 두 군데를 오가야 해서 처음 쓰는 학생이 따라오기 어렵다.
-
-   살아 있는 도구를 우리 쪽에서 조작할 수는 없다. 남의 사이트라 브라우저가 막는다.
-   그래서 자막으로 무엇을 누를지 알려 주고, 짚을 자리를 적어 둔 단계는 동그라미로
-   표시해 준다. 도구를 띄울 수 없는 곳은 단계마다 찍어 둔 그림을 대신 보여 준다. */
+   외부 도구는 iframe 차단이 잦으므로 설명 화면 안에 억지로 넣지 않는다.
+   실제 화면 또는 안정적인 시작 패널을 왼쪽에, 단계 설명과 이동 수단을 오른쪽에 둔다. */
 const guideView = document.querySelector("#guide-view");
 const guideState = { title: "", step: 0 };
 
@@ -2044,46 +2040,34 @@ function renderGuideStage() {
   const step = steps[guideState.step] || { text: "" };
   const total = steps.length;
 
-  /* 무대 — 그림이 있으면 그림, 없으면 살아 있는 도구, 둘 다 없으면 열기 안내 */
+  /* 무대 — 실제 화면이 있으면 보여 주고, 없으면 안정적인 실행 안내를 보여 준다 */
   let stage;
   if (step.shot) {
     stage = `<img class="guide-shot" src="${escText(step.shot)}" alt="${escText(guide.title)} ${guideState.step + 1}단계 화면" />`;
-  } else if (guide.embed) {
-    stage = `<iframe class="guide-frame" src="${escText(step.url || guide.url)}" title="${escText(guide.title)} 실행 화면"
-      loading="lazy" allow="microphone; camera; autoplay; clipboard-write"></iframe>`;
   } else {
-    stage = `<div class="guide-blocked">
-      <p>이 도구는 다른 사이트 안에서 열리지 않도록 막아 두었습니다. 새 창으로 열어 자막을 보며 따라 해 보세요.</p>
-      <a class="guide-open" href="${escText(guide.url)}" target="_blank" rel="noopener">${escText(guide.title)} 새 창으로 열기 ↗</a>
+    stage = `<div class="guide-launchpad" aria-hidden="true">
+      <span class="guide-launchpad-icon">↗</span>
+      <b>${escText(guide.title)}</b>
+      <p>도구를 새 창으로 열고 오른쪽 설명을 한 단계씩 따라 해 보세요.</p>
     </div>`;
   }
 
-  const spot = step.spot
+  const spot = step.shot && step.spot
     ? `<span class="guide-spot" style="left:${step.spot[0]}%;top:${step.spot[1]}%"></span>` : "";
 
   const dots = steps.map((one, i) =>
-    `<button type="button" class="guide-dot${i === guideState.step ? " is-on" : ""}" data-step="${i}"
-      aria-label="${i + 1}단계"></button>`).join("");
+    `<button type="button" role="tab" class="guide-dot${i === guideState.step ? " is-on" : ""}" data-step="${i}"
+      aria-label="${i + 1}단계" aria-selected="${i === guideState.step}">${i + 1}</button>`).join("");
 
   const box = document.querySelector("#guide-stage");
-  const caption = `<div class="guide-caption">
-      <span class="guide-no">${guideState.step + 1} / ${total}</span>
-      <p>${escText(step.text)}</p>
-      ${step.tip ? `<small>${escText(step.tip)}</small>` : ""}
-    </div>`;
-
-  /* 단계를 넘길 때마다 판을 새로 그리면 도구가 다시 켜져 학생이 만들던 것이
-     날아간다. 무대가 그대로면 자막과 표시만 갈아 끼운다. */
-  const live = box.querySelector(".guide-frame");
-  const sameFrame = live && !step.shot && guide.embed
-    && live.getAttribute("src") === (step.url || guide.url);
-  if (sameFrame) {
-    box.querySelector(".guide-spot")?.remove();
-    box.querySelector(".guide-caption")?.remove();
-    box.insertAdjacentHTML("beforeend", `${spot}${caption}`);
-  } else {
-    box.innerHTML = `${stage}${spot}${caption}`;
-  }
+  box.innerHTML = `${stage}${spot}`;
+  document.querySelector("#guide-caption").innerHTML = `
+    <span class="guide-no">${guideState.step + 1}단계</span>
+    <p>${escText(step.text)}</p>
+    ${step.tip ? `<small><b>도움말</b>${escText(step.tip)}</small>` : ""}`;
+  document.querySelector("#guide-progress-label").textContent = `${guideState.step + 1}단계`;
+  document.querySelector("#guide-progress-total").textContent = `전체 ${total}단계`;
+  document.querySelector("#guide-progress-fill").style.width = `${((guideState.step + 1) / total) * 100}%`;
   document.querySelector("#guide-dots").innerHTML = dots;
   document.querySelector("#guide-prev").disabled = guideState.step === 0;
   document.querySelector("#guide-next").disabled = guideState.step >= total - 1;
@@ -2115,21 +2099,16 @@ function showGuide(title) {
   document.title = `${guide.title} 사용법 | 연정쌤의 음악 교실`;
   document.querySelector("#guide-title").textContent = guide.title;
   document.querySelector("#guide-lead").textContent = guide.desc;
+  const openTool = document.querySelector("#guide-open-tool");
+  openTool.href = guide.url;
+  openTool.textContent = `${guide.title} 바로 실행 ↗`;
 
   const bits = [];
   if (guide.ready) bits.push(`<span class="guide-chip">준비물 ${escText(guide.ready)}</span>`);
   if (guide.caution) bits.push(`<span class="guide-chip is-warn">⚠ ${escText(guide.caution)}</span>`);
   document.querySelector("#guide-chips").innerHTML = bits.join("");
 
-  const hasShots = (guide.steps || []).some((one) => one.shot);
   document.querySelector("#guide-extra").innerHTML = [
-    hasShots ? `<section class="guide-block">
-      <h2>직접 해보기</h2>
-      <p>위 그림으로 순서를 익혔다면, 이제 진짜 도구를 열어 그대로 해 보세요.</p>
-      ${guide.embed ? `<div class="guide-try"><iframe class="guide-frame" src="${escText(guide.url)}"
-        title="${escText(guide.title)} 실행 화면" loading="lazy" allow="microphone; autoplay"></iframe></div>` : ""}
-      <a class="guide-open" href="${escText(guide.url)}" rel="noopener">${escText(guide.title)} 새 창에서 열기 ↗</a>
-    </section>` : "",
     guide.video ? `<section class="guide-block">
       <h2>소개 영상</h2>
       <div class="guide-video"><iframe src="${escText(guide.video)}" title="${escText(guide.title)} 소개 영상"
@@ -2150,9 +2129,11 @@ function showGuide(title) {
   ].filter(Boolean).join("");
 
   if (!(guide.steps || []).length) {
-    document.querySelector("#guide-stage").innerHTML = guide.embed
-      ? `<iframe class="guide-frame" src="${escText(guide.url)}" title="${escText(guide.title)}" loading="lazy"></iframe>`
-      : `<div class="guide-blocked"><p>사용설명서는 준비 중입니다.</p><a class="guide-open" href="${escText(guide.url)}" target="_blank" rel="noopener">${escText(guide.title)} 열기 ↗</a></div>`;
+    document.querySelector("#guide-stage").innerHTML = `<div class="guide-blocked"><p>사용설명서는 준비 중입니다.</p></div>`;
+    document.querySelector("#guide-caption").innerHTML = `<p>준비된 설명은 없지만 도구는 바로 실행할 수 있습니다.</p>`;
+    document.querySelector("#guide-progress-label").textContent = "안내 준비 중";
+    document.querySelector("#guide-progress-total").textContent = "";
+    document.querySelector("#guide-progress-fill").style.width = "0%";
     document.querySelector("#guide-dots").innerHTML = "";
     document.querySelector("#guide-prev").disabled = true;
     document.querySelector("#guide-next").disabled = true;
@@ -3049,6 +3030,18 @@ function actValues(items) {
   return found;
 }
 
+function careerFallbackArt(item, kind) {
+  const value = `${item.c || ""}${item.id || item.t || ""}`;
+  const tone = Array.from(value).reduce((sum, char) => sum + char.charCodeAt(0), 0) % 7;
+  const icon = kind === "major"
+    ? `<svg viewBox="0 0 120 80"><path d="M60 15 16 34l44 19 44-19z"/><path d="M34 44v15c0 8 12 14 26 14s26-6 26-14V44"/><path d="M100 36v25"/></svg>`
+    : `<svg viewBox="0 0 120 80"><rect x="18" y="25" width="84" height="45" rx="10"/><path d="M43 25v-8c0-5 4-8 9-8h16c5 0 9 3 9 8v8"/><path d="M18 45h84M52 41h16v10H52z"/></svg>`;
+  return `<span class="career-fallback career-fallback-${kind} career-tone-${tone}" aria-hidden="true">
+    <span class="career-fallback-shape">${icon}</span>
+    <i></i><i></i><i></i>
+  </span>`;
+}
+
 function renderActlist() {
   const config = activityLists[actlistState.tab];
   const items = config.items();
@@ -3083,7 +3076,11 @@ function renderActlist() {
     const picked = actlistGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.c ? `<span class="composer-badge">${item.c}</span>` : "";
-    const thumb = `<span class="history-thumb career-thumb">${coverImg(item)}<span class="thumb-overlay format-break"><span class="break-name">${item.t}</span></span>${badge}</span>`;
+    const fallback = careerFallbackArt(item, actlistState.tab);
+    /* 커리어넷 학과·직업 이미지는 외부 직링크가 자주 늦거나 차단된다.
+       이 두 목록은 처음부터 자체 벡터 그림을 써 빈 카드가 나타나지 않게 한다. */
+    const remoteCover = actlistState.tab === "career" ? coverImg(item) : "";
+    const thumb = `<span class="history-thumb career-thumb">${fallback}${remoteCover}<span class="thumb-overlay format-break"><span class="break-name">${item.t}</span></span>${badge}</span>`;
     // 학과·직업은 우리 쪽 화면에서 열고, 나머지는 만든 곳으로 보낸다
     const inside = actpageKinds[actlistState.tab] ? `#activity-${actlistState.tab}/${item.id}` : "";
     const open = inside
