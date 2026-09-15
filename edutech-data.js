@@ -1,5 +1,5 @@
 const edutechItems = [
-  { group: "site", scope: "에듀테크 사이트", no: 1, title: "쉐어드 피아노", art: "play", url: "https://musiclab.chromeexperiments.com/Shared-Piano/", tag: "탐색/연주", desc: "링크 하나로 여러 사용자가 실시간 합주를 즐기는 공유 피아노", level: "초" },
+  { group: "site", scope: "에듀테크 사이트", no: 1, title: "쉐어드 피아노", art: "play", img: "assets/edutech-sites/shared-piano.webp", url: "https://musiclab.chromeexperiments.com/Shared-Piano/", tag: "탐색/연주", desc: "링크 하나로 여러 사용자가 실시간 합주를 즐기는 공유 피아노", level: "초" },
   { group: "site", scope: "에듀테크 사이트", no: 2, title: "송메이커", art: "create", url: "https://musiclab.chromeexperiments.com/Song-Maker/", img: "https://s3.douclass.com/pub/2026/thumb/2609/fsau0fxr7kto.png", tag: "창작 기초", desc: "색깔 블록을 채워 멜로디와 박자를 직관적으로 만드는 음악 스케치북", level: "초", pick: true },
   { group: "site", scope: "에듀테크 사이트", no: 3, title: "리듬", art: "play", url: "https://musiclab.chromeexperiments.com/Rhythm/", img: "https://s3.douclass.com/pub/2026/thumb/2609/tp657u3lvjyv.png", tag: "탐색/연주", desc: "원숭이 캐릭터와 폴리 리듬을 눈과 귀로 익히는 리듬 도구", level: "초" },
   { group: "site", scope: "에듀테크 사이트", no: 4, title: "스펙트로그램", art: "fusion", url: "https://musiclab.chromeexperiments.com/spectrogram/", img: "https://s3.douclass.com/pub/2026/thumb/2609/vu3sa8mjvlq9.png", tag: "교과 융합", desc: "[음악+과학] 소리의 주파수와 음색 차이를 2D 그래픽으로 관찰하는 시각화 도구", level: "중" },
