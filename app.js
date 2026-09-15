@@ -2334,7 +2334,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=7dd7347";
+  script.src = "listening-data.js?v=22d67ff";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
@@ -2796,7 +2796,7 @@ const activityGrid = document.querySelector("#activity-grid");
 const actlistView = document.querySelector("#actlist-view");
 const actlistGrid = document.querySelector("#actlist-grid");
 
-const ACT_PAGE = 24;
+const ACT_PAGE = 30;   /* 2·3·5·6칸 어디서나 줄이 딱 떨어지는 수 */
 let activityLoaded = false;
 
 /* 진로활동 자료는 꽤 커서 그 화면에 들어갈 때만 읽어 온다 */
