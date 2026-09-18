@@ -587,6 +587,9 @@ function showHome() {
   activityView.hidden = true; actlistView.hidden = true; actpageView.hidden = true;
   setCurrentNav("home");
   document.title = "연정쌤의 음악 교실";
+  /* 다른 화면처럼 맨 위에서 시작한다. 이게 없으면 내려보던 자리에 그대로 머물러
+     첫 화면의 사진이 위로 밀려 안 보인다 — 새로고침해야 보이던 까닭이다. */
+  window.scrollTo({ top: 0, behavior: "instant" });
 }
 
 function showGrade(grade) {
@@ -2336,7 +2339,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=5b7fdfd";
+  script.src = "listening-data.js?v=8e63552";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
