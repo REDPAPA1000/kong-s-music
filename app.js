@@ -1591,8 +1591,11 @@ const songsGrid = document.querySelector("#songs-grid");
 const songsView = document.querySelector("#songs-view");
 const songsState = { genre: "western", scope: "all" };
 const songsScopes = {
-  western: ["all", "동요", "가곡"],
-  gugak: ["all", "전래 동요", "민요", "판소리 및 시조"],
+  western: ["all", "동요", "가곡", "교과서"],
+  gugak: ["all", "전래 동요", "민요", "판소리 및 시조", "교과서"],
+  newgugak: ["all", "교과서"],
+  pop: ["all", "교과서"],
+  world: ["all", "교과서"],
 };
 const songGenreLabel = { western: "서양 음악", gugak: "국악", newgugak: "창작국악", pop: "대중음악", world: "세계음악" };
 
@@ -2336,7 +2339,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=addebc9";
+  script.src = "listening-data.js?v=ed1596e";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
