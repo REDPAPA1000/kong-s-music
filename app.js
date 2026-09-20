@@ -60,6 +60,31 @@ const resources = [
     teacherNote: "긴 음은 숨을 충분히 준비해 안정적으로 소리 내도록 돕고, 합주 전에는 각 파트의 음량과 호흡 시작점을 함께 맞춥니다."
   },
   {
+    id: "western-music-history-listening",
+    grade: "h1",
+    domain: "감상",
+    semester: "2학기",
+    title: "서양음악사 감상",
+    subtitle: "시대마다 달라지는 소리의 결을 이어 들으며 서양음악사의 흐름을 귀로 잡는 감상 수업",
+    kind: "감상 영상",
+    duration: "40분",
+    level: "보통",
+    scoreLabel: "영상 감상",
+    soloAction: true,
+    mediaUrl: "https://www.youtube.com/watch?v=Jhql0z7jE40",
+    primaryLabel: "영상 바로 실행",
+    mediaLabel: "2학기 서양음악사 감상",
+    mediaFeatures: ["시대별 음악", "음악사 흐름", "감상 수행평가", "귀로 구별하기"],
+    mediaSource: "우영쌤",
+    steps: [
+      "중세부터 현대까지 시대 이름을 칠판에 차례로 적어 두고 시작한다.",
+      "영상을 이어 들으며 곡마다 어느 시대의 소리로 들리는지 적어 본다.",
+      "그렇게 들린 까닭을 악기 편성, 짜임새, 화성의 말로 옮겨 본다.",
+      "헷갈린 시대끼리 다시 들어 견주고 구별하는 단서를 정리한다."
+    ],
+    teacherNote: "6분이 채 안 되므로 한 번 훑어 듣고, 두 번째에는 멈춰 가며 시대를 맞춰 보는 식으로 쓰면 한 차시가 알맞게 찹니다. 시대 이름을 먼저 알려 주지 않고 들은 뒤에 맞춰 보게 하면 짜임새와 음색에 더 귀를 기울입니다."
+  },
+  {
     id: "boriuls-summer",
     grade: "m3",
     domain: "가창",
@@ -2417,7 +2442,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=ed49503";
+  script.src = "listening-data.js?v=486c9fa";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
