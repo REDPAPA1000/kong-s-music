@@ -229,6 +229,31 @@ const resources = [
     teacherNote: "높은 음을 낼 때에는 숨을 세게 밀기보다 일정한 호흡을 유지하도록 돕고, 합주 전에는 시작과 끝의 박을 함께 확인합니다."
   },
   {
+    id: "western-instruments-listening",
+    grade: "m1",
+    domain: "감상",
+    semester: "1학기",
+    title: "여러 가지 서양악기 감상",
+    subtitle: "소리만 듣고 어떤 악기인지 맞혀 보며 관현악기의 음색을 익히는 감상 수업",
+    kind: "감상 영상",
+    duration: "40분",
+    level: "보통",
+    scoreLabel: "영상 감상",
+    soloAction: true,
+    mediaUrl: "https://www.youtube.com/watch?v=Tripp7H-IPE",
+    primaryLabel: "영상 바로 실행",
+    mediaLabel: "서양악기 퀴즈 · 악기 맞추기",
+    mediaFeatures: ["음색 구별", "악기 맞추기", "관현악기", "감상 수행평가"],
+    mediaSource: "뮤콩이",
+    steps: [
+      "관현악기가 현·목관·금관·타악기로 나뉜다는 것을 먼저 짚는다.",
+      "영상의 문제를 하나씩 듣고 어떤 악기인지 각자 적어 본다.",
+      "정답을 확인하며 그렇게 들린 까닭을 음색의 말로 옮겨 본다.",
+      "헷갈린 악기끼리 다시 들어 견주고 구별하는 단서를 정리한다."
+    ],
+    teacherNote: "정답을 바로 말하게 하기보다 각자 적게 한 뒤 함께 맞추면 모두가 끝까지 듣습니다. 8분 남짓이라 한 번 풀고 헷갈린 문제만 되짚어도 한 차시에 넉넉합니다."
+  },
+  {
     id: "mountain-ridge-singing",
     grade: "6",
     domain: "가창",
@@ -2367,7 +2392,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=d7c8090";
+  script.src = "listening-data.js?v=cf63ef3";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
