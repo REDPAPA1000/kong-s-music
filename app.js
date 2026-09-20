@@ -181,6 +181,31 @@ const resources = [
     teacherNote: "코드를 빠르게 바꾸기보다 정확한 손 모양을 먼저 익히도록 하고, 반주에 맞춰 일정한 박으로 스트로크하도록 안내합니다."
   },
   {
+    id: "carnival-of-the-animals-listening",
+    grade: "m2",
+    domain: "감상",
+    semester: "2학기",
+    title: "동물의 사육제",
+    subtitle: "생상스가 악기의 음색으로 동물을 그려 낸 방법을 곡마다 찾아보는 감상 수업",
+    kind: "감상 영상",
+    duration: "40분",
+    level: "보통",
+    scoreLabel: "영상 감상",
+    soloAction: true,
+    mediaUrl: "https://www.youtube.com/watch?v=4RuC5UhV1eA",
+    primaryLabel: "영상 바로 실행",
+    mediaLabel: "생상스 「동물의 사육제」 전곡",
+    mediaFeatures: ["표제 음악", "악기의 음색", "사자왕의 행진", "백조", "화석", "피날레"],
+    mediaSource: "노계석음악채널",
+    steps: [
+      "제목을 알려 주지 않고 한 곡을 들려주며 어떤 동물일지 짐작해 본다.",
+      "그렇게 들린 까닭을 악기와 빠르기, 가락의 움직임으로 설명해 본다.",
+      "「백조」와 「화석」처럼 결이 다른 곡을 견주어 들으며 차이를 찾는다.",
+      "마음에 든 곡을 골라 그 동물이 어떻게 그려졌는지 한 문단으로 적는다."
+    ],
+    teacherNote: "전곡이 22분이라 한 차시에 다 듣기보다 서주와 사자왕의 행진, 백조, 화석, 피날레처럼 결이 다른 네댓 곡을 골라 듣는 편이 낫습니다. 영상 설명란에 곡별 시간이 적혀 있어 필요한 곡으로 바로 건너뛸 수 있습니다."
+  },
+  {
     id: "beautiful-world",
     grade: "m1",
     domain: "가창",
@@ -2392,7 +2417,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=cf63ef3";
+  script.src = "listening-data.js?v=ed49503";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
