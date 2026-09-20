@@ -108,6 +108,31 @@ const resources = [
     teacherNote: "한 손으로 이어 연주하는 부분은 낮은 음부터 차례로 연습하게 하고, 빠르게 연결하기 전에는 정확한 박을 먼저 확인하도록 안내합니다."
   },
   {
+    id: "arirang-by-region-listening",
+    grade: "m3",
+    domain: "감상",
+    semester: "1학기",
+    title: "지역별 아리랑 감상",
+    subtitle: "경기·진도·해주·밀양·강원도·정선 아리랑을 이어 들으며 지역마다 다른 가락의 결을 찾는 감상 수업",
+    kind: "감상 영상",
+    duration: "40분",
+    level: "보통",
+    scoreLabel: "영상 감상",
+    soloAction: true,
+    mediaUrl: "https://www.youtube.com/watch?v=z7vjClodPdc",
+    primaryLabel: "영상 바로 실행",
+    mediaLabel: "지역별 아리랑 몰아 듣기",
+    mediaFeatures: ["경기 아리랑", "진도 아리랑", "해주 아리랑", "밀양 아리랑", "강원도 아리랑", "정선 아리랑"],
+    mediaSource: "피치쌤_피아노치는음악쌤",
+    steps: [
+      "아리랑이 한 곡이 아니라 지역마다 다르게 전해 온 노래임을 이야기한다.",
+      "영상을 이어 들으며 지역마다 가락이 어떻게 달라지는지 귀로 견준다.",
+      "경기·남도·서도·동부 소리의 결을 말로 옮겨 보고 까닭을 나눈다.",
+      "가장 마음에 닿은 아리랑을 고르고 그 까닭을 한 문장으로 적는다."
+    ],
+    teacherNote: "여섯 곡을 한 번에 다 듣기보다 두세 곡씩 끊어 듣고 그때마다 느낌을 말하게 하면 차이가 더 또렷해집니다. 지역 이름을 먼저 알려 주지 않고 들은 뒤에 맞춰 보게 하면 귀가 더 열립니다."
+  },
+  {
     id: "womans-heart",
     grade: "m2",
     domain: "가창",
@@ -655,9 +680,11 @@ function renderResources() {
   resourceGrid.innerHTML = list.map((item) => {
     const scoreMeta = item.pdf
       ? "<span>PDF 1쪽</span>"
-      : item.mediaUrl
-        ? "<span>스마트 악보</span>"
-        : "<span>악보 준비 중</span>";
+      : item.scoreLabel
+        ? `<span>${item.scoreLabel}</span>`
+        : item.mediaUrl
+          ? "<span>스마트 악보</span>"
+          : "<span>악보 준비 중</span>";
     const primaryAction = item.mediaUrl
       ? `<a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">${item.primaryLabel || "스마트 악보 바로 실행"} <span aria-hidden="true">↗</span></a>`
       : `<span class="lesson-unavailable" aria-disabled="true">${item.primaryLabel || "수업 자료 준비 중"}</span>`;
@@ -667,7 +694,8 @@ function renderResources() {
     const scoreAction = item.pdf
       ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
       : `<span class="lesson-unavailable" aria-disabled="true">악보 준비 중</span>`;
-    const secondaryActions = item.grade === "1-2"
+    /* 감상처럼 영상 하나로 끝나는 수업은 곁다리 단추가 도리어 방해가 된다 */
+    const secondaryActions = item.grade === "1-2" || item.soloAction
       ? ""
       : `<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div>`;
     return `
@@ -2339,7 +2367,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=6ff0504";
+  script.src = "listening-data.js?v=d7c8090";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
