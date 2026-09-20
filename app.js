@@ -94,11 +94,11 @@ const resources = [
     duration: "40분",
     level: "보통",
     pdf: "assets/grandfathers-clock-kalimba.pdf",
-    mediaUrl: "https://ibook.vivasam.com/CBS_iBook/4366/contents/index.html?skin=basic03&page=15",
-    mediaLabel: "비바샘 스마트 PPT",
+    mediaUrl: "https://smart-book.douclass.com/22/MID/MU/MUS_2/MUS_2_250203/MUS_2/app/viewer/contents/index.html?contentInformationURL=../../resource/contents/lesson02/&page=7",
+    mediaLabel: "두클래스 스마트 악보",
     mediaFeatures: ["칼림바 연주", "숫자 악보", "반주 듣기", "함께 연주하기"],
     guideUrl: "https://ibook.vivasam.com/CBS_iBook/4366/contents/index.html?skin=basic03&page=16",
-    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4775/contents/index.html?skin=basic01&page=51",
+    ibookUrl: "https://smart-book.douclass.com/22/MID/MU/MUS_2/MUS_2_250203/MUS_2/app/viewer/ebook/index.html?contentInformationURL=../../resource/ebook/&page=54",
     steps: [
       "칼림바의 음 배열과 숫자 악보 읽는 법을 확인한다.",
       "오른손과 왼손이 이어지는 부분을 나누어 천천히 연습한다.",
@@ -2339,7 +2339,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=8e63552";
+  script.src = "listening-data.js?v=6ff0504";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
