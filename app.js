@@ -222,7 +222,7 @@ const resources = [
     ],
     tools: [
       { name: "송메이커", url: "https://musiclab.chromeexperiments.com/Song-Maker/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61504", videoUrl: "https://www.youtube.com/embed/Yc-7N2aO9ME" },
-      { name: "", url: "", guideUrl: "", videoUrl: "" },
+      { name: "캔바", url: "https://www.canva.com/", guideUrl: "", videoUrl: "" },
     ],
     steps: [
       "귀에 남는 광고 노래를 떠올려 보고 왜 기억에 남는지 이야기한다.",
@@ -2489,7 +2489,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=834b1f4";
+  script.src = "listening-data.js?v=056e28f";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
