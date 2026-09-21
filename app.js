@@ -220,6 +220,8 @@ const resources = [
     mediaFeatures: ["우쿨렐라 코드", "코드 표", "반주 듣기", "함께 연주하기"],
     guideUrl: "https://www.youtube.com/watch?v=sJlgSY0kocs",
     guideLabel: "우쿨렐레 유래",
+    videoUrl: "https://www.youtube.com/watch?v=CMBStBaZIyw&list=RDCMBStBaZIyw&start_radio=1",
+    videoLabel: "반주 영상",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4776/contents/index.html?skin=basic01&page=55",
     steps: [
       "우쿨렐라의 기본 자세와 코드표를 확인한다.",
@@ -820,10 +822,14 @@ function renderResources() {
     const scoreAction = item.pdf
       ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
       : `<span class="lesson-unavailable" aria-disabled="true">악보 준비 중</span>`;
+    /* 반주처럼 곁들일 영상이 있으면 수업안 옆에 세우고, 교과서와 악보는 아래 줄로 내린다 */
+    const videoAction = item.videoUrl
+      ? `<a class="video-launch" href="${item.videoUrl}" target="_blank" rel="noopener">${item.videoLabel || "소개 영상"}</a>`
+      : "";
     /* 감상처럼 영상 하나로 끝나는 수업은 곁다리 단추가 도리어 방해가 된다 */
     const secondaryActions = item.grade === "1-2" || item.soloAction || (item.tools || []).length
       ? ""
-      : `<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div>`;
+      : `<div class="secondary-actions${videoAction ? " two-by-two" : ""}">${guideAction}${videoAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div>`;
     /* 프로그램마다 한 칸을 두고, 그 안에 실행·수업안·소개 영상을 세로로 쌓는다.
        줄은 이 수업에 실제로 쓰이는 것만 만든다 — 아무도 안 쓰는 줄을 「준비 중」으로
        채워 두면 없는 자료가 있는 것처럼 보인다. */
