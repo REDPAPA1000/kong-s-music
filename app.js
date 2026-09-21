@@ -49,7 +49,8 @@ const resources = [
     mediaUrl: "https://ibook.vivasam.com/CBS_iBook/3896/contents/index.html?skin=basic03&page=15",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["오카리나 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
-    guideUrl: "https://ibook.vivasam.com/CBS_iBook/3896/contents/index.html?skin=basic03&page=15",
+    guideUrl: "https://www.youtube.com/watch?v=KrILpOuApkI",
+    guideLabel: "오카리나 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4774/contents/index.html?skin=basic01&page=63",
     steps: [
       "‘홀로 아리랑’의 가락과 곡의 분위기를 들어 본다.",
