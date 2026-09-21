@@ -71,7 +71,7 @@ const resources = [
     level: "보통",
     scoreLabel: "에듀테크 창작",
     tools: [
-      { name: "밴드랩", url: "https://www.bandlab.com/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61508", guideLabel: "밴드랩 수업안" },
+      { name: "밴드랩", url: "https://www.bandlab.com/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61508", guideLabel: "밴드랩 수업안", videoUrl: "https://www.youtube.com/watch?v=hFfieHkDVnk" },
     ],
     steps: [
       "좋아하는 곡의 드럼 소리에 귀를 기울여 어떤 박에 무엇이 들어가는지 세어 본다.",
@@ -2518,7 +2518,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=5ec5524";
+  script.src = "listening-data.js?v=38de381";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
