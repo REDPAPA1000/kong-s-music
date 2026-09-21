@@ -222,7 +222,7 @@ const resources = [
     ],
     tools: [
       { name: "송메이커", url: "https://musiclab.chromeexperiments.com/Song-Maker/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61504", videoUrl: "https://www.youtube.com/embed/Yc-7N2aO9ME" },
-      { name: "캔바", url: "https://www.canva.com/", guideUrl: "", videoUrl: "" },
+      { name: "캔바", url: "https://www.canva.com/", guideUrl: "https://www.canva.com/ko_kr/create/ads/", guideLabel: "캔바 광고 만들기 수업안", videoUrl: "" },
     ],
     steps: [
       "귀에 남는 광고 노래를 떠올려 보고 왜 기억에 남는지 이야기한다.",
@@ -807,10 +807,10 @@ function renderResources() {
           ? `<a class="smart-launch" href="${tool.url}" target="_blank" rel="noopener">${tool.name} 바로 실행 <span aria-hidden="true">↗</span></a>`
           : `<span class="lesson-unavailable">${tool.name ? `${tool.name} 준비 중` : "프로그램 준비 중"}</span>`}
         ${tool.guideUrl
-          ? `<a class="guide-launch" href="${tool.guideUrl}" target="_blank" rel="noopener">${tool.name} 수업안</a>`
+          ? `<a class="guide-launch" href="${tool.guideUrl}" target="_blank" rel="noopener">${tool.guideLabel || `${tool.name} 수업안`}</a>`
           : `<span class="lesson-unavailable">수업안 준비 중</span>`}
         ${tool.videoUrl
-          ? `<a class="video-launch" href="${tool.videoUrl}" target="_blank" rel="noopener">${tool.name} 소개 영상</a>`
+          ? `<a class="video-launch" href="${tool.videoUrl}" target="_blank" rel="noopener">${tool.videoLabel || `${tool.name} 소개 영상`}</a>`
           : `<span class="lesson-unavailable">소개 영상 준비 중</span>`}
       </div>`).join("");
     /* 프로그램을 만지기 전에 먼저 보여 줄 자료 — 프로그램 칸과 같은 두 칸으로 맞춘다 */
@@ -2489,7 +2489,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=056e28f";
+  script.src = "listening-data.js?v=44260c7";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
