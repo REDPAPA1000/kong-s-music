@@ -563,6 +563,15 @@ dialog::backdrop { background: rgba(10,18,28,.7); }
 .songs-hero h1 { color: #17365e; }
 .songs-hero > p { color: #34567f; }
 .songs-hero .hall-back { color: #22496f; }
+/* 갈래 버튼 아래 한 줄 — 목록이 길어 갈래를 넘나들며 찾는 일이 잦다 */
+.hall-search { display: flex; max-width: 360px; margin: 14px auto 0; background: rgba(255,255,255,.92); border-color: rgba(120,85,35,.28); }
+.hall-search input { color: #3a2a10; font-weight: 600; }
+.hall-search input::placeholder { color: #9a7a4a; }
+.hall-search span { color: #8a6a3a; }
+:root[data-theme="dark"] .hall-search { background: rgba(28,24,38,.92); border-color: rgba(255,255,255,.22); }
+:root[data-theme="dark"] .hall-search input { color: #f3ecff; }
+:root[data-theme="dark"] .hall-search input::placeholder,
+:root[data-theme="dark"] .hall-search span { color: #b9a9cc; }
 .songs-view .format-switch { flex-wrap: wrap; }
 .songs-view .format-switch button { padding: 12px 22px; }
 

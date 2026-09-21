@@ -1791,9 +1791,31 @@ const songArt = {
   world: `<svg class="history-art" viewBox="0 0 120 80" aria-hidden="true"><circle class="a-fill" cx="60" cy="40" r="26"/><g class="a-line"><circle cx="60" cy="40" r="26"/><path d="M34 40h52"/><path d="M60 14c8 8 8 44 0 52M60 14c-8 8-8 44 0 52"/><path d="M39 24q21 8 42 0M39 56q21-8 42 0"/></g><g class="a-fill"><circle cx="20" cy="22" r="4"/><circle cx="100" cy="58" r="4"/></g><g class="a-line"><path d="M24 22V6M104 58V42"/></g></svg>`,
 };
 
+/* 곡 목록은 갈래를 넘나들며 찾는 일이 잦다 — 띄어쓰기는 지우고 견준다 */
+function searchKey(text) {
+  return String(text || "").toLocaleLowerCase("ko").replace(/\s+/g, "");
+}
+
+function matchesSearch(item, term, extra) {
+  return `${searchKey(item.title)}${searchKey(item.note)}${searchKey(extra)}`.includes(term);
+}
+
+/* 검색창과 갈래 버튼을 한 곳에서 묶는다 — 갈래를 누르면 검색은 풀린다 */
+function wireHallSearch(input, state, rerender) {
+  input.addEventListener("input", () => {
+    state.search = input.value;
+    rerender();
+  });
+}
+
+function clearHallSearch(input, state) {
+  input.value = "";
+  state.search = "";
+}
+
 const songsGrid = document.querySelector("#songs-grid");
 const songsView = document.querySelector("#songs-view");
-const songsState = { genre: "western", scope: "all" };
+const songsState = { genre: "western", scope: "all", search: "" };
 const songsScopes = {
   western: ["all", "동요", "가곡"],
   gugak: ["all", "전래 동요", "민요", "판소리 및 시조"],
@@ -1805,16 +1827,22 @@ function songId(item) {
 }
 
 function renderSongs() {
+  const term = searchKey(songsState.search);
   const scoped = songsScopes[songsState.genre];
-  const list = songItems.filter((item) => item.genre === songsState.genre
-    && (!scoped || songsState.scope === "all" || item.scope === songsState.scope));
+  /* 찾는 중에는 갈래를 넘어 전체에서 고른다 */
+  const list = term
+    ? songItems.filter((item) => matchesSearch(item, term, `${item.scope || ""}${songGenreLabel[item.genre] || ""}`))
+    : songItems.filter((item) => item.genre === songsState.genre
+      && (!scoped || songsState.scope === "all" || item.scope === songsState.scope));
   const favorites = readFavorites();
 
-  document.querySelector("#songs-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelector("#songs-count").innerHTML = term
+    ? `‘${songsState.search.trim()}’ 검색 결과 <b>${list.length}개</b>`
+    : `총 <b>${list.length}개</b>의 자료가 있습니다.`;
   document.querySelectorAll("#songs-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === songsState.genre)));
 
   const tabs = document.querySelector("#songs-tabs");
-  tabs.hidden = !scoped;
+  tabs.hidden = !scoped || Boolean(term);
   if (scoped) {
     const signature = scoped.join("|");
     if (tabs.dataset.signature !== signature) {
@@ -1825,14 +1853,16 @@ function renderSongs() {
   }
 
   if (!list.length) {
-    songsGrid.innerHTML = `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>${songGenreLabel[songsState.genre]} 자료를 준비하고 있습니다.</h3><p>목록 데이터를 넣으면 악보와 활동지가 바로 연결됩니다.</p></li>`;
+    songsGrid.innerHTML = term
+      ? `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>‘${songsState.search.trim()}’에 맞는 자료가 없습니다.</h3><p>곡명의 일부만 넣거나, 검색창을 비우고 갈래에서 찾아보세요.</p></li>`
+      : `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>${songGenreLabel[songsState.genre]} 자료를 준비하고 있습니다.</h3><p>목록 데이터를 넣으면 악보와 활동지가 바로 연결됩니다.</p></li>`;
     syncToolbar(songsGrid);
     return;
   }
 
   songsGrid.innerHTML = list.map((item, index) => {
     const id = songId(item);
-    const key = `song-${songsState.genre}-${songsState.scope}-${index}`;
+    const key = `song-${term ? "find" : `${songsState.genre}-${songsState.scope}`}-${index}`;
     const picked = songsGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const badge = item.scope || songGenreLabel[item.genre];
@@ -1879,11 +1909,14 @@ function showSongs() {
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
+const songsSearch = document.querySelector("#songs-search");
 document.querySelectorAll("#songs-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
   songsState.genre = button.dataset.format;
   songsState.scope = "all";
+  clearHallSearch(songsSearch, songsState);
   renderSongs();
 }));
+wireHallSearch(songsSearch, songsState, renderSongs);
 
 document.querySelector("#songs-tabs").addEventListener("click", (event) => {
   const tab = event.target.closest("[data-scope]");
@@ -1909,7 +1942,7 @@ const playArt = {
 
 const playGrid = document.querySelector("#play-grid");
 const playView = document.querySelector("#play-view");
-const playState = { group: "all", scope: "all" };
+const playState = { group: "all", scope: "all", search: "" };
 const playGroupLabel = { all: "전체보기(PDF)", recorder: "리코더 TOP 40", kalimba: "칼림바 TOP 50", danso: "단소·소금 TOP 40", ensemble: "기악 연주곡집" };
 
 function playId(item) {
@@ -1925,16 +1958,22 @@ function playScopesFor(group) {
 }
 
 function renderPlay() {
+  const term = searchKey(playState.search);
   const scoped = playScopesFor(playState.group);
-  const list = playItems.filter((item) => item.group === playState.group
-    && (!scoped || playState.scope === "all" || item.scope === playState.scope));
+  /* 찾는 중에는 분류를 넘어 전체에서 고른다 */
+  const list = term
+    ? playItems.filter((item) => matchesSearch(item, term, `${item.scope || ""}${playGroupLabel[item.group] || ""}`))
+    : playItems.filter((item) => item.group === playState.group
+      && (!scoped || playState.scope === "all" || item.scope === playState.scope));
   const favorites = readFavorites();
 
-  document.querySelector("#play-count").innerHTML = `총 <b>${list.length}개</b>의 자료가 있습니다.`;
+  document.querySelector("#play-count").innerHTML = term
+    ? `‘${playState.search.trim()}’ 검색 결과 <b>${list.length}개</b>`
+    : `총 <b>${list.length}개</b>의 자료가 있습니다.`;
   document.querySelectorAll("#play-view .format-switch button").forEach((button) => button.setAttribute("aria-selected", String(button.dataset.format === playState.group)));
 
   const tabs = document.querySelector("#play-tabs");
-  tabs.hidden = !scoped;
+  tabs.hidden = !scoped || Boolean(term);
   if (scoped) {
     const signature = scoped.join("|");
     if (tabs.dataset.signature !== signature) {
@@ -1945,14 +1984,16 @@ function renderPlay() {
   }
 
   if (!list.length) {
-    playGrid.innerHTML = `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>${playGroupLabel[playState.group]} 자료를 준비하고 있습니다.</h3><p>목록 데이터를 넣으면 악보와 연주 영상이 바로 연결됩니다.</p></li>`;
+    playGrid.innerHTML = term
+      ? `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>‘${playState.search.trim()}’에 맞는 자료가 없습니다.</h3><p>곡명의 일부만 넣거나, 검색창을 비우고 분류에서 찾아보세요.</p></li>`
+      : `<li class="songs-empty"><div class="empty-icon" aria-hidden="true">♪</div><h3>${playGroupLabel[playState.group]} 자료를 준비하고 있습니다.</h3><p>목록 데이터를 넣으면 악보와 연주 영상이 바로 연결됩니다.</p></li>`;
     syncToolbar(playGrid);
     return;
   }
 
   playGrid.innerHTML = list.map((item, index) => {
     const id = playId(item);
-    const key = `play-${playState.group}-${index}`;
+    const key = `play-${term ? "find" : playState.group}-${index}`;
     const picked = playGrid._cfg.selection.has(id);
     const liked = favorites.has(id);
     const isVideo = item.art === "video";
@@ -1995,11 +2036,14 @@ function showPlay() {
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
+const playSearch = document.querySelector("#play-search");
 document.querySelectorAll("#play-view .format-switch button").forEach((button) => button.addEventListener("click", () => {
   playState.group = button.dataset.format;
   playState.scope = "all";
+  clearHallSearch(playSearch, playState);
   renderPlay();
 }));
+wireHallSearch(playSearch, playState, renderPlay);
 
 document.querySelector("#play-tabs").addEventListener("click", (event) => {
   const tab = event.target.closest("[data-scope]");
