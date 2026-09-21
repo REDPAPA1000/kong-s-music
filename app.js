@@ -144,7 +144,8 @@ const resources = [
     mediaUrl: "https://smart-book.douclass.com/22/MID/MU/MUS_2/MUS_2_250203/MUS_2/app/viewer/contents/index.html?contentInformationURL=../../resource/contents/lesson02/&page=7",
     mediaLabel: "두클래스 스마트 악보",
     mediaFeatures: ["칼림바 연주", "숫자 악보", "반주 듣기", "함께 연주하기"],
-    guideUrl: "https://ibook.vivasam.com/CBS_iBook/4366/contents/index.html?skin=basic03&page=16",
+    guideUrl: "https://www.youtube.com/watch?v=DVLirJSSYkM",
+    guideLabel: "칼림바 유래",
     ibookUrl: "https://smart-book.douclass.com/22/MID/MU/MUS_2/MUS_2_250203/MUS_2/app/viewer/ebook/index.html?contentInformationURL=../../resource/ebook/&page=54",
     steps: [
       "칼림바의 음 배열과 숫자 악보 읽는 법을 확인한다.",
@@ -813,7 +814,7 @@ function renderResources() {
       ? `<a class="smart-launch" href="${item.mediaUrl}" target="_blank" rel="noopener">${item.primaryLabel || "스마트 악보 바로 실행"} <span aria-hidden="true">↗</span></a>`
       : `<span class="lesson-unavailable" aria-disabled="true">${item.primaryLabel || "수업 자료 준비 중"}</span>`;
     const guideAction = item.guideUrl
-      ? `<a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안</a>`
+      ? `<a class="guide-launch" href="${item.guideUrl}" target="_blank" rel="noopener">${item.guideLabel || "스마트 수업안"}</a>`
       : `<span class="lesson-unavailable" aria-disabled="true">수업안 준비 중</span>`;
     const scoreAction = item.pdf
       ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
@@ -871,8 +872,8 @@ function openLesson(id, trigger) {
   document.querySelector("#teacher-note-text").textContent = item.teacherNote;
   const ibookPage = new URL(item.ibookUrl).searchParams.get("page");
   const guideLink = item.guideUrl
-    ? `<a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">스마트 수업안 열기 <span aria-hidden="true">↗</span></a>`
-    : `<span class="ibook-inline lesson-unavailable" aria-disabled="true">스마트 수업안 준비 중</span>`;
+    ? `<a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">${item.guideLabel || "스마트 수업안"} 열기 <span aria-hidden="true">↗</span></a>`
+    : `<span class="ibook-inline lesson-unavailable" aria-disabled="true">${item.guideLabel || "스마트 수업안"} 준비 중</span>`;
   const audioPlayer = item.audioUrl
     ? `<div class="audio-player"><strong>${item.audioLabel || "반주 듣기"}</strong><audio controls preload="metadata" src="${item.audioUrl}">이 브라우저에서는 오디오를 재생할 수 없습니다.</audio></div>`
     : "";
