@@ -206,6 +206,29 @@ const resources = [
     teacherNote: "코드를 빠르게 바꾸기보다 정확한 손 모양을 먼저 익히도록 하고, 반주에 맞춰 일정한 박으로 스트로크하도록 안내합니다."
   },
   {
+    id: "cm-song-creating",
+    grade: "m2",
+    domain: "창작",
+    semester: "1학기",
+    title: "CM송 만들기",
+    subtitle: "짧은 광고 노래를 직접 만들어 보며 가락과 말맛이 어떻게 붙는지 익히는 창작 수업",
+    kind: "창작 · 에듀테크",
+    duration: "40분",
+    level: "보통",
+    scoreLabel: "에듀테크 창작",
+    tools: [
+      { name: "송메이커", url: "https://musiclab.chromeexperiments.com/Song-Maker/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61504" },
+      { name: "", url: "", guideUrl: "" },
+    ],
+    steps: [
+      "귀에 남는 광고 노래를 떠올려 보고 왜 기억에 남는지 이야기한다.",
+      "알리고 싶은 것을 정하고 한 문장으로 짧게 다듬는다.",
+      "프로그램으로 가락을 만들고 말의 박에 맞춰 붙여 본다.",
+      "완성한 CM송을 들려주고 어떤 점이 귀에 남는지 서로 말해 준다."
+    ],
+    teacherNote: "문구가 길면 가락에 붙지 않습니다. 여덟 글자 안팎으로 먼저 줄이게 한 뒤 가락을 만들도록 하면 훨씬 수월합니다."
+  },
+  {
     id: "carnival-of-the-animals-listening",
     grade: "m2",
     domain: "감상",
@@ -770,14 +793,25 @@ function renderResources() {
       ? `<button class="lesson-open" type="button" data-open-resource="${item.id}">악보·수업안</button>`
       : `<span class="lesson-unavailable" aria-disabled="true">악보 준비 중</span>`;
     /* 감상처럼 영상 하나로 끝나는 수업은 곁다리 단추가 도리어 방해가 된다 */
-    const secondaryActions = item.grade === "1-2" || item.soloAction
+    const secondaryActions = item.grade === "1-2" || item.soloAction || (item.tools || []).length
       ? ""
       : `<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div>`;
+    /* 프로그램을 둘 이상 쓰는 수업 — 프로그램마다 실행과 수업안을 한 칸에 세로로 둔다 */
+    const toolPairs = (item.tools || []).map((tool) => `
+      <div class="tool-pair">
+        ${tool.url
+          ? `<a class="smart-launch" href="${tool.url}" target="_blank" rel="noopener">${tool.name} 바로 실행 <span aria-hidden="true">↗</span></a>`
+          : `<span class="lesson-unavailable">${tool.name ? `${tool.name} 준비 중` : "프로그램 준비 중"}</span>`}
+        ${tool.guideUrl
+          ? `<a class="guide-launch" href="${tool.guideUrl}" target="_blank" rel="noopener">${tool.name} 수업안</a>`
+          : `<span class="lesson-unavailable">수업안 준비 중</span>`}
+      </div>`).join("");
+    const toolActions = toolPairs ? `<div class="tool-pairs">${toolPairs}</div>` : "";
     return `
       <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
         <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
         <div class="card-body"><h3>${item.title}</h3><p>${item.subtitle}</p><div class="card-meta"><span>◷ ${item.duration}</span><span>수준 ${item.level}</span>${scoreMeta}</div></div>
-        <div class="card-actions">${primaryAction}${secondaryActions}</div>
+        <div class="card-actions">${toolActions || primaryAction}${secondaryActions}</div>
       </article>`;
   }).join("");
 }
@@ -2442,7 +2476,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=486c9fa";
+  script.src = "listening-data.js?v=17daa45";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
