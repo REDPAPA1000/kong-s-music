@@ -170,8 +170,10 @@ main { overflow: clip; }
 /* 프로그램 둘을 나란히 — 한 칸에 실행 단추 위, 수업안 아래 */
 .tool-pairs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .tool-pair { display: grid; gap: 8px; align-content: start; }
+.card-actions .video-launch { color: #7d2b2b; background: #ffeceb; border-color: #f7c7c3; }
 .card-actions .tool-pair .smart-launch,
 .card-actions .tool-pair .guide-launch,
+.card-actions .tool-pair .video-launch,
 .tool-pair .lesson-unavailable {
   min-width: 0; min-height: 50px; padding: 8px 10px;
   white-space: normal; text-align: center; line-height: 1.25;
@@ -226,6 +228,7 @@ footer p { margin: 0; font-size: .84rem; }
 :root[data-theme="dark"] .hero-intro { color: #bac1d4; }
 :root[data-theme="dark"] .domain-preview, :root[data-theme="dark"] .library-toolbar { background: #111426; }
 :root[data-theme="dark"] .resource-kind, :root[data-theme="dark"] .card-meta { color: #aeb5c9; }
+:root[data-theme="dark"] .card-actions .video-launch { color: #ffd2ce; background: #4a2422; border-color: #7a3c38; }
 :root[data-theme="dark"] .card-actions .guide-launch { color: #dedcff; background: #292a55; border-color: #454783; }
 :root[data-theme="dark"] .card-actions .ibook-launch { color: #b8f3e9; background: #173d3b; border-color: #2d625e; }
 :root[data-theme="dark"] .lesson-unavailable { color: #aeb5c9; background: #20243a; border-color: #49516e; }

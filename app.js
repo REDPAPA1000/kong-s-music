@@ -217,8 +217,8 @@ const resources = [
     level: "보통",
     scoreLabel: "에듀테크 창작",
     tools: [
-      { name: "송메이커", url: "https://musiclab.chromeexperiments.com/Song-Maker/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61504" },
-      { name: "", url: "", guideUrl: "" },
+      { name: "송메이커", url: "https://musiclab.chromeexperiments.com/Song-Maker/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61504", videoUrl: "https://www.youtube.com/embed/Yc-7N2aO9ME" },
+      { name: "", url: "", guideUrl: "", videoUrl: "" },
     ],
     steps: [
       "귀에 남는 광고 노래를 떠올려 보고 왜 기억에 남는지 이야기한다.",
@@ -805,6 +805,9 @@ function renderResources() {
         ${tool.guideUrl
           ? `<a class="guide-launch" href="${tool.guideUrl}" target="_blank" rel="noopener">${tool.name} 수업안</a>`
           : `<span class="lesson-unavailable">수업안 준비 중</span>`}
+        ${tool.videoUrl
+          ? `<a class="video-launch" href="${tool.videoUrl}" target="_blank" rel="noopener">${tool.name} 소개 영상</a>`
+          : `<span class="lesson-unavailable">소개 영상 준비 중</span>`}
       </div>`).join("");
     const toolActions = toolPairs ? `<div class="tool-pairs">${toolPairs}</div>` : "";
     return `
@@ -2476,7 +2479,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=17daa45";
+  script.src = "listening-data.js?v=f92b823";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
