@@ -167,6 +167,17 @@ main { overflow: clip; }
 .card-actions .smart-launch { flex: 1; gap: 8px; color: white; background: linear-gradient(90deg, var(--coral), var(--blue)); border-color: var(--coral); box-shadow: 0 10px 22px rgba(87,85,231,.24); }
 .card-actions .smart-launch:hover { background: var(--coral-dark); border-color: var(--coral-dark); }
 .card-actions > .lesson-unavailable { min-height: 46px; }
+/* 프로그램을 만지기 전에 먼저 볼 자료 — 프로그램 칸과 같은 두 칸으로 맞춘다 */
+.tool-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 8px; }
+.card-actions .intro-launch {
+  min-width: 0; min-height: 50px; padding: 8px 10px;
+  color: #6b4715; background: var(--yellow-soft, #fdf1d6); border-color: #f0d8a5;
+  white-space: normal; text-align: center; line-height: 1.25;
+  font-size: .84rem; font-weight: 900; letter-spacing: -.025em;
+}
+:root[data-theme="dark"] .card-actions .intro-launch { color: #f7e0b4; background: #453620; border-color: #6d5730; }
+@media (max-width: 520px) { .tool-intro { grid-template-columns: 1fr; } }
+
 /* 프로그램 둘을 나란히 — 한 칸에 실행 단추 위, 수업안 아래 */
 .tool-pairs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .tool-pair { display: grid; gap: 8px; align-content: start; }

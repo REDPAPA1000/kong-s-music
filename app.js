@@ -216,6 +216,10 @@ const resources = [
     duration: "40분",
     level: "보통",
     scoreLabel: "에듀테크 창작",
+    intro: [
+      { name: "CM송 퀴즈", url: "https://www.youtube.com/watch?v=2yo6q4rWYmI" },
+      { name: "CM송 정여진 모음", url: "https://www.youtube.com/watch?v=ocvvHTRtwXc" },
+    ],
     tools: [
       { name: "송메이커", url: "https://musiclab.chromeexperiments.com/Song-Maker/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61504", videoUrl: "https://www.youtube.com/embed/Yc-7N2aO9ME" },
       { name: "", url: "", guideUrl: "", videoUrl: "" },
@@ -809,7 +813,13 @@ function renderResources() {
           ? `<a class="video-launch" href="${tool.videoUrl}" target="_blank" rel="noopener">${tool.name} 소개 영상</a>`
           : `<span class="lesson-unavailable">소개 영상 준비 중</span>`}
       </div>`).join("");
-    const toolActions = toolPairs ? `<div class="tool-pairs">${toolPairs}</div>` : "";
+    /* 프로그램을 만지기 전에 먼저 보여 줄 자료 — 프로그램 칸과 같은 두 칸으로 맞춘다 */
+    const introRow = (item.intro || []).length
+      ? `<div class="tool-intro">${item.intro.map((one) => one.url
+          ? `<a class="intro-launch" href="${one.url}" target="_blank" rel="noopener">${one.name}</a>`
+          : `<span class="lesson-unavailable">${one.name || "자료"} 준비 중</span>`).join("")}</div>`
+      : "";
+    const toolActions = toolPairs ? `${introRow}<div class="tool-pairs">${toolPairs}</div>` : "";
     return `
       <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
         <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
@@ -2479,7 +2489,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=f92b823";
+  script.src = "listening-data.js?v=834b1f4";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
