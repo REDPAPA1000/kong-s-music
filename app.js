@@ -218,7 +218,8 @@ const resources = [
     mediaUrl: "https://ibook.vivasam.com/CBS_iBook/4331/contents/index.html?skin=basic03&page=15",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["우쿨렐라 코드", "코드 표", "반주 듣기", "함께 연주하기"],
-    guideUrl: "https://ibook.vivasam.com/CBS_iBook/4331/contents/index.html?skin=basic03&page=15",
+    guideUrl: "https://www.youtube.com/watch?v=sJlgSY0kocs",
+    guideLabel: "우쿨렐레 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4776/contents/index.html?skin=basic01&page=55",
     steps: [
       "우쿨렐라의 기본 자세와 코드표를 확인한다.",
