@@ -430,28 +430,28 @@ const resources = [
     teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   },
   {
-    id: "a-whole-new-world-ocarina",
+    id: "white-country-ocarina",
     grade: "5",
     domain: "기악",
     semester: "1학기",
-    title: "A Whole New World",
-    subtitle: "오카리나의 운지와 호흡을 익혀 ‘A Whole New World’를 함께 연주하는 기악 수업",
+    title: "하얀 나라",
+    subtitle: "오카리나의 운지와 호흡을 익혀 ‘하얀 나라’를 함께 연주하는 기악 수업",
     kind: "악보 · 스마트 PPT",
     duration: "40분",
     level: "보통",
-    pdf: "assets/a-whole-new-world-ocarina.pdf",
-    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106536_20p_11_ST",
+    pdf: "assets/white-country-ocarina.pdf",
+    mediaUrl: "https://viewer.vivasam.com/qrviewer/viewer.html?qrcode=106414_76p_20_ST",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["오카리나 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
-    guideUrl: "assets/a-whole-new-world-ocarina-lesson-plan.pdf",
-    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11125/contents/index.html?skin=basic01&page=21",
+    guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fwhite-country-ocarina-lesson-plan.pptx",
+    ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1691/contents/index.html",
     steps: [
-      "영화 속 장면과 곡의 분위기를 떠올리며 선율을 들어 본다.",
+      "눈 내린 하얀 풍경을 떠올리며 곡의 분위기를 들어 본다.",
       "오카리나 운지와 안정적인 호흡을 차례로 점검한다.",
       "어려운 리듬과 가락을 짧은 마디부터 반복해 익힌다.",
       "반주에 맞춰 친구들과 소리의 어울림을 느끼며 연주한다."
     ],
-    teacherNote: "원본 PPTX 수업안은 용량이 커서, 수업 내용과 활동을 유지한 PDF 수업안으로 연결했습니다. 스마트 수업안 버튼에서 바로 열 수 있습니다."
+    teacherNote: "초등 수업안은 PPTX 형식으로 제공됩니다. 스마트 수업안 버튼을 누르면 브라우저에서 바로 볼 수 있으며, 필요할 때는 내려받아 PowerPoint로 열 수 있습니다."
   },
   {
     id: "favorite-words-singing",
@@ -878,7 +878,9 @@ function openLesson(id, trigger) {
   ["#pdf-open", "#pdf-download", "#pdf-fallback-link"].forEach((selector) => document.querySelector(selector).href = item.pdf);
   document.querySelector("#lesson-steps").innerHTML = item.steps.map((step) => `<li>${step}</li>`).join("");
   document.querySelector("#teacher-note-text").textContent = item.teacherNote;
+  /* 쪽 번호가 없는 이북도 있다 — 없으면 쪽수 없이 이름만 건다 */
   const ibookPage = new URL(item.ibookUrl).searchParams.get("page");
+  const ibookLabel = ibookPage ? `교과서 EBOOK ${ibookPage}쪽` : "교과서 EBOOK";
   const guideLink = item.guideUrl
     ? `<a class="ibook-inline" href="${item.guideUrl}" target="_blank" rel="noopener">${item.guideLabel || "스마트 수업안"} 열기 <span aria-hidden="true">↗</span></a>`
     : `<span class="ibook-inline lesson-unavailable" aria-disabled="true">${item.guideLabel || "스마트 수업안"} 준비 중</span>`;
@@ -888,8 +890,8 @@ function openLesson(id, trigger) {
   const mediaLabel = item.mediaLabel || "수업 자료";
   const primaryLabel = item.primaryLabel || "스마트 악보 바로 실행";
   document.querySelector("#media-box").innerHTML = item.mediaUrl
-    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${mediaLabel}</strong><p>악보와 함께 활용하는 수업 자료입니다.</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">${primaryLabel} <span aria-hidden="true">↗</span></a>${audioPlayer}${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`
-    : `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">QR</div><strong>수업 자료 준비 중</strong><p>제공된 PPT 또는 음원이 등록되면<br />이 영역에서 바로 실행할 수 있습니다.</p>${audioPlayer}${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK ${ibookPage}쪽 <span aria-hidden="true">↗</span></a></div>`;
+    ? `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">▶</div><strong>${mediaLabel}</strong><p>악보와 함께 활용하는 수업 자료입니다.</p><div class="media-features">${item.mediaFeatures.map((feature) => `<span>${feature}</span>`).join("")}</div><a href="${item.mediaUrl}" target="_blank" rel="noopener">${primaryLabel} <span aria-hidden="true">↗</span></a>${audioPlayer}${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">${ibookLabel} <span aria-hidden="true">↗</span></a></div>`
+    : `<div class="smart-ppt"><div class="media-icon" aria-hidden="true">QR</div><strong>수업 자료 준비 중</strong><p>제공된 PPT 또는 음원이 등록되면<br />이 영역에서 바로 실행할 수 있습니다.</p>${audioPlayer}${guideLink}<a class="ibook-inline" href="${item.ibookUrl}" target="_blank" rel="noopener">${ibookLabel} <span aria-hidden="true">↗</span></a></div>`;
   dialog.showModal();
   document.body.classList.add("dialog-open");
   document.querySelector("#dialog-close").focus();
