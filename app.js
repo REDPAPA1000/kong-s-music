@@ -321,7 +321,8 @@ const resources = [
     mediaUrl: "https://ibook.vivasam.com/CBS_iBook/6991/contents/index.html?skin=basic03&page=13",
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
-    guideUrl: "https://ibook.vivasam.com/CBS_iBook/6991/contents/index.html?skin=basic03&page=15",
+    guideUrl: "https://www.youtube.com/watch?v=wqA7PM50b48",
+    guideLabel: "리코더 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/4775/contents/index.html?skin=basic01&page=55",
     steps: [
       "곡의 분위기와 리코더로 표현할 소리를 들어 본다.",
