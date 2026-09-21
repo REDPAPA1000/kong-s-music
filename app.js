@@ -60,6 +60,28 @@ const resources = [
     teacherNote: "긴 음은 숨을 충분히 준비해 안정적으로 소리 내도록 돕고, 합주 전에는 각 파트의 음량과 호흡 시작점을 함께 맞춥니다."
   },
   {
+    id: "bandlab-beat-creating",
+    grade: "h1",
+    domain: "창작",
+    semester: "1학기",
+    title: "밴드랩으로 비트 만들기",
+    subtitle: "드럼과 베이스를 겹쳐 쌓으며 곡의 바탕이 되는 비트를 직접 만들어 보는 창작 수업",
+    kind: "창작 · 에듀테크",
+    duration: "40분",
+    level: "보통",
+    scoreLabel: "에듀테크 창작",
+    tools: [
+      { name: "밴드랩", url: "https://www.bandlab.com/", guideUrl: "https://www.douclass.com/viewer/SPC_C/61508", guideLabel: "밴드랩 수업안" },
+    ],
+    steps: [
+      "좋아하는 곡의 드럼 소리에 귀를 기울여 어떤 박에 무엇이 들어가는지 세어 본다.",
+      "킥과 스네어만으로 한 마디를 만들어 뼈대를 세운다.",
+      "하이햇과 베이스를 얹어 소리의 층을 늘려 본다.",
+      "네 마디로 이어 붙여 반복해 듣고, 지루한 자리를 고친다."
+    ],
+    teacherNote: "처음부터 소리를 많이 쌓으면 무엇이 문제인지 알 수 없습니다. 킥과 스네어만으로 한 마디를 만족스럽게 만든 뒤에 하나씩 얹도록 하면 결과가 훨씬 또렷합니다. 밴드랩은 가입이 필요하므로 계정 만들기를 미리 안내해 두면 수업 시간을 아낄 수 있습니다."
+  },
+  {
     id: "western-music-history-listening",
     grade: "h1",
     domain: "감상",
@@ -800,16 +822,21 @@ function renderResources() {
     const secondaryActions = item.grade === "1-2" || item.soloAction || (item.tools || []).length
       ? ""
       : `<div class="secondary-actions">${guideAction}<a class="ibook-launch" href="${item.ibookUrl}" target="_blank" rel="noopener">교과서 EBOOK</a>${scoreAction}</div>`;
-    /* 프로그램을 둘 이상 쓰는 수업 — 프로그램마다 실행과 수업안을 한 칸에 세로로 둔다 */
-    const toolPairs = (item.tools || []).map((tool) => `
+    /* 프로그램마다 한 칸을 두고, 그 안에 실행·수업안·소개 영상을 세로로 쌓는다.
+       줄은 이 수업에 실제로 쓰이는 것만 만든다 — 아무도 안 쓰는 줄을 「준비 중」으로
+       채워 두면 없는 자료가 있는 것처럼 보인다. */
+    const tools = item.tools || [];
+    const hasGuide = tools.some((tool) => tool.guideUrl);
+    const hasVideo = tools.some((tool) => tool.videoUrl);
+    const toolPairs = tools.map((tool) => `
       <div class="tool-pair">
         ${tool.url
           ? `<a class="smart-launch" href="${tool.url}" target="_blank" rel="noopener">${tool.name} 바로 실행 <span aria-hidden="true">↗</span></a>`
           : `<span class="lesson-unavailable">${tool.name ? `${tool.name} 준비 중` : "프로그램 준비 중"}</span>`}
-        ${tool.guideUrl
+        ${!hasGuide ? "" : tool.guideUrl
           ? `<a class="guide-launch" href="${tool.guideUrl}" target="_blank" rel="noopener">${tool.guideLabel || `${tool.name} 수업안`}</a>`
           : `<span class="lesson-unavailable">수업안 준비 중</span>`}
-        ${tool.videoUrl
+        ${!hasVideo ? "" : tool.videoUrl
           ? `<a class="video-launch" href="${tool.videoUrl}" target="_blank" rel="noopener">${tool.videoLabel || `${tool.name} 소개 영상`}</a>`
           : `<span class="lesson-unavailable">소개 영상 준비 중</span>`}
       </div>`).join("");
@@ -819,7 +846,9 @@ function renderResources() {
           ? `<a class="intro-launch" href="${one.url}" target="_blank" rel="noopener">${one.name}</a>`
           : `<span class="lesson-unavailable">${one.name || "자료"} 준비 중</span>`).join("")}</div>`
       : "";
-    const toolActions = toolPairs ? `${introRow}<div class="tool-pairs">${toolPairs}</div>` : "";
+    const toolActions = toolPairs
+      ? `${introRow}<div class="tool-pairs" style="grid-template-columns:repeat(${tools.length},minmax(0,1fr))">${toolPairs}</div>`
+      : "";
     return `
       <article class="resource-card ${semesterClasses[item.semester] || "semester-one"} ${domainClasses[item.domain] || "domain-singing"}">
         <div class="card-top"><div class="tag-group"><span class="semester-tag">${item.semester}</span><span class="domain-tag">${item.domain}</span></div></div>
@@ -2489,7 +2518,7 @@ function showListening() {
   if (listeningLoaded) { renderListening(); return; }
   document.querySelector("#listening-count").textContent = "자료를 불러오는 중입니다…";
   const script = document.createElement("script");
-  script.src = "listening-data.js?v=3178e85";
+  script.src = "listening-data.js?v=5ec5524";
   script.onload = () => { listeningLoaded = true; buildListeningFilters(); renderListening(); };
   script.onerror = () => {
     document.querySelector("#listening-count").textContent = "자료를 불러오지 못했습니다. 새로고침해 주세요.";
