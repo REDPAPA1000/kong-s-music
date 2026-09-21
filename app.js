@@ -397,6 +397,8 @@ const resources = [
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["칼림바 연주", "가락 익히기", "반주 듣기", "함께 연주하기"],
     guideUrl: "assets/rainbow-beyond-kalimba-lesson-plan.pdf",
+    videoUrl: "https://www.youtube.com/watch?v=DVLirJSSYkM",
+    videoLabel: "칼림바 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/11126/contents/index.html?skin=basic01&page=21",
     steps: [
       "칼림바의 음 배열과 기본 연주 자세를 확인한다.",
@@ -445,6 +447,8 @@ const resources = [
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["오카리나 운지", "반주 듣기", "리듬 익히기", "함께 연주하기"],
     guideUrl: "https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FREDPAPA1000%2Fkong-s-music%2Fmain%2Fassets%2Fwhite-country-ocarina-lesson-plan.pptx",
+    videoUrl: "https://www.youtube.com/watch?v=KrILpOuApkI",
+    videoLabel: "오카리나 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1691/contents/index.html",
     steps: [
       "눈 내린 하얀 풍경을 떠올리며 곡의 분위기를 들어 본다.",
@@ -493,6 +497,8 @@ const resources = [
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "가락선 보기", "차례가기", "함께 연주하기"],
     guideUrl: "assets/corn-harmonica-recorder-lesson-plan.pdf",
+    videoUrl: "https://www.youtube.com/watch?v=wqA7PM50b48",
+    videoLabel: "리코더 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=41",
     steps: [
       "‘옥수수 하모니카’의 가락과 리코더 소리를 들어 본다.",
@@ -565,6 +571,8 @@ const resources = [
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "시·라·솔", "반주 듣기", "함께 연주하기"],
     guideUrl: "assets/airplane-recorder-lesson-plan.pdf",
+    videoUrl: "https://www.youtube.com/watch?v=wqA7PM50b48",
+    videoLabel: "리코더 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=21",
     steps: [
       "비행기의 움직임을 떠올리며 곡의 빠르기와 분위기를 듣는다.",
@@ -589,6 +597,8 @@ const resources = [
     mediaLabel: "비바샘 스마트 PPT",
     mediaFeatures: ["리코더 운지", "낮은음", "반주 듣기", "함께 연주하기"],
     guideUrl: "assets/little-star-recorder-lesson-plan.pdf",
+    videoUrl: "https://www.youtube.com/watch?v=wqA7PM50b48",
+    videoLabel: "리코더 유래",
     ibookUrl: "https://ibook.vivasam.com/CBS_iBook/1690/contents/index.html?page=37",
     steps: [
       "별이 빛나는 모습을 떠올리며 곡의 가락을 들어 본다.",
